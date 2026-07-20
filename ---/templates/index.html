@@ -1,0 +1,97 @@
+<!DOCTYPE html>                                    <!-- Тип документа - html -->
+<html lang="en" xmlns="http://www.w3.org/1999/html">  <!-- Начало HTML-tag, Имя_атрибута="Значение_атрибута" -->
+<head>                                             <!-- Начало head c метаинформацией: -->
+    <meta charset="UTF-8">                         <!-- Tag с кодировкой -->
+    <title>--- Title ----</title>                  <!-- Tag c заголовком страницы -->
+</head>                                            <!-- Конец head -->
+
+<body>                                             <!-- body: -->
+<h1>Заголовок H1</h1>                              <!-- Tag с заголовком (самый большой) -->
+<h2>Заголовок H2</h2>
+<h3>Заголовок H3</h3>
+<h4>Заголовок H4</h4>
+<h5>Заголовок H5</h5>
+<h6>Заголовок H6</h6>                              <!-- Tag с заголовком (самый маленький) -->
+<p>Текст (параграф)</p>                            <!-- Tag с текстом (параграф) -->
+
+<div> --- Блочный элемент-1 (Ссылки и Картинки) ---
+    <p>Текст внутри блочного элемента</p>
+    <p>Применение тега "span" для <span style=color:green>форматирования</span> текста </p>
+    <a href="https://www.python.org">Ссылка</a><br>
+    <a href="https://www.python.org" target="_blank">Ссылка в новом окне</a><br>
+    <img src="https://www.python.org/static/img/python-logo.png" alt="Logo Python" width="200">
+</div>
+
+<div> --- Блочный элемент-2 (Списки) ---
+    <ul> НЕнумерованные списки:                                          <!-- Начало НЕнумерованного списка -->
+        <li>НЕнумерованный список - A</li>         <!-- • ... -->
+        <li>НЕнумерованный список - B</li>         <!-- • ... -->
+        <li>НЕнумерованный список - C</li>         <!-- • ... -->
+    </ul>
+
+    <ol> Нумерованные списки:
+        <li>Нумерованный список - A</li>           <!-- 1. ... -->
+        <li>Нумерованный список - B</li>           <!-- 2. ... -->
+        <li>Нумерованный список - C</li>           <!-- 3. ... -->
+    </ol>
+</div>
+
+<div> --- Блочный элемент-3 (Ввод данных) ---- <br><br>
+    <label> Поле ввода (пустое)                      <!-- Label -->
+        <input></label><br><br>
+
+    <label> Поле ввода (с плейсхолдером)
+        <input placeholder="Placeholder"></label><br><br>
+
+    <label> Поле ввода (с плейсхолдером + default значение)
+        <input placeholder="Enter any text" value="Hello!"></label><br><br>
+
+    <label> Поле ввода (type="text")
+        <input type="text" placeholder="Text"></label><br><br>
+
+    <label> Поле ввода (type="email")
+        <input type="email" placeholder="Email"></label><br><br>
+
+    <label> Поле ввода (type="password")
+        <input type="password" placeholder="Password"></label><br><br>
+
+
+    <label> Поле ввода произвольного текста
+        <textarea></textarea></label><br><br>
+
+    <label> Поле ввода произвольного текста (с плейсхолдером)
+        <input placeholder="Any text"></label><br><br>
+
+</div>
+
+<div> --- Блок отправка online формы по адресу методом POST --- <br><br>
+    <form action="/website" method="POST">                       <!-- Блок отправки online формы по URL методом POST -->
+        <label>Email: <input required type="email" placeholder="Email"></label><br><br>    <!-- Обязательное поле ввода email -->
+        <label>Password: <input type="password" placeholder="Password"></label><br><br>    <!-- Поле ввода password -->
+        <button type="submit">КНОПКА</button>                   <!-- Кнопка отправки формы с типом "submit" -->
+    </form><br><br>
+</div>
+
+<div> --- Таблица --- <br><br>
+    <table>
+        <thead> <!-- Строки заголовка таблицы -->
+        <tr> <!-- Строка 1 -->
+            <td>Ячейка-1</td>
+            <td>Ячейка-2</td>
+            <td>Ячейка-3</td>
+        </tr>
+        </thead>
+
+        <tbody>   <!-- Строки тела таблицы -->
+        <tr> <!-- Строка 2 -->
+            <td>Ячейка-4</td>
+            <td>Ячейка-5</td>
+            <td>Ячейка-6</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>        <!-- Конец body -->
+</html>        <!-- Конец HTML -->
