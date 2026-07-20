@@ -2,14 +2,19 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">  <!-- Начало HTML-tag, Имя_атрибута="Значение_атрибута" -->
 <head>                                             <!-- Начало head c метаинформацией: -->
     <meta charset="UTF-8">                         <!-- Tag с кодировкой -->
-    <title>--- Title ----</title>                  <!-- Tag c заголовком страницы -->
+    <title>--- Title of page ----</title>          <!-- Tag c заголовком страницы -->
+    <style>                                        /* Стиль */
+        .red-text {                                /* Название .класса */
+            color: red;                            /* Свойство: Значение */
+        }
+    </style>
 </head>                                            <!-- Конец head -->
 
 <body>                                             <!-- body: -->
 <h1>Заголовок H1</h1>                              <!-- Tag с заголовком (самый большой) -->
 <h2>Заголовок H2</h2>
-<h3>Заголовок H3</h3>
-<h4>Заголовок H4</h4>
+<h3 id="h3-text">Заголовок H3 c id</h3>            <!-- ... c id      (для QA - #h3-text) -->
+<h4 class="red-text">Заголовок H4 с классом</h4>   <!-- ... c классом (для QA - .red-text) -->
 <h5>Заголовок H5</h5>
 <h6>Заголовок H6</h6>                              <!-- Tag с заголовком (самый маленький) -->
 <p>Текст (параграф)</p>                            <!-- Tag с текстом (параграф) -->
@@ -69,6 +74,7 @@
         <label>Email: <input required type="email" placeholder="Email"></label><br><br>    <!-- Обязательное поле ввода email -->
         <label>Password: <input type="password" placeholder="Password"></label><br><br>    <!-- Поле ввода password -->
         <button type="submit">КНОПКА</button>                   <!-- Кнопка отправки формы с типом "submit" -->
+        <button type="submit" disabled>Disabled</button>        <!-- Кнопка неактивная -->
     </form><br><br>
 </div>
 
