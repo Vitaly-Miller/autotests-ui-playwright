@@ -8,9 +8,9 @@ from playwright.sync_api import sync_playwright, Request, Response
 login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
 
 # Создаем объект playwright через контекст менеджер <with> - для авто-закрытия браузера по окончании
-with sync_playwright() as playwright:                        # Переменная playwright = sync_playwright() (инициализация)
-    chromium = playwright.chromium.launch(headless=False)    # Переменная браузера chromium c запуском браузера (с отображением)
-    page = chromium.new_page()                               # Переменная страницы page c запуском новой страницы
+with sync_playwright() as playwright:                        # Создаем объект playwright = sync_playwright() (инициализация)
+    chromium = playwright.chromium.launch(headless=False)    # Создаем объект браузера chromium c запуском браузера (с отображением)
+    page = chromium.new_page()                               # Создаем объект страницы page c запуском новой страницы
 
 
     #----------------------------------------------- Callbacks functions -----------------------------------------------
