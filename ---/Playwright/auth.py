@@ -8,8 +8,8 @@ login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#
 
 # Создаем объект playwright через контекст менеджер <with> - для авто-закрытия браузера по окончании
 with sync_playwright() as playwright:                        # Создаем объект playwright = sync_playwright() (инициализация)
-    chromium = playwright.chromium.launch(headless=False)    # Создаем объект браузера chromium c запуском браузера (с отображением)
-    page = chromium.new_page()                               # Создаем объект страницы page c запуском новой страницы
+    browser = playwright.chromium.launch(headless=False)    # Создаем объект браузера chromium c запуском браузера (с отображением)
+    page = browser.new_page()                               # Создаем объект страницы page c запуском новой страницы
 
     # Open page
     page.goto(login_url)                                                 # ▶ ACTION - Переход на страницу по URL
@@ -35,8 +35,8 @@ with sync_playwright() as playwright:                        # Создаем о
     error_message_ = page.get_by_text('Wrong email or password')                     # ㉧ LOCATOR сообщения об ошибке при неверном вводе (v.2 - by text)
 
     # ✔︎ EXPECTATIONS
-    expect(error_message).to_be_visible()                          # ✔︎ EXPECTATIONS - Проверка видимости сообщения об ошибке
-    expect(error_message).to_have_text('Wrong email or password')  # ✔︎ EXPECTATIONS - Проверка текста сообщения об ошибке
+    expect(error_message).to_be_visible()                          # Проверка видимости сообщения об ошибке
+    expect(error_message).to_have_text('Wrong email or password')  # Проверка текста сообщения об ошибке
 
     # ⏳
     page.wait_for_timeout(1000)

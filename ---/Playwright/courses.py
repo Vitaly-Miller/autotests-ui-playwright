@@ -19,10 +19,10 @@ with (sync_playwright() as playwright):         # Создаем объект pl
     page.goto(registration_url)
 
     # ㉧ LOCATORS
-    email_field = page.get_by_role('textbox', name='Email')
-    username_field = page.get_by_role('textbox', name='Username')
-    password_field = page.get_by_role('textbox', name='Password')
-    registration_btn = page.get_by_role("button", name='Registration')
+    email_field = page.get_by_role(role='textbox', name='Email')
+    username_field = page.get_by_role(role='textbox', name='Username')
+    password_field = page.get_by_role(role='textbox', name='Password')
+    registration_btn = page.get_by_role(role='button', name='Registration')
 
     # ▶ ACTIONS
     email_field.fill('user.name@gmail.com')
@@ -49,10 +49,10 @@ with (sync_playwright() as playwright):      # Создаем объект playw
     page.goto(courses_url)                   # Courses page - открыввется ✔️
 
     # ㉧ LOCATORS
-    courses_header = page.get_by_role('heading', name='Courses')
+    courses_header = page.get_by_role(role='heading', name='Courses')
     folder_icon = page.get_by_test_id('courses-list-empty-view-icon')
-    no_result = page.get_by_role('heading', name='There is no results')
-    description = page.get_by_test_id("courses-list-empty-view-description-text")
+    no_result = page.get_by_role(role='heading', name='There is no results')
+    description = page.get_by_test_id('courses-list-empty-view-description-text')
 
     # ✔︎ EXPECTATIONS
     expect(page).to_have_url(courses_url)

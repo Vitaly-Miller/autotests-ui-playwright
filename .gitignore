@@ -1,1 +1,3 @@
 .DS_Store
+/storage_state.json
+/.claude/
