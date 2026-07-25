@@ -3,7 +3,7 @@ Test
 Courses page is opening
 """
 import pytest
-from playwright.sync_api import Page, sync_playwright, expect
+from playwright.sync_api import expect
 
 #=======================================================================================================================
 registration_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
@@ -11,7 +11,7 @@ courses_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course
 
 @pytest.mark.courses
 @pytest.mark.regression
-def test_courses_page_is_opening(chromium_page: Page):
+def test_courses_page_is_opening(chromium_page):
     page = chromium_page
 
     #------------------------------------ ◁ PRECONDITION (Auth + storage_state) ----------------------------------------

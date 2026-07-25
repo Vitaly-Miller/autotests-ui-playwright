@@ -3,7 +3,7 @@ Test (negative)
 Courses page is not opening without auth
 """
 
-from playwright.sync_api import Page, sync_playwright, expect
+from playwright.sync_api import expect
 import pytest
 #=======================================================================================================================
 registration_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
@@ -13,7 +13,7 @@ login_page = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/
 @pytest.mark.courses
 @pytest.mark.regression
 @pytest.mark.negative
-def test_courses_page_is_not_opening_without_auth(chromium_page: Page):
+def test_courses_page_is_not_opening_without_auth(chromium_page):
     page = chromium_page
     #------------------------------------ ◁ PRECONDITION (Auth + storage_state) ------------------------------------
     # Open page

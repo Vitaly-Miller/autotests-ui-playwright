@@ -3,7 +3,7 @@ Test
 Registration successful
 """
 import pytest
-from playwright.sync_api import Page, sync_playwright, expect
+from playwright.sync_api import expect
 
 #=======================================================================================================================
 registration_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
@@ -11,7 +11,7 @@ dashboard_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-cour
 
 @pytest.mark.registration
 @pytest.mark.regression
-def test_registration_successful(chromium_page: Page):
+def test_registration_successful(chromium_page):
     page = chromium_page
 
     #---------------------------------------------------------------------------------------------------------------

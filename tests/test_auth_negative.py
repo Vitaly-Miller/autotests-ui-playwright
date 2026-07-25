@@ -4,7 +4,7 @@ Auth unregister user (Login)
 """
 
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.sync_api import expect
 
 #=======================================================================================================================
 login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
@@ -12,7 +12,7 @@ login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#
 @pytest.mark.auth
 @pytest.mark.regression
 @pytest.mark.negative
-def test_auth_unregister_user(chromium_page: Page):
+def test_auth_unregister_user(chromium_page):
     page = chromium_page                          # Сохраняем работу фикстуры
 
     # Open page
