@@ -50,7 +50,7 @@ def test_courses_page_is_opening():
             slow_mo=500                          # - Action delay (ms)
         )
         context = browser.new_context(           # Создание браузерного окружения
-            storage_state="storage_state.json"   # 👈 Подтягиваем Storage state из файла
+            storage_state='storage_state.json'   # 👈 Подтягиваем Storage state из файла
         )
         page = context.new_page()                # Создаем объект страницы page (на базе context + Storage state)
 

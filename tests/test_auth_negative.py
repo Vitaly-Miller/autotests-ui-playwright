@@ -12,8 +12,8 @@ login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#
 @pytest.mark.auth
 @pytest.mark.regression
 @pytest.mark.negative
-def test_auth_unregister_user(chromium_page):
-    page = chromium_page                          # Сохраняем работу фикстуры
+def test_auth_unregister_user(guest_page):
+    page = guest_page                             # Сохраняем работу фикстуры
 
     # Open page
     page.goto(login_url)                          # ▶ ACTION - Переход на страницу по URL
