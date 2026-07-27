@@ -59,29 +59,47 @@ users = {
 
 #------------------------------------------ Вывод по идентификатору (простой) ------------------------------------------
 @pytest.mark.parametrize(
-    'phone_number', users.keys(),            # 'Название параметра', [KEYS словаря],
-    ids=list(users.values())                 # [Идентификаторы для каждого параметра - VALUES словаря]
-    #ids=company.values()                    # Тоже работает (но менее корректный вариант)
-
+    'phone_number', users.keys(),   # 'Название параметра', [KEYS словаря] = [111-0011, 111-0022, 111-0033]
+    ids=list(users.values())        # [Идентификаторы для каждого параметра - VALUES словаря]
+    # ids=company.values()          # - Тоже работает (но менее корректный вариант)
 )
 def test_5(phone_number: str):
-    ...                                      # test_5[John]     PASSED
-                                             # test_5[Mike]     PASSED
-                                             # test_5[Engineer] PASSED
+    ...                             # test_5[John]   PASSED
+                                    # test_5[Mike]   PASSED
+                                    # test_5[Robert] PASSED
 
 
-#------------------------------------- Вывод по СБОРНОМУ идентификатору (✨lambda) ------------------------------------- ❗НЕ ПУГАТЬСЯ❗-> см. комментарии и всё поймешь!
+
+#------------------------------------------ Вывод по СБОРНОМУ идентификатору -------------------------------------------
+# v.1 - function
+def func(phone_number: str) -> str:
+    return f'{phone_number}: {users[phone_number]}'
+
+
 @pytest.mark.parametrize(
     'phone_number', users.keys(),        # 'Название параметра', [KEYS словаря],
-    ids=lambda x: f'{x}: {users[x]}'     # [Формируем сборный идентификатор для каждого параметра - VALUES словаря]
+    ids=func                             # 👈Передаем функцию для автоматического вызова (ids с функцией — это CALLBACK)
+                                         # - т.е. функция, которую передают другой функции, чтобы та вызвала её сама в нужный момент
+)
+def test_6_func(phone_number: str):
+    ...                                  # test_6_func[111-0011: John]   PASSED
+                                         # test_6_func[111-0022: Mike]   PASSED
+                                         # test_6_func[111-0033: Robert] PASSED
+
+
+
+# v.2 - ✨lambda
+@pytest.mark.parametrize(
+    'phone_number', users.keys(),        # 'Название параметра', [KEYS словаря],
+    ids=lambda x: f'{x}: {users[x]}'     # 👈[Формируем сборный идентификатор для каждого параметра - VALUES словаря]
                                          # ℹ️⮕ lambda ✨АВТОМАТОМ принимает параметр - key 'сверху' и формирует:
                                          # ℹ️⮕ ids=lambda KEY: f'KEY: {users[KEY]}' <— сборный идентификатор ('key': 'value')
                                          # ℹ️⮕ ❗️потому что ids с функцией — это CALLBACK -
                                          # - т.е. функция, которую вы передаёте другой функции, чтобы та вызвала её сама в нужный момент
 )
-def test_6(phone_number: str):
-    ...                                  # test_6[111-0011: John]   PASSED
-                                         # test_6[111-0022: Mike]   PASSED
-                                         # test_6[111-0033: Robert] PASSED
+def test_7_lambda(phone_number: str):
+    ...                                  # test_7_lambda[111-0011: John]   PASSED
+                                         # test_7_lambda[111-0022: Mike]   PASSED
+                                         # test_7_lambda[111-0033: Robert] PASSED
 
 #=======================================================================================================================

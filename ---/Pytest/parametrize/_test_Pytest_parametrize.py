@@ -85,6 +85,7 @@ def test_multi_param(os: str, browser: str):  # <- Передаем параме
                                               # test_multi_param[Safari-Linux]    PASSED
 
 
+
 #================================================= Parametrize Class ===================================================
 # (2) x (2) = 4 теста
 @pytest.mark.parametrize('user', ['User-1', 'User-2'])  # 2 Class-параметра
