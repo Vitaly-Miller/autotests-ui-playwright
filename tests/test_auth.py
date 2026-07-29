@@ -17,7 +17,7 @@ login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#
         ('  ', 'password'),                        # - Invalid email
         ('user.name@gmail.com', '  ')              # - Invalid password
     ])
-def test_auth_with_wrong_email_or_password(login_page: LoginPage, email: str, password: str):      # Принимает фикстуру login_page, email и password из parametrize
+def test_auth_with_wrong_email_or_password(login_page: LoginPage, email: str, password: str):  # Принимает фикстуру login_page, email и password из parametrize
     # ▶ ACTIONS
     login_page.visit(login_url)                                  # Переход на страницу по URL                            # ⚠️Чтобы не передавать URL в тесте - перенести метод visit в класс LoginPage c вшитым URL
     login_page.fill_login_form(email=email, password=password)   # Заполнение Login-формы с данными из параметризации
