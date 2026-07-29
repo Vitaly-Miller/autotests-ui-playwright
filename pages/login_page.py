@@ -1,6 +1,8 @@
 """
 Login page
 """
+from calendar import error
+
 from pytest_playwright.pytest_playwright import page
 from pages.base_page import BasePage
 from playwright.sync_api import Page, Locator, expect
@@ -32,19 +34,16 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
 
     #-------------------------------------------------- ▶ ACTIONS ------------------------------------------------------
-    def fill_login_form(self, email: str, password: str):                  # Принимает Email и Password
-        self.email_field.fill(email)                                       # Заполняет Email-поле
-        expect(self.email_field,                                           # Проверка заполнения Email-поля:
-               '❌ Email field did not fill!').to_have_value(email)        # - поле имеет значение из параметра <email>
-        self.password_field.fill(password)                                 # Заполняет Password-поле
-        expect(self.password_field,                                        # Проверка заполнения Password-поля:
-               '❌ Password field did not fill!').to_have_value(password)  # - поле имеет значение из параметра <password>
+    def fill_login_form(self, email: str, password: str):           # Принимает Email и Password
+        self.email_field.fill(email)                                                           # Заполняет Email-поле
+        self.password_field.fill(password)                                                     # Заполняет Password-поле
+        expect(self.email_field, '❌ Email field did not fill!').to_have_value(email)          # Проверка - поле имеет значение из параметра <email>
+        expect(self.password_field,'❌ Password field did not fill!').to_have_value(password)  # Проверка - поле имеет значение из параметра <password>
 
 
     def click_login_btn(self):
-        expect(self.login_btn,
-               '❌ Login button is disabled!').to_be_enabled()             # Проверка активного состояния кнопки
-        self.login_btn.click()                                             # Клик по кнопке
+        expect(self.login_btn, '❌ Login button is disabled!').to_be_enabled()   # Проверка активного состояния кнопки
+        self.login_btn.click()                                                   # Клик по кнопке
 
 
     #------------------------------------------------- ✔️EXPECTATIONS --------------------------------------------------
@@ -54,7 +53,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        expect(self.header, '❌ Header text on the Login page is incorrect!').to_have_text(self.header_text)
+        error = '❌ Header text on the Login page is incorrect!'
+        expect(self.header, error).to_have_text(self.header_text)
 
 
     def check_wrong_email_or_password_alert(self):
@@ -75,10 +75,12 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - Link is enable
         - Link redirect URL is correct
         """
-        expect(self.registration_link, '❌ <Registration> link on the Login page is disabled!').to_be_enabled()
+        error_link_disabled = '❌ <Registration> link on the Login page is disabled!'
+        expect(self.registration_link, error_link_disabled).to_be_enabled()
         # ⚠️Сейчас для проверки требуется клик по ссылке. Но лучше не кликать, а проверить атрибут <href>
         # ⚠️Раскомментировать ⬇︎⬇︎⬇︎ после перехода на BASE_URL + endpoint (а то в DOM только endpoint - href="#/auth/registration")
         # registration_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
         # link_url = link_url if link_url else registration_page_url      # Если <link_url> не передан
-        # expect(self.registration_link, '❌ <Registration> link on the Login page is disabled!').to_have_attribute('href', link_url)
+        # error_link_url = '❌ <Registration> link on the Login page is disabled!'
+        # expect(self.registration_link, error_link_url).to_have_attribute('href', link_url)
 #=======================================================================================================================
