@@ -2,10 +2,17 @@
 <New> page
 https://website.com/=NEW_PAGE=
 """
-from pages.base_page import BasePage
+from playwright.sync_api import Page
 
 #=======================================================================================================================
-class NewPage(BasePage):
+class BasePage:
+    def __init__(self, page: Page):                    # Конструктор класса, принимающий Page
+        self.page = page
+
+    def visit(self, url: str):
+        ...
+
+
     # -------------------------------------------------- 𝌆 DATA --------------------------------------------------------
     ENDPOINT = ''
     TITLE_TEXT = ''

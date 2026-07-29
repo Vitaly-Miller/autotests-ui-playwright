@@ -9,14 +9,20 @@ from pathlib import Path                  # for <Auto Plugins path>
 #================================================ Plugins path (⌨️Manual) ================================================
 # Ручной путь к plugins (модулям-файлам с фикстурами) - ⚠ БЕЗ расширения <.py>
 pytest_plugins = (
-    'fixtures.browsers',                  # ┐
+    'fixtures.browsers_fixtures',         # ┐
                                           # │
-                                          # │ Browser's
+                                          # │ Browser
+                                          # │ fixtures
+                                          # │
+                                          # ┘
+    'fixtures.pages_fixtures',            # ┐
+                                          # │
+                                          # │ Page
                                           # │ fixtures
                                           # │
                                           # ┘
 
-    #'fixtures.allure_fixtures'            # Allure's fixture
+    #'fixtures.allure_fixtures'           # Allure fixture
 )
 
 #================================================ Plugins path (✨Auto) ================================================

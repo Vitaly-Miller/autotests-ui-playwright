@@ -2,12 +2,12 @@
 Browsers fixtures
 """
 import pytest
-from playwright.sync_api import Playwright, ViewportSize
+from playwright.sync_api import Playwright, StorageState, ViewportSize
 
 #=======================================================================================================================
 # Chromium Page + Storage state 📦
 @pytest.fixture
-def chromium_page(storage_state, playwright: Playwright): # Используем фикстуру storage_state с авторизацией + встроенную фикстуру playwright из pytest_playwright plugin
+def chromium_page(storage_state: StorageState, playwright: Playwright): # Используем фикстуру storage_state с авторизацией + встроенную фикстуру playwright из pytest_playwright plugin
     """
     Fixture for authorized user (registered)
 
@@ -69,7 +69,7 @@ def storage_state(playwright: Playwright):      # Используем встр�
     email_field.fill('user.name@gmail.com')
     username_field.fill('username')
     password_field.fill('password')
-    registration_btn.click()           # —> Dashboard                                                                  https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard
+    registration_btn.click()           # —> Dashboard                                                                    https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard
     page.wait_for_url('**/dashboard')  # ❗️Дождаться открытие страницы, что бы гарантировано сформировался Storage state
     # ──────────────────────────────────────────────┘
 
