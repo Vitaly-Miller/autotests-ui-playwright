@@ -13,7 +13,7 @@ courses_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course
 def test_courses_page_is_opening(chromium_page):
     page = chromium_page
 
-    # Open page
+    # ⿹ Open page
     page.goto(courses_url)
 
     # ㉧ LOCATORS

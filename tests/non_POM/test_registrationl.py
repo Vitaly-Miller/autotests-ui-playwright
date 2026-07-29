@@ -14,7 +14,7 @@ dashboard_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-cour
 def test_registration_successful(guest_page):
     page = guest_page
 
-    # Open page
+    # ⿹ Open page
     page.goto(registration_url)
 
     # ㉧ LOCATORS

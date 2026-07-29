@@ -15,7 +15,7 @@ with (sync_playwright() as playwright):         # Создаем объект pl
     page = context.new_page()                   # Создаем объект страницы page (на базе context)
 
     #-------------------------------------------------------------------------------------------------------------------
-    # Open page
+    # ⿹ Open page
     page.goto(registration_url)
 
     # ㉧ LOCATORS

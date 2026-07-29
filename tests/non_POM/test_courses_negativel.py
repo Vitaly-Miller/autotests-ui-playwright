@@ -15,7 +15,7 @@ login_page = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/
 def test_courses_page_is_not_opening_without_auth(guest_page):
     page = guest_page
 
-    # Open page
+    # ⿹ Open page
     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses')
 
     # ✔️EXPECTATIONS

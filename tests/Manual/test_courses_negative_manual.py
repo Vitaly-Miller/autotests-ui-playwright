@@ -25,7 +25,7 @@ def test_courses_page_is_not_opening_without_auth():
         page = context.new_page()                     # Создаем объект страницы page на базе context
 
         #------------------------------------ ◁ PRECONDITION (Auth + storage_state) ------------------------------------
-        # Open page
+        # ⿹ Open page
         page.goto(registration_url)
 
         # ㉧ LOCATORS

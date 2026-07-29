@@ -12,7 +12,7 @@ with sync_playwright() as playwright:                        # Создаем о
     browser = playwright.chromium.launch(headless=False)     # Создаем объект браузера chromium (с отображением)
     page = browser.new_page()                                # Создаем объект страницы page
 
-    # Open page
+    # ⿹ Open page
     page.goto(registration_url)
 
     # ㉧ LOCATORS

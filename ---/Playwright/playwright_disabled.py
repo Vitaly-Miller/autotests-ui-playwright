@@ -11,7 +11,7 @@ with sync_playwright() as playwright:                        # Создаем о
     browser = playwright.chromium.launch(headless=False)    # Создаем объект браузера chromium c запуском браузера (с отображением)
     page = browser.new_page()                               # Создаем объект страницы page c запуском новой страницы
 
-    # Open page
+    # ⿹ Open page
     page.goto(login_url)                                        # ▶ ACTION - Переход на страницу по URL
 
     # ㉧ LOCATORS

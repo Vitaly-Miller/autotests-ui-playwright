@@ -15,7 +15,7 @@ login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#
 def test_auth_unregister_user(guest_page):
     page = guest_page                             # Сохраняем работу фикстуры
 
-    # Open page
+    # ⿹ Open page
     page.goto(login_url)                          # ▶ ACTION - Переход на страницу по URL
 
     # ㉧ LOCATORS

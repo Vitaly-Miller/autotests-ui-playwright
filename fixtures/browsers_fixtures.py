@@ -17,7 +17,7 @@ def chromium_page(storage_state: StorageState, playwright: Playwright): # Исп
     """
     browser = playwright.chromium.launch(                 # Создаем объект браузера на движке chromium c параметрами:
         channel='chromium',                               # - UI оболочка: 'chromium', 'chrome', 'msedge'
-        headless=False,                                   # - False — показывать браузер
+        headless=False,                                   # - True/False — НЕ/Показывать браузер
         slow_mo=500                                       # - Action delay (ms)
 
     )
@@ -49,8 +49,8 @@ def storage_state(playwright: Playwright):      # Используем встр�
     :return: yield - StorageState / storage_state.json
     """
     browser = playwright.chromium.launch(       # Создаем объект браузера на движке chromium c параметрами:
-        headless=True,                          # - True — НЕ показывать браузер
-        slow_mo=None                            # - Action delay (ms)
+        headless=False,                         # - True/False — НЕ/Показывать браузер
+        slow_mo=500                             # - Action delay (ms)
     )
     context = browser.new_context()             # Создание браузерного окружения
     page = context.new_page()                   # Создаем объект страницы page на базе context

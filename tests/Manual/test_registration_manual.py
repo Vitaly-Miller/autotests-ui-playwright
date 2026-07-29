@@ -22,7 +22,7 @@ def test_registration_successful():
         page = browser.new_page()                     # Создаем объект страницы page
 
         #---------------------------------------------------------------------------------------------------------------
-        # Open page
+        # ⿹ Open page
         page.goto(registration_url)
 
         # ㉧ LOCATORS

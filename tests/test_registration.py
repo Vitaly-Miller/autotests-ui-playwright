@@ -1,0 +1,41 @@
+"""
+Test registration
+"""
+
+import pytest
+from pages.registration_page import RegistrationPage
+from pages.dashboard_page import DashboardPage
+
+#=======================================================================================================================
+@pytest.mark.registration           # ┐ Pytest Markers
+@pytest.mark.regression             # ┘
+@pytest.mark.parametrize(           # ] Pytest Parametrize
+    'email, username, password', [
+        ('user.name@gmail.com','username', 'password')
+    ])
+def test_successful_registration(
+        registration_page: RegistrationPage,    # Принимает фикстуру registration_page
+        dashboard_page: DashboardPage,          # Принимает фикстуру dashboard_page
+        email: str,                             # Принимает email     ┐
+        username: str,                          # Принимает username  │ из parametrize
+        password: str                           # Принимает password  ┘
+):
+    # ⿹ Open page
+    registration_page.visit(registration_page.url)
+
+    # ✔️EXPECTATIONS (before actions)
+    registration_page.check_header_text()
+    registration_page.check_login_link()
+
+    # ▶ ACTIONS
+    registration_page.fill_registration_form(
+        email=email,
+        username=username,
+        password=password
+    )
+    registration_page.click_registration_btn()
+
+    # ✔️EXPECTATIONS (after actions)
+    registration_page.check_redirect_page_url_after_successful_registration()
+
+#=======================================================================================================================

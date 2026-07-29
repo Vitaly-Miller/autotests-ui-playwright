@@ -23,7 +23,7 @@ def test_auth_unregister_user():
         page = browser.new_page()                     # Создаем объект страницы page
 
         #---------------------------------------------------------------------------------------------------------------
-        # Open page
+        # ⿹ Open page
         page.goto(login_url)                          # ▶ ACTION - Переход на страницу по URL
 
         # ㉧ LOCATORS
