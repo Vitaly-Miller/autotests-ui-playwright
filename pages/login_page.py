@@ -23,6 +23,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         # ├ Form fields
         self.email_field = page.get_by_label('Email')
         self.password_field = page.get_by_label('Password')
+        # ├ Buttons/Links
         self.login_btn = page.get_by_test_id('login-page-login-button')
         self.registration_link = page.get_by_role(role='link', name='Registration')
         # ├ Alerts
