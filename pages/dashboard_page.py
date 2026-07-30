@@ -9,33 +9,37 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # 𝌆 DATA:
+        # ┌╴ 𝌆 DATA:
+        # ├ Page
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
         self.header_text = 'Dashboard'
+        # ├ Navbar
         self.navbar_header_text = 'UI Course'
-        self.navbar_welcome_title_text = 'Welcome, '  # <— static part of the dynamic text
+        self.navbar_welcome_title_text = 'Welcome, '   # <— static part of the dynamic text
+        # ├ Widgets
         self.students_title_text = 'Students'
         self.activities_title_text = 'Activities'
         self.courses_title_text = 'Courses'
         self.scores_title_text = 'Scores'
 
-        # ㉧ LOCATORS (static):
-        self.header = page.get_by_role(role='heading', name='Dashboard')
-        self.navbar_header = page.get_by_test_id('navigation-navbar-app-title-text')
 
+        # ┌╴ ㉧ LOCATORS (static):
+        # ├ Page
+        self.header = page.get_by_role(role='heading', name='Dashboard')
+        # ├ Navbar
+        self.navbar_header = page.get_by_test_id('navigation-navbar-app-title-text')
+        # ├ Widgets
         self.students_title = page.get_by_test_id('students-widget-title-text')
         self.students_chart = page.get_by_test_id('students-bar-chart')
-
         self.activities_title = page.get_by_test_id('activities-widget-title-text')
         self.activities_chart = page.get_by_test_id('activities-bar-chart')
-
         self.courses_title = page.get_by_test_id('course-widget-title-text')
         self.courses_chart = page.get_by_test_id('courses-bar-chart')
-
         self.scores_title = page.get_by_test_id('scores-widget-title-text')
         self.scores_chart = page.get_by_test_id('scores-bar-chart')
 
-    # ㉧ LOCATORS {dynamic}:
+    # ┌╴ ㉧ LOCATORS {dynamic}:
+    # ├ Navbar
     def navbar_welcome_title(self, username) -> Locator:
         return self.page.get_by_text(text=f'Welcome, {username}!')
 

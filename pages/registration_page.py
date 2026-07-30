@@ -9,20 +9,25 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # 𝌆 DATA:
+        # ┌╴ 𝌆 DATA:
+        # ├ URL
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
+        # ├ Headers
         self.header_text = 'UI Course'
 
-        # ㉧ LOCATORS (static):
+        # ┌╴ ㉧ LOCATORS (static):
+        # ├ Headers
         self.header = page.get_by_role(role='heading', name='UI Course')
+        # ├ Form fields
         self.email_field = page.get_by_role(role='textbox', name='Email')
         self.username_field = page.get_by_role(role='textbox', name='Username')
         self.password_field = page.get_by_role(role='textbox', name='Password')
+        # ├ Buttons/Links
         self.registration_btn = page.get_by_role(role='button', name='Registration')
         self.login_link = page.get_by_role(role='link', name='Login')
 
-    # ㉧ LOCATORS {dynamic}:
-
+    # ┌╴ ㉧ LOCATORS {dynamic}:
+    # ├
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def fill_registration_form(self, email: str, username: str, password: str):
@@ -82,34 +87,33 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         expect(self.header, error_text).to_have_text(self.header_text)
 
 
-    def check_login_link(self, link_url=None):
+    def check_login_link(self, redirect_endpoint: str | None = None):
         """
         Check <Login> link on the Registration page
 
+        :param redirect_endpoint: Redirection page endpoint (from DOM)
+
         - Link is enable
-        - Link redirect URL is correct
-        .
+        - Link endpoint is correct
         """
+        login_page_endpoint = '#/auth/login'
+        redirect_endpoint = redirect_endpoint if redirect_endpoint else login_page_endpoint # Если <link_url> не передан
         error_enabled = '❌ <Login> link on the Registration page is disabled!'
+        error_endpoint = '❌ <Login> link on the Registration page has incorrect endpoint!'
         expect(self.login_link, error_enabled).to_be_enabled()
-        # ⚠️Сейчас для проверки требуется клик по ссылке. Но лучше не кликать, а проверить атрибут <href>
-        # ⚠️Раскомментировать ⬇︎⬇︎⬇︎ после перехода на BASE_URL + endpoint (а то в DOM только endpoint - href="#/auth/login")
-        # login_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
-        # link_url = link_url if link_url else login_page_url                      # Если <link_url> не передан
-        # error_url = '❌ <Login> link on the Registration page has incorrect URL'
-        # expect(self.login_link, error_url).to_have_attribute('href', link_url)
+        expect(self.login_link, error_endpoint).to_have_attribute('href', redirect_endpoint)
 
 
-    def check_redirect_page_url_after_successful_registration(self, redirect_url=None):
+    def check_new_page_url_after_successful_registration(self, new_page_url: str | None = None):
         """
-        Check redirect URL after successful registration
+        Check new page URL after successful registration
 
-        :param redirect_url: New page URL
+        :param new_page_url: New page URL
 
         """
         dashboard_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
-        redirect_url = redirect_url if redirect_url else dashboard_page_url      # Если <redirect_url> не передан
-        error_url = '❌ Incorrect redirection URL after successful registration!'
-        expect(self.page, error_url).to_have_url(redirect_url)
+        new_page_url = new_page_url if new_page_url else dashboard_page_url  # Если <new_page_url> не передан
+        error_url = '❌ New page URL after successful registration is incorrect!'
+        expect(self.page, error_url).to_have_url(new_page_url)
 
 #=======================================================================================================================

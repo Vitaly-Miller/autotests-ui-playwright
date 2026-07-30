@@ -10,21 +10,28 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        #𝌆 DATA:
+        # ┌╴ 𝌆 DATA:
+        # ├ URL
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
+        # ├ Headers
         self.header_text = 'UI Course'
+        # ├ Alerts
         self.wrong_email_password_alert_text = 'Wrong email or password'
 
-        # ㉧ LOCATORS (static):
+        # ┌╴ ㉧ LOCATORS (static):
+        # ├ Headers
         self.header = page.get_by_role(role='heading', name='UI Course')
+        # ├ Form fields
         self.email_field = page.get_by_label('Email')
         self.password_field = page.get_by_label('Password')
         self.login_btn = page.get_by_test_id('login-page-login-button')
         self.registration_link = page.get_by_role(role='link', name='Registration')
+        # ├ Alerts
         self.wrong_email_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
 
-    # ㉧ LOCATORS {dynamic}:
+    # ┌╴ ㉧ LOCATORS {dynamic}:
+    # ├
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
@@ -91,19 +98,17 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         expect(self.wrong_email_password_alert, error_text).to_have_text(self.wrong_email_password_alert_text)
 
 
-    def check_registration_link(self, link_url=None):
+    def check_registration_link(self, redirect_endpoint: str | None = None):
         """
         Check <Registration> link on the Login page
 
         - Link is enable
-        - Link redirect URL is correct
+        - Link endpoint is correct
         """
+        registration_page_endpoint = '#/auth/registration'
+        redirect_endpoint = redirect_endpoint if redirect_endpoint else registration_page_endpoint  # Если <link_url> не передан
         error_enabled = '❌ <Registration> link on the Login page is disabled!'
+        error_url = '❌ <Registration> link on the Login page has incorrect endpoint!'
         expect(self.registration_link, error_enabled).to_be_enabled()
-        # ⚠️Сейчас для проверки требуется клик по ссылке. Но лучше не кликать, а проверить атрибут <href>
-        # ⚠️Раскомментировать ⬇︎⬇︎⬇︎ после перехода на BASE_URL + endpoint (а то в DOM только endpoint - href="#/auth/registration")
-        # registration_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
-        # link_url = link_url if link_url else registration_page_url      # Если <link_url> не передан
-        # error_url = '❌ <Registration> link on the Login page is disabled!'
-        # expect(self.registration_link, error_url).to_have_attribute('href', link_url)
+        expect(self.registration_link, error_url).to_have_attribute('href', redirect_endpoint)
 #=======================================================================================================================
