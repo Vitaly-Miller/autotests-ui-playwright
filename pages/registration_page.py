@@ -2,7 +2,7 @@
 Registration page
 """
 from pages.base_page import BasePage
-from playwright.sync_api import Page, Locator, expect
+from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 class RegistrationPage(BasePage):       # Дочерний класс (наследует класс BasePage)
@@ -24,30 +24,62 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ㉧ LOCATORS {dynamic}:
 
 
-    # ▶ ACTIONS:
-    def fill_registration_form(self, email: str, username: str, password: str):                 # Принимает Email, Username и Password
-        self.email_field.fill(email)                                                            # Заполняет Email-поле
-        self.username_field.fill(username)                                                      # Заполняет Username-поле
-        self.password_field.fill(password)                                                      # Заполняет Password-поле
-        expect(self.email_field, '❌ Email field did not fill!').to_have_value(email)           # - поле имеет значение из параметра <email>
-        expect(self.username_field, '❌ Username field did not fill!').to_have_value(username)  # - поле имеет значение из параметра <username>
-        expect(self.password_field, '❌ Password field did not fill!').to_have_value(password)  # - поле имеет значение из параметра <password>
+    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    def fill_registration_form(self, email: str, username: str, password: str):
+        """
+        ▶ Actions:
+        ----------
+        - Fill Registration form
+
+        ✔ Expectations:
+        ---------------
+        - Email field filled
+        - Username field filled
+        - Password field filled
+
+        :param email: Email
+        :param username: Username
+        :param password: Password
+        """
+        self.email_field.fill(email)
+        self.username_field.fill(username)
+        self.password_field.fill(password)
+        error_email = '❌ Email field did not fill!'
+        error_username = '❌ Username field did not fill!'
+        error_password = '❌ Password field did not fill!'
+        expect(self.email_field, error_email).to_have_value(email)
+        expect(self.username_field, error_username).to_have_value(username)
+        expect(self.password_field, error_password).to_have_value(password)
 
 
     def click_registration_btn(self):
-        expect(self.registration_btn, '❌ Registration button is disabled!').to_be_enabled()    # Проверка активного состояния кнопки
-        self.registration_btn.click()                                                           # Клик по кнопке
-
-
-    # ✔️EXPECTATIONS:
-    def check_header_text(self):
         """
-        Check Header text on the Registration page
+        ▶ Actions:
+        ----------
+        - Click Registration-button
 
-        .
+        ✔ Expectations:
+        ---------------
+        - Registration-button is enabled
         """
-        error = '❌ Header text on the Registration page is incorrect!'
-        expect(self.header, error).to_have_text(self.header_text)
+        error_enabled = '❌ Registration button is disabled!'
+        expect(self.registration_btn, error_enabled).to_be_enabled()
+        self.registration_btn.click()
+
+
+    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    def check_header(self):
+        """
+        Check Header on the Registration page
+
+        - Header is visible
+        - Header text is correct
+
+        """
+        error_visible = '❌ Header is invisible on the Registration page'
+        error_text = '❌ Header text on the Registration page is incorrect!'
+        expect(self.header, error_visible).to_be_visible()
+        expect(self.header, error_text).to_have_text(self.header_text)
 
 
     def check_login_link(self, link_url=None):
@@ -58,14 +90,14 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - Link redirect URL is correct
         .
         """
-        error_link_disabled = '❌ <Login> link on the Registration page is disabled!'
-        expect(self.login_link, error_link_disabled).to_be_enabled()
+        error_enabled = '❌ <Login> link on the Registration page is disabled!'
+        expect(self.login_link, error_enabled).to_be_enabled()
         # ⚠️Сейчас для проверки требуется клик по ссылке. Но лучше не кликать, а проверить атрибут <href>
         # ⚠️Раскомментировать ⬇︎⬇︎⬇︎ после перехода на BASE_URL + endpoint (а то в DOM только endpoint - href="#/auth/login")
         # login_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
         # link_url = link_url if link_url else login_page_url                      # Если <link_url> не передан
-        # error_link_url = '❌ <Login> link on the Registration page has incorrect URL'
-        # expect(self.login_link, error_link_url).to_have_attribute('href', link_url)
+        # error_url = '❌ <Login> link on the Registration page has incorrect URL'
+        # expect(self.login_link, error_url).to_have_attribute('href', link_url)
 
 
     def check_redirect_page_url_after_successful_registration(self, redirect_url=None):
@@ -77,7 +109,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         dashboard_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
         redirect_url = redirect_url if redirect_url else dashboard_page_url      # Если <redirect_url> не передан
-        error = '❌ Incorrect redirection URL after successful registration!'
-        expect(self.page, error).to_have_url(redirect_url)
+        error_url = '❌ Incorrect redirection URL after successful registration!'
+        expect(self.page, error_url).to_have_url(redirect_url)
 
 #=======================================================================================================================

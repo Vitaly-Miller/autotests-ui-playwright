@@ -3,7 +3,7 @@ Login page
 """
 from pytest_playwright.pytest_playwright import page
 from pages.base_page import BasePage
-from playwright.sync_api import Page, Locator, expect
+from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 class LoginPage(BasePage):              # Дочерний класс (наследует класс BasePage)
@@ -27,29 +27,55 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ㉧ LOCATORS {dynamic}:
 
 
-    # ▶ ACTIONS:
-    def fill_login_form(self, email: str, password: str):                                      # Принимает Email и Password
-        self.email_field.fill(email)                                                           # Заполняет Email-поле
-        self.password_field.fill(password)                                                     # Заполняет Password-поле
-        expect(self.email_field, '❌ Email field did not fill!').to_have_value(email)          # Проверка - поле имеет значение из параметра <email>
-        expect(self.password_field,'❌ Password field did not fill!').to_have_value(password)  # Проверка - поле имеет значение из параметра <password>
+    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    def fill_login_form(self, email: str, password: str):
+        """
+        ▶ Actions:
+        ----------
+        - Fill Login form
+
+        ✔ Expectations:
+        ---------------
+        - Email field filled
+        - Password field filled
+
+        :param email: Email
+        :param password: Password
+        """
+        self.email_field.fill(email)
+        self.password_field.fill(password)
+        error_email = '❌ Email field did not fill!'
+        error_password = '❌ Password field did not fill!'
+        expect(self.email_field, error_email).to_have_value(email)
+        expect(self.password_field, error_password).to_have_value(password)
 
 
     def click_login_btn(self):
-        expect(self.login_btn, '❌ Login button is disabled!').to_be_enabled()   # Проверка активного состояния кнопки
-        self.login_btn.click()                                                   # Клик по кнопке
+        """
+        ▶ Actions:
+        ----------
+        - Click Login-button
+
+        ✔ Expectations:
+        ---------------
+        - Login-button is enabled
+        """
+        expect(self.login_btn, '❌ Login button is disabled!').to_be_enabled()
+        self.login_btn.click()
 
 
-
-    # ✔️EXPECTATIONS:
+    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     def check_header_text(self):
         """
-        Check Header text on the Login page
+        Check Header on the Login page
 
-        .
+        - Header is visible
+        - Header text is correct
         """
-        error = '❌ Header text on the Login page is incorrect!'
-        expect(self.header, error).to_have_text(self.header_text)
+        error_visible = '❌ Header on the Login page is invisible!'
+        error_text = '❌ Header text on the Login page is incorrect!'
+        expect(self.header, error_visible).to_be_visible()
+        expect(self.header, error_text).to_have_text(self.header_text)
 
 
     def check_wrong_email_or_password_alert(self):
@@ -59,8 +85,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - Alert is visible
         - Alert text is correct
         """
-        expect(self.wrong_email_password_alert, '❌ Alert did not appear!').to_be_visible()
-        expect(self.wrong_email_password_alert, '❌ Incorrect alert text!').to_have_text(self.wrong_email_password_alert_text)
+        error_visible = '❌ Alert did not appear!'
+        error_text = '❌ Incorrect alert text!'
+        expect(self.wrong_email_password_alert, error_visible).to_be_visible()
+        expect(self.wrong_email_password_alert, error_text).to_have_text(self.wrong_email_password_alert_text)
 
 
     def check_registration_link(self, link_url=None):
@@ -70,12 +98,12 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - Link is enable
         - Link redirect URL is correct
         """
-        error_link_disabled = '❌ <Registration> link on the Login page is disabled!'
-        expect(self.registration_link, error_link_disabled).to_be_enabled()
+        error_enabled = '❌ <Registration> link on the Login page is disabled!'
+        expect(self.registration_link, error_enabled).to_be_enabled()
         # ⚠️Сейчас для проверки требуется клик по ссылке. Но лучше не кликать, а проверить атрибут <href>
         # ⚠️Раскомментировать ⬇︎⬇︎⬇︎ после перехода на BASE_URL + endpoint (а то в DOM только endpoint - href="#/auth/registration")
         # registration_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
         # link_url = link_url if link_url else registration_page_url      # Если <link_url> не передан
-        # error_link_url = '❌ <Registration> link on the Login page is disabled!'
-        # expect(self.registration_link, error_link_url).to_have_attribute('href', link_url)
+        # error_url = '❌ <Registration> link on the Login page is disabled!'
+        # expect(self.registration_link, error_url).to_have_attribute('href', link_url)
 #=======================================================================================================================

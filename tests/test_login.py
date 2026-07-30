@@ -13,8 +13,7 @@ from pages.login_page import LoginPage
     'email, password',[                                       # Параметризация Email и Password (3-in-1):
         ('user.name@gmail.com', 'password'),    # - Valid (unregistered)
         ('user.name@gmail.com', '  '),          # - Invalid password
-        ('  ', 'password'),                     # - Invalid email
-
+        ('  ', 'password')                      # - Invalid email
     ])
 def test_login_with_wrong_email_or_password(
         login_page: LoginPage,                                # Принимает фикстуру login_page
