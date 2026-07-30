@@ -12,11 +12,12 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         # ┌╴ 𝌆 DATA:
         # ├ Page
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
-        self.header_text = 'UI Course'
+        # ├ Toolbar
+        self.toolbar_title_text = 'UI Course'
 
         # ┌╴ ㉧ LOCATORS (static):
-        # ├ Headers
-        self.header = page.get_by_role(role='heading', name='UI Course')
+        # ├ Toolbar
+        self.toolbar_title = page.get_by_role(role='heading', name='UI Course')
         # ├ Form fields
         self.email_field = page.get_by_role(role='textbox', name='Email')
         self.username_field = page.get_by_role(role='textbox', name='Username')
@@ -70,23 +71,23 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    def check_header(self):
+    def check_toolbar_title(self):
         """
-        Check Header on the Registration page
+        Check Toolbar title on the Registration page
 
-        - Header is visible
-        - Header text is correct
+        - Title is visible
+        - Title text is correct
 
         """
-        error_visible = '❌ Header is invisible on the Registration page'
-        error_text = '❌ Header text on the Registration page is incorrect!'
-        expect(self.header, error_visible).to_be_visible()
-        expect(self.header, error_text).to_have_text(self.header_text)
+        error_visible = '❌ Toolbar title is invisible on the Registration page!'
+        error_text = '❌ Toolbar title text on the Registration page is incorrect!'
+        expect(self.toolbar_title, error_visible).to_be_visible()
+        expect(self.toolbar_title, error_text).to_have_text(self.toolbar_title_text)
 
 
     def check_login_link(self, redirect_endpoint: str | None = None):
         """
-        Check <Login> link on the Registration page
+        Check <Login link> on the Registration page
 
         :param redirect_endpoint: Redirection page endpoint (from DOM)
 

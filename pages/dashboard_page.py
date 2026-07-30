@@ -12,9 +12,10 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         # ┌╴ 𝌆 DATA:
         # ├ Page
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
-        self.header_text = 'Dashboard'
-        # ├ Navbar
-        self.navbar_header_text = 'UI Course'
+        # ├ Toolbar
+        self.toolbar_title_text = 'Dashboard'
+        # ├ Navbar <— ⚠️ ПЕРЕНЕСТИ в Components
+        self.navbar_title_text = 'UI Course'
         self.navbar_welcome_title_text = 'Welcome, '   # <— static part of the dynamic text
         # ├ Widgets
         self.students_title_text = 'Students'
@@ -24,10 +25,10 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
 
         # ┌╴ ㉧ LOCATORS (static):
-        # ├ Page
-        self.header = page.get_by_role(role='heading', name='Dashboard')
-        # ├ Navbar
-        self.navbar_header = page.get_by_test_id('navigation-navbar-app-title-text')
+        # ├ Toolbar
+        self.toolbar_title = page.get_by_test_id('dashboard-toolbar-title-text')
+        # ├ Navbar <— ⚠️ ПЕРЕНЕСТИ в Components
+        self.navbar_title = page.get_by_test_id('navigation-navbar-app-title-text')
         # ├ Widgets
         self.students_title = page.get_by_test_id('students-widget-title-text')
         self.students_chart = page.get_by_test_id('students-bar-chart')
@@ -40,7 +41,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     # ┌╴ ㉧ LOCATORS {dynamic}:
     # ├ Navbar
-    def navbar_welcome_title(self, username) -> Locator:
+    def navbar_welcome_title(self, username: str) -> Locator:
         return self.page.get_by_text(text=f'Welcome, {username}!')
 
 
@@ -49,38 +50,40 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # Header:
-    def check_header(self):
-        """
-        Check Header text on the Dashboard page
-
-        - Header is visible
-        - Header text is correct
-        """
-        error_visible = '❌ Header is invisible on the Dashboard page!'
-        error_text = '❌ Header text on the Dashboard page is incorrect!'
-        expect(self.header, error_visible).to_be_visible()
-        expect(self.header, error_text).to_have_text(self.header_text)
-
-
     # Navbar:
-    def check_navbar(self, username):
+    def check_navbar_title(self, username: str):  # <— ⚠️ ПЕРЕНЕСТИ в Components
         """
-        Check Navbar header on the Dashboard page
+        Check Navbar title
 
-        - Header is visible
-        - Header text is correct
+        :param username: Username
+
+        - Title is visible
+        - Title text is correct
         - Welcome title is visible
         - Welcome title text is correct (ex: Welcome, John!)
         """
-        error_header_visible = '❌ Navbar header is invisible on the Dashboard page!'
-        error_header_text = '❌ Navbar header text on the Dashboard page is incorrect!'
-        error_welcome_title_visible = '❌ Navbar welcome title is invisible on the Dashboard page!'
-        error_welcome_title_text = '❌ Navbar welcome title text on the Dashboard page is incorrect!'
-        expect(self.navbar_header, error_header_visible).to_be_visible()
-        expect(self.navbar_header, error_header_text).to_have_text(self.navbar_header_text)
+        error_navbar_title = '❌ Navbar title is invisible!'
+        error_navbar_title_text = '❌ Navbar title text is incorrect!'
+        error_welcome_title_visible = '❌ Navbar welcome title is invisible!'
+        error_welcome_title_text = '❌ Navbar welcome title text is incorrect!'
+        expect(self.navbar_title, error_navbar_title).to_be_visible()
+        expect(self.navbar_title, error_navbar_title_text).to_have_text(self.navbar_title_text)
         expect(self.navbar_welcome_title(username), error_welcome_title_visible).to_be_visible()
         expect(self.navbar_welcome_title(username), error_welcome_title_text).to_have_text(f'{self.navbar_welcome_title_text}{username}!')
+
+
+    # Toolbar:
+    def check_toolbar_title(self):
+        """
+        Check Toolbar title text on the Dashboard page
+
+        - Title is visible
+        - Title text is correct
+        """
+        error_visible = '❌ Toolbar title is invisible on the Dashboard page!'
+        error_text = '❌ Toolbar title text on the Dashboard page is incorrect!'
+        expect(self.toolbar_title, error_visible).to_be_visible()
+        expect(self.toolbar_title, error_text).to_have_text(self.toolbar_title_text)
 
 
     # Widgets:

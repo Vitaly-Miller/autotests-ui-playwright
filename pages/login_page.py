@@ -13,19 +13,20 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         # ┌╴ 𝌆 DATA:
         # ├ Page
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
-        self.header_text = 'UI Course'
+        # ├ Toolbar
+        self.toolbar_title_text = 'UI Course'
         # ├ Alerts
         self.wrong_email_password_alert_text = 'Wrong email or password'
 
         # ┌╴ ㉧ LOCATORS (static):
-        # ├ Headers
-        self.header = page.get_by_role(role='heading', name='UI Course')
+        # ├ Toolbar
+        self.toolbar_title = page.get_by_test_id('authentication-ui-course-title-text')
         # ├ Form fields
         self.email_field = page.get_by_label('Email')
         self.password_field = page.get_by_label('Password')
         # ├ Buttons/Links
         self.login_btn = page.get_by_test_id('login-page-login-button')
-        self.registration_link = page.get_by_role(role='link', name='Registration')
+        self.registration_link = page.get_by_test_id('login-page-registration-link')
         # ├ Alerts
         self.wrong_email_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
@@ -63,22 +64,23 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         ---------------
         - Login-button is enabled
         """
-        expect(self.login_btn, '❌ Login button is disabled!').to_be_enabled()
+        error = '❌ Login button is disabled!'
+        expect(self.login_btn, error).to_be_enabled()
         self.login_btn.click()
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    def check_header_text(self):
+    def check_toolbar_title(self):
         """
-        Check Header on the Login page
+        Check Toolbar title on the Login page
 
         - Header is visible
         - Header text is correct
         """
-        error_visible = '❌ Header on the Login page is invisible!'
-        error_text = '❌ Header text on the Login page is incorrect!'
-        expect(self.header, error_visible).to_be_visible()
-        expect(self.header, error_text).to_have_text(self.header_text)
+        error_visible = '❌ Toolbar title on the Login page is invisible!'
+        error_text = '❌ Toolbar title text on the Login page is incorrect!'
+        expect(self.toolbar_title, error_visible).to_be_visible()
+        expect(self.toolbar_title, error_text).to_have_text(self.toolbar_title_text)
 
 
     def check_wrong_email_or_password_alert(self):
@@ -96,15 +98,15 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_registration_link(self, redirect_endpoint: str | None = None):
         """
-        Check <Registration> link on the Login page
+        Check <Registration link> on the Login page
 
         - Link is enable
         - Link endpoint is correct
         """
         registration_page_endpoint = '#/auth/registration'
         redirect_endpoint = redirect_endpoint if redirect_endpoint else registration_page_endpoint  # Если <link_url> не передан
-        error_enabled = '❌ <Registration> link on the Login page is disabled!'
-        error_url = '❌ <Registration> link on the Login page has incorrect endpoint!'
+        error_enabled = '❌ <Registration link> on the Login page is disabled!'
+        error_url = '❌ <Registration link> on the Login page has incorrect endpoint!'
         expect(self.registration_link, error_enabled).to_be_enabled()
         expect(self.registration_link, error_url).to_have_attribute('href', redirect_endpoint)
 #=======================================================================================================================

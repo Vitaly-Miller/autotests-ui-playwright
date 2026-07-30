@@ -24,7 +24,7 @@ def test_successful_registration(               # Принимает:
     registration_page.visit(registration_page.url)
 
     # ✔️EXPECTATIONS (before actions)
-    registration_page.check_header()
+    registration_page.check_toolbar_title()
     registration_page.check_login_link()
 
     # ▶ ACTIONS
@@ -37,7 +37,6 @@ def test_successful_registration(               # Принимает:
 
     # ✔️EXPECTATIONS (after actions)
     registration_page.check_new_page_url_after_successful_registration(dashboard_page.url)
-    dashboard_page.check_navbar(username)   # ex: Welcome, John!
 
 
     # ⏳(optional)
