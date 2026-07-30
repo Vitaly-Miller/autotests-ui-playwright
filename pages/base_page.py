@@ -4,21 +4,30 @@ BASE PAGE
 from playwright.sync_api import Page
 
 #=======================================================================================================================
-class BasePage:                                            # Родительский класс
-    def __init__(self, page: Page):                        # Конструктор класса, принимающий Page
+class BasePage:                                 # Родительский класс
+    def __init__(self, page: Page):             # Конструктор класса, принимающий page
         self.page = page
 
-        #--------------------------------------------- 𝌆 BASE DATA -----------------------------------------------------
+        # 𝌆 BASE DATA:
 
 
-    #---------------------------------------------- Базовые методы класса ----------------------------------------------
-    # ⿹ Open page
-    def visit(self, url: str):                             # Принимает URL-адрес страницы
-        self.page.goto(url, wait_until='networkidle')  # Открыть страницу, Ожидание сети
+    # BASE METHODS:
+    def visit(self, url: str):
+        """
+        ⿹ Open page
 
-    # ⿸ Reload page
+        :param url: URL
+        """
+        self.page.goto(url=url)
+
+
     def reload(self):
-        self.page.reload(wait_until='networkidle')         # Reload courant page, Ожидание сети
+        """
+        ↺ Reload courant page
+
+        .
+        """
+        self.page.reload()
 
 
 

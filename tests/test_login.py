@@ -12,8 +12,9 @@ from pages.login_page import LoginPage
 @pytest.mark.parametrize(         # ] Pytest Parametrize
     'email, password',[                                       # Параметризация Email и Password (3-in-1):
         ('user.name@gmail.com', 'password'),    # - Valid (unregistered)
+        ('user.name@gmail.com', '  '),          # - Invalid password
         ('  ', 'password'),                     # - Invalid email
-        ('user.name@gmail.com', '  ')           # - Invalid password
+
     ])
 def test_login_with_wrong_email_or_password(
         login_page: LoginPage,                                # Принимает фикстуру login_page
@@ -30,5 +31,6 @@ def test_login_with_wrong_email_or_password(
     # ✔️EXPECTATIONS
     login_page.check_wrong_email_or_password_alert()
     login_page.check_registration_link()
+
 
 #=======================================================================================================================

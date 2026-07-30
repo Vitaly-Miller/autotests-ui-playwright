@@ -1,25 +1,21 @@
 """
 Login page
 """
-from calendar import error
-
 from pytest_playwright.pytest_playwright import page
 from pages.base_page import BasePage
 from playwright.sync_api import Page, Locator, expect
-
-from pages.registration_page import RegistrationPage
 
 #=======================================================================================================================
 class LoginPage(BasePage):              # Дочерний класс (наследует класс BasePage)
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        #----------------------------------------------- 𝌆 DATA -------------------------------------------------------
+        # 𝌆 DATA:
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
         self.header_text = 'UI Course'
         self.wrong_email_password_alert_text = 'Wrong email or password'
 
-        #------------------------------------------ ㉧ LOCATORS (static) ------------------------------------------------
+        # ㉧ LOCATORS (static):
         self.header = page.get_by_role(role='heading', name='UI Course')
         self.email_field = page.get_by_label('Email')
         self.password_field = page.get_by_label('Password')
@@ -28,13 +24,11 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.wrong_email_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
 
-    #---------------------------------------------- ㉧ LOCATORS (dynamic) -----------------------------------------------
-    # def user(self, name) -> Locator:
-    #     return self.page.get_by_label(f'User-{name}')
+    # ㉧ LOCATORS {dynamic}:
 
 
-    #-------------------------------------------------- ▶ ACTIONS ------------------------------------------------------
-    def fill_login_form(self, email: str, password: str):           # Принимает Email и Password
+    # ▶ ACTIONS:
+    def fill_login_form(self, email: str, password: str):                                      # Принимает Email и Password
         self.email_field.fill(email)                                                           # Заполняет Email-поле
         self.password_field.fill(password)                                                     # Заполняет Password-поле
         expect(self.email_field, '❌ Email field did not fill!').to_have_value(email)          # Проверка - поле имеет значение из параметра <email>
@@ -46,7 +40,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.login_btn.click()                                                   # Клик по кнопке
 
 
-    #------------------------------------------------- ✔️EXPECTATIONS --------------------------------------------------
+
+    # ✔️EXPECTATIONS:
     def check_header_text(self):
         """
         Check Header text on the Login page

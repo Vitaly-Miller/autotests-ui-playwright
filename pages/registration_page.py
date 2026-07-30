@@ -9,11 +9,11 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        #------------------------------------------------ 𝌆 DATA -------------------------------------------------------
+        # 𝌆 DATA:
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
         self.header_text = 'UI Course'
 
-        #--------------------------------------------- ㉧ LOCATORS (static) ---------------------------------------------
+        # ㉧ LOCATORS (static):
         self.header = page.get_by_role(role='heading', name='UI Course')
         self.email_field = page.get_by_role(role='textbox', name='Email')
         self.username_field = page.get_by_role(role='textbox', name='Username')
@@ -21,12 +21,11 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.registration_btn = page.get_by_role(role='button', name='Registration')
         self.login_link = page.get_by_role(role='link', name='Login')
 
-    #---------------------------------------------- ㉧ LOCATORS (dynamic) -----------------------------------------------
-    # def user(self, name) -> Locator:
-    #     return self.page.get_by_label(f'User-{name}')
+    # ㉧ LOCATORS {dynamic}:
 
-    #------------------------------------------------ ▶ ACTIONS --------------------------------------------------------
-    def fill_registration_form(self, email: str, username: str, password: str):    # Принимает Email, Username и Password
+
+    # ▶ ACTIONS:
+    def fill_registration_form(self, email: str, username: str, password: str):                 # Принимает Email, Username и Password
         self.email_field.fill(email)                                                            # Заполняет Email-поле
         self.username_field.fill(username)                                                      # Заполняет Username-поле
         self.password_field.fill(password)                                                      # Заполняет Password-поле
@@ -40,7 +39,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.registration_btn.click()                                                           # Клик по кнопке
 
 
-    #------------------------------------------------ ✔️EXPECTATIONS ---------------------------------------------------
+    # ✔️EXPECTATIONS:
     def check_header_text(self):
         """
         Check Header text on the Registration page

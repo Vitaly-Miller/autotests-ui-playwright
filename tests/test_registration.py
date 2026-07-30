@@ -13,12 +13,12 @@ from pages.dashboard_page import DashboardPage
     'email, username, password', [
         ('user.name@gmail.com','username', 'password')
     ])
-def test_successful_registration(
-        registration_page: RegistrationPage,    # Принимает фикстуру registration_page
-        dashboard_page: DashboardPage,          # Принимает фикстуру dashboard_page
-        email: str,                             # Принимает email     ┐
-        username: str,                          # Принимает username  │ из parametrize
-        password: str                           # Принимает password  ┘
+def test_successful_registration(               # Принимает:
+        registration_page: RegistrationPage,    # Фикстура registration_page
+        dashboard_page: DashboardPage,          # Фикстура dashboard_page (for URL expect only)
+        email: str,                             # email     ┐
+        username: str,                          # username  │ из parametrize
+        password: str                           # password  ┘
 ):
     # ⿹ Open page
     registration_page.visit(registration_page.url)
@@ -36,6 +36,10 @@ def test_successful_registration(
     registration_page.click_registration_btn()
 
     # ✔️EXPECTATIONS (after actions)
-    registration_page.check_redirect_page_url_after_successful_registration()
+    registration_page.check_redirect_page_url_after_successful_registration(dashboard_page.url)
+    dashboard_page.check_navbar_welcome_title_text(username)   # ex: Welcome, John!
 
+
+    # ⏳(optional)
+    registration_page.page.wait_for_timeout(2_000)
 #=======================================================================================================================
