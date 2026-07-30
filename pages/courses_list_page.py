@@ -45,7 +45,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # Toolbar
+    # Toolbar:
     def check_toolbar_title(self):
         """
         Check Toolbar title on the Courses List page
@@ -68,8 +68,18 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         expect(self.create_course_btn, error).to_be_visible()
 
 
-    # Empty view
+    # Empty view:
     def check_empty_view(self):
+        """
+        Check <Empty View>
+
+        - Icon - visible
+        - Title - visible | text - correct
+        - Description - visible | text - correct
+
+
+        :return:
+        """
         error_icon_visible = '❌ Empty view icon on the Courses List page is invisible!'
         error_title_visible = '❌ Empty view title on the Courses List page is invisible!'
         error_description_visible = '❌ Empty view description on the Courses List page is invisible!'
