@@ -80,7 +80,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_wrong_email_or_password_alert(self):
         """
-        Check Wrong Email or Password alert
+        Check <Wrong Email or Password> alert
 
         - Alert is visible
         - Alert text is correct
