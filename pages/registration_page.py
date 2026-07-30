@@ -10,9 +10,8 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ┌╴ 𝌆 DATA:
-        # ├ URL
+        # ├ Page
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
-        # ├ Headers
         self.header_text = 'UI Course'
 
         # ┌╴ ㉧ LOCATORS (static):
@@ -26,8 +25,6 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.registration_btn = page.get_by_role(role='button', name='Registration')
         self.login_link = page.get_by_role(role='link', name='Login')
 
-    # ┌╴ ㉧ LOCATORS {dynamic}:
-    # ├
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def fill_registration_form(self, email: str, username: str, password: str):

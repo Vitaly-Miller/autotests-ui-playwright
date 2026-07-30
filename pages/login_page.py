@@ -11,9 +11,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ┌╴ 𝌆 DATA:
-        # ├ URL
+        # ├ Page
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
-        # ├ Headers
         self.header_text = 'UI Course'
         # ├ Alerts
         self.wrong_email_password_alert_text = 'Wrong email or password'
@@ -28,10 +27,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.registration_link = page.get_by_role(role='link', name='Registration')
         # ├ Alerts
         self.wrong_email_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
-
-
-    # ┌╴ ㉧ LOCATORS {dynamic}:
-    # ├
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------

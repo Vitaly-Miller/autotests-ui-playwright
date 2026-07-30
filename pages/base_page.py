@@ -8,7 +8,8 @@ class BasePage:                                 # Родительский кл�
     def __init__(self, page: Page):             # Конструктор класса, принимающий page
         self.page = page
 
-        # 𝌆 BASE DATA:
+        # ┌╴ 𝌆 BASE DATA:
+        # ├
 
 
     # BASE METHODS:
