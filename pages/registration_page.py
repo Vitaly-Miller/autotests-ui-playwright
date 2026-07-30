@@ -14,6 +14,9 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
         # ├ Toolbar
         self.toolbar_title_text = 'UI Course'
+        # ├ Buttons/Links
+        self.registration_btn_text = 'REGISTRATION'
+
 
         # ┌╴ ㉧ LOCATORS (static):
         # ├ Toolbar
@@ -34,11 +37,9 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         ----------
         - Fill Registration form
 
-        ✔ Expectations:
+        ✔ Expectations (func):
         ---------------
-        - Email field filled
-        - Username field filled
-        - Password field filled
+        - Check Registration form fields filled correctly
 
         :param email: Email
         :param username: Username
@@ -47,6 +48,38 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.email_field.fill(email)
         self.username_field.fill(username)
         self.password_field.fill(password)
+        self.check_registration_form_fields_filled(email=email, username=username, password=password)
+
+
+    def click_registration_btn(self):
+        """
+        ✔ Expectations (func):
+        ---------------
+        - Button is enabled
+        - Button text is correct
+
+        ▶ Actions:
+        ----------
+        - Click button
+        """
+        self.check_registration_btn()
+        self.registration_btn.click()
+
+
+    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # Form fields:
+    def check_registration_form_fields_filled(self, email: str, username: str, password: str):
+        """
+        Check Registration form fields filled correctly
+
+        - Email field - filled correctly
+        - Username field - filled correctly
+        - Password field - filled correctly
+
+        :param email: Email
+        :param username: Username
+        :param password: Password
+        """
         error_email = '❌ Email field did not fill!'
         error_username = '❌ Username field did not fill!'
         error_password = '❌ Password field did not fill!'
@@ -55,22 +88,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         expect(self.password_field, error_password).to_have_value(password)
 
 
-    def click_registration_btn(self):
-        """
-        ▶ Actions:
-        ----------
-        - Click Registration-button
-
-        ✔ Expectations:
-        ---------------
-        - Registration-button is enabled
-        """
-        error_enabled = '❌ Registration button is disabled!'
-        expect(self.registration_btn, error_enabled).to_be_enabled()
-        self.registration_btn.click()
-
-
-    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # Toolbar:
     def check_toolbar_title(self):
         """
         Check Toolbar title on the Registration page
@@ -83,6 +101,20 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         error_text = '❌ Toolbar title text on the Registration page is incorrect!'
         expect(self.toolbar_title, error_visible).to_be_visible()
         expect(self.toolbar_title, error_text).to_have_text(self.toolbar_title_text)
+
+
+    # Buttons/Links:
+    def check_registration_btn(self):
+        """
+        Check <Registration button>
+
+        - Button is enabled
+        - Button text is correct
+        """
+        error_enabled = '❌ Registration button is disabled!'
+        error_text = '❌ Registration button text is incorrect!'
+        expect(self.registration_btn, error_enabled).to_be_enabled()
+        expect(self.registration_btn, error_text).to_have_text(self.registration_btn_text)
 
 
     def check_login_link(self, redirect_endpoint: str | None = None):

@@ -75,7 +75,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     # Toolbar:
     def check_toolbar_title(self):
         """
-        Check Toolbar title text on the Dashboard page
+        Check Toolbar title on the Dashboard page
 
         - Title is visible
         - Title text is correct
@@ -102,7 +102,6 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         expect(self.students_title, error_title_text).to_have_text(self.students_title_text)
         expect(self.students_chart, error_chart_visible).to_be_visible()
 
-
     def check_activities_widget(self):
         """
         Check Activities widget on the Dashboard page
@@ -118,7 +117,6 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         expect(self.activities_title, error_title_text).to_have_text(self.activities_title_text)
         expect(self.activities_chart, error_chart_visible).to_be_visible()
 
-
     def check_courses_widget(self):
         """
         Check Courses widget on the Dashboard page
@@ -133,7 +131,6 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         expect(self.courses_title, error_title_visible).to_be_visible()
         expect(self.courses_title, error_title_text).to_have_text(self.courses_title_text)
         expect(self.courses_chart, error_chart_visible).to_be_visible()
-
 
     def check_scores_widget(self):
         """
