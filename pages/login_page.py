@@ -10,7 +10,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # 𝌆 DATA:
+        #𝌆 DATA:
         self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
         self.header_text = 'UI Course'
         self.wrong_email_password_alert_text = 'Wrong email or password'

@@ -21,7 +21,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         self.navbar_header = page.get_by_test_id('navigation-navbar-app-title-text')
 
 
-    # ㉧ LOCATORS {dynamic}
+    # ㉧ LOCATORS {dynamic}:
     def navbar_welcome_title(self, username) -> Locator:
         return self.page.get_by_text(text=f'Welcome, {username}!')
 
