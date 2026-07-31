@@ -25,7 +25,7 @@ def test_courses_page_is_opening(chromium_page):
     # ✔︎ EXPECTATIONS
     expect(page,'❌ Wrong page URL!').to_have_url(courses_url)
     expect(courses_header, '❌ Wrong page header text!').to_have_text('Courses')
-    expect(folder_icon,'❌ Folder icon is invisible!').to_be_visible()
+    expect(folder_icon,'❌ Folder icon - invisible!').to_be_visible()
     expect(no_result, '❌ Wrong text!').to_have_text('There is no results')
     expect(description,'❌ Wrong description').to_have_text('Results from the load test pipeline will be displayed here')
 
