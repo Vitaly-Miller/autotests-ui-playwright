@@ -106,7 +106,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     # Empty view:
     def check_empty_view(self):
         """
-        Check <Empty View> of the Courses List page
+        Check <Empty View> of the Course List page (without created Course cards)
 
         - ✔ Icon - visible
         - ✔ Title - visible | text - correct
