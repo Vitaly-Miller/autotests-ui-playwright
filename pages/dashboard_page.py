@@ -65,7 +65,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
 
     # Toolbar:
-    def check_toolbar_title(self):
+    def check_dashboard_toolbar_title(self):
         """
         Check <Toolbar> title of the Dashboard page
 

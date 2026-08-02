@@ -98,7 +98,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Button - enabled
         - ✔ Button text - correct
         """
-        error_enabled = '❌ <Registration> button of the Registration page is disabled!'
+        error_enabled = '❌ <Registration> button of the Registration page - disabled!'
         error_text = '❌ <Registration> button text of the Registration page - incorrect!'
         expect(self.registration_btn, error_enabled).to_be_enabled()
         expect(self.registration_btn, error_text).to_have_text('Registration')
@@ -115,7 +115,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         login_page_endpoint = '#/auth/login'
         redirect_endpoint = redirect_endpoint if redirect_endpoint else login_page_endpoint # Если <link_url> не передан
-        error_enabled = '❌ <Login> link of the Registration page is disabled!'
+        error_enabled = '❌ <Login> link of the Registration page - disabled!'
         error_endpoint = '❌ <Login> link of the Registration page has incorrect endpoint!'
         expect(self.login_link, error_enabled).to_be_enabled()
         expect(self.login_link, error_endpoint).to_have_attribute('href', redirect_endpoint)
