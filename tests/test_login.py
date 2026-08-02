@@ -21,15 +21,16 @@ def test_login_with_wrong_email_or_password(
         password: str                                         # Принимает password  ┘
 ):
     # ⿹ Open page
-    login_page.visit(login_page.url)
+    login_page.visit(login_page.URL)
 
     # ▶ ACTIONS
     login_page.fill_login_form(email=email, password=password)
     login_page.click_login_btn()
 
     # ✔️EXPECTATIONS
-    login_page.check_wrong_email_or_password_alert()
-    login_page.check_registration_link()
+    login_page.check_wrong_email_or_password_alert_visible()
+    login_page.check_wrong_email_or_password_alert_text()
+
 
 
 #=======================================================================================================================

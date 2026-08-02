@@ -3,36 +3,40 @@ Registration page
 """
 from pages.base_page import BasePage
 from playwright.sync_api import Page, expect
+from pages.dashboard_page import DashboardPage
+from pages.login_page import LoginPage
 
 #=======================================================================================================================
 class RegistrationPage(BasePage):       # Дочерний класс (наследует класс BasePage)
+    URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
+
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ┌╴ 𝌆 DATA:
-        # ├ Page URL
-        self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
-
-
-        # ┌╴ ㉧ LOCATORS (static):
+        # ┌╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ㉧ LOCATORS (static) ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
         # ├ Toolbar
         self.toolbar_title = page.get_by_role(role='heading', name='UI Course')
-        # ├ Form fields
+
+        # ├ Registration Form fields
         self.email_field = page.get_by_role(role='textbox', name='Email')
         self.username_field = page.get_by_role(role='textbox', name='Username')
         self.password_field = page.get_by_role(role='textbox', name='Password')
+
         # ├ Buttons/Links
         self.registration_btn = page.get_by_role(role='button', name='Registration')
         self.login_link = page.get_by_role(role='link', name='Login')
 
 
-    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # ┌╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ▶ ACTIONS ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+    # ├ Registration form:
     def fill_registration_form(self, email: str, username: str, password: str):
         """
-        - ▶ <Email> field - fill
-        - ▶ <Username> field - fill
-        - ▶ <Password> field - fill
-        - ✔ Check <Registration form> fields filled correctly (func)
+        Fill <Registration form> of the Registration page
+
+        - ▶ <Email field> - Fill
+        - ▶ <Username field> - Fill
+        - ▶ <Password field> - Fill
+        - ✔ <Registration form> fields - filled correctly
 
         :param email: Email
         :param username: Username
@@ -41,56 +45,116 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.email_field.fill(email)
         self.username_field.fill(username)
         self.password_field.fill(password)
-        self.check_registration_form_fields_filled(email=email, username=username, password=password)
+        self.check_registration_form_filled_correctly(email=email, username=username, password=password)
 
-
+    # ├ Registration button:
     def click_registration_btn(self):
         """
-        - ✔ <Registration> Button - enabled
-        - ▶ <Registration> Button - Click
+        Click <Registration> button> of the Registration page
+
+        - ✔ Button - enabled
+        - ▶ Button - Click
+        - ✔ Dashboard page - opened
         """
-        expect(self.registration_btn).to_be_enabled()
+        self.check_registration_btn_enable()
         self.registration_btn.click()
+        self.check_page_opened(expected_url=DashboardPage.URL)
 
-
-    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # Form fields:
-    def check_registration_form_fields_filled(self, email: str, username: str, password: str):
+    # ├ Login link:
+    def click_login_link(self):
         """
-        Check <Registration form> fields filled correctly
+        Click <Login link> of the Registration page
 
-        - ✔ <Email> field - filled correctly
-        - ✔ <Username> field - filled correctly
-        - ✔ <Password> field - filled correctly
+        - ✔ Link - visible
+        - ▶ Link - Click
+        - ✔ Login page - opened
+        """
+        self.check_login_link_visible()
+        self.login_link.click()
+        self.check_page_opened(expected_url=LoginPage.URL)
+
+    # ┌╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ✔️EXPECTATIONS ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+    # ├ Toolbar:
+    # └──────────────────────────────────┐
+    def check_toolbar_title(self):
+        """
+        Check <Toolbar title> of the Registration page (2-in-1)
+
+        - ✔ Title - visible
+        - ✔ Title text - correct
+        """
+        self.check_toolbar_title_visible()
+        self.check_toolbar_title_text()
+    # ┌──────────────────────────────────┘
+    def check_toolbar_title_visible(self):
+        """
+        Check <Toolbar title> of the Registration page - visible
+
+        - ✔ Title - visible
+        """
+        error = '❌ <Toolbar title> of the Registration page - invisible!'
+        expect(self.toolbar_title, error).to_be_visible()
+
+    def check_toolbar_title_text(self, text: str = 'UI Course'):
+        """
+        Check <Toolbar title> text of the Registration page - correct!'
+
+        - ✔ Title text - correct
+
+        :param text: Toolbar title text (default: "UI Course")
+        """
+        error = '❌ <Toolbar title> text of the Registration page - incorrect!'
+        expect(self.toolbar_title, error).to_have_text(text)
+
+
+    # ├ Registration Form (filled):
+    # └──────────────────────────────────────────────────────┐
+    def check_registration_form_filled_correctly(self, email: str, username: str, password: str):
+        """
+        Check <Registration form> fields of the Registration page - filled correctly (3-in-1)
+
+        - ✔ <Email field> - filled correctly
+        - ✔ <Username field> - filled correctly
+        - ✔ <Password field> - filled correctly
 
         :param email: Email
         :param username: Username
         :param password: Password
         """
-        error_email = '❌ <Email> field did not fill correctly!'
-        error_username = '❌ <Username> field did not fill correctly!'
-        error_password = '❌ <Password> field did not fill correctly!'
-        expect(self.email_field, error_email).to_have_value(email)
-        expect(self.username_field, error_username).to_have_value(username)
-        expect(self.password_field, error_password).to_have_value(password)
-
-
-    # Toolbar:
-    def check_toolbar_title(self):
+        self.check_email_field_filled_correctly(email)
+        self.check_username_field_filled_correctly(username)
+        self.check_password_field_filled_correctly(password)
+    # ┌──────────────────────────────────────────────────────┘
+    def check_email_field_filled_correctly(self, email: str):
         """
-        Check <Toolbar title> of the Registration page
+        Check <Email field> of the Registration form - filled correctly
 
-        - ✔ Title - visible
-        - ✔ Title text - correct
-
+        - ✔ <Email field> - filled correctly
         """
-        error_visible = '❌ <Toolbar title> of the Registration page - invisible!'
-        error_text = '❌ <Toolbar title> text of the Registration page - incorrect!'
-        expect(self.toolbar_title, error_visible).to_be_visible()
-        expect(self.toolbar_title, error_text).to_have_text('UI Course')
+        error = '❌ <Email field> of the Registration form - filled incorrectly!'
+        expect(self.email_field, error).to_have_value(email)
+
+    def check_username_field_filled_correctly(self, username: str):
+        """
+        Check <Username field> of the Registration form - filled correctly
+
+        - ✔ <Username field> - filled correctly
+        """
+        error = '❌ <Username field> of the Registration form - filled incorrectly!'
+        expect(self.username_field, error).to_have_value(username)
+
+    def check_password_field_filled_correctly(self, password: str):
+        """
+        Check <Password field> of the Registration form - filled correctly
+
+        - ✔ <Password field> - filled correctly
+        """
+        error = '❌ <Password field> of the Registration form - filled incorrectly!'
+        expect(self.password_field, error).to_have_value(password)
 
 
-    # Buttons/Links:
+    # ├ Registration Button:
+    # └──────────────────────────────────────┐
     def check_registration_btn(self):
         """
         Check <Registration button> of the Registration page
@@ -98,40 +162,84 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Button - enabled
         - ✔ Button text - correct
         """
-        error_enabled = '❌ <Registration> button of the Registration page - disabled!'
-        error_text = '❌ <Registration> button text of the Registration page - incorrect!'
-        expect(self.registration_btn, error_enabled).to_be_enabled()
-        expect(self.registration_btn, error_text).to_have_text('Registration')
+        self.check_registration_btn_enable()
+        self.check_registration_btn_text()
+    # ┌──────────────────────────────────────┘
+    def check_registration_btn_enable(self):
+        """
+        Check <Registration button> of the Registration page - enable!'
+
+        - ✔ Button - enabled
+        """
+        error = '❌ <Registration button> of the Registration page - disabled!'
+        expect(self.registration_btn, error).to_be_enabled()
+
+    def check_registration_btn_disable(self):
+        """
+        Check <Registration button> of the Registration page - disable!'
+
+        (Until the Registration form is completed successfully)
+
+        - ✔ Button - disabled
+        """
+        error = '❌ <Registration button> of the Registration page - enable!'
+        expect(self.registration_btn, error).to_be_disabled()
+
+    def check_registration_btn_text(self, text: str = 'Registration'):
+        """
+        Check <Registration button> text of the Registration page - correct
+
+        - ✔ Button text - correct
+
+        :param text: Registration page text (default: "Registration")
+        """
+        error = '❌ <Registration button> text of the Registration page - incorrect!'
+        expect(self.registration_btn, error).to_have_text(text)
 
 
-    def check_login_link(self, redirect_endpoint: str | None = None):
+    # ├ Login Link:
+    # └──────────────────────────────────┐
+    def check_login_link(self):
         """
         Check <Login> link of the Registration page
 
-        :param redirect_endpoint: Redirection page endpoint
-
-        - ✔ Link - enable
-        - ✔ Link endpoint - correct
+        - ✔ Link - visible
+        - ✔ Link text - correct
+        - ✔ Link URL - correct
         """
-        login_page_endpoint = '#/auth/login'
-        redirect_endpoint = redirect_endpoint if redirect_endpoint else login_page_endpoint # Если <link_url> не передан
-        error_enabled = '❌ <Login> link of the Registration page - disabled!'
-        error_endpoint = '❌ <Login> link of the Registration page has incorrect endpoint!'
-        expect(self.login_link, error_enabled).to_be_enabled()
-        expect(self.login_link, error_endpoint).to_have_attribute('href', redirect_endpoint)
-
-
-    def check_new_page_url_after_successful_registration(self, new_page_url: str | None = None):
+        self.check_login_link_visible()
+        self.check_login_link_text()
+        self.check_login_link_url()
+    # ┌──────────────────────────────────┘
+    def check_login_link_visible(self):
         """
-        Check <New page> URL after successful registration
+        Check <Login link> of the Registration page - visible
 
-        - ✔ URL - correct
-
-        :param new_page_url: New page URL
+        - ✔ Link - visible
         """
-        dashboard_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
-        new_page_url = new_page_url if new_page_url else dashboard_page_url  # Если <new_page_url> не передан
-        error_url = '❌ <New page> URL after successful registration - incorrect!'
-        expect(self.page, error_url).to_have_url(new_page_url)
+        error = '❌ <Login link> of the Registration page - invisible!'
+        expect(self.login_link, error).to_be_visible()
+
+    def check_login_link_text(self, text: str = 'Login'):
+        """
+        Check <Login link> text of the Registration page - correct
+
+        - ✔ Link text - correct
+
+        :param text: Login link text (default: "Login")
+        """
+        error = '❌ <Login link> text of the Registration page - incorrect!'
+        expect(self.login_link, error).to_have_text(text)
+
+    def check_login_link_url(self, url: str = '#/auth/login'):
+        """
+        Check <Login link> URL on the Registration page - correct
+
+        - ✔ Link URL - correct
+
+        :param url: Login link URL (default: "#/auth/login")
+        """
+        error = '❌ <Login link> URL of the Registration page - incorrect!'
+        expect(self.login_link, error).to_have_attribute('href', url)
 
 #=======================================================================================================================

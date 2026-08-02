@@ -6,13 +6,10 @@ from playwright.sync_api import Locator, Page, expect
 
 #=======================================================================================================================
 class CreateCoursePage(BasePage):        # Дочерний класс (наследует класс BasePage)
+    URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create'
+
     def __init__(self, page: Page):      # Конструктор класса, принимающий Page
         super().__init__(page)           # Передаёт page в конструктор BasePage
-
-        # ┌╴ 𝌆 DATA:
-        # ├ Page URL
-        self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create'
-
 
         # ┌╴ ㉧ LOCATORS (static):
         # ├ Toolbar

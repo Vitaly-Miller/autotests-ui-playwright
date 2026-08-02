@@ -2,17 +2,14 @@
 Dashboard page
 """
 from pages.base_page import BasePage
-from playwright.sync_api import Page, Locator, expect
+from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 class DashboardPage(BasePage):          # Дочерний класс (наследует класс BasePage)
+    URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
+
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
-
-        # ┌╴ 𝌆 DATA:
-        # ├ Page URL
-        self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
-
 
         # ┌╴ ㉧ LOCATORS (static):
         # ├ Toolbar
@@ -29,12 +26,6 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         self.courses_chart = page.get_by_test_id('courses-bar-chart')
         self.scores_title = page.get_by_test_id('scores-widget-title-text')
         self.scores_chart = page.get_by_test_id('scores-bar-chart')
-
-
-    # ┌╴ ㉧ LOCATORS {dynamic}: (For example. NOT USED)
-    # ├ Navbar        <— ⚠️ ПЕРЕНЕСТИ в Components
-    def _navbar_welcome_title(self, username: str) -> Locator:
-        return self.page.get_by_text(text=f'Welcome, {username}!')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------

@@ -21,22 +21,19 @@ def test_successful_registration(               # Принимает:
         password: str                           # password  ┘
 ):
     # ⿹ Open page
-    registration_page.visit(registration_page.url)
+    registration_page.visit(registration_page.URL)
 
-    # ✔️EXPECTATIONS (before actions)
+    # ✔️EXPECTATIONS (before actions) - optional
     registration_page.check_toolbar_title()
     registration_page.check_login_link()
+    registration_page.check_registration_btn_disable()
 
     # ▶ ACTIONS
-    registration_page.fill_registration_form(
-        email=email,
-        username=username,
-        password=password
-    )
+    registration_page.fill_registration_form(email=email, username=username, password=password)
     registration_page.click_registration_btn()
 
     # ✔️EXPECTATIONS (after actions)
-    registration_page.check_new_page_url_after_successful_registration(dashboard_page.url)
+    registration_page.check_page_opened(dashboard_page.URL)
 
 
     # ⏳(optional)
