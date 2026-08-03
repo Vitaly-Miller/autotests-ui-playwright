@@ -16,18 +16,22 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.toolbar_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.create_course_btn = page.get_by_test_id('create-course-toolbar-create-course-button')
 
-        # Preview (left block)
+        # Preview - Empty View
         self.preview_empty_view_icon = page.get_by_test_id('create-course-preview-empty-view-icon')
         self.preview_empty_view_title = page.get_by_test_id('create-course-preview-empty-view-title-text')
         self.preview_empty_view_description = page.get_by_test_id('create-course-preview-empty-view-description-text')
+
+        # Preview - Image View
         self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
 
-        # Upload image (right block)
-        self.upload_image_icon = page.get_by_test_id("create-course-preview-image-upload-widget-info-icon")
-        self.upload_image_title = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
-        self.upload_image_description = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
-        self.upload_image_button = page.get_by_test_id('create-course-preview-image-upload-widget-upload-button')
-        self.upload_image_input = page.get_by_test_id('create-course-preview-image-upload-widget-input')  # hidden input for upload image
+        # Upload image View
+        self.upload_image_view_icon = page.get_by_test_id("create-course-preview-image-upload-widget-info-icon")
+        self.upload_image_view_title = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
+        self.upload_image_view_description = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
+
+        # Upload image View - Buttons
+        self.upload_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-upload-button')
+        self.upload_image_view_input = page.get_by_test_id('create-course-preview-image-upload-widget-input')  # hidden input for upload image
         self.remove_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-remove-button')
 
         # Form
@@ -146,7 +150,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
 
-    # Preview Empty View:
+    # Preview -  Empty View:
     # ────────────────────────────────────────────────────┐
     def check_preview_empty_view(self):
         self.check_preview_empty_view_icon()
@@ -206,3 +210,115 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         error = '❌ <Preview Empty View - Description> text of the Create course page - incorrect!'
         expect(self.preview_empty_view_description, error).to_have_text(text)
+
+
+    # Preview - Image View:
+    # ────────────────────────────────────────────────────┐
+
+    # ────────────────────────────────────────────────────┘
+
+
+    # Upload image View:
+    # ────────────────────────────────────────────────────┐
+    def check_upload_image_view(self):
+        """
+        Check <Upload image View> of the Create course page
+
+        - ✔ Icon - visible
+        - ✔ Title - visible | Text - correct
+        - ✔ Description - visible | Text - correct
+        - ✔ <Upload Button> - visible | - enabled | Text - correct
+        """
+        self.check_upload_image_view_icon_visible()
+        self.check_upload_image_view_title_visible()
+        self.check_upload_image_view_title_text()
+        self.check_upload_image_view_description_visible()
+        self.check_upload_image_view_description_text()
+        self.check_upload_image_view_btn_visible()
+        self.check_upload_image_view_btn_enable()
+        self.check_upload_image_view_btn_text()
+    # ────────────────────────────────────────────────────┘
+    # Upload image View - Icon
+    def check_upload_image_view_icon_visible(self):
+        """
+        Check <Upload image View - Icon> of the Create course page - visible
+
+        - ✔ Icon - visible
+        """
+        error = '❌ <Upload image View - Icon> of the Create course page - invisible!'
+        expect(self.upload_image_view_icon, error).to_be_visible()
+
+
+    # Upload image View - Title
+    def check_upload_image_view_title_visible(self):
+        """
+        Check <Upload image View - Title> of the Create course page - visible
+
+        - ✔ Title - visible
+
+        """
+        error = '❌ <Upload image View - Title> of the Create course page - invisible!'
+        expect(self.upload_image_view_title, error).to_be_visible()
+
+    def check_upload_image_view_title_text(self, title: str = 'Tap on "Upload image" button to select file'):
+        """
+        Check <Upload image View - Title> text of the Create course page - correct
+
+        - ✔ Text - correct
+        """
+        error = '❌ <Upload image View - Title> text of the Create course page - incorrect!'
+        expect(self.upload_image_view_title, error).to_have_text(title)
+
+
+    # Upload image View - Description
+    def check_upload_image_view_description_visible(self):
+        """
+        Check <Upload image View - Description> of the Create course page - visible
+
+        - ✔ Description - visible
+
+        """
+        error = '❌ <Upload image View - Description> of the Create course page - invisible!'
+        expect(self.upload_image_view_description, error).to_be_visible()
+
+    def check_upload_image_view_description_text(self, title: str = 'Recommended file size 540X300'):
+        """
+        Check <Upload image View - Description> text of the Create course page - correct
+
+        - ✔ Text - correct
+        """
+        error = '❌ <Upload image View - Description> text of the Create course page - incorrect!'
+        expect(self.upload_image_view_description, error).to_have_text(title)
+
+
+    # Upload image View - <Upload image> Button
+    def check_upload_image_view_btn_visible(self):
+        """
+        Check <Upload image View - Button> of the Create course page - visible
+
+        - ✔ Button - visible
+
+        """
+        error = '❌ <Upload image View - Button> of the Create course page - invisible!'
+        expect(self.upload_image_btn, error).to_be_visible()
+
+    def check_upload_image_view_btn_enable(self):
+        """
+        Check <Upload image View - Button> of the Create course page - enabled
+
+        - ✔ Button - enabled
+
+        """
+        error = '❌ <Upload image View - Button> of the Create course page - disabled!'
+        expect(self.upload_image_btn, error).to_be_enabled()
+
+    def check_upload_image_view_btn_text(self, title: str = 'Upload image'):
+        """
+        Check <Upload image View - Button> text of the Create course page - correct
+
+        - ✔ Text - correct
+        """
+        error = '❌ <Upload image View - Button> text of the Create course page - incorrect!'
+        expect(self.upload_image_btn, error).to_have_text(title)
+
+    # Upload image View - <Remove image> Button
