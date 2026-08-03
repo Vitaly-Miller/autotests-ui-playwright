@@ -16,12 +16,12 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.toolbar_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.create_course_btn = page.get_by_test_id('create-course-toolbar-create-course-button')
 
-        # Preview - Empty View
+        # Preview Empty View
         self.preview_empty_view_icon = page.get_by_test_id('create-course-preview-empty-view-icon')
         self.preview_empty_view_title = page.get_by_test_id('create-course-preview-empty-view-title-text')
         self.preview_empty_view_description = page.get_by_test_id('create-course-preview-empty-view-description-text')
 
-        # Preview - Image View
+        # Preview View - Image
         self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
 
         # Upload image View
@@ -147,18 +147,33 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         expect(self.create_course_btn, error).to_be_disabled()
 
 
+    # Preview View:
+    # ─────────────────────────────────────────────────────────┐
+    def check_preview_view(self):
+        """
+        Check <Remove View> of the Create course page
 
-    # Preview Empty View:
-    # ────────────────────────────────────────────────────┐
-    def check_preview_empty_view(self):
-        self.check_preview_empty_view_icon()
-        self.check_preview_empty_view_title_visible()
-        self.check_preview_empty_view_title_text()
-        self.check_preview_empty_view_description_visible()
-        self.check_preview_empty_view_description_text()
-    # ────────────────────────────────────────────────────┘
+        If Image UPLOADED:
+        -----------------
+        - ✔ Image - visible
+
+        If Image DID NOT upload:
+        -----------------------
+        - ✔ Icon - visible
+        - ✔ Title - visible | - text
+        - ✔ Description - visible | - text
+        """
+        if self.preview_image.is_visible():  # if image uploaded
+            self.check_preview_view_image_visible()
+        else:
+            self.check_preview_empty_view_icon_visible()
+            self.check_preview_empty_view_title_visible()
+            self.check_preview_empty_view_title_text()
+            self.check_preview_empty_view_description_visible()
+            self.check_preview_empty_view_description_text()
+    # ─────────────────────────────────────────────────────────┘
     # - Preview Empty View - Icon
-    def check_preview_empty_view_icon(self):
+    def check_preview_empty_view_icon_visible(self):
         """
         Check <Preview Empty View - Icon> of the Create course page - visible
 
@@ -173,7 +188,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         Check <Preview Empty View - Title> of the Create course page - visible
 
         - ✔ Title - visible
-
         """
         error = '❌ <Preview Empty View - Title> of the Create course page - invisible!'
         expect(self.preview_empty_view_title, error).to_be_visible()
@@ -206,6 +220,16 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Preview Empty View - Description> text of the Create course page - incorrect!'
         expect(self.preview_empty_view_description, error).to_have_text(text)
 
+    # - Preview View - Image
+    def check_preview_view_image_visible(self):
+        """
+        Check <Preview View - Image> of the Create course page - visible
+
+        - ✔ Image - visible
+        """
+        error = '❌ <Preview View - Image> of the Create course page - invisible!'
+        expect(self.preview_image, error).to_be_visible()
+
 
     # Upload image View:
     # ────────────────────────────────────────────────────┐
@@ -214,16 +238,19 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         Check <Upload image View> of the Create course page
 
         - ✔ Icon - visible
-        - ✔ Title - visible | Text - correct
-        - ✔ Description - visible | Text - correct
-        - ✔ <Upload Button> - visible | - enabled | Text - correct
+        - ✔ Title - visible | - text
+        - ✔ Description - visible | - text
+        - ✔ <Upload Button> - visible | - enabled | - text
+        - ✔ <Remove Button> - invisible (if image DID NOT upload)
+        - ✔ <Remove Button> - visible | - enabled | - text (if image UPLOADED)
         """
         self.check_upload_image_view_icon_visible()
         self.check_upload_image_view_title_visible()
         self.check_upload_image_view_title_text()
         self.check_upload_image_view_description_visible()
         self.check_upload_image_view_description_text()
-        self.check_upload_image_view_btn()  # suite
+        self.check_upload_image_view_btn()    # suite
+        self.check_remove_image_view_btn()    # if-suite
     # ────────────────────────────────────────────────────┘
     # - Upload image View - Icon
     def check_upload_image_view_icon_visible(self):
@@ -320,50 +347,52 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         expect(self.upload_image_btn, error).to_have_text(title)
 
 
-    # Upload image Uploaded View:
-    # ────────────────────────────────────────────────────┐
-    def check_upload_image_uploaded_view(self):
-        """
-        Check <Upload image Uploaded View> of the Create course page
-
-        - ✔ Icon - visible
-        - ✔ Title - visible | Text - correct
-        - ✔ Description - visible | Text - correct
-        - ✔ <Upload Button> - visible | - enabled | Text - correct
-        - ✔ + <Remove Button> - visible | - enabled | Text - correct
-        """
-        self.check_upload_image_view_icon_visible()
-        self.check_upload_image_view_title_visible()
-        self.check_upload_image_view_title_text()
-        self.check_upload_image_view_description_visible()
-        self.check_upload_image_view_description_text()
-        self.check_upload_image_view_btn()  # suite
-        self.check_remove_image_view_btn()  # suite
-    # ────────────────────────────────────────────────────┘
-
-    # - Upload image Uploaded View - <Remove image> Button
+    # - Upload image View - <Remove image> Button (if image uploaded)
     # ────────────────────────────────────────────────────┐
     def check_remove_image_view_btn(self):
         """
         Check <Remove image> button of the Create course page
 
+        If Image UPLOADED:
+        -----------------
         - ✔ Button - visible
         - ✔ Button - enabled
         - ✔ Text - correct
+
+        If Image DID NOT upload:
+        -----------------------
+        - ✔ Button - invisible
         """
-        self.check_remove_image_view_btn_visible()
-        self.check_remove_image_view_btn_enable()
-        self.check_remove_image_view_btn_text()
+        if self.preview_image.is_visible():  # if image uploaded
+            self.check_remove_image_view_btn_visible()
+            self.check_remove_image_view_btn_enable()
+            self.check_remove_image_view_btn_text()
+        else:
+            self.check_remove_image_view_btn_invisible()
     # ────────────────────────────────────────────────────┘
     def check_remove_image_view_btn_visible(self):
         """
         Check <Remove image View - Button> of the Create course page - visible
+
+        (For case - If image UPLOADED)
 
         - ✔ Button - visible
 
         """
         error = '❌ <Remove image View - Button> of the Create course page - invisible!'
         expect(self.remove_image_btn, error).to_be_visible()
+
+    def check_remove_image_view_btn_invisible(self):
+        """
+        Check <Remove image View - Button> of the Create course page - invisible
+
+        (For case - if image DID NOT upload)
+
+        - ✔ Button - invisible
+
+        """
+        error = '❌ <Remove image View - Button> of the Create course page - visible!'
+        expect(self.remove_image_btn, error).not_to_be_visible()
 
     def check_remove_image_view_btn_enable(self):
         """
