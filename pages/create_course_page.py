@@ -96,8 +96,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_create_course_btn_visible()
         self.check_create_course_btn_enabled()
     # ─────────────────────────────────────────┘
-
-    # Toolbar - Title
+    # - Toolbar - Title
     def check_toolbar_title_visible(self):
         """
         Check <Toolbar - Title> of the Create course page - visible
@@ -119,8 +118,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Toolbar - Title> text of the Create course page - incorrect!'
         expect(self.toolbar_title, error).to_have_text(text)
 
-
-    # Toolbar - Create Course button
+    # - Toolbar - Create Course button
     def check_create_course_btn_visible(self):
         """
         Check <Toolbar - Create Course button> of the Create course page - visible
@@ -150,7 +148,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
 
-    # Preview -  Empty View:
+    # Preview Empty View:
     # ────────────────────────────────────────────────────┐
     def check_preview_empty_view(self):
         self.check_preview_empty_view_icon()
@@ -159,8 +157,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_preview_empty_view_description_visible()
         self.check_preview_empty_view_description_text()
     # ────────────────────────────────────────────────────┘
-
-    # Preview Empty View - Icon
+    # - Preview Empty View - Icon
     def check_preview_empty_view_icon(self):
         """
         Check <Preview Empty View - Icon> of the Create course page - visible
@@ -170,8 +167,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Preview Empty View - Icon> of the Create course page - invisible!'
         expect(self.preview_empty_view_icon, error).to_be_visible()
 
-
-    # Preview Empty View - Title
+    # - Preview Empty View - Title
     def check_preview_empty_view_title_visible(self):
         """
         Check <Preview Empty View - Title> of the Create course page - visible
@@ -191,8 +187,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Preview Empty View - Title> text of the Create course page - incorrect!'
         expect(self.preview_empty_view_title, error).to_have_text(title)
 
-
-    # Preview Empty View - Description
+    # - Preview Empty View - Description
     def check_preview_empty_view_description_visible(self):
         """
         Check <Preview Empty View - Description> of the Create course page - visible
@@ -212,15 +207,9 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         expect(self.preview_empty_view_description, error).to_have_text(text)
 
 
-    # Preview - Image View:
-    # ────────────────────────────────────────────────────┐
-
-    # ────────────────────────────────────────────────────┘
-
-
     # Upload image View:
     # ────────────────────────────────────────────────────┐
-    def check_upload_image_view(self):
+    def check_upload_image_empty_view(self):
         """
         Check <Upload image View> of the Create course page
 
@@ -234,11 +223,9 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_upload_image_view_title_text()
         self.check_upload_image_view_description_visible()
         self.check_upload_image_view_description_text()
-        self.check_upload_image_view_btn_visible()
-        self.check_upload_image_view_btn_enable()
-        self.check_upload_image_view_btn_text()
+        self.check_upload_image_view_btn()  # suite
     # ────────────────────────────────────────────────────┘
-    # Upload image View - Icon
+    # - Upload image View - Icon
     def check_upload_image_view_icon_visible(self):
         """
         Check <Upload image View - Icon> of the Create course page - visible
@@ -248,8 +235,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Upload image View - Icon> of the Create course page - invisible!'
         expect(self.upload_image_view_icon, error).to_be_visible()
 
-
-    # Upload image View - Title
+    # - Upload image View - Title
     def check_upload_image_view_title_visible(self):
         """
         Check <Upload image View - Title> of the Create course page - visible
@@ -269,8 +255,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Upload image View - Title> text of the Create course page - incorrect!'
         expect(self.upload_image_view_title, error).to_have_text(title)
 
-
-    # Upload image View - Description
+    # - Upload image View - Description
     def check_upload_image_view_description_visible(self):
         """
         Check <Upload image View - Description> of the Create course page - visible
@@ -291,7 +276,20 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         expect(self.upload_image_view_description, error).to_have_text(title)
 
 
-    # Upload image View - <Upload image> Button
+    # - Upload image View - <Upload image> Button
+    # ────────────────────────────────────────────────────┐
+    def check_upload_image_view_btn(self):
+        """
+        Check <Upload image> button of the Create course page
+
+        - ✔ Button - visible
+        - ✔ Button - enabled
+        - ✔ Text - correct
+        """
+        self.check_upload_image_view_btn_visible()
+        self.check_upload_image_view_btn_enable()
+        self.check_upload_image_view_btn_text()
+    # ────────────────────────────────────────────────────┘
     def check_upload_image_view_btn_visible(self):
         """
         Check <Upload image View - Button> of the Create course page - visible
@@ -321,4 +319,73 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Upload image View - Button> text of the Create course page - incorrect!'
         expect(self.upload_image_btn, error).to_have_text(title)
 
-    # Upload image View - <Remove image> Button
+
+    # Upload image Uploaded View:
+    # ────────────────────────────────────────────────────┐
+    def check_upload_image_uploaded_view(self):
+        """
+        Check <Upload image Uploaded View> of the Create course page
+
+        - ✔ Icon - visible
+        - ✔ Title - visible | Text - correct
+        - ✔ Description - visible | Text - correct
+        - ✔ <Upload Button> - visible | - enabled | Text - correct
+        - ✔ + <Remove Button> - visible | - enabled | Text - correct
+        """
+        self.check_upload_image_view_icon_visible()
+        self.check_upload_image_view_title_visible()
+        self.check_upload_image_view_title_text()
+        self.check_upload_image_view_description_visible()
+        self.check_upload_image_view_description_text()
+        self.check_upload_image_view_btn()  # suite
+        self.check_remove_image_view_btn()  # suite
+    # ────────────────────────────────────────────────────┘
+
+    # - Upload image Uploaded View - <Remove image> Button
+    # ────────────────────────────────────────────────────┐
+    def check_remove_image_view_btn(self):
+        """
+        Check <Remove image> button of the Create course page
+
+        - ✔ Button - visible
+        - ✔ Button - enabled
+        - ✔ Text - correct
+        """
+        self.check_remove_image_view_btn_visible()
+        self.check_remove_image_view_btn_enable()
+        self.check_remove_image_view_btn_text()
+    # ────────────────────────────────────────────────────┘
+    def check_remove_image_view_btn_visible(self):
+        """
+        Check <Remove image View - Button> of the Create course page - visible
+
+        - ✔ Button - visible
+
+        """
+        error = '❌ <Remove image View - Button> of the Create course page - invisible!'
+        expect(self.remove_image_btn, error).to_be_visible()
+
+    def check_remove_image_view_btn_enable(self):
+        """
+        Check <Remove image View - Button> of the Create course page - enabled
+
+        - ✔ Button - enabled
+
+        """
+        error = '❌ <Remove image View - Button> of the Create course page - disabled!'
+        expect(self.remove_image_btn, error).to_be_enabled()
+
+    def check_remove_image_view_btn_text(self, title: str = 'Upload image'):
+        """
+        Check <Remove image View - Button> text of the Create course page - correct
+
+        - ✔ Text - correct
+        """
+        error = '❌ <Remove image View - Button> text of the Create course page - incorrect!'
+        expect(self.remove_image_btn, error).to_have_text(title)
+
+
+    # Preview - Image View:
+    # ────────────────────────────────────────────────────┐
+
+    # ────────────────────────────────────────────────────┘
