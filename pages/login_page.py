@@ -14,24 +14,24 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ┌╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ㉧ LOCATORS (static) ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
-        # ├ Toolbar
+        # ------------------------------------------ ㉧ LOCATORS (static) -----------------------------------------------
+        # Toolbar
         self.toolbar_title = page.get_by_test_id('authentication-ui-course-title-text')
 
-        # ├ Login Form fields
+        # Login Form fields
         self.email_field = page.get_by_label('Email')
         self.password_field = page.get_by_label('Password')
 
-        # ├ Buttons/Links
+        # Buttons/Links
         self.login_btn = page.get_by_test_id('login-page-login-button')
         self.registration_link = page.get_by_test_id('login-page-registration-link')
 
-        # ├ Alerts
+        # Alerts
         self.wrong_email_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
 
-    # ┌╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ▶ ACTIONS ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
-    # ├ Login form:
+    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # Login form:
     def fill_login_form(self, email: str, password: str):
         """
         Fill <Login form> of the Login page
@@ -47,7 +47,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.password_field.fill(password)
         self.check_login_form_filled_correctly(email=email, password=password)
 
-    # ├ Login button:
+    # Login button:
     def click_login_btn(self):
         """
         Click <Login button> of the Login page
@@ -60,7 +60,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.login_btn.click()
         self.check_page_opened(expected_url=DashboardPage.URL)
 
-    # ├ Registration link:
+    # Registration link:
     def click_registration_link(self):
         """
         Click <Registration link> of the Login page
@@ -74,19 +74,19 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_page_opened(expected_url=RegistrationPage.URL)
 
 
-    # ┌╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ✔️EXPECTATIONS ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
-    # ├ Toolbar:
-    # └───────────────────────────────────┐
+    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # Toolbar:
+    # ───────────────────────────────────┐
     def check_toolbar_title(self):
         """
-        Check <Toolbar title> of the Registration page (2-in-1)
+        Check <Toolbar title> of the Registration page
 
         - ✔ Title - visible
         - ✔ Title text - correct
         """
         self.check_toolbar_title_visible()
         self.check_toolbar_title_text()
-    # ┌───────────────────────────────────┘
+    # ───────────────────────────────────┘
     def check_toolbar_title_visible(self):
         """
         Check <Toolbar title> of the Login page - visible
@@ -106,8 +106,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         expect(self.toolbar_title, error).to_have_text(text)
 
 
-    # ├ Login Form (filled):
-    # └────────────────────────────────────────────────────────────────────┐
+    # Login Form (filled):
+    # ─────────────────────────────────────────────────────────────────────┐
     def check_login_form_filled_correctly(self, email: str, password: str):
         """
         Check <Login form> fields of the Login page - filled correctly
@@ -117,7 +117,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.check_email_field_filled_correctly(email)
         self.check_password_field_filled_correctly(password)
-    # ┌────────────────────────────────────────────────────────────────────┘
+    # ─────────────────────────────────────────────────────────────────────┘
     def check_email_field_filled_correctly(self, email: str):
         """
         Check <Email field> of the Login form - filled correctly
@@ -137,8 +137,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         expect(self.password_field, error).to_have_value(password)
 
 
-    # ├ Login Button:
-    # └──────────────────────────────────────┐
+    # Login Button:
+    # ───────────────────────────────────────┐
     def check_login_btn(self):
         """
         Check <Login button> of the Login page
@@ -148,7 +148,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.check_login_btn_enable()
         self.check_login_btn_text()
-    # ┌──────────────────────────────────────┘
+    # ───────────────────────────────────────┘
     def check_login_btn_enable(self):
         """
         Check <Login button> of the Login page - enabled
@@ -181,8 +181,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         expect(self.login_btn, error).to_have_text(text)
 
 
-    # ├ Registration Link:
-    # └───────────────────────────────────────┐
+    # Registration Link:
+    # ────────────────────────────────────────┐
     def check_registration_link(self):
         """
         Check <Registration link> of the Login page
@@ -194,7 +194,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_registration_link_visible()
         self.check_registration_link_text()
         self.check_registration_link_url()
-    # ┌───────────────────────────────────────┘
+    # ────────────────────────────────────────┘
     def check_registration_link_visible(self):
         """
         Check <Registration link> of the Login page - visible
@@ -227,8 +227,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         expect(self.registration_link, error).to_have_attribute('href', url)
 
 
-    # ├ Alert:
-    # └───────────────────────────────────────────────────┐
+    # Alert:
+    # ────────────────────────────────────────────────────┐
     def wrong_email_or_password_alert(self):
         """
         Check <Wrong Email or Password> alert of the Login page
@@ -238,7 +238,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.check_wrong_email_or_password_alert_visible()
         self.check_wrong_email_or_password_alert_text()
-    # ┌───────────────────────────────────────────────────┘
+    # ────────────────────────────────────────────────────┘
     def check_wrong_email_or_password_alert_visible(self):
         """
         Check <Wrong Email or Password> alert - visible

@@ -13,22 +13,22 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ┌╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ㉧ LOCATORS (static) ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
-        # ├ Toolbar
+        # --------------------------------------------╴ ㉧ LOCATORS (static) --------------------------------------------
+        # Toolbar
         self.toolbar_title = page.get_by_role(role='heading', name='UI Course')
 
-        # ├ Registration Form fields
+        # Registration Form fields
         self.email_field = page.get_by_role(role='textbox', name='Email')
         self.username_field = page.get_by_role(role='textbox', name='Username')
         self.password_field = page.get_by_role(role='textbox', name='Password')
 
-        # ├ Buttons/Links
+        # Buttons/Links
         self.registration_btn = page.get_by_role(role='button', name='Registration')
         self.login_link = page.get_by_role(role='link', name='Login')
 
 
-    # ┌╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ▶ ACTIONS ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
-    # ├ Registration form:
+    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # Registration form:
     def fill_registration_form(self, email: str, username: str, password: str):
         """
         Fill <Registration form> of the Registration page
@@ -47,7 +47,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.password_field.fill(password)
         self.check_registration_form_filled_correctly(email=email, username=username, password=password)
 
-    # ├ Registration button:
+    # Registration button:
     def click_registration_btn(self):
         """
         Click <Registration> button> of the Registration page
@@ -60,7 +60,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.registration_btn.click()
         self.check_page_opened(expected_url=DashboardPage.URL)
 
-    # ├ Login link:
+    # Login link:
     def click_login_link(self):
         """
         Click <Login link> of the Registration page
@@ -73,19 +73,19 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.login_link.click()
         self.check_page_opened(expected_url=LoginPage.URL)
 
-    # ┌╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ✔️EXPECTATIONS ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
-    # ├ Toolbar:
-    # └──────────────────────────────────┐
+    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # Toolbar:
+    # ───────────────────────────────────┐
     def check_toolbar_title(self):
         """
-        Check <Toolbar title> of the Registration page (2-in-1)
+        Check <Toolbar title> of the Registration page
 
         - ✔ Title - visible
         - ✔ Title text - correct
         """
         self.check_toolbar_title_visible()
         self.check_toolbar_title_text()
-    # ┌──────────────────────────────────┘
+    # ───────────────────────────────────┘
     def check_toolbar_title_visible(self):
         """
         Check <Toolbar title> of the Registration page - visible
@@ -107,8 +107,8 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         expect(self.toolbar_title, error).to_have_text(text)
 
 
-    # ├ Registration Form (filled):
-    # └──────────────────────────────────────────────────────┐
+    # Registration Form (filled):
+    # ───────────────────────────────────────────────────────┐
     def check_registration_form_filled_correctly(self, email: str, username: str, password: str):
         """
         Check <Registration form> fields of the Registration page - filled correctly (3-in-1)
@@ -124,7 +124,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.check_email_field_filled_correctly(email)
         self.check_username_field_filled_correctly(username)
         self.check_password_field_filled_correctly(password)
-    # ┌──────────────────────────────────────────────────────┘
+    # ───────────────────────────────────────────────────────┘
     def check_email_field_filled_correctly(self, email: str):
         """
         Check <Email field> of the Registration form - filled correctly
@@ -153,8 +153,8 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         expect(self.password_field, error).to_have_value(password)
 
 
-    # ├ Registration Button:
-    # └──────────────────────────────────────┐
+    # Registration Button:
+    # ───────────────────────────────────────┐
     def check_registration_btn(self):
         """
         Check <Registration button> of the Registration page
@@ -164,7 +164,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         self.check_registration_btn_enable()
         self.check_registration_btn_text()
-    # ┌──────────────────────────────────────┘
+    # ───────────────────────────────────────┘
     def check_registration_btn_enable(self):
         """
         Check <Registration button> of the Registration page - enable!'
@@ -197,8 +197,8 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         expect(self.registration_btn, error).to_have_text(text)
 
 
-    # ├ Login Link:
-    # └──────────────────────────────────┐
+    # Login Link:
+    # ───────────────────────────────────┐
     def check_login_link(self):
         """
         Check <Login> link of the Registration page
@@ -210,7 +210,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.check_login_link_visible()
         self.check_login_link_text()
         self.check_login_link_url()
-    # ┌──────────────────────────────────┘
+    # ───────────────────────────────────┘
     def check_login_link_visible(self):
         """
         Check <Login link> of the Registration page - visible

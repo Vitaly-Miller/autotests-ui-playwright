@@ -11,7 +11,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     def __init__(self, page: Page):      # Конструктор класса, принимающий Page
         super().__init__(page)           # Передаёт page в конструктор BasePage
 
-        # ┌╴ ㉧ LOCATORS (static):
+        # ------------------------------------------- ㉧ LOCATORS (static) ----------------------------------------------
         # ├ Toolbar
         self.toolbar_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.create_course_btn = page.get_by_test_id('create-course-toolbar-create-course-button')
@@ -42,16 +42,19 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.create_exercise_empty_view_description = page.get_by_test_id('create-course-exercises-empty-view-description-text')
         self.exercise_title = page.get_by_test_id(f'create-course-exercise-0-box-toolbar-subtitle-text')  # ⚠️ Используй динамический локатор с индексом!
 
-    # ┌╴ ㉧ LOCATORS {dynamic}:
-    # ├ Exercises
+
+    # ---------------------------------------------- ㉧ LOCATORS {dynamic} ----------------------------------------------
+    # Exercises
     def exercise_title(self, index: int = 0) -> Locator:
         """
-        Element <data_testid> index
+        By element <data_testid> index
 
         :param index: Element <data_testid> index if more than one Exercise (Default = 0 if single)
         :return: Locator
         """
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
+
+
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def click_create_course_btn(self):
         """
@@ -65,52 +68,71 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_create_course_btn_enabled()
         self.create_course_btn.click()
 
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ┌╴ Create course
-    # ├ Toolbar title
+    # Toolbar:
+    # ─────────────────────────────────────────┐
+    def check_toolbar(self):
+        """
+        Check <Toolbar> of the Create course page
+
+        - ✔ Title - visible
+        - ✔ Title text - correct
+        - ✔ <Create Course button> - visible
+        - ✔ <Create Course button> - enable
+        """
+        self.check_toolbar_title_visible()
+        self.check_toolbar_title_text()
+        self.check_create_course_btn_visible()
+        self.check_create_course_btn_enabled()
+    # ─────────────────────────────────────────┘
+    # Toolbar - Title
     def check_toolbar_title_visible(self):
         """
-        Check <Toolbar title> of the Create course page - visible
+        Check <Toolbar - Title> of the Create course page - visible
 
-        .
+        - ✔ Title - visible
         """
-        error = '❌ <Toolbar title> of the Create course page - invisible!'
+        error = '❌ <Toolbar - Title> of the Create course page - invisible!'
         expect(self.toolbar_title, error).to_be_visible()
 
     def check_toolbar_title_text(self, text: str = 'Create course'):
         """
-        Check <Toolbar title> text of the Create course page
+        Check <Toolbar - Title> text of the Create course page
+
+        - ✔ Title text - correct
 
         :param text: "Create course" (default)
 
         """
-        error = '❌ <Toolbar title> text of the Create course page - incorrect!'
+        error = '❌ <Toolbar - Title> text of the Create course page - incorrect!'
         expect(self.toolbar_title, error).to_have_text(text)
 
-    # ├ Toolbar button
+
+    # Toolbar - Create Course button
     def check_create_course_btn_visible(self):
         """
-        Check <Create course> button of the Create course page - visible
+        Check <Toolbar - Create Course button> of the Create course page - visible
 
-        .
+        - ✔ Button - visible
         """
-        error = '❌ <Create course> button of the Create course page - invisible!'
-        expect(self.create_course_btn, error).to_be_enabled()
+        error = '❌ <Toolbar - Create Course button> of the Create course page - invisible!'
+        expect(self.create_course_btn, error).to_be_visible()
 
     def check_create_course_btn_enabled(self):
         """
-        Check <Create course> button of the Create course page - enabled
+        Check <Toolbar - Create Course button> of the Create course page - enabled
 
-        .
+        - ✔ Button - enabled
         """
-        error = '❌ <Create course> button of the Create course page - disabled!'
+        error = '❌ <Toolbar - Create Course button> of the Create course page - disabled!'
         expect(self.create_course_btn, error).to_be_enabled()
 
     def check_create_course_btn_disabled(self):
         """
-        Check <Create course> button of the Create course page - disabled
+        Check <Toolbar - Create Course button> of the Create course page - disabled
 
-        .
+        - ✔ Button - disabled
         """
-        error = '❌ <Create course> button of the Create course page - enabled!'
+        error = '❌ <Toolbar - Create Course button> of the Create course page - enabled!'
         expect(self.create_course_btn, error).to_be_disabled()

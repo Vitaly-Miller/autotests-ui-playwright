@@ -10,7 +10,7 @@ from pages.login_page import LoginPage
 @pytest.mark.regression           # │ Pytest Markers
 @pytest.mark.negative             # ┘
 @pytest.mark.parametrize(         # ] Pytest Parametrize
-    'email, password',[                                       # Параметризация Email и Password (3-in-1):
+    'email, password', [                                      # Параметризация Email и Password (3-in-1):
         ('user.name@gmail.com', 'password'),    # - Valid (unregistered)
         ('user.name@gmail.com', '  '),          # - Invalid password
         ('  ', 'password')                      # - Invalid email
