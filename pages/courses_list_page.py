@@ -100,6 +100,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_courses_toolbar_create_course_btn_visible()
         self.check_courses_toolbar_title_text()
     # ────────────────────────────────────────────────────────┘
+
     def check_courses_toolbar_title_visible(self):
         """
         Check <Toolbar - Title> visible of the Courses List page
@@ -150,6 +151,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_courses_empty_view_title_text()
         self.check_courses_empty_view_description_text()
    # ────────────────────────────────────────────────────────┘
+
     # Empty View - Icon
     def check_courses_empty_view_icon_visible(self):
         """
@@ -238,6 +240,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_course_card_estimated_time_text(estimated_time=estimated_time, index=index)
         self.check_course_card_menu_btn_visible(index=index)
     # ─────────────────────────────────────────────────────────────────────────────────────────┘
+
     # Course Card - Image:
     def check_course_card_image_visible(self, index: int = 0):
         """
