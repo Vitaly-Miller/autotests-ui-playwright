@@ -99,6 +99,53 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         :param file: File path
         """
         self.upload_image_view_input.set_input_files(file)
+
+    def fill_create_course_form(
+            self,
+            title: str,
+            estimated_time: str,
+            description: str,
+            max_score: str,
+            min_score: str
+    ):
+        """
+        Fill Create course form of the Create course page
+
+        - ▶ Form fields - Fill
+        - ✔ Form fields - filled correctly
+
+        :param title: Title
+        :param estimated_time: Estimated Time
+        :param description: Description
+        :param max_score: Max score
+        :param min_score: Min score
+        """
+        # Title
+        self.course_form_title_field.fill(title)
+        self.check_course_form_title_field_filled_correctly(title)
+        # Estimated time
+        self.course_form_estimated_time_field.fill(estimated_time)
+        self.check_course_form_estimated_time_field_filled_correctly(estimated_time)
+        # Description
+        self.course_form_description_field.fill(description)
+        self.check_course_form_description_field_filled_correctly(description)
+        # Max score
+        self.course_form_max_score_field.fill(max_score)
+        self.check_course_form_max_score_field_filled_correctly(max_score)
+        # Min score
+        self.course_form_min_score_field.fill(min_score)
+        self.check_course_form_min_score_field_filled_correctly(min_score)
+
+    def click_create_exercise_btn(self):
+        """
+        Click <Create exercise - Button> of the Create course page
+
+        - ✔ Button - visible
+        - ▶ Button - Click
+        """
+        self.check_create_exercise_toolbar_btn_visible()
+        self.create_course_btn.click()
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Toolbar:
     # ─────────────────────────────────────────┐
@@ -438,11 +485,11 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ────────────────────────────────────────────────────┐
     def check_course_form(
             self,
-            title,
-            estimated_time,
-            description,
-            max_score,
-            min_score
+            title: str,
+            estimated_time: str,
+            description: str,
+            max_score: str,
+            min_score: str
     ):
         """
         Check <Course form> of the Create course page
@@ -652,7 +699,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # Course Form - Max score field
-    # ───────────────────────────────────────────────────────────────┐
+    # ─────────────────────────────────────────────────────────────────────┐
     def check_course_form_max_score(self, max_score: str = '0'):
         """
         Check <Course form - Max score field> of the Create course page
@@ -666,7 +713,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_course_form_max_score_field_visible()
         self.check_course_form_max_score_field_name()
         self.check_course_form_max_score_field_filled_correctly(max_score)
-    # ───────────────────────────────────────────────────────────────┘
+    # ─────────────────────────────────────────────────────────────────────┘
     def check_course_form_max_score_field_visible(self):
         """
         Check <Course form - Max score field> of the Create course page - visible!
@@ -745,3 +792,106 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         error = '❌ <Course form Min score field> of the Create course page - filled incorrectly!'
         expect(self.course_form_min_score_field, error).to_have_value(min_score)
+
+
+    # EXERCISES
+    # Create exercises - Toolbar - Title
+    def check_create_exercise_toolbar_title_visible(self):
+        """
+        Check <Create exercise Toolbar - Title> of the Create course page - visible
+
+        - ✔ Title - visible
+        """
+        error = '❌ <Create exercise Toolbar - Title> of the Create course page - invisible!'
+        expect(self.create_exercise_title, error).to_be_visible()
+
+    def check_create_exercise_toolbar_title_text(self, text: str = 'Exercises'):
+        """
+        Check <Create exercise Toolbar - Title> text of the Create course page - correct
+
+        - ✔ Text - correct
+
+        :param text: Toolbar Title text
+        """
+        error = '❌ <Create exercise Toolbar - Title> text of the Create course page - incorrect!'
+        expect(self.create_exercise_title, error).to_have_text(text)
+
+    # Create exercises - Toolbar - Button
+    def check_create_exercise_toolbar_btn_visible(self):
+        """
+        Check <Create exercise Toolbar - Button> of the Create course page - visible
+
+        - ✔ Button - visible
+        """
+        error = '❌ <Create exercise Toolbar - Button> of the Create course page - invisible!'
+        expect(self.create_exercise_btn, error).to_be_visible()
+
+
+    # Create exercises - Empty view
+    # ─────────────────────────────────────────────────────────────────────┐
+    def check_create_exercise_empty_view(self):
+        """
+        Check <Create exercise Empty view> of the Create course page
+
+        - ✔ Icon - visible
+        - ✔ Title - visible | - text
+        - ✔ Description - visible | - text
+        """
+        self.check_create_exercise_empty_view_icon_visible()
+        self.check_create_exercise_empty_view_title_visible()
+        self.check_create_exercise_empty_view_title_text()
+        self.check_create_exercise_empty_view_description_visible()
+        self.check_create_exercise_empty_view_description_text()
+    # ─────────────────────────────────────────────────────────────────────┘
+    # Create exercises - Empty view - Icon
+    def check_create_exercise_empty_view_icon_visible(self):
+        """
+        Check <Create exercise Empty view - Icon> of the Create course page - visible
+
+        - ✔ Icon - visible
+        """
+        error = '❌ <Create exercise Empty view - Icon> of the Create course page - invisible!'
+        expect(self.create_exercise_empty_view_icon, error).to_be_visible()
+
+    # Create exercises - Empty view - Title
+    def check_create_exercise_empty_view_title_visible(self):
+        """
+        Check <Create exercise Empty view - Title> of the Create course page - visible
+
+        - ✔ Title - visible
+        """
+        error = '❌ <Create exercise Empty view - Title> of the Create course page - invisible!'
+        expect(self.create_exercise_empty_view_title, error).to_be_visible()
+
+    def check_create_exercise_empty_view_title_text(self, text: str = 'No exercises'):
+        """
+        Check <Create exercise Empty view - Title> text of the Create course page - correct
+
+        - ✔ Text - correct
+
+        :param text: Title text
+        """
+        error = '❌ <Create exercise Empty view - Title> text of the Create course page - incorrect!'
+        expect(self.create_exercise_empty_view_title, error).to_have_text(text)
+
+
+    # Create exercises - Empty view - Description
+    def check_create_exercise_empty_view_description_visible(self):
+        """
+        Check <Create exercise Empty view - Description> of the Create course page - visible
+
+        - ✔ Description - visible
+        """
+        error = '❌ <Create exercise Empty view - Description> of the Create course page - invisible!'
+        expect(self.create_exercise_empty_view_description, error).to_be_visible()
+
+    def check_create_exercise_empty_view_description_text(self, text: str = 'Add exercises for this course'):
+        """
+        Check <Create exercise Empty view - Description> text of the Create course page - correct
+
+        - ✔ Text - correct
+
+        :param text: Description text
+        """
+        error = '❌ <Create exercise Empty view - Description> text of the Create course page - incorrect!'
+        expect(self.create_exercise_empty_view_description, error).to_have_text(text)
