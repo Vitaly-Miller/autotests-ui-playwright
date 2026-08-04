@@ -1,0 +1,3 @@
+- ДЛЯ ПРОВЕРКИ ИМЕН ПОЛЕЙ
+        - .to_have_text —> .to_have_accessible_name
+        - название методов: def check_..._title_field_text —> def check_..._title_field_name

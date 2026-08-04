@@ -34,12 +34,12 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.upload_image_view_input = page.get_by_test_id('create-course-preview-image-upload-widget-input')  # hidden input for upload image
         self.remove_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-remove-button')
 
-        # Form
-        self.title_field = page.get_by_role(role='textbox', name='Title')
-        self.estimated_time_field = page.get_by_role(role='textbox', name='Estimated time')
-        self.description_field = page.get_by_role(role='textbox', name='Description')
-        self.max_score_field = page.get_by_role(role='spinbutton', name='Max score')
-        self.minx_score_field = page.get_by_role(role='spinbutton', name='Min score')
+        # Course Form
+        self.course_form_title_field = page.get_by_role(role='textbox', name='Title')
+        self.course_form_estimated_time_field = page.get_by_role(role='textbox', name='Estimated time')
+        self.course_form_description_field = page.get_by_role(role='textbox', name='Description')
+        self.course_form_max_score_field = page.get_by_role(role='spinbutton', name='Max score')
+        self.course_form_min_score_field = page.get_by_role(role='spinbutton', name='Min score')
 
 
         # Create exercise
@@ -50,16 +50,15 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.create_exercise_empty_view_icon = page.get_by_test_id('create-course-exercises-empty-view-icon')
         self.create_exercise_empty_view_title = page.get_by_test_id('create-course-exercises-empty-view-title-text')
         self.create_exercise_empty_view_description = page.get_by_test_id('create-course-exercises-empty-view-description-text')
-        self.exercise_title = page.get_by_test_id(f'create-course-exercise-0-box-toolbar-subtitle-text')  # ⚠️ Используй динамический локатор с индексом!
 
 
     # ---------------------------------------------- ㉧ LOCATORS {dynamic} ----------------------------------------------
-    # Exercises
+    # Exercise
     def exercise_title(self, index: int = 0) -> Locator:
         """
         By element <data_testid> index
 
-        :param index: Element <data_testid> index if more than one Exercise (Default = 0 if single)
+        :param index: Element <data_testid> index if more than one Exercise (Default = 0, if single)
         :return: Locator
         """
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
@@ -78,7 +77,28 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_create_course_btn_enabled()
         self.create_course_btn.click()
 
+    def click_remove_image_btn(self):
+        """
+        Click <Remove image> button of the Create course page
 
+        - ✔ Button - visible
+        - ✔ Button - enabled
+        - ✔ Button text - correct
+        - ▶ Button - Click
+        :return:
+        """
+        self.check_remove_image_view_btn()
+        self.remove_image_btn.click()
+
+    def upload_image(self, file: str):
+        """
+        Upload image
+
+        - ▶ Upload file
+
+        :param file: File path
+        """
+        self.upload_image_view_input.set_input_files(file)
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Toolbar:
     # ─────────────────────────────────────────┐
@@ -357,7 +377,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         -----------------
         - ✔ Button - visible
         - ✔ Button - enabled
-        - ✔ Text - correct
+        - ✔ Button text - correct
 
         If Image DID NOT upload:
         -----------------------
@@ -367,7 +387,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
             self.check_remove_image_view_btn_visible()
             self.check_remove_image_view_btn_enable()
             self.check_remove_image_view_btn_text()
-        else:
+        else:    # if image did not upload
             self.check_remove_image_view_btn_invisible()
     # ────────────────────────────────────────────────────┘
     def check_remove_image_view_btn_visible(self):
@@ -404,17 +424,324 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Remove image View - Button> of the Create course page - disabled!'
         expect(self.remove_image_btn, error).to_be_enabled()
 
-    def check_remove_image_view_btn_text(self, title: str = 'Upload image'):
+    def check_remove_image_view_btn_text(self, text: str = 'Remove image'):
         """
         Check <Remove image View - Button> text of the Create course page - correct
 
         - ✔ Text - correct
         """
         error = '❌ <Remove image View - Button> text of the Create course page - incorrect!'
-        expect(self.remove_image_btn, error).to_have_text(title)
+        expect(self.remove_image_btn, error).to_have_text(text)
 
 
-    # Preview - Image View:
+    # Course Form:
     # ────────────────────────────────────────────────────┐
+    def check_course_form(
+            self,
+            title,
+            estimated_time,
+            description,
+            max_score,
+            min_score
+    ):
+        """
+        Check <Course form> of the Create course page
 
+        - ✔ Form fields - visible
+        - ✔ Form fields - correct
+        - ✔ Form field placeholders - correct (except Max/Min score)
+        - ✔ Form fields - filled correctly
+
+        :param title: Title
+        :param estimated_time: Estimated Time
+        :param description: Description
+        :param max_score: Max score
+        :param min_score: Min score
+        """
+        self.check_course_form_title(title)
+        self.check_course_form_estimated_time(estimated_time)
+        self.check_course_form_description(description)
+        self.check_course_form_max_score(max_score)
+        self.check_course_form_min_score(min_score)
     # ────────────────────────────────────────────────────┘
+
+    # Course Form - Title field
+    # ─────────────────────────────────────────────────────────────────────┐
+    def check_course_form_title(self, title: str | None = None):
+        """
+        Check <Course form - Title field> of the Create course page
+
+        - ✔ Field - visible
+        - ✔ Field name - correct
+        - ✔ Field placeholder - correct
+        - ✔ Field - filled correctly (if text is passed)
+
+        :param title: Title (optional)
+        """
+        self.check_course_form_title_field_visible()
+        self.check_course_form_title_field_name()
+        self.check_course_form_title_field_placeholder()
+        if title:   # (if text is passed)
+            self.check_course_form_title_field_filled_correctly(title)
+    # ─────────────────────────────────────────────────────────────────────┘
+    def check_course_form_title_field_visible(self):
+        """
+        Check <Course form - Title field> of the Create course page - visible!
+
+        - ✔ Title field - visible
+        """
+        error = '❌ <Course form Title field> of the Create course page - invisible!'
+        expect(self.course_form_title_field, error).to_be_visible()
+
+    def check_course_form_title_field_name(self, field_name: str = 'Title'):
+        """
+        Check <Course form - Title field> name of the Create course page - correct!
+
+        - ✔ Title name - correct
+
+        :param field_name: Field name
+        """
+        error = '❌ <Course form Title field> name of the Create course page - incorrect!'
+        expect(self.course_form_title_field, error).to_have_accessible_name(field_name)
+
+    def check_course_form_title_field_placeholder(self, placeholder: str = 'New course'):
+        """
+        Check <Course form - Title field Placeholder> of the Create course page - correct!
+
+        - ✔ Placeholder - correct
+
+        :param placeholder: Placeholder
+        """
+        error = '❌ <Course form Title field> of the Create course page - incorrect!'
+        expect(self.course_form_title_field, error).to_have_attribute('placeholder', placeholder)
+
+    def check_course_form_title_field_filled_correctly(self, title: str):
+        """
+        Check <Course form - Title field> of the Create course page - filled correctly!
+
+        - ✔ Field - filled correctly
+
+        :param title: Title
+        """
+        error = '❌ <Course form Title field> of the Create course page - filled incorrectly!'
+        expect(self.course_form_title_field, error).to_have_value(title)
+
+
+    # Course Form - Estimated time field
+    # ──────────────────────────────────────────────────────────────────────────────────┐
+    def check_course_form_estimated_time(self, estimated_time: str | None = None):
+        """
+        Check <Course form - Estimated time field> of the Create course page
+
+        - ✔ Field - visible
+        - ✔ Field name - correct
+        - ✔ Field placeholder - correct
+        - ✔ Field - filled correctly (if text is passed)
+
+        :param estimated_time: Estimated time (optional)
+        """
+        self.check_course_form_estimated_time_field_visible()
+        self.check_course_form_estimated_time_field_name()
+        self.check_course_form_estimated_time_field_placeholder()
+        if estimated_time:   # If filled
+            self.check_course_form_estimated_time_field_filled_correctly(estimated_time)
+    # ──────────────────────────────────────────────────────────────────────────────────┘
+    def check_course_form_estimated_time_field_visible(self):
+        """
+        Check <Course form - Estimated time field> of the Create course page - visible!
+
+        - ✔ Field - visible
+        """
+        error = '❌ <Course form Estimated time field> of the Create course page - invisible!'
+        expect(self.course_form_estimated_time_field, error).to_be_visible()
+
+    def check_course_form_estimated_time_field_name(self, field_name: str = 'Estimated time'):
+        """
+        Check <Course form - Estimated time field> name of the Create course page - correct!
+
+        - ✔ Field name - correct
+
+        :param field_name: Field name
+        """
+        error = '❌ <Course form Estimated time field> name of the Create course page - incorrect!'
+        expect(self.course_form_estimated_time_field, error).to_have_accessible_name(field_name)
+
+    def check_course_form_estimated_time_field_placeholder(self, placeholder: str = '1h 20m'):
+        """
+        Check <Course form - Estimated time field Placeholder> of the Create course page - correct!
+
+        - ✔ Placeholder - correct
+
+        :param placeholder: Placeholder
+        """
+        error = '❌ <Course form Estimated time field> of the Create course page - incorrect!'
+        expect(self.course_form_estimated_time_field, error).to_have_attribute('placeholder', placeholder)
+
+    def check_course_form_estimated_time_field_filled_correctly(self, estimated_time: str):
+        """
+        Check <Course form - Estimated time field> of the Create course page - filled correctly!
+
+        - ✔ Field - filled correctly
+
+        :param estimated_time: Estimated time
+        """
+        error = '❌ <Course form Estimated time field> of the Create course page - filled incorrectly!'
+        expect(self.course_form_estimated_time_field, error).to_have_value(estimated_time)
+
+
+    # Course Form - Description field
+    # ────────────────────────────────────────────────────────────────────────────┐
+    def check_course_form_description(self, description: str | None = None):
+        """
+        Check <Course form - Description field> of the Create course page
+
+        - ✔ Field - visible
+        - ✔ Field name - correct
+        - ✔ Field placeholder - correct
+        - ✔ Field - filled correctly (if text is passed)
+
+        :param description: Description (optional)
+        """
+        self.check_course_form_description_field_visible()
+        self.check_course_form_description_field_name()
+        self.check_course_form_description_field_placeholder()
+        if description:   # If filled
+            self.check_course_form_description_field_filled_correctly(description)
+    # ────────────────────────────────────────────────────────────────────────────┘
+    def check_course_form_description_field_visible(self):
+        """
+        Check <Course form - Description field> of the Create course page - visible!
+
+        - ✔ Field - visible
+        """
+        error = '❌ <Course form Description field> of the Create course page - invisible!'
+        expect(self.course_form_description_field, error).to_be_visible()
+
+    def check_course_form_description_field_name(self, field_name: str = 'Description'):
+        """
+        Check <Course form - Description field> name of the Create course page - correct!
+
+        - ✔ Field name - correct
+
+        :param field_name: Field name
+        """
+        error = '❌ <Course form Description field> name of the Create course page - incorrect!'
+        expect(self.course_form_description_field, error).to_have_accessible_name(field_name)
+
+    def check_course_form_description_field_placeholder(self, placeholder: str = 'Add description for course'):
+        """
+        Check <Course form - Description field Placeholder> of the Create course page - correct!
+
+        - ✔ Placeholder - correct
+
+        :param placeholder: Placeholder
+        """
+        error = '❌ <Course form Description field> of the Create course page - incorrect!'
+        expect(self.course_form_description_field, error).to_have_attribute('placeholder', placeholder)
+
+    def check_course_form_description_field_filled_correctly(self, description: str):
+        """
+        Check <Course form - Description field> of the Create course page - filled correctly!
+
+        - ✔ Field - filled correctly
+
+        :param description: Description
+        """
+        error = '❌ <Course form Description field> of the Create course page - filled incorrectly!'
+        expect(self.course_form_description_field, error).to_have_value(description)
+
+
+    # Course Form - Max score field
+    # ───────────────────────────────────────────────────────────────┐
+    def check_course_form_max_score(self, max_score: str = '0'):
+        """
+        Check <Course form - Max score field> of the Create course page
+
+        - ✔ Field - visible
+        - ✔ Field name - correct
+        - ✔ Field - filled correctly
+
+        :param max_score: Max score (optional)
+        """
+        self.check_course_form_max_score_field_visible()
+        self.check_course_form_max_score_field_name()
+        self.check_course_form_max_score_field_filled_correctly(max_score)
+    # ───────────────────────────────────────────────────────────────┘
+    def check_course_form_max_score_field_visible(self):
+        """
+        Check <Course form - Max score field> of the Create course page - visible!
+
+        - ✔ Field - visible
+        """
+        error = '❌ <Course form Max score field> of the Create course page - invisible!'
+        expect(self.course_form_max_score_field, error).to_be_visible()
+
+    def check_course_form_max_score_field_name(self, field_name: str = 'Max score'):
+        """
+        Check <Course form - Max score field> name of the Create course page - correct!
+
+        - ✔ Field name - correct
+
+        :param field_name: Field name
+        """
+        error = '❌ <Course form Max score field> name of the Create course page - incorrect!'
+        expect(self.course_form_max_score_field, error).to_have_accessible_name(field_name)
+
+    def check_course_form_max_score_field_filled_correctly(self, max_score: str = '0'):
+        """
+        Check <Course form - Max score field> of the Create course page - filled correctly!
+
+        - ✔ Field - filled correctly
+
+        :param max_score: Max score
+        """
+        error = '❌ <Course form Max score field> of the Create course page - filled incorrectly!'
+        expect(self.course_form_max_score_field, error).to_have_value(max_score)
+
+
+    # Course Form - Min score field
+    # ───────────────────────────────────────────────────────────────────────────┐
+    def check_course_form_min_score(self, min_score: str = '0'):
+        """
+        Check <Course form - Min score field> of the Create course page
+
+        - ✔ Field - visible
+        - ✔ Field name - correct
+        - ✔ Field - filled correctly
+
+        :param min_score: Min score
+        """
+        self.check_course_form_min_score_field_visible()
+        self.check_course_form_min_score_field_name()
+        self.check_course_form_min_score_field_filled_correctly(min_score)
+    # ───────────────────────────────────────────────────────────────────────────┘
+    def check_course_form_min_score_field_visible(self):
+        """
+        Check <Course form - Min score field> of the Create course page - visible!
+
+        - ✔ Field - visible
+        """
+        error = '❌ <Course form Min score field> of the Create course page - invisible!'
+        expect(self.course_form_min_score_field, error).to_be_visible()
+
+    def check_course_form_min_score_field_name(self, field_name: str = 'Min score'):
+        """
+        Check <Course form - Min score field> name of the Create course page - correct!
+
+        - ✔ Field name - correct
+
+        :param field_name: Field name
+        """
+        error = '❌ <Course form Min score field> name of the Create course page - incorrect!'
+        expect(self.course_form_min_score_field, error).to_have_accessible_name(field_name)
+
+    def check_course_form_min_score_field_filled_correctly(self, min_score: str = '0'):
+        """
+        Check <Course form - Min score field> of the Create course page - filled correctly!
+
+        - ✔ Field - filled correctly
+
+        :param min_score: Min score
+        """
+        error = '❌ <Course form Min score field> of the Create course page - filled incorrectly!'
+        expect(self.course_form_min_score_field, error).to_have_value(min_score)
