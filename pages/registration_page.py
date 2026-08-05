@@ -3,8 +3,6 @@ Registration page
 """
 from pages.base_page import BasePage
 from playwright.sync_api import Page, expect
-from pages.dashboard_page import DashboardPage
-from pages.login_page import LoginPage
 
 #=======================================================================================================================
 class RegistrationPage(BasePage):       # Дочерний класс (наследует класс BasePage)
@@ -58,7 +56,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         self.check_registration_btn_enable()
         self.registration_btn.click()
-        self.check_page_opened(expected_url=DashboardPage.URL)
+
 
     # Login link:
     def click_login_link(self):
@@ -69,9 +67,10 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ▶ Link - Click
         - ✔ Login page - opened
         """
+        login_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
         self.check_login_link_visible()
         self.login_link.click()
-        self.check_page_opened(expected_url=LoginPage.URL)
+        self.check_page_opened(expected_url=login_page_url)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Toolbar:

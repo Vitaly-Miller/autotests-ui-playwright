@@ -56,25 +56,28 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         # ────────── (lambda - index) - ⚠️NOT USE! - FOR EXAMPLE ONLY ──────────┐
         # - Exercise
-        self._exercise_title = lambda index = 0: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
+        self._exercise_subtitle = lambda index = 0: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
         self._delete_exercise_btn = lambda index = 0: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
         # ──────────────────────────────────────────────────────────────────────┘
 
 
     # ---------------------------------------------- ㉤ LOCATORS {dynamic} ----------------------------------------------
     # EXERCISES: —> index: Element index if more than one Exercise (Default = 0, if single)
-    # - Exercise form
-    def exercise_title(self, index: int) -> Locator:
+    # - Exercise
+    def exercise_subtitle(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
-
-    def exercise_title_field(self, index: int) -> Locator:
-        return self.page.get_by_test_id(f'create-course-exercise-form-title-{index}-input')
-
-    def exercise_description_field(self, index: int) -> Locator:
-        return self.page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
 
     def delete_exercise_btn(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
+
+    # - Exercise form
+    def exercise_form_title_field(self, index: int) -> Locator:
+        return self.page.get_by_test_id(f'create-course-exercise-form-title-{index}-input')
+
+    def exercise_form_description_field(self, index: int) -> Locator:
+        return self.page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
+
+
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
@@ -469,11 +472,11 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         -----------------------
         - ✔ Button - invisible
         """
-        if self.preview_image.is_visible():  # if image uploaded
+        if self.preview_image.is_visible():  # If image uploaded
             self.check_remove_image_btn_visible()
             self.check_remove_image_btn_enable()
             self.check_remove_image_btn_text()
-        else:    # if image did not upload
+        else:    # If image did not upload
             self.check_remove_image_btn_invisible()
     # ────────────────────────────────────────────────────┘
     def check_remove_image_btn_visible(self):
@@ -570,7 +573,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_course_form_title_field_visible()
         self.check_course_form_title_field_name()
         self.check_course_form_title_field_placeholder()
-        if title:   # (if text is passed)
+        if title:   # (If text is passed)
             self.check_course_form_title_field_filled_correctly(title)
     # ─────────────────────────────────────────────────────────────────────┘
     def check_course_form_title_field_visible(self):
@@ -632,7 +635,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_course_form_estimated_time_field_visible()
         self.check_course_form_estimated_time_field_name()
         self.check_course_form_estimated_time_field_placeholder()
-        if estimated_time:   # If filled
+        if estimated_time:   # If is passed
             self.check_course_form_estimated_time_field_filled_correctly(estimated_time)
     # ──────────────────────────────────────────────────────────────────────────────────┘
     def check_course_form_estimated_time_field_visible(self):
@@ -694,7 +697,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_course_form_description_field_visible()
         self.check_course_form_description_field_name()
         self.check_course_form_description_field_placeholder()
-        if description:   # If filled
+        if description:   # If is passed
             self.check_course_form_description_field_filled_correctly(description)
     # ────────────────────────────────────────────────────────────────────────────┘
     def check_course_form_description_field_visible(self):
@@ -954,6 +957,29 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         expect(self.create_exercise_empty_view_description, error).to_have_text(description)
 
 
+    # - Exercise [SubTitle]:
+    def check_exercise_subtitle_visible(self, index: int):
+        """
+        Check <Exercise [SubTitle]> of the Create course page - visible
+
+        - ✔ SubTitle - visible
+
+        :param index: Locator Index (ex: ...-exercise-{index}-box-toolbar-...)
+        """
+        error = '❌ <Exercise Toolbar [Title]> of the Create course page - invisible!'
+        expect(self.exercise_subtitle(index), error).to_be_visible()
+
+    def check_exercise_subtitle_text(self, index: int):
+        """
+        Check <Exercise Toolbar [SubTitle]> text of the Create course page - correct
+
+        - ✔ SubTitle text - correct (Ex: "#1 Exercise", "#2 Exercise", ...)
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        """
+        error = '❌ <Exercise Toolbar [SubTitle]> text of the Create course page - incorrect!'
+        expect(self.exercise_subtitle(index), error).to_have_text(f'#{index + 1} Exercise')
+
     # - Exercise [Delete exercise Button]
     def check_delete_exercise_btn_visible(self, index: int):
         """
@@ -961,7 +987,134 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Button - visible
 
-        :param index: Exercise index
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         error = '❌ <Delete exercise Button> of the Create course page - invisible!'
         expect(self.delete_exercise_btn(index), error).to_be_visible()
+
+
+
+    # - Exercise Form
+    # ────────────────────────────────────────────────────────────────────────────────┐
+    def check_exercise_form(self, index: int, title: str | None = None, description: str | None = None):
+        """
+        Check <Exercise Form> of the Create course page
+
+        - ✔ Field - visible
+        - ✔ Field name - correct
+        - ✔ Field - filled correctly (if filled)
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        :param title: Exercise title
+        :param description: Exercise description
+        """
+        self.check_exercise_form_title_field(index, title)
+        self.check_exercise_form_description_field(index, description)
+    # ────────────────────────────────────────────────────────────────────────────────┘
+
+    # - Exercise Form [Title field]
+    # ──────────────────────────────────────────────────────────────────────────────┐
+    def check_exercise_form_title_field(self, index: int, title: str | None = None):
+        """
+        Check <Exercise Form [Title field]> of the Create course page
+
+        - ✔ Field - visible
+        - ✔ Field name - correct
+        - ✔ Field - filled correctly (if filled)
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        :param title: Exercise title
+        """
+        self.check_exercise_form_title_field_visible(index)
+        self.check_exercise_form_title_field_name(index)
+        if title:   # If is passed
+            self.check_exercise_form_description_field_filled_correctly(index, title)
+    # ──────────────────────────────────────────────────────────────────────────────┘
+    def check_exercise_form_title_field_visible(self, index: int):
+        """
+        Check <Exercise Form [Title field]> of the Create course page - visible
+
+        - ✔ Field - visible
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        """
+        error = '❌ <Exercise Form [Title field]> of the Create course page - invisible!'
+        expect(self.exercise_form_title_field(index), error).to_be_visible()
+
+    def check_exercise_form_title_field_name(self, index: int):
+        """
+        Check <Exercise Form [Title field] Name> of the Create course page - correct
+
+        - ✔ Field - visible
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        """
+        error = '❌ <Exercise Form [Title field] Name> of the Create course page - incorrect!'
+        expect(self.exercise_form_title_field(index), error).to_have_accessible_name('Title')
+
+    def check_exercise_form_title_field_filled_correctly(self, index: int, title: str = 'Exercise title'):
+        """
+        Check <Exercise Form [Title field]> of the Create course page - filled correctly
+
+        - ✔ Field - filled correctly
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        :param title: Exercise title
+
+        """
+        error = '❌ <Exercise Form [Title field]> of the Create course page - filled incorrectly!'
+        expect(self.exercise_form_title_field(index), error).to_have_value(title)
+
+
+    # - Exercise Form [Description field]
+    # ──────────────────────────────────────────────────────────────────────────────┐
+    def check_exercise_form_description_field(self, index: int, description: str | None = None):
+        """
+        Check <Exercise Form [Description field]> of the Create course page
+
+        - ✔ Field - visible
+        - ✔ Field name - correct
+        - ✔ Field - filled correctly (if filled)
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        :param description: Exercise description
+        """
+        self.check_exercise_form_description_field_visible(index)
+        self.check_exercise_form_description_field_name(index)
+        if description:  # If is passed
+            self.check_exercise_form_description_field_filled_correctly(index, description)
+    # ──────────────────────────────────────────────────────────────────────────────┘
+    def check_exercise_form_description_field_visible(self, index: int):
+        """
+        Check <Exercise Form [Description field]> of the Create course page - visible
+
+        - ✔ Field - visible
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        """
+        error = '❌ <Exercise Form [Description field]> of the Create course page - invisible!'
+        expect(self.exercise_form_description_field(index), error).to_be_visible()
+
+    def check_exercise_form_description_field_name(self, index: int):
+        """
+        Check <Exercise Form [Description field] Name> of the Create course page - correct
+
+        - ✔ Field name - correct
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        """
+        error = '❌ <Exercise Form [Description field] Name> of the Create course page - incorrect!'
+        expect(self.exercise_form_description_field(index), error).to_have_accessible_name('Description')
+
+    def check_exercise_form_description_field_filled_correctly(self, index: int, description: str = 'Exercise description'):
+        """
+        Check <Exercise Form [Description field]> of the Create course page - filled correctly
+
+        - ✔ Field - filled correctly
+
+        :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
+        :param description: Exercise description
+
+        """
+        error = '❌ <Exercise Form [Description field]> of the Create course page - filled incorrectly!'
+        expect(self.exercise_form_description_field(index), error).to_have_value(description)

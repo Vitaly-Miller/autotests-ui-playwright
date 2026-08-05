@@ -7,7 +7,7 @@ from playwright.sync_api import Playwright, StorageState, ViewportSize
 #=======================================================================================================================
 # Chromium Page + Storage state 📦
 @pytest.fixture
-def chromium_page(storage_state: StorageState, playwright: Playwright): # Используем фикстуру storage_state с авторизацией + встроенную фикстуру playwright из pytest_playwright plugin
+def chromium_page_with_store_state(storage_state: StorageState, playwright: Playwright): # Используем фикстуру storage_state с авторизацией + встроенную фикстуру playwright из pytest_playwright plugin
     """
     Fixture for authorized user (registered)
 
@@ -88,7 +88,7 @@ def storage_state(playwright: Playwright):      # Используем встр�
 #-----------------------------------------------------------------------------------------------------------------------
 # GUEST Page (NO Storage state)
 @pytest.fixture
-def guest_page(playwright: Playwright):           # Чистый (без доп. фикстур)
+def chromium_page_guest_page(playwright: Playwright):   # Чистый (без доп. фикстур)
     """
     Fixture for GUEST user (unregister)
 
