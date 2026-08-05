@@ -43,7 +43,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_courses_toolbar_create_course_btn_visible()
         self.toolbar_create_course_btn.click()
 
-    def click_course_card_menu_btn(self, index: int = 0):
+    def click_course_card_menu_btn(self, index: int):
         """
         Click <Course card menu> button
 
@@ -56,7 +56,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.course_menu_btn.nth(index).click()
 
 
-    def click_course_card_menu_edit_course_btn(self, index: int = 0):
+    def click_course_card_menu_edit_course_btn(self, index: int):
         """
         Click <Course card menu Edit course> button of the Courses List page
 
@@ -70,7 +70,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_course_card_menu_edit_course_btn_visible(index)
         self.course_edit_menu_btn.nth(index).click()
 
-    def click_course_card_menu_delete_course_btn(self, index: int = 0):
+    def click_course_card_menu_delete_course_btn(self, index: int):
         """
         Click <Course card menu Delete course> button of the Courses List page
 
@@ -212,7 +212,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
             max_score: str,
             min_score: str,
             estimated_time: str,
-            index: int = 0):
+            index: int):
         """
         Check <Curse card> of the Courses List page
 
@@ -242,7 +242,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     # ─────────────────────────────────────────────────────────────────────────────────────────┘
 
     # Course Card - Image:
-    def check_course_card_image_visible(self, index: int = 0):
+    def check_course_card_image_visible(self, index: int):
         """
         Check <Course card - Image> of the Courses List page - visible
 
@@ -253,7 +253,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # Course Card - Title
-    def check_course_card_title_visible(self, index: int = 0):
+    def check_course_card_title_visible(self, index: int):
         """
         Check <Course card - Title> of the Courses List page - visible
 
@@ -262,7 +262,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card - Title> of the Courses List page - invisible!'
         expect(self.course_title.nth(index), error).to_be_visible()
 
-    def check_course_card_title_text(self, title: str, index: int = 0):
+    def check_course_card_title_text(self, title: str, index: int):
         """
         Check <Course card - Title> text of the Courses List page - correct
 
@@ -274,7 +274,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # Course Card - Max score
-    def check_course_card_max_score_visible(self, index: int = 0):
+    def check_course_card_max_score_visible(self, index: int):
         """
         Check <Course card - Max score> of the Courses List page - visible
 
@@ -283,7 +283,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card - Max score> of the Course List page - invisible!'
         expect(self.course_max_score.nth(index), error).to_be_visible()
 
-    def check_course_card_max_score_text(self, max_score: str, index: int = 0):
+    def check_course_card_max_score_text(self, max_score: str, index: int):
         """
         Check <Course card - Max score> text of the Courses List page - correct
 
@@ -295,7 +295,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # Course Card - Min score
-    def check_course_card_min_score_visible(self, index: int = 0):
+    def check_course_card_min_score_visible(self, index: int):
         """
         Check <Course card - Min score> of the Courses List page - visible
 
@@ -304,7 +304,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card - Min score> of the Course List page - invisible!'
         expect(self.course_min_score.nth(index), error).to_be_visible()
 
-    def check_course_card_min_score_text(self, min_score: str, index: int = 0):
+    def check_course_card_min_score_text(self, min_score: str, index: int):
         """
         Check <Course card - Min score> text of the Courses List page - correct
 
@@ -316,7 +316,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # Course Card - Estimated time
-    def check_course_card_estimated_time_visible(self, index: int = 0):
+    def check_course_card_estimated_time_visible(self, index: int):
         """
         Check <Course card - Estimated time> of the Courses List page - visible
 
@@ -325,7 +325,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card - Estimated time> of the Course List page - invisible!'
         expect(self.course_estimated_time.nth(index), error).to_be_visible()
 
-    def check_course_card_estimated_time_text(self, estimated_time: str, index: int = 0):
+    def check_course_card_estimated_time_text(self, estimated_time: str, index: int):
         """
         Check <Course card - Estimated time> text of the Courses List page - correct
 
@@ -337,7 +337,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # Course Card - Menu:
-    def check_course_card_menu_btn_visible(self, index: int = 0):
+    def check_course_card_menu_btn_visible(self, index: int):
         """
         Check <Course card - Menu> button of the Courses List page - visible
 
@@ -348,7 +348,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # Course Card - Menu - Action buttons:
-    def check_course_card_menu_edit_course_btn_visible(self, index: int = 0):
+    def check_course_card_menu_edit_course_btn_visible(self, index: int):
         """
         Check <Course card - Menu - Edit course> button of the Courses List page - visible
 
@@ -357,7 +357,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card - Menu - Edit course> button of the Courses List page - invisible!'
         expect(self.course_edit_menu_btn.nth(index), error).to_be_visible()
 
-    def check_course_card_menu_delete_course_btn_visible(self, index: int = 0):
+    def check_course_card_menu_delete_course_btn_visible(self, index: int):
         """
         Check <Course card - Menu - Delete course> button of the Courses List page - visible
 
