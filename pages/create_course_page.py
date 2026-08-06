@@ -529,18 +529,18 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ────────────────────────────────────────────────────┐
     def check_course_form(
             self,
-            title: str,
-            estimated_time: str,
-            description: str,
-            max_score: str,
-            min_score: str
+            title: str | None = None,
+            estimated_time: str | None = None,
+            description: str | None = None,
+            max_score: str | None = None,
+            min_score: str | None = None
     ):
         """
         Check <Course Form> of the Create course page
 
         - ✔ Form fields - visible
         - ✔ Form fields - correct
-        - ✔ Form field placeholders - correct (except Max/Min score)
+        - ✔ Form field Placeholders - correct (except Max/Min score fields)
         - ✔ Form fields - filled correctly
 
         :param title: Title
@@ -745,7 +745,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     # - Course Form [Max score field]:
     # ─────────────────────────────────────────────────────────────────────┐
-    def check_course_form_max_score(self, max_score: str = '0'):
+    def check_course_form_max_score(self, max_score: str | None = None):
         """
         Check <Course Form [Max score field]> of the Create course page
 
@@ -757,7 +757,10 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         self.check_course_form_max_score_field_visible()
         self.check_course_form_max_score_field_name()
-        self.check_course_form_max_score_field_filled_correctly(max_score)
+        if max_score:
+            self.check_course_form_max_score_field_filled_correctly(max_score)
+        else:
+            self.check_course_form_max_score_field_filled_correctly()
     # ─────────────────────────────────────────────────────────────────────┘
     def check_course_form_max_score_field_visible(self):
         """
@@ -793,7 +796,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     # - Course Form [Min score field]:
     # ───────────────────────────────────────────────────────────────────────────┐
-    def check_course_form_min_score(self, min_score: str = '0'):
+    def check_course_form_min_score(self, min_score: str | None = None):
         """
         Check <Course Form [Min score field]> of the Create course page
 
@@ -805,7 +808,10 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         self.check_course_form_min_score_field_visible()
         self.check_course_form_min_score_field_name()
-        self.check_course_form_min_score_field_filled_correctly(min_score)
+        if min_score:   # If is passed
+            self.check_course_form_min_score_field_filled_correctly(min_score)
+        else:
+            self.check_course_form_min_score_field_filled_correctly()
     # ───────────────────────────────────────────────────────────────────────────┘
     def check_course_form_min_score_field_visible(self):
         """
@@ -900,9 +906,9 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         self.check_exercises_empty_view_icon_visible()
         self.check_exercises_empty_view_title_visible()
-        self.check_exercises_empty_view_title_text()
+        self.check_exercises_empty_view_title()
         self.check_exercises_empty_view_description_visible()
-        self.check_exercises_empty_view_description_text()
+        self.check_exercises_empty_view_description()
     # ────────────────────────────────────────────────────────┘
     # - Empty view [Icon]
     def check_exercises_empty_view_icon_visible(self):
@@ -924,7 +930,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Exercises Empty view [Title]> of the Create course page - invisible!'
         expect(self.create_exercise_empty_view_title, error).to_be_visible()
 
-    def check_exercises_empty_view_title_text(self, title: str = 'No exercises'):
+    def check_exercises_empty_view_title(self, title: str = 'There is no exercises'):
         """
         Check <Exercises Empty view [Title]> text of the Create course page - correct
 
@@ -945,7 +951,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = '❌ <Exercises Empty view [Description]> of the Create course page - invisible!'
         expect(self.create_exercise_empty_view_description, error).to_be_visible()
 
-    def check_exercises_empty_view_description_text(self, description: str = 'Add exercises for this course'):
+    def check_exercises_empty_view_description(self, description: str = 'Click on "Create exercise" button to create new exercise'):
         """
         Check <Exercises Empty view [Description]> text of the Create course page - correct
 

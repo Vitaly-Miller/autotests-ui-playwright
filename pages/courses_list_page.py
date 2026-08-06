@@ -208,11 +208,11 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     # ─────────────────────────────────────────────────────────────────────────────────────────┐
     def check_course_card(
             self,
+            index: int,
             title: str,
             max_score: str,
             min_score: str,
-            estimated_time: str,
-            index: int):
+            estimated_time: str):
         """
         Check <Curse card> of the Courses List page
 
@@ -223,11 +223,11 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         - ✔ Estimated time - visible | Text - correct
         - ✔ Menu button - visible
 
+        :param index: Element DOM-index of <Course Card>
         :param title: Course title
         :param max_score: Max score
         :param min_score: Min score
         :param estimated_time: Estimated time
-        :param index: Element DOM-index if more than one <Course Card>
         """
         self.check_course_card_image_visible(index)
         self.check_course_card_title_visible(index)
