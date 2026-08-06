@@ -48,11 +48,10 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # Registration button:
     def click_registration_btn(self):
         """
-        Click <Registration> button> of the Registration page
+        Click <Registration> button of the Registration page
 
         - ✔ Button - enabled
         - ▶ Button - Click
-        - ✔ Dashboard page - opened
         """
         self.check_registration_btn_enable()
         self.registration_btn.click()

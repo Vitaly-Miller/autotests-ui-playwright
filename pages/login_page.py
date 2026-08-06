@@ -53,7 +53,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         Click <Login button> of the Login page
 
         - ✔ Button - enabled
-        - ▶ Link - Click
+        - ▶ Button - Click
         """
         self.check_login_btn_enable()
         self.login_btn.click()

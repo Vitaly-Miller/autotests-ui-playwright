@@ -40,7 +40,7 @@ def dashboard_page(chromium_page_with_store_state: Page) -> DashboardPage:
     Фикстура инициализации класса DashboardPage()
 
     :param chromium_page_with_store_state: Фикстура chromium_page (with Storage State)
-    :return: DashboardPage(page=chromium_page)
+    :return: DashboardPage(page=chromium_page_with_store_state)
     """
     return DashboardPage(page=chromium_page_with_store_state)
 
@@ -51,7 +51,7 @@ def courses_list_page(chromium_page_with_store_state: Page) -> CoursesListPage:
     Фикстура инициализации класса CoursesListPage()
 
     :param chromium_page_with_store_state: Фикстура chromium_page (with Storage State)
-    :return: CreateCoursePage(page=chromium_page)
+    :return: CoursesListPage(page=chromium_page_with_store_state)
     """
     return CoursesListPage(page=chromium_page_with_store_state)
 
@@ -62,7 +62,7 @@ def create_course_page(chromium_page_with_store_state: Page) -> CreateCoursePage
     Фикстура инициализации класса CreateCoursePage()
 
     :param chromium_page_with_store_state: Фикстура chromium_page (with Storage State)
-    :return: CreateCoursePage(page=chromium_page)
+    :return: CreateCoursePage(page=chromium_page_with_store_state)
     """
     return CreateCoursePage(page=chromium_page_with_store_state)
 

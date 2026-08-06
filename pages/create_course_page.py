@@ -966,7 +966,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param index: Locator Index (ex: ...-exercise-{index}-box-toolbar-...)
         """
-        error = '❌ <Exercise Toolbar [Title]> of the Create course page - invisible!'
+        error = '❌ <Exercise Toolbar [SubTitle]> of the Create course page - invisible!'
         expect(self.exercise_subtitle(index), error).to_be_visible()
 
     def check_exercise_subtitle_text(self, index: int):
@@ -1028,7 +1028,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_exercise_form_title_field_visible(index)
         self.check_exercise_form_title_field_name(index)
         if title:   # If is passed
-            self.check_exercise_form_description_field_filled_correctly(index, title)
+            self.check_exercise_form_title_field_filled_correctly(index, title)
     # ──────────────────────────────────────────────────────────────────────────────┘
     def check_exercise_form_title_field_visible(self, index: int):
         """

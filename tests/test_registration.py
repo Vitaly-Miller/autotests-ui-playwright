@@ -15,7 +15,6 @@ from pages.dashboard_page import DashboardPage
     ])
 def test_successful_registration(               # Принимает:
         registration_page: RegistrationPage,    # Фикстура registration_page
-        dashboard_page: DashboardPage,          # Фикстура dashboard_page (for URL expect only)
         email: str,                             # email     ┐
         username: str,                          # username  │ из parametrize
         password: str                           # password  ┘
@@ -33,7 +32,7 @@ def test_successful_registration(               # Принимает:
     registration_page.click_registration_btn()
 
     # ✔️EXPECTATIONS (after actions)
-    registration_page.check_page_opened(dashboard_page.URL)
+    registration_page.check_page_opened(DashboardPage.URL)
 
 
     # ⏳(optional)

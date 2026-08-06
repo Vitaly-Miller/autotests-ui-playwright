@@ -52,7 +52,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        self.check_course_card_menu_btn_visible()
+        self.check_course_card_menu_btn_visible(index)
         self.course_menu_btn.nth(index).click()
 
 
@@ -230,11 +230,11 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         :param index: Element DOM-index if more than one <Course Card>
         """
         self.check_course_card_image_visible(index)
-        self.check_course_card_title_visible()
+        self.check_course_card_title_visible(index)
         self.check_course_card_title_text(title=title, index=index)
-        self.check_course_card_max_score_visible()
+        self.check_course_card_max_score_visible(index)
         self.check_course_card_max_score_text(max_score=max_score, index=index)
-        self.check_course_card_min_score_visible()
+        self.check_course_card_min_score_visible(index)
         self.check_course_card_min_score_text(min_score=min_score, index=index)
         self.check_course_card_estimated_time_visible(index)
         self.check_course_card_estimated_time_text(estimated_time=estimated_time, index=index)

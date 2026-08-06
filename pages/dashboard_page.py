@@ -11,18 +11,19 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ┌╴ ㉧ LOCATORS (static):
-        # ├ Toolbar
-        self.toolbar_title = page.get_by_test_id('dashboard-toolbar-title-text')
-        # ├ Navbar    <— ⚠️ ПЕРЕНЕСТИ в Components
+        # ------------------------------------------- ㉧ LOCATORS (static) ----------------------------------------------
+        # Navbar    <— ⚠️ ПЕРЕНЕСТИ в Components
         self.navbar_title = page.get_by_test_id('navigation-navbar-app-title-text')
+
+        # Toolbar
+        self.toolbar_title = page.get_by_test_id('dashboard-toolbar-title-text')
         self.navbar_welcome_title = page.get_by_test_id('navigation-navbar-welcome-title-text')
-        # ├ Widgets
+        # Widgets
         self.students_title = page.get_by_test_id('students-widget-title-text')
         self.students_chart = page.get_by_test_id('students-bar-chart')
         self.activities_title = page.get_by_test_id('activities-widget-title-text')
         self.activities_chart = page.get_by_test_id('activities-bar-chart')
-        self.courses_title = page.get_by_test_id('course-widget-title-text')
+        self.courses_title = page.get_by_test_id('courses-widget-title-text')
         self.courses_chart = page.get_by_test_id('courses-bar-chart')
         self.scores_title = page.get_by_test_id('scores-widget-title-text')
         self.scores_chart = page.get_by_test_id('scores-bar-chart')
