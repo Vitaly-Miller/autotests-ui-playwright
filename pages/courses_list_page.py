@@ -1,8 +1,10 @@
 """
 Courses List page
 """
+
 from pages.base_page import BasePage
 from components.navigation.navbar_component import NavbarComponent
+from components.navigation.sidebar_component import SidebarComponent
 from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
@@ -12,8 +14,10 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ---------------------------------------------- ⿷ COMPONENTS -------------------------------------------------
-        self.navbar = NavbarComponent(page) # Component - Navbar
+        # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
+        self.navbar = NavbarComponent(page)  # Component - Navbar
+        self.sidebar = SidebarComponent(page)  # Component - Sidebar
+
 
         # ------------------------------------------ ㉧ LOCATORS (static) -----------------------------------------------
         # Toolbar
@@ -39,19 +43,19 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def click_toolbar_create_course_btn(self):
         """
-        Click <Toolbar Create course> button of the Courses List page
+        Click <Toolbar [Create course] button>  of the Courses List page
 
         - ✔ Button - visible
         - ▶ Button - Click
         """
-        self.check_courses_toolbar_create_course_btn_visible()
+        self.check_toolbar_create_course_btn_visible()
         self.toolbar_create_course_btn.click()
 
     def click_course_card_menu_btn(self, index: int):
         """
-        Click <Course card menu> button
+        Click <Course card [Menu] button>
 
-        - ✔ Object - enabled
+        - ✔ Button - visible
         - ▶ Button - Click
 
         :param index: Element DOM-index if more than one <Course Card>
@@ -62,7 +66,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
     def click_course_card_menu_edit_course_btn(self, index: int):
         """
-        Click <Course card menu Edit course> button of the Courses List page
+        Click <Course card menu [Edit course] button>  of the Courses List page
 
         - ▶ <Course card menu> button - Click
         - ✔ <Edit course> button - enabled
@@ -76,7 +80,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
     def click_course_card_menu_delete_course_btn(self, index: int):
         """
-        Click <Course card menu Delete course> button of the Courses List page
+        Click <Course card menu [Delete course] button> of the Courses List page
 
         - ▶ <Course card menu> button - Click
         - ✔ <Delete course> button - enabled
@@ -90,9 +94,24 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # Toolbar:
+    # <Toolbar> + <Navbar> + <Sidebar>
     # ────────────────────────────────────────────────────────┐
-    def check_courses_toolbar(self):
+    def check_toolbar_and_navbar_sidebar(self, username: str):
+        """
+        Check <Navbar> + <Toolbar> of the Courses List page
+
+        - ✔ Toolbar - visible | Text - correct
+        - ✔ Navbar - visible | Text - correct
+        - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
+        """
+        self.check_toolbar()
+        self.navbar.check_navbar(username)
+        self.sidebar.check_sidebar()
+    # ────────────────────────────────────────────────────────┘
+
+    # Toolbar:
+    # ────────────────────────────────────────────────┐
+    def check_toolbar(self):
         """
         Check <Toolbar> of the Courses List page
 
@@ -100,12 +119,11 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         - ✔ Title text - correct
         - ✔ <Create course> button - visible
         """
-        self.check_courses_toolbar_title_visible()
-        self.check_courses_toolbar_create_course_btn_visible()
-        self.check_courses_toolbar_title_text()
-    # ────────────────────────────────────────────────────────┘
-
-    def check_courses_toolbar_title_visible(self):
+        self.check_toolbar_title_visible()
+        self.check_toolbar_create_course_btn_visible()
+        self.check_toolbar_title_text()
+    # ────────────────────────────────────────────────┘
+    def check_toolbar_title_visible(self):
         """
         Check <Toolbar [Title]> visible of the Courses List page
 
@@ -114,7 +132,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Toolbar [Title]> of the Courses List page - invisible!'
         expect(self.toolbar_title, error).to_be_visible()
 
-    def check_courses_toolbar_title_text(self, text: str = 'Courses'):
+    def check_toolbar_title_text(self, text: str = 'Courses'):
         """
         Check <Toolbar [Title] text> of the Courses List page
 
@@ -125,19 +143,19 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Toolbar [Title] text> of the Courses List page - incorrect!'
         expect(self.toolbar_title, error).to_have_text(text)
 
-    def check_courses_toolbar_create_course_btn_visible(self):
+    def check_toolbar_create_course_btn_visible(self):
         """
-        Check <Toolbar - Create course> button of the Courses List page
+        Check <Toolbar [Create course] button> of the Courses List page
 
         - ✔ Button - visible
         """
-        error = '❌ <Toolbar - Create course> of the Courses List page - invisible!'
+        error = '❌ <Toolbar [Create course] button> of the Courses List page - invisible!'
         expect(self.toolbar_create_course_btn, error).to_be_visible()
 
 
     # Empty view:
-    # ──────────────────────────────────────────────────────┐
-    def check_courses_empty_view(self):
+    # ──────────────────────────────────────────────┐
+    def check_empty_view(self):
         """
         Check <Courses Empty View> of the Courses List page
 
@@ -149,15 +167,14 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
         """
-        self.check_courses_empty_view_icon_visible()
-        self.check_courses_empty_view_title_visible()
-        self.check_courses_empty_view_description_visible()
-        self.check_courses_empty_view_title_text()
-        self.check_courses_empty_view_description_text()
-   # ────────────────────────────────────────────────────────┘
-
+        self.check_empty_view_icon_visible()
+        self.check_empty_view_title_visible()
+        self.check_empty_view_description_visible()
+        self.check_empty_view_title_text()
+        self.check_empty_view_description_text()
+   # ───────────────────────────────────────────────┘
     # Empty View [Icon]
-    def check_courses_empty_view_icon_visible(self):
+    def check_empty_view_icon_visible(self):
         """
         Check <Empty View - Icon> of the Course List page - visible
 
@@ -168,28 +185,27 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # Empty View [Title]
-    def check_courses_empty_view_title_visible(self):
+    def check_empty_view_title_visible(self):
         """
         Check <Empty View [Title]> of the Course List page - visible
 
         - ✔ Title - visible
-
         """
         error = '❌ <Empty View [Title]> of the Courses List page - invisible!'
         expect(self.empty_view_title, error).to_be_visible()
 
-    def check_courses_empty_view_title_text(self, title: str = 'There is no results'):
+    def check_empty_view_title_text(self):
         """
         Check <Empty View [Title] text> of the Course List page - correct
 
         - ✔ Text - correct
         """
         error = '❌ <Empty View [Title] text> of the Courses List page - incorrect!'
-        expect(self.empty_view_title, error).to_have_text(title)
+        expect(self.empty_view_title, error).to_have_text('There is no results')
 
 
     # Empty View [Description]
-    def check_courses_empty_view_description_visible(self):
+    def check_empty_view_description_visible(self):
         """
         Check <Empty View [Description]> of the Course List page - visible
 
@@ -198,14 +214,14 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Empty View [Description]> of the Courses List page - invisible!'
         expect(self.empty_view_description, error).to_be_visible()
 
-    def check_courses_empty_view_description_text(self, text: str = 'Results from the load test pipeline will be displayed here'):
+    def check_empty_view_description_text(self):
         """
         Check <Empty View [Description] text> of the Course List page - correct
 
         - ✔ Text - correct
         """
         error = '❌ <Empty View [Description] text> of the Courses List page - incorrect!'
-        expect(self.empty_view_description, error).to_have_text(text)
+        expect(self.empty_view_description, error).to_have_text('Results from the load test pipeline will be displayed here')
 
 
     # Course Card: (by DOM-index)
@@ -352,6 +368,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # Course Card Menu [Action] buttons:
+    # - [Edit course] button
     def check_course_card_menu_edit_course_btn_visible(self, index: int):
         """
         Check <Course card Menu [Edit course] button> of the Courses List page - visible
@@ -370,7 +387,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card Menu [Edit course] button text> of the Courses List page - incorrect!'
         expect(self.course_edit_menu_btn.nth(index), error).to_have_text('Edit')
 
-
+    # - [Delete course] button
     def check_course_card_menu_delete_course_btn_visible(self, index: int):
         """
         Check <Course card Menu [Delete course] button> of the Courses List page - visible

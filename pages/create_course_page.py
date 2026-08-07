@@ -4,6 +4,7 @@ Create Course page
 
 from pages.base_page import BasePage
 from components.navigation.navbar_component import NavbarComponent
+from components.navigation.sidebar_component import SidebarComponent
 from playwright.sync_api import Locator, Page, expect
 
 #=======================================================================================================================
@@ -14,7 +15,8 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         super().__init__(page)           # Передаёт page в конструктор BasePage
 
         # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page) # Component - Navbar
+        self.navbar = NavbarComponent(page)     # Component - Navbar
+        self.sidebar = SidebarComponent(page)   # Component - Sidebar
 
         # ------------------------------------------- ㉧ LOCATORS (static) ----------------------------------------------
         # Toolbar
@@ -181,6 +183,20 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # <Toolbar> + <Navbar> + <Sidebar>
+    # ────────────────────────────────────────────────────────┐
+    def check_toolbar_and_navbar_sidebar(self, username: str):
+        """
+        Check <Navbar> + <Toolbar> of the Create course page
+
+        - ✔ Toolbar - visible | Text - correct
+        - ✔ Navbar - visible | Text - correct
+        - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
+        """
+        self.check_toolbar()
+        self.navbar.check_navbar(username)
+        self.sidebar.check_sidebar()
+    # ────────────────────────────────────────────────────────┘
     # Toolbar:
     # ────────────────────────────────────────────────┐
     def check_toolbar(self):
@@ -195,8 +211,8 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_toolbar_title_visible()
         self.check_toolbar_title_text()
         self.check_toolbar_create_course_btn_visible()
-        self.check_toolbar_create_course_btn_enabled()
-    # ────────────────────────────────────────────────┘
+        self.check_toolbar_create_course_btn_disabled()
+    # ─────────────────────────────────────────────────┘
     # Toolbar [Title]
     def check_toolbar_title_visible(self):
         """
@@ -854,7 +870,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ──────────────────────────────────────────────────────────────┐
     def check_exercises_toolbar(self):
         """
-        Check <Exercises Toolbar> of the Create course page
+        Check <Exercises [Toolbar]> of the Create course page
 
         - ✔ Title - visible
         - ✔ Text - correct
@@ -901,7 +917,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ────────────────────────────────────────────────────────┐
     def check_exercises_empty_view(self):
         """
-        Check <Create exercise [Empty view]> of the Create course page
+        Check <Exercises [Empty view]> of the Create course page
 
         - ✔ Icon - visible
         - ✔ Title - visible | - text

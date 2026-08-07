@@ -4,6 +4,7 @@ Dashboard page
 
 from pages.base_page import BasePage
 from components.navigation.navbar_component import NavbarComponent
+from components.navigation.sidebar_component import SidebarComponent
 from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
@@ -14,7 +15,9 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page)   # Component - Navbar
+        self.navbar = NavbarComponent(page)     # Component - Navbar
+        self.sidebar = SidebarComponent(page)   # Component - Sidebar
+
 
         # -------------------------------------------- ㉧ LOCATORS (static) ---------------------------------------------
         # Toolbar
@@ -35,18 +38,20 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
-    # <Navbar> + <Toolbar>
-    # ────────────────────────────────────────────────┐
-    def check_navbar_and_toolbar(self, username: str):
+    # <Toolbar> + <Navbar> + <Sidebar>
+    # ────────────────────────────────────────────────────────┐
+    def check_toolbar_and_navbar_sidebar(self, username: str):
         """
         Check <Navbar> + <Toolbar> of the Dashboard page
 
-        - ✔ Navbar - visible | Text - correct
         - ✔ Toolbar - visible | Text - correct
+        - ✔ Navbar - visible | Text - correct
+        - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
         """
-        self.navbar.check_navbar(username)
         self.check_toolbar()
-    # ────────────────────────────────────────────────┘
+        self.navbar.check_navbar(username)
+        self.sidebar.check_sidebar()
+    # ────────────────────────────────────────────────────────┘
 
     # Toolbar:
     # ──────────────────────────────────────┐
@@ -96,7 +101,6 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         self.check_courses_widget()
         self.check_scores_widget()
     # ─────────────────────────────────┘
-
     def check_students_widget(self):
         """
         Check <Students widget> of the Dashboard page

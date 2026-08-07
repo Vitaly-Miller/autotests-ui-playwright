@@ -1,7 +1,12 @@
 """
-Sidebar List Component [Button]
+Sidebar List Component
 """
-
+"""
+<Button>
+  - [Icon]
+  - [Title]
+  - [Title text]
+"""
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
@@ -14,12 +19,13 @@ class SidebarListComponent(BaseComponent):
         """
         super().__init__(page)
 
-        # --------------------------------------- ㉧ LOCATORS (semi-static) ---------------------------------------------
+        # -------------------------------------- ㉧ LOCATORS (semi-dynamic) ---------------------------------------------
         self.btn = page.get_by_test_id(f'{identifier}-drawer-list-item-button')
         self.btn_icon = page.get_by_test_id(f'{identifier}-drawer-list-item-icon')
         self.btn_title = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
 
-    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+
+    # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     def click_btn(self):
         """
         Click <Sidebar List component [Button]>
@@ -28,9 +34,9 @@ class SidebarListComponent(BaseComponent):
         """
         self.btn.click()
 
-    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # Button
-    # ──────────────────────────────────────────┐
+
+    # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
+    # ──────────────────────────────────┐
     def check_btn(self, title: str):
         """
         Check <Sidebar List component [Button]>
@@ -43,7 +49,7 @@ class SidebarListComponent(BaseComponent):
         self.check_btn_icon_visible()
         self.check_btn_title_visible()
         self.check_btn_title_text(title)
-    # ──────────────────────────────────────────┘
+    # ──────────────────────────────────┘
     def check_btn_visible(self):
         """
         Check <Sidebar List component [Button]> - visible
