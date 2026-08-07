@@ -2,6 +2,7 @@
 Courses List page
 """
 from pages.base_page import BasePage
+from components.navigation.navbar_component import NavbarComponent
 from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
@@ -10,6 +11,9 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
+
+        # ---------------------------------------------- ⿷ COMPONENTS -------------------------------------------------
+        self.navbar = NavbarComponent(page) # Component - Navbar
 
         # ------------------------------------------ ㉧ LOCATORS (static) -----------------------------------------------
         # Toolbar

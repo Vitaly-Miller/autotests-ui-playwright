@@ -1,18 +1,14 @@
 """
-Test Create Course
-
-(60 cheks)
+Test Create Course (60 cheks)
 """
-
 
 import pytest
 from pages.courses_list_page import CoursesListPage
 from pages.create_course_page import CreateCoursePage
 
-
-
-
 #=======================================================================================================================
+@pytest.mark.courses
+@pytest.mark.files
 @pytest.mark.registration
 def test_create_course(create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
 
@@ -55,5 +51,5 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     )
 
     # ⏳(optional)
-    create_course_page.page.wait_for_timeout(2_000)
+    create_course_page.wait()
 #=======================================================================================================================

@@ -35,7 +35,8 @@ def test_successful_registration(               # Принимает:
     registration_page.check_current_url(DashboardPage.URL)
 
 
+
     # ⏳(optional)
-    registration_page.page.wait_for_timeout(2_000)
+    registration_page.wait()
 
 #=======================================================================================================================

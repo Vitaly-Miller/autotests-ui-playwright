@@ -13,8 +13,8 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ------------------------------------------------ ⿷ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page) # Component - Navbar
+        # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
+        self.navbar = NavbarComponent(page)   # Component - Navbar
 
         # -------------------------------------------- ㉧ LOCATORS (static) ---------------------------------------------
         # Toolbar
@@ -23,11 +23,11 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         self.students_title = page.get_by_test_id('students-widget-title-text')
         self.students_chart = page.get_by_test_id('students-bar-chart')
         self.activities_title = page.get_by_test_id('activities-widget-title-text')
-        self.activities_chart = page.get_by_test_id('activities-bar-chart')
+        self.activities_chart = page.get_by_test_id('activities-line-chart')
         self.courses_title = page.get_by_test_id('courses-widget-title-text')
-        self.courses_chart = page.get_by_test_id('courses-bar-chart')
+        self.courses_chart = page.get_by_test_id('courses-pie-chart')
         self.scores_title = page.get_by_test_id('scores-widget-title-text')
-        self.scores_chart = page.get_by_test_id('scores-bar-chart')
+        self.scores_chart = page.get_by_test_id('scores-scatter-chart')
 
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
@@ -36,7 +36,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # <Navbar> + <Toolbar>
-    # ──────────────────────────────────────────┐
+    # ────────────────────────────────────────────────┐
     def check_navbar_and_toolbar(self, username: str):
         """
         Check <Navbar> + <Toolbar> of the Dashboard page
@@ -46,10 +46,10 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         """
         self.navbar.check_navbar(username)
         self.check_toolbar()
-    # ──────────────────────────────────────────┘
+    # ────────────────────────────────────────────────┘
 
     # Toolbar:
-    # ──────────────────────────────────────────┐
+    # ──────────────────────────────────────┐
     def check_toolbar(self):
         """
         Check <Toolbar> of the Dashboard page
@@ -59,7 +59,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         """
         self.check_toolbar_title_visible()
         self.check_toolbar_title_text()
-    # ──────────────────────────────────────────┘
+    # ──────────────────────────────────────┘
     def check_toolbar_title_visible(self):
         """
         Check <Toolbar [Title]> of the Dashboard page
@@ -82,7 +82,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     # Widgets:
     # ─────────────────────────────────┐
-    def check_widgets(self):
+    def check_all_widgets(self):
         """
         Check all Widgets of the Dashboard page
 
