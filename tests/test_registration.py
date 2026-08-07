@@ -32,7 +32,7 @@ def test_successful_registration(               # Принимает:
     registration_page.click_registration_btn()
 
     # ✔️EXPECTATIONS (after actions)
-    registration_page.check_page_opened(DashboardPage.URL)
+    registration_page.check_current_url(DashboardPage.URL)
 
 
     # ⏳(optional)

@@ -69,7 +69,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         login_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
         self.check_login_link_visible()
         self.login_link.click()
-        self.check_page_opened(expected_url=login_page_url)
+        self.check_current_url(expected_url=login_page_url)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Toolbar:
@@ -95,13 +95,13 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_toolbar_title_text(self, text: str = 'UI Course'):
         """
-        Check <Toolbar title> text of the Registration page - correct!'
+        Check <Toolbar title text> of the Registration page - correct!'
 
         - ✔ Title text - correct
 
         :param text: Toolbar title text (default: "UI Course")
         """
-        error = '❌ <Toolbar title> text of the Registration page - incorrect!'
+        error = '❌ <Toolbar title text> of the Registration page - incorrect!'
         expect(self.toolbar_title, error).to_have_text(text)
 
 
@@ -185,13 +185,13 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_registration_btn_text(self, text: str = 'Registration'):
         """
-        Check <Registration button> text of the Registration page - correct
+        Check <Registration button text> of the Registration page - correct
 
         - ✔ Button text - correct
 
         :param text: Registration page text (default: "Registration")
         """
-        error = '❌ <Registration button> text of the Registration page - incorrect!'
+        error = '❌ <Registration button text> of the Registration page - incorrect!'
         expect(self.registration_btn, error).to_have_text(text)
 
 
@@ -220,13 +220,13 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_login_link_text(self, text: str = 'Login'):
         """
-        Check <Login link> text of the Registration page - correct
+        Check <Login link text> of the Registration page - correct
 
         - ✔ Link text - correct
 
         :param text: Login link text (default: "Login")
         """
-        error = '❌ <Login link> text of the Registration page - incorrect!'
+        error = '❌ <Login link text> of the Registration page - incorrect!'
         expect(self.login_link, error).to_have_text(text)
 
     def check_login_link_url(self, url: str = '#/auth/login'):

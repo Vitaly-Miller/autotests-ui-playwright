@@ -4,9 +4,13 @@ Test Create Course
 (60 cheks)
 """
 
+
 import pytest
 from pages.courses_list_page import CoursesListPage
 from pages.create_course_page import CreateCoursePage
+
+
+
 
 #=======================================================================================================================
 @pytest.mark.registration
@@ -25,7 +29,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     create_course_page.check_exercises_empty_view()                # Все элементы блока <Exercises Empty View> - отображаются корректно
 
     # ▶ ACTIONS (image upload)
-    create_course_page.upload_image('testdata/files/image_1.jpg')  # Загрузка изображения
+    create_course_page.upload_image('image_1.jpg')                 # Загрузка изображения
 
     # ✔️EXPECTATIONS (after image uploading)
     create_course_page.check_preview_view()                        # Загруженная в <Preview View> картинка - отображается

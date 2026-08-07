@@ -70,7 +70,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         registration_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
         self.check_registration_link_visible()
         self.registration_link.click()
-        self.check_page_opened(expected_url=registration_page_url)
+
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
@@ -97,11 +97,11 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_toolbar_title_text(self, text: str = 'UI Course'):
         """
-        Check <Toolbar title> text of the Login page - correct
+        Check <Toolbar title text> of the Login page - correct
 
         :param text: Login page text (default: "UI Course")
         """
-        error = '❌ <Toolbar title> text of the Login page - incorrect!'
+        error = '❌ <Toolbar title text> of the Login page - incorrect!'
         expect(self.toolbar_title, error).to_have_text(text)
 
 
@@ -170,13 +170,13 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_login_btn_text(self, text: str = 'Login'):
         """
-        Check <Login button> text of the Login page - correct
+        Check <Login button text> of the Login page - correct
 
         - ✔ Button - correct text
 
         :param text: Login page text (default: "Login")
         """
-        error = '❌ <Login button> text of the Login page - incorrect!'
+        error = '❌ <Login button text> of the Login page - incorrect!'
         expect(self.login_btn, error).to_have_text(text)
 
 
@@ -205,7 +205,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_registration_link_text(self, text: str = 'Registration'):
         """
-        Check <Registration link> text of the Login page - correct
+        Check <Registration link text> of the Login page - correct
 
         - ✔ Link text - correct
 

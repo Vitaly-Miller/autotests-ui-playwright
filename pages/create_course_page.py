@@ -12,30 +12,29 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         super().__init__(page)           # Передаёт page в конструктор BasePage
 
         # ------------------------------------------- ㉧ LOCATORS (static) ----------------------------------------------
-        # CREATE COURSE:
-        # - Toolbar
+        # Toolbar
         self.toolbar_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.create_course_btn = page.get_by_test_id('create-course-toolbar-create-course-button')
 
-        # - Preview - Empty View
+        # Preview - Empty View
         self.preview_empty_view_icon = page.get_by_test_id('create-course-preview-empty-view-icon')
         self.preview_empty_view_title = page.get_by_test_id('create-course-preview-empty-view-title-text')
         self.preview_empty_view_description = page.get_by_test_id('create-course-preview-empty-view-description-text')
 
-        # - Preview - Image
+        # Preview - Image
         self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
 
-        # - Upload image View
+        # Upload image View
         self.upload_image_view_icon = page.get_by_test_id("create-course-preview-image-upload-widget-info-icon")
         self.upload_image_view_title = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
         self.upload_image_view_description = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
 
-        # - Upload image View - Buttons
+        # Upload image View - Buttons
         self.upload_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-upload-button')
         self.upload_image_view_input = page.get_by_test_id('create-course-preview-image-upload-widget-input')  # hidden input for upload image
-        self.remove_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-remove-button')
+        self.remove_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-remove-button') # available after upload image only
 
-        # - Course Form
+        # Course Form
         self.course_form_title_field = page.get_by_role(role='textbox', name='Title')
         self.course_form_estimated_time_field = page.get_by_role(role='textbox', name='Estimated time')
         self.course_form_description_field = page.get_by_role(role='textbox', name='Description')
@@ -43,26 +42,26 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.course_form_min_score_field = page.get_by_role(role='spinbutton', name='Min score')
 
         # EXERCISES:
-        # - Toolbar
+        # - Exercises Toolbar
         self.exercise_toolbar_title = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
         self.exercise_toolbar_create_exercise_btn = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
-        # - Empty view
-        self.create_exercise_empty_view_icon = page.get_by_test_id('create-course-exercises-empty-view-icon')
-        self.create_exercise_empty_view_title = page.get_by_test_id('create-course-exercises-empty-view-title-text')
-        self.create_exercise_empty_view_description = page.get_by_test_id('create-course-exercises-empty-view-description-text')
+        # - Exercises - Empty view
+        self.exercises_empty_view_icon = page.get_by_test_id('create-course-exercises-empty-view-icon')
+        self.exercises_empty_view_title = page.get_by_test_id('create-course-exercises-empty-view-title-text')
+        self.exercises_empty_view_description = page.get_by_test_id('create-course-exercises-empty-view-description-text')
 
         # - Exercise Form (see dynamic locators)
 
-        # ────────── (lambda - index) - ⚠️NOT USE! - FOR EXAMPLE ONLY ──────────┐
+        # ────────── (lambda - index) - ⚠️NOT USING! - FOR EXAMPLE ONLY ──────────┐
         # - Exercise
-        self._exercise_subtitle = lambda index = 0: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
-        self._delete_exercise_btn = lambda index = 0: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
-        # ──────────────────────────────────────────────────────────────────────┘
+        self._exercise_subtitle = lambda index=0: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
+        self._delete_exercise_btn = lambda index=0: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
+        # ────────────────────────────────────────────────────────────────────────┘
 
 
     # ---------------------------------------------- ㉤ LOCATORS {dynamic} ----------------------------------------------
-    # EXERCISES: —> index: Element index if more than one Exercise (Default = 0, if single)
+    # EXERCISES: —> index: Element index
     # - Exercise
     def exercise_subtitle(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
@@ -78,13 +77,11 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         return self.page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
 
 
-
-
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # COURSE:
     def click_create_course_btn(self):
         """
-        Click <Create course> button of the Create course page
+        Click <Create course Button> of the Create course page
 
         - ✔ Button - visible
         - ✔ Button - enabled
@@ -96,7 +93,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def click_remove_image_btn(self):
         """
-        Click <Remove image> button of the Create course page
+        Click <Remove image Button> of the Create course page
 
         - ✔ Button - visible
         - ✔ Button - enabled
@@ -108,13 +105,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def upload_image(self, file: str):
         """
-        Upload image
+        Upload image for Course
 
-        - ▶ Upload file
+        - ▶ Upload file form -  PROJECT/testdata/files/
 
-        :param file: File path
+        :param file: File name
         """
-        self.upload_image_view_input.set_input_files(file)
+        self.upload_image_view_input.set_input_files(self.FILES/file)
 
     def fill_create_course_form(
             self,
@@ -157,7 +154,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # EXERCISES:
     def click_create_exercise_btn(self):
         """
-        Click <Create exercise - Button> of the Create course page
+        Click <Create exercise Button> of the Create course page
 
         - ✔ Button - visible
         - ▶ Button - Click
@@ -167,7 +164,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def click_delete_exercise_btn(self, index: int):
         """
-        Click <Delete exercise - Button> of the Create course page
+        Click <Delete exercise Button> of the Create course page
 
         - ✔ Button - visible
         - ▶ Button - Click
@@ -179,8 +176,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # COURSES:
-    # - Toolbar:
+    # Toolbar:
     # ────────────────────────────────────────────────┐
     def check_toolbar(self):
         """
@@ -196,7 +192,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_toolbar_create_course_btn_visible()
         self.check_toolbar_create_course_btn_enabled()
     # ────────────────────────────────────────────────┘
-    # - Toolbar [Title]
+    # Toolbar [Title]
     def check_toolbar_title_visible(self):
         """
         Check <Toolbar [Title]> of the Create course page - visible
@@ -208,17 +204,17 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_toolbar_title_text(self, title: str = 'Create course'):
         """
-        Check <Toolbar [Title]> text of the Create course page
+        Check <Toolbar [Title] text> of the Create course page
 
         - ✔ Title text - correct
 
         :param title: Title text
 
         """
-        error = '❌ <Toolbar [Title]> text of the Create course page - incorrect!'
+        error = '❌ <Toolbar [Title] text> of the Create course page - incorrect!'
         expect(self.toolbar_title, error).to_have_text(title)
 
-    # - Toolbar [Create Course Button]
+    # Toolbar [Create Course Button]
     def check_toolbar_create_course_btn_visible(self):
         """
         Check <Toolbar [Create Course Button]> of the Create course page - visible
@@ -247,7 +243,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         expect(self.create_course_btn, error).to_be_disabled()
 
 
-    # - Preview View:
+    # Preview View:
     # ─────────────────────────────────────────────────────────┐
     def check_preview_view(self):
         """
@@ -272,6 +268,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
             self.check_preview_empty_view_description_visible()
             self.check_preview_empty_view_description_text()
     # ─────────────────────────────────────────────────────────┘
+
     # - Preview <Empty> View [Icon]
     def check_preview_empty_view_icon_visible(self):
         """
@@ -294,13 +291,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_preview_empty_view_title_text(self, title: str = 'No image selected'):
         """
-        Check <Preview Empty View [Title]> text of the Create course page - correct
+        Check <Preview Empty View [Title] text> of the Create course page - correct
 
         - ✔ Text - correct
 
         :param title: Title text
         """
-        error = '❌ <Preview Empty View [Title]> text of the Create course page - incorrect!'
+        error = '❌ <Preview Empty View [Title] text> of the Create course page - incorrect!'
         expect(self.preview_empty_view_title, error).to_have_text(title)
 
     # - Preview <Empty> View [Description]
@@ -315,13 +312,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_preview_empty_view_description_text(self, description: str = 'Preview of selected image will be displayed here'):
         """
-        Check <Preview Empty View [Description]> text of the Create course - correct
+        Check <Preview Empty View [Description] text> of the Create course - correct
 
         - ✔ Text - correct
 
         :param description: Description text
         """
-        error = '❌ <Preview Empty View [Description]> text of the Create course page - incorrect!'
+        error = '❌ <Preview Empty View [Description] text> of the Create course page - incorrect!'
         expect(self.preview_empty_view_description, error).to_have_text(description)
 
     # - Preview View [Image]
@@ -356,6 +353,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_upload_image_btn()
         self.check_remove_image_btn()
     # ────────────────────────────────────────────────────┘
+
     # - Upload image View [Icon]
     def check_upload_image_view_icon_visible(self):
         """
@@ -378,13 +376,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_upload_image_view_title_text(self, title: str = 'Tap on "Upload image" button to select file'):
         """
-        Check <Upload image View [Title]> text of the Create course page - correct
+        Check <Upload image View [Title] text> of the Create course page - correct
 
         - ✔ Text - correct
 
         :param title: Title text
         """
-        error = '❌ <Upload image View [Title]> text of the Create course page - incorrect!'
+        error = '❌ <Upload image View [Title] text> of the Create course page - incorrect!'
         expect(self.upload_image_view_title, error).to_have_text(title)
 
     # - Upload image View [Description]
@@ -400,13 +398,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_upload_image_view_description_text(self, description: str = 'Recommended file size 540X300'):
         """
-        Check <Upload image View [Description]> text of the Create course page - correct
+        Check <Upload image View [Description] text> of the Create course page - correct
 
         - ✔ Text - correct
 
         :param description: Description text
         """
-        error = '❌ <Upload image View [Description]> text of the Create course page - incorrect!'
+        error = '❌ <Upload image View [Description] text> of the Create course page - incorrect!'
         expect(self.upload_image_view_description, error).to_have_text(description)
 
 
@@ -446,13 +444,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_upload_image_btn_text(self, text: str = 'Upload image'):
         """
-        Check <Upload image Button> text of the Create course page - correct
+        Check <Upload image Button text> of the Create course page - correct
 
         - ✔ Text - correct
 
         :param text: Button text
         """
-        error = '❌ <Upload image Button> text of the Create course page - incorrect!'
+        error = '❌ <Upload image Button text> of the Create course page - incorrect!'
         expect(self.upload_image_btn, error).to_have_text(text)
 
 
@@ -515,13 +513,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_remove_image_btn_text(self, text: str = 'Remove image'):
         """
-        Check <Remove image Button> text of the Create course page - correct
+        Check <Remove image Button text> of the Create course page - correct
 
         - ✔ Text - correct
 
         :param text: Button text
         """
-        error = '❌ <Remove image Button> text of the Create course page - incorrect!'
+        error = '❌ <Remove image Button text> of the Create course page - incorrect!'
         expect(self.remove_image_btn, error).to_have_text(text)
 
 
@@ -587,24 +585,24 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_form_title_field_name(self, field_name: str = 'Title'):
         """
-        Check <Course Form [Title field - Name]> of the Create course page - correct!
+        Check <Course Form [Title field] name> of the Create course page - correct!
 
         - ✔ Title name - correct
 
         :param field_name: Field name
         """
-        error = '❌ <Course Form [Title field - Name]> of the Create course page - incorrect!'
+        error = '❌ <Course Form [Title field] name> of the Create course page - incorrect!'
         expect(self.course_form_title_field, error).to_have_accessible_name(field_name)
 
     def check_course_form_title_field_placeholder(self, placeholder: str = 'New course'):
         """
-        Check <Course Form [Title field - Placeholder]> of the Create course page - correct!
+        Check <Course Form [Title field] Placeholder> of the Create course page - correct!
 
         - ✔ Placeholder - correct
 
         :param placeholder: Placeholder
         """
-        error = '❌ <Course Form [Title field - Placeholder]> of the Create course page - incorrect!'
+        error = '❌ <Course Form [Title field] Placeholder> of the Create course page - incorrect!'
         expect(self.course_form_title_field, error).to_have_attribute('placeholder', placeholder)
 
     def check_course_form_title_field_filled_correctly(self, title: str):
@@ -649,24 +647,24 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_form_estimated_time_field_name(self, field_name: str = 'Estimated time'):
         """
-        Check <Course Form [Estimated time field - Name]> of the Create course page - correct!
+        Check <Course Form [Estimated time field] name> of the Create course page - correct!
 
         - ✔ Field name - correct
 
         :param field_name: Field name
         """
-        error = '❌ <Course Form [Estimated time field - Name]> of the Create course page - incorrect!'
+        error = '❌ <Course Form [Estimated time field] name> of the Create course page - incorrect!'
         expect(self.course_form_estimated_time_field, error).to_have_accessible_name(field_name)
 
     def check_course_form_estimated_time_field_placeholder(self, placeholder: str = '1h 20m'):
         """
-        Check <Course Form [Estimated time field - Placeholder]> of the Create course page - correct!
+        Check <Course Form [Estimated time field] Placeholder> of the Create course page - correct!
 
         - ✔ Placeholder - correct
 
         :param placeholder: Placeholder
         """
-        error = '❌ <Course Form [Estimated time field - Placeholder]> of the Create course page - incorrect!'
+        error = '❌ <Course Form [Estimated time field] Placeholder> of the Create course page - incorrect!'
         expect(self.course_form_estimated_time_field, error).to_have_attribute('placeholder', placeholder)
 
     def check_course_form_estimated_time_field_filled_correctly(self, estimated_time: str):
@@ -711,24 +709,24 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_form_description_field_name(self, field_name: str = 'Description'):
         """
-        Check <Course Form [Description field - Name]> of the Create course page - correct!
+        Check <Course Form [Description field] name> of the Create course page - correct!
 
         - ✔ Field name - correct
 
         :param field_name: Field name
         """
-        error = '❌ <Course Form [Description field - Name]> of the Create course page - incorrect!'
+        error = '❌ <Course Form [Description field] name> of the Create course page - incorrect!'
         expect(self.course_form_description_field, error).to_have_accessible_name(field_name)
 
     def check_course_form_description_field_placeholder(self, placeholder: str = 'Add description for course'):
         """
-        Check <Course Form [Description field - Placeholder]> of the Create course page - correct!
+        Check <Course Form [Description field] Placeholder> of the Create course page - correct!
 
         - ✔ Placeholder - correct
 
         :param placeholder: Placeholder
         """
-        error = '❌ <Course Form [Description field - Placeholder]> of the Create course page - incorrect!'
+        error = '❌ <Course Form [Description field] Placeholder> of the Create course page - incorrect!'
         expect(self.course_form_description_field, error).to_have_attribute('placeholder', placeholder)
 
     def check_course_form_description_field_filled_correctly(self, description: str):
@@ -874,13 +872,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercises_toolbar_title_text(self, title: str = 'Exercises'):
         """
-        Check <Exercises Toolbar [Title]> text of the Create course page - correct
+        Check <Exercises Toolbar [Title] text> of the Create course page - correct
 
         - ✔ Text - correct
 
         :param title: Toolbar Title
         """
-        error = '❌ <Exercises Toolbar [Title]> text of the Create course page - incorrect!'
+        error = '❌ <Exercises Toolbar [Title] text> of the Create course page - incorrect!'
         expect(self.exercise_toolbar_title, error).to_have_text(title)
 
     # - Toolbar [Create exercise button]
@@ -918,7 +916,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Icon - visible
         """
         error = '❌ <Exercises Empty view [Icon]> of the Create course page - invisible!'
-        expect(self.create_exercise_empty_view_icon, error).to_be_visible()
+        expect(self.exercises_empty_view_icon, error).to_be_visible()
 
     # - Empty view [Title]
     def check_exercises_empty_view_title_visible(self):
@@ -928,18 +926,18 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Title - visible
         """
         error = '❌ <Exercises Empty view [Title]> of the Create course page - invisible!'
-        expect(self.create_exercise_empty_view_title, error).to_be_visible()
+        expect(self.exercises_empty_view_title, error).to_be_visible()
 
     def check_exercises_empty_view_title(self, title: str = 'There is no exercises'):
         """
-        Check <Exercises Empty view [Title]> text of the Create course page - correct
+        Check <Exercises Empty view [Title] text> of the Create course page - correct
 
         - ✔ Text - correct
 
         :param title: Title
         """
-        error = '❌ <Exercises Empty view [Title]> text of the Create course page - incorrect!'
-        expect(self.create_exercise_empty_view_title, error).to_have_text(title)
+        error = '❌ <Exercises Empty view [Title] text> of the Create course page - incorrect!'
+        expect(self.exercises_empty_view_title, error).to_have_text(title)
 
     # - Empty view [Description]
     def check_exercises_empty_view_description_visible(self):
@@ -949,18 +947,18 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Description - visible
         """
         error = '❌ <Exercises Empty view [Description]> of the Create course page - invisible!'
-        expect(self.create_exercise_empty_view_description, error).to_be_visible()
+        expect(self.exercises_empty_view_description, error).to_be_visible()
 
     def check_exercises_empty_view_description(self, description: str = 'Click on "Create exercise" button to create new exercise'):
         """
-        Check <Exercises Empty view [Description]> text of the Create course page - correct
+        Check <Exercises Empty view [Description] text> of the Create course page - correct
 
         - ✔ Text - correct
 
         :param description: Description
         """
-        error = '❌ <Exercises Empty view [Description]> text of the Create course page - incorrect!'
-        expect(self.create_exercise_empty_view_description, error).to_have_text(description)
+        error = '❌ <Exercises Empty view [Description] text> of the Create course page - incorrect!'
+        expect(self.exercises_empty_view_description, error).to_have_text(description)
 
 
     # - Exercise [SubTitle]:
@@ -977,13 +975,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercise_subtitle_text(self, index: int):
         """
-        Check <Exercise Toolbar [SubTitle]> text of the Create course page - correct
+        Check <Exercise Toolbar [SubTitle] text> of the Create course page - correct
 
         - ✔ SubTitle text - correct (Ex: "#1 Exercise", "#2 Exercise", ...)
 
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = '❌ <Exercise Toolbar [SubTitle]> text of the Create course page - incorrect!'
+        error = '❌ <Exercise Toolbar [SubTitle] text> of the Create course page - incorrect!'
         expect(self.exercise_subtitle(index), error).to_have_text(f'#{index + 1} Exercise')
 
     # - Exercise [Delete exercise Button]
@@ -1049,13 +1047,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercise_form_title_field_name(self, index: int):
         """
-        Check <Exercise Form [Title field] Name> of the Create course page - correct
+        Check <Exercise Form [Title field] name> of the Create course page - correct
 
         - ✔ Field - visible
 
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = '❌ <Exercise Form [Title field] Name> of the Create course page - incorrect!'
+        error = '❌ <Exercise Form [Title field] name> of the Create course page - incorrect!'
         expect(self.exercise_form_title_field(index), error).to_have_accessible_name('Title')
 
     def check_exercise_form_title_field_filled_correctly(self, index: int, title: str = 'Exercise title'):
@@ -1103,13 +1101,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercise_form_description_field_name(self, index: int):
         """
-        Check <Exercise Form [Description field] Name> of the Create course page - correct
+        Check <Exercise Form [Description field] name> of the Create course page - correct
 
         - ✔ Field name - correct
 
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = '❌ <Exercise Form [Description field] Name> of the Create course page - incorrect!'
+        error = '❌ <Exercise Form [Description field] name> of the Create course page - incorrect!'
         expect(self.exercise_form_description_field(index), error).to_have_accessible_name('Description')
 
     def check_exercise_form_description_field_filled_correctly(self, index: int, description: str = 'Exercise description'):

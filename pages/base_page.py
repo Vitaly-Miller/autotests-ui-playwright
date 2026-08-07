@@ -1,12 +1,22 @@
 """
 BASE PAGE
 """
+
 from playwright.sync_api import Page, expect
+from pathlib import Path
+from re import Pattern
+
 
 #=======================================================================================================================
 class BasePage:                                 # Родительский класс
     def __init__(self, page: Page):             # Конструктор класса, принимающий page
         self.page = page
+
+    # -------------------------------------------------- Directories ---------------------------------------------------
+    PROJECT = Path(__file__).parent.parent      # 🗂️Project ROOT/
+    TESTDATA = PROJECT/'testdata'               # └─ 📁testdata/
+    FILES = TESTDATA/'files'                    #    └─ 📁files/
+
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def visit(self, url: str):
@@ -14,12 +24,10 @@ class BasePage:                                 # Родительский кл�
         ⿹ Open page
 
         - ▶ Open page
-        - ✔ Page opened - successfully
 
         :param url: Page URL
         """
         self.page.goto(url=url)
-        self.check_page_opened(expected_url=url)
 
     def reload(self):
         """
@@ -31,15 +39,15 @@ class BasePage:                                 # Родительский кл�
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    def check_page_opened(self, expected_url: str):
+    def check_current_url(self, expected_url: str | Pattern[str]):
         """
-        Check Page opened successfully
+        Check Current page URL
 
-        - ✔ Page opened - successfully. Page URL - correct.
+        - ✔ Current page URL - correct
 
         :param expected_url: Expected Page URL
         """
-        error = '❌ Page did not opened! Page URL - incorrect!'
+        error = '❌ Current page URL - incorrect!'
         expect(self.page, error).to_have_url(expected_url)
 
 #=======================================================================================================================

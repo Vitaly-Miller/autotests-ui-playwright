@@ -103,22 +103,22 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
     def check_courses_toolbar_title_visible(self):
         """
-        Check <Toolbar - Title> visible of the Courses List page
+        Check <Toolbar [Title]> visible of the Courses List page
 
         - ✔ Title - visible
         """
-        error = '❌ <Toolbar - Title> of the Courses List page - invisible!'
+        error = '❌ <Toolbar [Title]> of the Courses List page - invisible!'
         expect(self.toolbar_title, error).to_be_visible()
 
     def check_courses_toolbar_title_text(self, text: str = 'Courses'):
         """
-        Check <Toolbar - Title> text of the Courses List page
+        Check <Toolbar [Title] text> of the Courses List page
 
         - ✔ Text - correct
 
         :param text: "Courses" (default)
         """
-        error = '❌ <Toolbar - Title> text of the Courses List page - incorrect!'
+        error = '❌ <Toolbar [Title] text> of the Courses List page - incorrect!'
         expect(self.toolbar_title, error).to_have_text(text)
 
     def check_courses_toolbar_create_course_btn_visible(self):
@@ -152,7 +152,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_courses_empty_view_description_text()
    # ────────────────────────────────────────────────────────┘
 
-    # Empty View - Icon
+    # Empty View [Icon]
     def check_courses_empty_view_icon_visible(self):
         """
         Check <Empty View - Icon> of the Course List page - visible
@@ -163,44 +163,44 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         expect(self.empty_view_icon, error).to_be_visible()
 
 
-    # Empty View - Title
+    # Empty View [Title]
     def check_courses_empty_view_title_visible(self):
         """
-        Check <Empty View - Title> of the Course List page - visible
+        Check <Empty View [Title]> of the Course List page - visible
 
         - ✔ Title - visible
 
         """
-        error = '❌ <Empty View - Title> of the Courses List page - invisible!'
+        error = '❌ <Empty View [Title]> of the Courses List page - invisible!'
         expect(self.empty_view_title, error).to_be_visible()
 
     def check_courses_empty_view_title_text(self, title: str = 'There is no results'):
         """
-        Check <Empty View - Title> text of the Course List page - correct
+        Check <Empty View [Title] text> of the Course List page - correct
 
         - ✔ Text - correct
         """
-        error = '❌ <Empty View - Title> text of the Courses List page - incorrect!'
+        error = '❌ <Empty View [Title] text> of the Courses List page - incorrect!'
         expect(self.empty_view_title, error).to_have_text(title)
 
 
-    # Empty View - Description
+    # Empty View [Description]
     def check_courses_empty_view_description_visible(self):
         """
-        Check <Empty View - Description> of the Course List page - visible
+        Check <Empty View [Description]> of the Course List page - visible
 
         - ✔ Description - visible
         """
-        error = '❌ <Empty View - Description> of the Courses List page - invisible!'
+        error = '❌ <Empty View [Description]> of the Courses List page - invisible!'
         expect(self.empty_view_description, error).to_be_visible()
 
     def check_courses_empty_view_description_text(self, text: str = 'Results from the load test pipeline will be displayed here'):
         """
-        Check <Empty View - Description> text of the Course List page - correct
+        Check <Empty View [Description] text> of the Course List page - correct
 
         - ✔ Text - correct
         """
-        error = '❌ <Empty View - Description> text of the Courses List page - incorrect!'
+        error = '❌ <Empty View [Description] text> of the Courses List page - incorrect!'
         expect(self.empty_view_description, error).to_have_text(text)
 
 
@@ -241,130 +241,149 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_course_card_menu_btn_visible(index=index)
     # ─────────────────────────────────────────────────────────────────────────────────────────┘
 
-    # Course Card - Image:
+    # Course Card [Image]:
     def check_course_card_image_visible(self, index: int):
         """
-        Check <Course card - Image> of the Courses List page - visible
+        Check <Course card [Image]> of the Courses List page - visible
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Image> Courses List page - invisible!'
+        error = '❌ <Course card [Image]> Courses List page - invisible!'
         expect(self.course_image.nth(index), error).to_be_visible()
 
 
-    # Course Card - Title
+    # Course Card [Title]
     def check_course_card_title_visible(self, index: int):
         """
-        Check <Course card - Title> of the Courses List page - visible
+        Check <Course card [Title]> of the Courses List page - visible
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Title> of the Courses List page - invisible!'
+        error = '❌ <Course card [Title]> of the Courses List page - invisible!'
         expect(self.course_title.nth(index), error).to_be_visible()
 
     def check_course_card_title_text(self, title: str, index: int):
         """
-        Check <Course card - Title> text of the Courses List page - correct
+        Check <Course card [Title] text> of the Courses List page - correct
 
         :param title: Course title
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Title> text of the Course List page - incorrect!'
+        error = '❌ <Course card [Title] text> of the Course List page - incorrect!'
         expect(self.course_title.nth(index), error).to_have_text(title)
 
 
-    # Course Card - Max score
+    # Course Card [Max score]
     def check_course_card_max_score_visible(self, index: int):
         """
-        Check <Course card - Max score> of the Courses List page - visible
+        Check <Course card [Max score]> of the Courses List page - visible
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Max score> of the Course List page - invisible!'
+        error = '❌ <Course card [Max score]> of the Course List page - invisible!'
         expect(self.course_max_score.nth(index), error).to_be_visible()
 
     def check_course_card_max_score_text(self, max_score: str, index: int):
         """
-        Check <Course card - Max score> text of the Courses List page - correct
+        Check <Course card [Max score] text> of the Courses List page - correct
 
         :param max_score: Max score
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Max score> text of the Course List page - incorrect!'
+        error = '❌ <Course card [Max score] text> of the Course List page - incorrect!'
         expect(self.course_max_score.nth(index), error).to_have_text(f'Max score: {max_score}')
 
 
-    # Course Card - Min score
+    # Course Card [Min score]
     def check_course_card_min_score_visible(self, index: int):
         """
-        Check <Course card - Min score> of the Courses List page - visible
+        Check <Course card [Min score]> of the Courses List page - visible
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Min score> of the Course List page - invisible!'
+        error = '❌ <Course card [Min score]> of the Course List page - invisible!'
         expect(self.course_min_score.nth(index), error).to_be_visible()
 
     def check_course_card_min_score_text(self, min_score: str, index: int):
         """
-        Check <Course card - Min score> text of the Courses List page - correct
+        Check <Course card [Min score] text> of the Courses List page - correct
 
         :param min_score: Min score
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Min score> text of the Course List page - incorrect!'
+        error = '❌ <Course card [Min score] text> of the Course List page - incorrect!'
         expect(self.course_min_score.nth(index), error).to_have_text(f'Min score: {min_score}')
 
 
-    # Course Card - Estimated time
+    # Course Card [Estimated time]
     def check_course_card_estimated_time_visible(self, index: int):
         """
-        Check <Course card - Estimated time> of the Courses List page - visible
+        Check <Course card [Estimated time]> of the Courses List page - visible
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Estimated time> of the Course List page - invisible!'
+        error = '❌ <Course card [Estimated time]> of the Course List page - invisible!'
         expect(self.course_estimated_time.nth(index), error).to_be_visible()
 
     def check_course_card_estimated_time_text(self, estimated_time: str, index: int):
         """
-        Check <Course card - Estimated time> text of the Courses List page - correct
+        Check <Course card [Estimated time] text> of the Courses List page - correct
 
         :param estimated_time: Estimated time
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Estimated time> text of the Course List page - incorrect!'
+        error = '❌ <Course card [Estimated time] text> of the Course List page - incorrect!'
         expect(self.course_estimated_time.nth(index), error).to_have_text(f'Estimated time: {estimated_time}')
 
 
-    # Course Card - Menu:
+    # Course Card [Menu] button:
     def check_course_card_menu_btn_visible(self, index: int):
         """
-        Check <Course card - Menu> button of the Courses List page - visible
+        Check <Course card [Menu] button> of the Courses List page - visible
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Menu> button of the Courses List page - invisible!'
+        error = '❌ <Course card [Menu button] of the Courses List page - invisible!'
         expect(self.course_menu_btn.nth(index), error).to_be_visible()
 
 
-    # Course Card - Menu - Action buttons:
+    # Course Card Menu [Action] buttons:
     def check_course_card_menu_edit_course_btn_visible(self, index: int):
         """
-        Check <Course card - Menu - Edit course> button of the Courses List page - visible
+        Check <Course card Menu [Edit course] button> of the Courses List page - visible
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Menu - Edit course> button of the Courses List page - invisible!'
+        error = '❌ <Course card Menu [Edit course] button> of the Courses List page - invisible!'
         expect(self.course_edit_menu_btn.nth(index), error).to_be_visible()
+
+    def check_course_card_menu_edit_course_btn_text(self, index: int):
+        """
+        Check <Course card Menu [Edit course] button text> of the Courses List page - correct
+
+        :param index: Element DOM-index if more than one <Course Card>
+        """
+        error = '❌ <Course card Menu [Edit course] button text> of the Courses List page - incorrect!'
+        expect(self.course_edit_menu_btn.nth(index), error).to_have_text('Edit')
+
 
     def check_course_card_menu_delete_course_btn_visible(self, index: int):
         """
-        Check <Course card - Menu - Delete course> button of the Courses List page - visible
+        Check <Course card Menu [Delete course] button> of the Courses List page - visible
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card - Menu - Delete course> button of the Courses List page - invisible!'
+        error = '❌ <Course card Menu [Delete course] button> of the Courses List page - invisible!'
         expect(self.course_delete_menu_btn.nth(index), error).to_be_visible()
+
+    def check_course_card_menu_delete_course_btn_text(self, index: int):
+        """
+        Check <Course card Menu [Delete course] button text> of the Courses List page - correct
+
+        :param index: Element DOM-index if more than one <Course Card>
+        """
+        error = '❌ <Course card Menu [Delete course] button text> of the Courses List page - incorrect!'
+        expect(self.course_delete_menu_btn.nth(index), error).to_have_text('Delete')
 
 
 #=======================================================================================================================
