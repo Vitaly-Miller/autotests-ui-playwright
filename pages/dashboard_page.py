@@ -15,13 +15,13 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page)     # Component - Navbar
-        self.sidebar = SidebarComponent(page)   # Component - Sidebar
-
+        self.navbar = NavbarComponent(page)       # Navbar component
+        self.sidebar = SidebarComponent(page)     # Sidebar component
 
         # -------------------------------------------- ㉧ LOCATORS (static) ---------------------------------------------
         # Toolbar
         self.toolbar_title = page.get_by_test_id('dashboard-toolbar-title-text')
+
         # Widgets
         self.students_title = page.get_by_test_id('students-widget-title-text')
         self.students_chart = page.get_by_test_id('students-bar-chart')
@@ -38,20 +38,31 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
-    # <Toolbar> + <Navbar> + <Sidebar>
-    # ────────────────────────────────────────────────────────┐
-    def check_toolbar_and_navbar_sidebar(self, username: str):
+    # ALL Elements
+    # ═════════════════════════════════════╗
+    def check_all_elements(self):
         """
-        Check <Navbar> + <Toolbar> of the Dashboard page
+        Check ALL Elements of the Dashboard page
 
-        - ✔ Toolbar - visible | Text - correct
+        - ✔ Toolbar
+        - ✔ All Widgets
+          """
+        self.check_toolbar_title_visible()
+        self.check_toolbar_title_text()
+    # ═════════════════════════════════════╝
+
+    # Navbar + Sidebar components
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_navbar_and_sidebar(self, username: str):
+        """
+        Check <Navbar> + <Sidebar> components
+
         - ✔ Navbar - visible | Text - correct
         - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
         """
-        self.check_toolbar()
         self.navbar.check_navbar(username)
         self.sidebar.check_sidebar()
-    # ────────────────────────────────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
     # Toolbar:
     # ──────────────────────────────────────┐

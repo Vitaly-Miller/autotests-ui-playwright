@@ -15,9 +15,8 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page)  # Component - Navbar
-        self.sidebar = SidebarComponent(page)  # Component - Sidebar
-
+        self.navbar = NavbarComponent(page)       # Navbar component
+        self.sidebar = SidebarComponent(page)     # Sidebar component
 
         # ------------------------------------------ ㉧ LOCATORS (static) -----------------------------------------------
         # Toolbar
@@ -94,20 +93,33 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # <Toolbar> + <Navbar> + <Sidebar>
-    # ────────────────────────────────────────────────────────┐
-    def check_toolbar_and_navbar_sidebar(self, username: str):
+    # ALL Elements (NO Course Cards)
+    # ════════════════════════════╗
+    def check_all_elements(self):
         """
-        Check <Navbar> + <Toolbar> of the Courses List page
+        Check ALL Elements of the Courses List page
 
-        - ✔ Toolbar - visible | Text - correct
+        (NO Course Cards)
+
+        - ✔ Toolbar
+        - ✔ Empty View
+        """
+        self.check_toolbar()
+        self.check_empty_view()
+    # ════════════════════════════╝
+
+    # Navbar + Sidebar components
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_navbar_and_sidebar(self, username: str):
+        """
+        Check <Navbar> + <Sidebar> components
+
         - ✔ Navbar - visible | Text - correct
         - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
         """
-        self.check_toolbar()
         self.navbar.check_navbar(username)
         self.sidebar.check_sidebar()
-    # ────────────────────────────────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
     # Toolbar:
     # ────────────────────────────────────────────────┐
@@ -181,7 +193,6 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Empty view [Icon]> of the Courses List page - invisible!'
         expect(self.empty_view_icon, error).to_be_visible()
 
-
     # Empty View [Title]
     def check_empty_view_title_visible(self):
         """
@@ -200,7 +211,6 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         """
         error = '❌ <Empty View [Title] text> of the Courses List page - incorrect!'
         expect(self.empty_view_title, error).to_have_text('There is no results')
-
 
     # Empty View [Description]
     def check_empty_view_description_visible(self):

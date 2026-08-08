@@ -15,8 +15,8 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         super().__init__(page)           # Передаёт page в конструктор BasePage
 
         # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page)     # Component - Navbar
-        self.sidebar = SidebarComponent(page)   # Component - Sidebar
+        self.navbar = NavbarComponent(page)       # Navbar component
+        self.sidebar = SidebarComponent(page)     # Sidebar component
 
         # ------------------------------------------- ㉧ LOCATORS (static) ----------------------------------------------
         # Toolbar
@@ -57,7 +57,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.exercises_empty_view_icon = page.get_by_test_id('create-course-exercises-empty-view-icon')
         self.exercises_empty_view_title = page.get_by_test_id('create-course-exercises-empty-view-title-text')
         self.exercises_empty_view_description = page.get_by_test_id('create-course-exercises-empty-view-description-text')
-
 
         # - Exercise
         # ┄┄┄┄┄┄┄┄ (lambda - index) - ⚠️ NOT USING! - FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄╮
@@ -183,20 +182,40 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # <Toolbar> + <Navbar> + <Sidebar>
-    # ────────────────────────────────────────────────────────┐
-    def check_toolbar_and_navbar_sidebar(self, username: str):
+    # ALL Elements
+    # ════════════════════════════════════╗
+    def check_all_elements(self):
         """
-        Check <Navbar> + <Toolbar> of the Create course page
+        Check ALL Elements of the Create course page
 
-        - ✔ Toolbar - visible | Text - correct
+        - ✔ Toolbar
+        - ✔ Preview View
+        - ✔ Upload image View
+        - ✔ Course Form
+        - ✔ Exercises Toolbar
+        - ✔ Exercises Empty View
+        """
+        self.check_toolbar()
+        self.check_preview_view()
+        self.check_upload_image_view()
+        self.check_course_form()
+        self.check_exercises_toolbar()
+        self.check_exercises_empty_view()
+    # ════════════════════════════════════╝
+
+    # Navbar + Sidebar components
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_navbar_and_sidebar(self, username: str):
+        """
+        Check <Navbar> + <Sidebar> components
+
         - ✔ Navbar - visible | Text - correct
         - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
         """
-        self.check_toolbar()
         self.navbar.check_navbar(username)
         self.sidebar.check_sidebar()
-    # ────────────────────────────────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+
     # Toolbar:
     # ────────────────────────────────────────────────┐
     def check_toolbar(self):
@@ -367,7 +386,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_upload_image_btn()
         self.check_remove_image_btn()
     # ────────────────────────────────────────────────────┘
-
     # - Upload image View [Icon]
     def check_upload_image_view_icon_visible(self):
         """
@@ -462,7 +480,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # - Upload image View [Remove image Button]
-    # ────────────────────────────────────────────────────┐
+    # ───────────────────────────────────────────────┐
     def check_remove_image_btn(self):
         """
         Check <Remove image Button> of the Create course page
@@ -483,7 +501,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
             self.check_remove_image_btn_text()
         else:    # If image did NOT upload
             self.check_remove_image_btn_invisible()
-    # ────────────────────────────────────────────────────┘
+    # ───────────────────────────────────────────────┘
     def check_remove_image_btn_visible(self):
         """
         Check <Remove image Button> of the Create course page - visible
@@ -561,7 +579,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # - Course Form [Title field]:
-    # ─────────────────────────────────────────────────────────────────────┐
+    # ───────────────────────────────────────────────────────────────┐
     def check_course_form_title(self, title: str | None = None):
         """
         Check <Course Form [Title field]> of the Create course page
@@ -578,7 +596,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_course_form_title_field_placeholder()
         if title:   # If is passed
             self.check_course_form_title_field_filled_correctly(title)
-    # ─────────────────────────────────────────────────────────────────────┘
+    # ────────────────────────────────────────────────────────────────┘
     def check_course_form_title_field_visible(self):
         """
         Check <Course Form [Title field]> of the Create course page - visible!
@@ -984,7 +1002,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # - Exercise Form
-    # ────────────────────────────────────────────────────────────────────────────────┐
+    # ──────────────────────────────────────────────────────────────────────────────────┐
     def check_exercise_form(self, index: int, title: str | None = None, description: str | None = None):
         """
         Check <Exercise Form> of the Create course page
@@ -999,7 +1017,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         self.check_exercise_form_title_field(index=index, title=title)
         self.check_exercise_form_description_field(index=index, description=description)
-    # ────────────────────────────────────────────────────────────────────────────────┘
+    # ──────────────────────────────────────────────────────────────────────────────────┘
 
     # - Exercise Form [Title field]
     # ──────────────────────────────────────────────────────────────────────────────┐

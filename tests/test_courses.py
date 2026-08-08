@@ -1,5 +1,5 @@
 """
-Test Create Course (60 checks)
+Test Create Course
 """
 
 import pytest
@@ -23,21 +23,12 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     # ⿹ Open page
     create_course_page.visit(create_course_page.URL)
 
-    # ✔️EXPECTATIONS (before image uploading)
-    create_course_page.check_toolbar_and_navbar_sidebar(username)  # Проверка блоков <Toolbar> + <Navbar> + <Sidebar>
-    create_course_page.check_preview_view()                        # Проверка блока <Preview View> (КАРТИНКА НЕ ЗАГРУЖЕНА)
-    create_course_page.check_upload_image_view()                   # Проверка блока <Upload image View> (КАРТИНКА НЕ ЗАГРУЖЕНА)
-    create_course_page.check_course_form()                         # Проверка блока <Course form> (ПОЛЯ НЕ ЗАПОЛНЕНЫ)
-    create_course_page.check_exercises_toolbar()                   # Проверка блока <Exercises [Toolbar]>
-    create_course_page.check_exercises_empty_view()                # Проверка блока <Exercises [Empty view]>
-
-    # ▶ ACTIONS (image upload)
-    create_course_page.upload_image('image_1.jpg')                 # Загрузка изображения
-
-    # ✔️EXPECTATIONS (after image uploading)
-    create_course_page.check_preview_view()                        # Проверка блока <Preview View> (КАРТИНКА ЗАГРУЖЕНА)
+    # ✔️EXPECTATIONS (Before Course creation)
+    create_course_page.check_navbar_and_sidebar(username)          # Проверка компонентов <Navbar> + <Sidebar>
+    create_course_page.check_all_elements()                        # Проверка всех элементов страницы (КАРТИНКА НЕ ЗАГРУЖЕНА)
 
     # ▶ ACTIONS (Create course)
+    create_course_page.upload_image('image_1.jpg')                 # Загрузка картинки курса
     create_course_page.fill_create_course_form(                    # Заполнение полей формы <Create Course>
         title=course_title,
         estimated_time=course_estimated_time,
@@ -47,7 +38,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     )
     create_course_page.click_create_course_btn()                  # Нажатие на кнопку <Create course Button>
 
-    # ✔️EXPECTATIONS (after Course creation)
+    # ✔️EXPECTATIONS (After Course creation)
     courses_list_page.check_current_url(courses_list_page.URL)    # Проверка успешного редиректа на страницу - Courses List Page
     courses_list_page.check_course_card(                          # Данные в карточке курса соответствуют заполненным полям формы
         index=0,                                                  # Element DOM-index of <Course Card>
@@ -56,6 +47,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
         max_score=course_max_score,
         min_score=course_min_score
     )
+
 
     # ⏳(optional)
     create_course_page.wait()
