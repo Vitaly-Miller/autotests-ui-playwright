@@ -44,7 +44,7 @@ def test_courses_page_is_not_opening_without_auth():
 
 
     #------------------------------------------------ Playwright setup -------------------------------------------------
-    # Попытка зайти на Dashboard page
+    # Попытка зайти на Courses page
     with (sync_playwright() as playwright):      # Создаем объект playwright = sync_playwright() (инициализация)
         browser = playwright.chromium.launch(    # Создаем объект браузера на движке chromium c  параметрами:
             headless=False,                      # - False — показывать браузер
@@ -57,7 +57,7 @@ def test_courses_page_is_not_opening_without_auth():
         page.goto(courses_url)
 
         # ✔️EXPECTATIONS
-        expect(page, '❌ Courses page is opening without auth!').to_have_url(login_page) # Courses page - не открыввется —> Redirect на Login page (Auth)
+        expect(page, '❌ Courses page is opening without auth!').to_have_url(login_page) # Courses page - не открывается —> Redirect на Login page (Auth)
 
         # ⏳(optional)
         page.wait_for_timeout(1000)

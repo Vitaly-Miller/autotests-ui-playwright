@@ -12,7 +12,7 @@ login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#
 @pytest.mark.auth
 @pytest.mark.regression
 @pytest.mark.negative
-def test_auth_unregister_user():
+def test_auth_unregistered_user():
     #------------------------------------------------ Playwright setup -------------------------------------------------
     # Создаем объект playwright через контекст менеджер <with> - для авто-закрытия браузера по окончании
     with sync_playwright() as playwright:             # Создаем объект playwright = sync_playwright() (инициализация)

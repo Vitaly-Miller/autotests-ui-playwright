@@ -8,7 +8,7 @@ registration_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-c
 dashboard_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
 
 #-------------------------------------------------- 1. Registration ----------------------------------------------------
-# Регристрация пользователя + сохранение Storage State в файл
+# Регистрация пользователя + сохранение Storage State в файл
 with (sync_playwright() as playwright):         # Создаем объект playwright = sync_playwright() (инициализация)
     browser = playwright.chromium.launch(       # Создаем объект браузера на движке chromium c  параметрами:
         headless=False,                         # - False — показывать браузер
@@ -47,7 +47,7 @@ with (sync_playwright() as playwright):      # Создаем объект playw
     )
     context = browser.new_context()          # Создание браузерного окружения
     page = context.new_page()                # Создаем объект страницы page (на базе context)
-    page.goto(dashboard_url)                 # Dashboard page - не открыввется —> Redirect на Login page (Auth)
+    page.goto(dashboard_url)                 # Dashboard page - не открывается —> Redirect на Login page (Auth)
 
     # ⏳
     page.wait_for_timeout(2000)
@@ -63,7 +63,7 @@ with (sync_playwright() as playwright):      # Создаем объект playw
         storage_state="storage_state.json"   # 👈 Подтягиваем Storage state из сохраненного файла
     )
     page = context.new_page()                # Создаем объект страницы page (на базе context)
-    page.goto(dashboard_url)                 # Dashboard page - открыввется ✔️
+    page.goto(dashboard_url)                 # Dashboard page - открывается ✔️
 
     # ⏳
     page.wait_for_timeout(2000)

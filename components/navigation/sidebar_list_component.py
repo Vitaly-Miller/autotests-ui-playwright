@@ -56,7 +56,7 @@ class SidebarListComponent(BaseComponent):
 
         - ✔ Button - visible
         """
-        error = '❌ Check <Sidebar List component [Botton]> - invisible!'
+        error = '❌ Check <Sidebar List component [Button]> - invisible!'
         expect(self.btn, error).to_be_visible()
 
     def check_btn_icon_visible(self):
@@ -66,7 +66,7 @@ class SidebarListComponent(BaseComponent):
         - ✔ Icon - visible
         """
         error = '❌ Check <Sidebar List component [Button Icon]> - invisible!'
-        expect(self.btn_title, error).to_be_visible()
+        expect(self.btn_icon, error).to_be_visible()
 
     def check_btn_title_visible(self):
         """

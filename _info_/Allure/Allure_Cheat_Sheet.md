@@ -60,7 +60,7 @@ allure open allure-report
 @allure.tag('SMOKE')
 @allure.tag('NEGATIVE')
 
-@allure.tag('SMOKE', 'NEGATIVE')        # Поддерживаетс несколько аннотаций
+@allure.tag('SMOKE', 'NEGATIVE')        # Поддерживается несколько аннотаций
 ```
 
 ``` python
@@ -68,7 +68,7 @@ allure open allure-report
 @allure.tag(Tag.SMOKE)
 @allure.tag(Tag.NEGATIVE)
 
-@allure.tag(Tag.SMOKE, Tag.NEGATIVE)    # Поддерживаетс несколько аннотаций
+@allure.tag(Tag.SMOKE, Tag.NEGATIVE)    # Поддерживается несколько аннотаций
 ```
 
 ------------------------------------------------------------------------
@@ -101,7 +101,7 @@ def test_create_user():
 ### `Description` - описание теста
 
 ``` python
-@allure.description('Сreate User with invalid data')
+@allure.description('Create User with invalid data')
 def test_create_user():
     ...
 ```

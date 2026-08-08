@@ -12,7 +12,7 @@ login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#
 @pytest.mark.auth
 @pytest.mark.regression
 @pytest.mark.negative
-def test_auth_unregister_user(guest_page):
+def test_auth_unregistered_user(guest_page):
     page = guest_page                             # Сохраняем работу фикстуры
 
     # ⿹ Open page

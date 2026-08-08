@@ -38,12 +38,12 @@ def test_courses_page_is_opening():
         password_field.fill('password')
         registration_btn.click()
 
-        # 💾 Сохраняем Storage state в файл состояние сессии (cookies + localStorage) после регистрации
+        # 💾 Сохраняем Storage state (cookies + localStorage) в файл после регистрации
         context.storage_state(path="storage_state.json")   # 👈
 
 
     #------------------------------------------------ Playwright setup -------------------------------------------------
-    # Попытка зайти на Dashboard page + Storage state
+    # Попытка зайти на Courses page + Storage state
     with (sync_playwright() as playwright):      # Создаем объект playwright = sync_playwright() (инициализация)
         browser = playwright.chromium.launch(    # Создаем объект браузера на движке chromium c  параметрами:
             headless=False,                      # - False — показывать браузер
@@ -55,7 +55,7 @@ def test_courses_page_is_opening():
         page = context.new_page()                # Создаем объект страницы page (на базе context + Storage state)
 
         #---------------------------------------------------------------------------------------------------------------
-        page.goto(courses_url)                   # Courses page - открыввется ✔️
+        page.goto(courses_url)                   # Courses page - открывается ✔️
 
         # ㉧ LOCATORS
         courses_header = page.get_by_role(role='heading', name='Courses')

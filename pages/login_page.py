@@ -18,7 +18,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         # Toolbar
         self.toolbar_title = page.get_by_test_id('authentication-ui-course-title-text')
 
-        # Login Form fields
+        # Login Form input fields
         self.email_field = page.get_by_label('Email')
         self.password_field = page.get_by_label('Password')
 
@@ -55,7 +55,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ✔ Button - enabled
         - ▶ Button - Click
         """
-        self.check_login_btn_enable()
+        self.check_login_btn()
         self.login_btn.click()
 
     # Registration link:
@@ -63,12 +63,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         Click <Registration link> of the Login page
 
-        - ✔ Link - visible
+        - ✔ Link - visible | Text - correct | URL - correct
         - ▶ Link - Click
-        - ✔ Registration page - opened
         """
-        registration_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
-        self.check_registration_link_visible()
+        self.check_registration_link()
         self.registration_link.click()
 
 
@@ -90,19 +88,19 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         Check <Toolbar title> of the Login page - visible
 
-        .
+        - ✔ Title - visible
         """
         error = '❌ <Toolbar title> of the Login page - invisible!'
         expect(self.toolbar_title, error).to_be_visible()
 
-    def check_toolbar_title_text(self, text: str = 'UI Course'):
+    def check_toolbar_title_text(self):
         """
         Check <Toolbar title text> of the Login page - correct
 
-        :param text: Login page text (default: "UI Course")
+        - ✔ Text - correct
         """
         error = '❌ <Toolbar title text> of the Login page - incorrect!'
-        expect(self.toolbar_title, error).to_have_text(text)
+        expect(self.toolbar_title, error).to_have_text('UI Course')
 
 
     # Login Form (filled):
@@ -121,7 +119,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         Check <Email field> of the Login form - filled correctly
 
-        - ✔ <Email field> - filled correctly
+        - ✔ Field - filled correctly
         """
         error = '❌ <Email field> of the Login form - filled incorrectly!'
         expect(self.email_field, error).to_have_value(email)
@@ -130,24 +128,27 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         Check <Password field> of the Login form - filled correctly
 
-        - ✔ <Password field> - filled correctly
+        - ✔ Field - filled correctly
         """
         error = '❌ <Password field> of the Login form - filled incorrectly!'
         expect(self.password_field, error).to_have_value(password)
 
 
     # Login Button:
-    # ───────────────────────────────────────┐
-    def check_login_btn(self):
+    # ─────────────────────────────────────────────┐
+    def check_login_btn(self, enable: bool = True):
         """
         Check <Login button> of the Login page
 
-        - ✔ Button - enabled
+        - ✔ Button - enabled / disabled
         - ✔ Button text - correct
         """
-        self.check_login_btn_enable()
+        if enable:
+            self.check_login_btn_enable()
+        else:
+            self.check_login_btn_disabled()
         self.check_login_btn_text()
-    # ───────────────────────────────────────┘
+    # ─────────────────────────────────────────────┘
     def check_login_btn_enable(self):
         """
         Check <Login button> of the Login page - enabled
@@ -168,16 +169,14 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         error = '❌ <Login button> of the Login page - enabled!'
         expect(self.login_btn, error).to_be_disabled()
 
-    def check_login_btn_text(self, text: str = 'Login'):
+    def check_login_btn_text(self):
         """
-        Check <Login button text> of the Login page - correct
+        Check <Login Button text> of the Login page - correct
 
-        - ✔ Button - correct text
-
-        :param text: Login page text (default: "Login")
+        - ✔ Text - correct
         """
-        error = '❌ <Login button text> of the Login page - incorrect!'
-        expect(self.login_btn, error).to_have_text(text)
+        error = '❌ <Login Button text> of the Login page - incorrect!'
+        expect(self.login_btn, error).to_have_text('Login')
 
 
     # Registration Link:
@@ -203,27 +202,23 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         error = '❌ <Registration link> of the Login page - invisible!'
         expect(self.registration_link, error).to_be_visible()
 
-    def check_registration_link_text(self, text: str = 'Registration'):
+    def check_registration_link_text(self):
         """
         Check <Registration link text> of the Login page - correct
 
-        - ✔ Link text - correct
-
-        :param text: Registration link text (default: "Registration")
+        - ✔ Text - correct
         """
-        error = '❌ <Registration link> of the Login page - incorrect!'
-        expect(self.registration_link, error).to_have_text(text)
+        error = '❌ <Registration link text> of the Login page - incorrect!'
+        expect(self.registration_link, error).to_have_text('Registration')
 
-    def check_registration_link_url(self, url: str = '#/auth/registration'):
+    def check_registration_link_url(self):
         """
-        Check <Registration link> URL on the Login page - correct
+        Check <Registration link [URL]> on the Login page - correct
 
-        - ✔ Link URL - correct
-
-        :param url: Registration link URL (default: "#/auth/registration")
+        - ✔ URL - correct
         """
-        error = '❌ <Registration link> URL of the Login page - incorrect!'
-        expect(self.registration_link, error).to_have_attribute('href', url)
+        error = '❌ <Registration link [URL]> of the Login page - incorrect!'
+        expect(self.registration_link, error).to_have_attribute('href', '#/auth/registration')
 
 
     # Alert:
@@ -240,21 +235,21 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ────────────────────────────────────────────────────┘
     def check_wrong_email_or_password_alert_visible(self):
         """
-        Check <Wrong Email or Password> alert - visible
+        Check <Wrong Email or Password alert> - visible
 
         - ✔ Alert - visible
         """
-        error = '❌ <Wrong Email or Password> alert - invisible!'
+        error = '❌ <Wrong Email or Password alert> - invisible!'
         expect(self.wrong_email_password_alert, error).to_be_visible()
 
-    def check_wrong_email_or_password_alert_text(self, text: str = 'Wrong email or password'):
+    def check_wrong_email_or_password_alert_text(self):
         """
-        Check <Wrong Email or Password> alert text - correct
+        Check <Wrong Email or Password alert> text - correct
 
-        - ✔ Alert text - correct
+        - ✔ Text - correct
         """
-        error = '❌ <Wrong Email or Password> alert text - incorrect!'
-        expect(self.wrong_email_password_alert, error).to_have_text(text)
+        error = '❌ <Wrong Email or Password alert text> - incorrect!'
+        expect(self.wrong_email_password_alert, error).to_have_text('Wrong email or password')
 
 
 #=======================================================================================================================

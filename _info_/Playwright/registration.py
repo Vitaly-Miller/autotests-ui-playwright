@@ -35,7 +35,7 @@ with sync_playwright() as playwright:                        # Создаем о
     password_field.fill('password')
 
     # ✔️EXPECTATIONS (after filling out)
-    expect(registration_btn).to_be_enabled()            # v.1 - Button is enable       (after filling out)
+    expect(registration_btn).to_be_enabled()            # v.1 - Button is enabled      (after filling out)
     expect(registration_btn).not_to_be_disabled()       # v.2 - Button is NOT disabled (after filling out)               <— ⚠️ анти-паттерн (двойное отрицание)
 
 

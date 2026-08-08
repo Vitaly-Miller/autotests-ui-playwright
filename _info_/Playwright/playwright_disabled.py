@@ -18,7 +18,7 @@ with sync_playwright() as playwright:                        # Создаем о
     login_btn = page.get_by_test_id('login-page-login-button')  # ㉧ LOCATOR кнопки Login
 
     # ✔︎ EXPECTATIONS
-    expect(login_btn).to_be_disabled()                          # Login button is disable
+    expect(login_btn).to_be_disabled()                          # Login button is disabled
 
     page.wait_for_timeout(1000)                                 # ⏳
 

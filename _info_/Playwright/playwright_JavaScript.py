@@ -9,7 +9,7 @@ login_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#
 
 # Создаем объект playwright через контекст менеджер <with> - для авто-закрытия браузера по окончании
 with sync_playwright() as playwright:                        # Создаем объект playwright = sync_playwright() (инициализация)
-    browser = browser.chromium.launch(headless=False)    # Создаем объект браузера chromium c запуском браузера (с отображением)
+    browser = playwright.chromium.launch(headless=False)    # Создаем объект браузера chromium c запуском браузера (с отображением)
     page = browser.new_page()                               # Создаем объект страницы page c запуском новой страницы
 
     page.goto(

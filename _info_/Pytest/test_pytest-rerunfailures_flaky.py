@@ -28,7 +28,7 @@ def test_1_reruns():
                                                 # ✅PASSED
 
 #---------------------------------------------------- reruns_delay -----------------------------------------------------
-# Если нестабильный тест упал - Перезапустить 5 раз, с паузой 2 сек.
+# Если нестабильный тест упал - Перезапустить 3 раза, с паузой 2 сек.
 @pytest.mark.flaky(reruns=3, reruns_delay=2)    # Маркер нестабильного (flaky) теста
 def test_2_reruns_delay():
     assert random.choice([True, False])         # Падает 50%
@@ -40,7 +40,7 @@ def test_2_reruns_delay():
 # data
 PING = 1.0  # sec
 
-# Если нестабильный тест упал - перезапустить 5 раз, с паузой 2 сек —> ТОЛЬКО ЕСЛИ PING > 0.9
+# Если нестабильный тест упал - перезапустить 3 раза, с паузой 2 сек —> ТОЛЬКО ЕСЛИ PING > 0.9
 @pytest.mark.flaky(reruns=3, reruns_delay=2, condition=PING > 0.9)   # Маркер нестабильного (flaky) теста
 def test_3_condition():
     assert random.choice([True, False])         # Падает 50%

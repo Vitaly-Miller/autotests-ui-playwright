@@ -15,7 +15,7 @@ def user_data():
 # Тест
 def test_username(user_data):                 # Выполняется фикстура: [ДО Теста] - СОЗДАНИЕ пользователя (setup)
     print(user_data)                          # {'name': 'John'}
-    assert user_data['username'] == 'John'    # PASSED
+    assert user_data['name'] == 'John'        # PASSED
                                               # Выполняется фикстура: [ПОСЛЕ Теста] - УДАЛЕНИЯ пользователя (teardown)
 
 #=======================================================================================================================

@@ -7,7 +7,7 @@ from pages.dashboard_page import DashboardPage
 
 #=======================================================================================================================
 @pytest.mark.dashboard
-@pytest.mark.registration
+@pytest.mark.regression
 def test_dashboard(dashboard_page: DashboardPage):
 
     # ⿹ Open page

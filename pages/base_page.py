@@ -31,7 +31,7 @@ class BasePage:                                 # Родительский кл�
 
     def reload(self):
         """
-        ↺ Reload courant page
+        ↺ Reload current page
 
         .
         """

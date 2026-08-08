@@ -36,7 +36,7 @@ def test_registration_successful(guest_page):
     password_field.fill('password')                 # Fill field
 
     # ✔️EXPECTATIONS (after filling out)
-    expect(registration_btn).to_be_enabled()        # v.1 - Button is enable       (after filling out)
+    expect(registration_btn).to_be_enabled()        # v.1 - Button is enabled      (after filling out)
     expect(registration_btn).not_to_be_disabled()   # v.2 - Button is NOT disabled (after filling out)                   <— ⚠️ анти-паттерн (двойное отрицание)
 
     # ▶ ACTIONS (after filling out)

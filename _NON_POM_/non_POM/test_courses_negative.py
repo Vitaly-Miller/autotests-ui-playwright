@@ -16,10 +16,10 @@ def test_courses_page_is_not_opening_without_auth(guest_page):
     page = guest_page
 
     # ⿹ Open page
-    page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses')
+    page.goto(courses_url)
 
     # ✔️EXPECTATIONS
-    expect(page, '❌ Courses page is opening without auth!').to_have_url(login_page) # Courses page - не открыввется —> Redirect на Login page (Auth)
+    expect(page, '❌ Courses page is opening without auth!').to_have_url(login_page) # Courses page - не открывается —> Redirect на Login page (Auth)
 
     # ⏳(optional)
     page.wait_for_timeout(1000)

@@ -103,4 +103,4 @@ def test_assert_negative():
 # Negative test (c кастомным описанием ошибки)
 def test_assert_negative_plus():
     assert 2 + 4 == 5, '❌Кастомное описание ошибки!'  # E   AssertionError: ❌Кастомное описание ошибки!
-                                                       # E   assert (2 + 4) == 4
+                                                       # E   assert (2 + 4) == 5

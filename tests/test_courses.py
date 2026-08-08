@@ -1,5 +1,5 @@
 """
-Test Create Course (60 cheks)
+Test Create Course (60 checks)
 """
 
 import pytest
@@ -9,7 +9,7 @@ from pages.create_course_page import CreateCoursePage
 #=======================================================================================================================
 @pytest.mark.courses
 @pytest.mark.files
-@pytest.mark.registration
+@pytest.mark.regression
 def test_create_course(create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
 
     # ⏎ INPUT DATA

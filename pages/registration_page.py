@@ -53,7 +53,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Button - enabled
         - ▶ Button - Click
         """
-        self.check_registration_btn_enable()
+        self.check_registration_btn()
         self.registration_btn.click()
 
 
@@ -62,14 +62,12 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         Click <Login link> of the Registration page
 
-        - ✔ Link - visible
+        - ✔ Link - visible | Text - correct | URL - correct
         - ▶ Link - Click
-        - ✔ Login page - opened
         """
-        login_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
-        self.check_login_link_visible()
+        self.check_login_link()
         self.login_link.click()
-        self.check_current_url(expected_url=login_page_url)
+
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Toolbar:
@@ -95,9 +93,9 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_toolbar_title_text(self):
         """
-        Check <Toolbar title text> of the Registration page - correct!'
+        Check <Toolbar title text> of the Registration page - correct!
 
-        - ✔ Title text - correct
+        - ✔ Text - correct
         """
         error = '❌ <Toolbar title text> of the Registration page - incorrect!'
         expect(self.toolbar_title, error).to_have_text('UI Course')
@@ -150,20 +148,23 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
 
     # Registration Button:
-    # ───────────────────────────────────────┐
-    def check_registration_btn(self):
+    # ────────────────────────────────────────────────────┐
+    def check_registration_btn(self, enable: bool = True):
         """
         Check <Registration button> of the Registration page
 
-        - ✔ Button - enabled
+        - ✔ Button - enabled / disabled
         - ✔ Button text - correct
         """
-        self.check_registration_btn_enable()
+        if enable:
+            self.check_registration_btn_enable()
+        else:
+            self.check_registration_btn_disable()
         self.check_registration_btn_text()
-    # ───────────────────────────────────────┘
+    # ────────────────────────────────────────────────────┘
     def check_registration_btn_enable(self):
         """
-        Check <Registration button> of the Registration page - enable!'
+        Check <Registration button> of the Registration page - enabled!
 
         - ✔ Button - enabled
         """
@@ -172,13 +173,13 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_registration_btn_disable(self):
         """
-        Check <Registration button> of the Registration page - disable!'
+        Check <Registration button> of the Registration page - disabled!
 
         (Until the Registration form is completed successfully)
 
         - ✔ Button - disabled
         """
-        error = '❌ <Registration button> of the Registration page - enable!'
+        error = '❌ <Registration button> of the Registration page - enabled!'
         expect(self.registration_btn, error).to_be_disabled()
 
     def check_registration_btn_text(self):

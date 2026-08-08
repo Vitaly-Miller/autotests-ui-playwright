@@ -227,7 +227,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         Check <Toolbar [Title] text> of the Create course page
 
-        - ✔ Title text - correct
+        did - correct
         """
         error = '❌ <Toolbar [Title] text> of the Create course page - incorrect!'
         expect(self.toolbar_title, error).to_have_text('Create course')

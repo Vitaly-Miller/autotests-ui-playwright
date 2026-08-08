@@ -22,7 +22,7 @@ with sync_playwright() as playwright:                        # Создаем о
     email_field.fill('user.name@gmail.com')                                             # ▶ ACTION - Fill email field
 
     # Password field
-    password_field = page.get_by_label('Password')                 # ㉧ LOCATOR поля ввода Email  (by label)
+    password_field = page.get_by_label('Password')                 # ㉧ LOCATOR поля ввода Password  (by label)
     password_field.fill('password')                                # ▶ ACTION - Fill password field
 
     # Login button

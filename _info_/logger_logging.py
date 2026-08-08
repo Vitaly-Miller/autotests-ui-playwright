@@ -16,7 +16,7 @@ handler.setLevel(logging.DEBUG)                   # Уровень (глубин
 formatter = logging.Formatter('%(asctime)s | %(name)s | %(levelname)s | %(message)s') # Форматирование логов
 
 # ADD
-handler.setFormatter(formatter)                   # Добавляем Handler (обработчик) в Formatter
+handler.setFormatter(formatter)                   # Добавляем Formatter (форматирование) в Handler
 logger.addHandler(handler)                        # Добавляем Handler (обработчик) в Logger
 
 

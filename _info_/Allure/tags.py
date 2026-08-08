@@ -25,7 +25,7 @@ if status == 'active':      # легко опечататься: "actve", "Activ
    print('👍')
 
 # ✅
-status = 'active'
+status = Status.ACTIVE
 if status == Status.ACTIVE:
     print('👍')
 

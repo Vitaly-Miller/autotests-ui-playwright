@@ -174,18 +174,18 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     # Empty View [Icon]
     def check_empty_view_icon_visible(self):
         """
-        Check <Empty View - Icon> of the Course List page - visible
+        Check <Empty View [Icon]> of the Courses List page - visible
 
         - ✔ Icon - visible
         """
-        error = '❌ <Empty view -Icon> of the Courses List page - invisible!'
+        error = '❌ <Empty view [Icon]> of the Courses List page - invisible!'
         expect(self.empty_view_icon, error).to_be_visible()
 
 
     # Empty View [Title]
     def check_empty_view_title_visible(self):
         """
-        Check <Empty View [Title]> of the Course List page - visible
+        Check <Empty View [Title]> of the Courses List page - visible
 
         - ✔ Title - visible
         """
@@ -194,7 +194,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
     def check_empty_view_title_text(self):
         """
-        Check <Empty View [Title] text> of the Course List page - correct
+        Check <Empty View [Title] text> of the Courses List page - correct
 
         - ✔ Text - correct
         """
@@ -205,7 +205,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     # Empty View [Description]
     def check_empty_view_description_visible(self):
         """
-        Check <Empty View [Description]> of the Course List page - visible
+        Check <Empty View [Description]> of the Courses List page - visible
 
         - ✔ Description - visible
         """
@@ -214,7 +214,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
     def check_empty_view_description_text(self):
         """
-        Check <Empty View [Description] text> of the Course List page - correct
+        Check <Empty View [Description] text> of the Courses List page - correct
 
         - ✔ Text - correct
         """
@@ -232,7 +232,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
             min_score: str,
             estimated_time: str):
         """
-        Check <Curse card> of the Courses List page
+        Check <Course card> of the Courses List page
 
         - ✔ Image - visible
         - ✔ Title - visible | Text - correct
@@ -287,7 +287,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         :param title: Course title
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card [Title] text> of the Course List page - incorrect!'
+        error = '❌ <Course card [Title] text> of the Courses List page - incorrect!'
         expect(self.course_title.nth(index), error).to_have_text(title)
 
 
@@ -298,7 +298,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card [Max score]> of the Course List page - invisible!'
+        error = '❌ <Course card [Max score]> of the Courses List page - invisible!'
         expect(self.course_max_score.nth(index), error).to_be_visible()
 
     def check_course_card_max_score_text(self, max_score: str, index: int):
@@ -308,7 +308,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         :param max_score: Max score
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card [Max score] text> of the Course List page - incorrect!'
+        error = '❌ <Course card [Max score] text> of the Courses List page - incorrect!'
         expect(self.course_max_score.nth(index), error).to_have_text(f'Max score: {max_score}')
 
 
@@ -319,7 +319,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card [Min score]> of the Course List page - invisible!'
+        error = '❌ <Course card [Min score]> of the Courses List page - invisible!'
         expect(self.course_min_score.nth(index), error).to_be_visible()
 
     def check_course_card_min_score_text(self, min_score: str, index: int):
@@ -329,7 +329,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         :param min_score: Min score
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card [Min score] text> of the Course List page - incorrect!'
+        error = '❌ <Course card [Min score] text> of the Courses List page - incorrect!'
         expect(self.course_min_score.nth(index), error).to_have_text(f'Min score: {min_score}')
 
 
@@ -340,7 +340,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card [Estimated time]> of the Course List page - invisible!'
+        error = '❌ <Course card [Estimated time]> of the Courses List page - invisible!'
         expect(self.course_estimated_time.nth(index), error).to_be_visible()
 
     def check_course_card_estimated_time_text(self, estimated_time: str, index: int):
@@ -350,7 +350,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         :param estimated_time: Estimated time
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card [Estimated time] text> of the Course List page - incorrect!'
+        error = '❌ <Course card [Estimated time] text> of the Courses List page - incorrect!'
         expect(self.course_estimated_time.nth(index), error).to_have_text(f'Estimated time: {estimated_time}')
 
 
@@ -361,7 +361,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
         :param index: Element DOM-index if more than one <Course Card>
         """
-        error = '❌ <Course card [Menu button] of the Courses List page - invisible!'
+        error = '❌ <Course card [Menu button]> of the Courses List page - invisible!'
         expect(self.course_menu_btn.nth(index), error).to_be_visible()
 
 

@@ -38,7 +38,7 @@ def test_loop():
 def test_1(n: int):                           # передаем <n>
     assert n > 0                              # подставляет КАЖДЫЙ <n>
                                               # test_1[1]  PASSED ✅
-                                              # test_1[3]  PASSED ✅
+                                              # test_1[2]  PASSED ✅
                                               # test_1[-1] FAILED ❌
                                               # test_1[3]  PASSED ✅
 
@@ -91,12 +91,12 @@ def test_multi_param(os: str, browser: str):  # <- Передаем параме
 @pytest.mark.parametrize('user', ['User-1', 'User-2'])  # 2 Class-параметра
 class TestClass1:
     def test_1(self, user: str):              # <- Передаем 2 Class-параметра (по очереди)
-        print(f'Hi, {user}!')                 # test_1[User 1]     PASSED   Hi, User-1!
-                                              # test_1[User 2]     PASSED   Hi, User 2!
+        print(f'Hi, {user}!')                 # test_1[User-1]     PASSED   Hi, User-1!
+                                              # test_1[User-2]     PASSED   Hi, User-2!
 
     def test_2(self,user: str):               # <- Передаем 2 Class-параметра (по очереди)
-        print(f'Hello, {user}!')              # test_2[User 1]  PASSED   Hello, User-1!
-                                              # test_2[User 2]  PASSED   Hello, User-2!
+        print(f'Hello, {user}!')              # test_2[User-1]  PASSED   Hello, User-1!
+                                              # test_2[User-2]  PASSED   Hello, User-2!
 
 #-----------------------------------------------------------------------------------------------------------------------
 # (2) + (2 x 2) +  = 6 тестов

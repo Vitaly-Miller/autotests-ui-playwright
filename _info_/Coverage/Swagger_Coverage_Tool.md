@@ -17,8 +17,9 @@ SWAGGER_COVERAGE_SERVICES='[
         "name": "API Service",
         "tags": ["API", "PRODUCTION"],
         "repository": "https://github.com/Vitaly-Miller/autotests-api-httpx",
-        "swagger_url": "http://localhost:8000/openapi.json"
-        "swagger_file": "./openapi.json"   # (optional) Если файл локальный 
+        "swagger_url": "http://localhost:8000/openapi.json",
+        "swagger_file": "./openapi.json"
+        # swagger_file - (optional) Если файл локальный - альтернатива swagger_url
     }
 ]'
 #------------- Default Settings (optional) ---------------    # (Если не нужно вообще - ...=null)

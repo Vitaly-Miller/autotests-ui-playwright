@@ -31,11 +31,11 @@ class TestClass1:
 
 # v.2 - Для .методов класса (тест-функций)
 class TestClass2:
-    @pytest.mark.usefixtures('fixture_2', 'fixture_2')
+    @pytest.mark.usefixtures('fixture_1', 'fixture_2')
     def func_1(self):
         ...
 
-    @pytest.mark.usefixtures('fixture_2', 'fixture_2')
+    @pytest.mark.usefixtures('fixture_1', 'fixture_2')
     def func_2(self):
         ...
 
