@@ -132,16 +132,14 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Toolbar [Title]> of the Courses List page - invisible!'
         expect(self.toolbar_title, error).to_be_visible()
 
-    def check_toolbar_title_text(self, text: str = 'Courses'):
+    def check_toolbar_title_text(self):
         """
         Check <Toolbar [Title] text> of the Courses List page
 
         - ✔ Text - correct
-
-        :param text: "Courses" (default)
         """
         error = '❌ <Toolbar [Title] text> of the Courses List page - incorrect!'
-        expect(self.toolbar_title, error).to_have_text(text)
+        expect(self.toolbar_title, error).to_have_text('Courses')
 
     def check_toolbar_create_course_btn_visible(self):
         """
