@@ -20,7 +20,6 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     course_max_score = '100'
     course_min_score = '10'
 
-
     # ⿹ Open page
     create_course_page.visit(create_course_page.URL)
 
@@ -46,7 +45,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
         max_score=course_max_score,
         min_score=course_min_score
     )
-    create_course_page.click_create_course_btn()                   # Нажатие на кнопку <Create course Button>
+    create_course_page.click_create_course_btn()                  # Нажатие на кнопку <Create course Button>
 
     # ✔️EXPECTATIONS (after Course creation)
     courses_list_page.check_current_url(courses_list_page.URL)    # Проверка успешного редиректа на страницу - Courses List Page
