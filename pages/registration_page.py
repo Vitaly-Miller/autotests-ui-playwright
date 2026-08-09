@@ -154,7 +154,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.check_password_field(password)
     # ───────────────────────────────────────────────────────┘
 
-    # Email field
+    # - Email field
     # ───────────────────────────────────────────────────────┐
     def check_email_field(self, email: str | None = None):
         """
@@ -197,7 +197,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         error = '❌ <Registration form [Email field]> of the Registration page - filled incorrectly!'
         expect(self.email_field, error).to_have_value(email)
 
-    # Username field
+    # - Username field
     # ───────────────────────────────────────────────────────┐
     def check_username_field(self, username: str | None = None):
         """
@@ -240,8 +240,8 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         error = '❌ <Registration form [Username field] of the Registration page - filled incorrectly!'
         expect(self.username_field, error).to_have_value(username)
 
-    # Password field
-    # ───────────────────────────────────────────────────────┐
+    # - Password field
+    # ──────────────────────────────────────────────────────────┐
     def check_password_field(self, password: str | None = None):
         """
         Check <Registration form [Password field]> of the Registration page
@@ -255,7 +255,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         else:
             self.check_password_field_visible()
             self.check_password_field_name()
-    # ───────────────────────────────────────────────────────┘
+    # ──────────────────────────────────────────────────────────┘
     def check_password_field_visible(self):
         """
         Check <Registration form [Password field]> of the Registration page - visible

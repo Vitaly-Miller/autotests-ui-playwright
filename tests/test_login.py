@@ -1,5 +1,6 @@
 """
-Test authorization (Login) with Parametrize (3-in-1)
+Test authorization (Login)
+with Parametrize (3-in-1)
 """
 
 import pytest
@@ -15,13 +16,16 @@ from pages.login_page import LoginPage
         ('user.name@gmail.com', '  '),          # - Invalid password
         ('  ', 'password')                      # - Invalid email
     ])
-def test_login_with_wrong_email_or_password(
+def test_login_with_wrong_email_or_password_negative(
         login_page: LoginPage,                                # Принимает фикстуру login_page
         email: str,                                           # Принимает email     ┐ из parametrize
         password: str                                         # Принимает password  ┘
 ):
     # ⿹ Open page
     login_page.visit(login_page.URL)
+
+    # ✔️EXPECTATIONS (Before fill Login form)
+    login_page.check_all_elements()
 
     # ▶ ACTIONS
     login_page.fill_login_form(email=email, password=password)

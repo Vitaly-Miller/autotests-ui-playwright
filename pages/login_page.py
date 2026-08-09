@@ -16,6 +16,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
         self.TITLE_TEXT = 'UI Course'
+        self.EMAIL_FIELD_NAME = 'Email'
+        self.PASSWORD_FIELD_NAME = 'Password'
         self.LOGIN_BTN_TEXT = 'Login'
         self.REGISTRATION_LINK_TEXT = 'Registration'
         self.REGISTRATION_LINK_URL = '#/auth/registration'
@@ -38,10 +40,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    def fill_login_form(
-            self,
-            email: str,
-            password: str):
+    def fill_login_form(self, email: str, password: str):
         """
         Fill <Login form> fields of the Login page
 
@@ -54,9 +53,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.email_field.fill(email)
         self.password_field.fill(password)
-        self.check_login_form_filled_correctly(
-            email=email,
-            password=password)
+        self.check_login_form(email=email, password=password)
 
 
     def click_login_btn(self):
@@ -81,7 +78,24 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.registration_link.click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # Toolbar:
+    # ALL Elements
+    # ══════════════════════════════════════╗
+    def check_all_elements(self):
+        """
+        Check ALL Elements of the Login page
+
+        - ✔ Title
+        - ✔ Login Form (unfilled)
+        - ✔ Login button - disabled
+        - ✔ Registration link
+        """
+        self.check_title()
+        self.check_login_form()
+        self.check_login_btn(enable=False)
+        self.check_registration_link()
+    # ══════════════════════════════════════╝
+
+    # Title:
     # ───────────────────────────────────┐
     def check_title(self):
         """
@@ -112,40 +126,109 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
-    # Login Form (filled):
+    # Login Form:
     # ─────────────────────────────────────────────────────────────────────┐
-    def check_login_form_filled_correctly(self, email: str, password: str):
+    def check_login_form(
+            self,
+            email: str | None = None,
+            password: str| None = None):
         """
-        Check <Login form> fields of the Login page - filled correctly
+        Check <Login form> fields of the Login page
 
-        - ✔ <Email field> - filled correctly
-        - ✔ <Password field> - filled correctly
+        - ✔ Email field - visible | Name - correct | Filled - correctly (if is passed)
+        - ✔ Password field - visible | Name - correct | Filled - correctly (if is passed)
+
+        :param email: Email (optional)
+        :param password: Password (optional)
         """
-        self.check_email_field_filled_correctly(email)
-        self.check_password_field_filled_correctly(password)
+        self.check_email_field(email)
+        self.check_password_field(password)
     # ─────────────────────────────────────────────────────────────────────┘
 
+    # - Email field
+    # ───────────────────────────────────────────────────────┐
+    def check_email_field(self, email: str | None = None):
+        """
+        Check <Login form [Email field]> of the Login page
 
+        - ✔ Field - visible
+        - ✔ Field Name - correct
+        - ✔ Field - filled correctly (if is passed)
+        """
+        if email:
+            self.check_email_field_filled_correctly(email)
+        else:
+            self.check_email_field_visible()
+            self.check_email_field_name()
+    # ───────────────────────────────────────────────────────┘
+    def check_email_field_visible(self):
+        """
+        Check <Login form [Email field]> of the Login page - visible
+
+        - ✔ Field - visible
+        """
+        error = '❌ <Login form [Email field]> of the Login page - invisible!'
+        expect(self.email_field, error).to_be_visible()
+
+    def check_email_field_name(self):
+        """
+        Check <Login form [Email field Name]> of the Login page - correct
+
+        - ✔ Field Name - correct
+        """
+        error = '❌ <Login form [Email field Name]> of the Login page - incorrect!'
+        expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
     def check_email_field_filled_correctly(self, email: str):
         """
-        Check <Email field> of the Login form - filled correctly
+        Check <Login form [Email field]> of the Login page - filled correctly
 
         - ✔ Field - filled correctly
         """
-        error = '❌ <Email field> of the Login form - filled incorrectly!'
+        error = '❌ <Login form [Email field]> of the Login page - filled incorrectly!'
         expect(self.email_field, error).to_have_value(email)
 
+    # - Password field
+    # ──────────────────────────────────────────────────────────┐
+    def check_password_field(self, password: str | None = None):
+        """
+        Check <Registration form [Password field]> of the Registration page
 
+        - ✔ Field - visible
+        - ✔ Field Name - correct
+        - ✔ Field - filled correctly (if is passed)
+        """
+        if password:
+            self.check_password_field_filled_correctly(password)
+        else:
+            self.check_password_field_visible()
+            self.check_password_field_name()
+    # ──────────────────────────────────────────────────────────┘
+    def check_password_field_visible(self):
+        """
+        Check <Login form [Password field]> of the Login page - visible
 
+        - ✔ Field - visible
+        """
+        error = '❌ <Login form [Password field]> of the Login page - invisible!'
+        expect(self.password_field, error).to_be_visible()
+
+    def check_password_field_name(self):
+        """
+        Check <Login form [Password field Name]> of the Login page - correct
+
+        - ✔ Field Name - correct
+        """
+        error = '❌ <Login form [Password field Name]> of the Login page - incorrect!'
+        expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
     def check_password_field_filled_correctly(self, password: str):
         """
-        Check <Password field> of the Login form - filled correctly
+        Check <Login form [Password field]> of the Login page - filled correctly
 
         - ✔ Field - filled correctly
         """
-        error = '❌ <Password field> of the Login form - filled incorrectly!'
+        error = '❌ <Login form [Password field]> of the Login page - filled incorrectly!'
         expect(self.password_field, error).to_have_value(password)
 
 

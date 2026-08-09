@@ -13,7 +13,7 @@ from pages.dashboard_page import DashboardPage
     'email, username, password', [
         ('user.name@gmail.com','username', 'password')
     ])
-def test_successful_registration(               # Принимает:
+def test_registration_successful(               # Принимает:
         registration_page: RegistrationPage,    # Фикстура registration_page
         email: str,                             # email     ┐
         username: str,                          # username  │ из parametrize
@@ -22,17 +22,14 @@ def test_successful_registration(               # Принимает:
     # ⿹ Open page
     registration_page.visit(registration_page.URL)
 
-    # ✔️EXPECTATIONS (Before actions)
+    # ✔️EXPECTATIONS (Before fill Registration form)
     registration_page.check_all_elements()
 
     # ▶ ACTIONS
-    registration_page.fill_registration_form(
-        email=email,
-        username=username,
-        password=password)
+    registration_page.fill_registration_form(email=email, username=username, password=password)
     registration_page.click_registration_btn()
 
-    # ✔️EXPECTATIONS (After actions)
+    # ✔️EXPECTATIONS
     registration_page.check_current_url(DashboardPage.URL)
 
 
