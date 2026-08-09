@@ -14,9 +14,16 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
+        # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
+        self.TITLE_TEXT = 'UI Course'
+        self.LOGIN_BTN_TEXT = 'Login'
+        self.REGISTRATION_LINK_TEXT = 'Registration'
+        self.REGISTRATION_LINK_URL = '#/auth/registration'
+        self.ALERT_TEXT = 'Wrong email or password'
+
         # ------------------------------------------ ㉧ LOCATORS (static) -----------------------------------------------
         # Toolbar
-        self.toolbar_title = page.get_by_test_id('authentication-ui-course-title-text')
+        self.title = page.get_by_test_id('authentication-ui-course-title-text')
 
         # Login Form input fields
         self.email_field = page.get_by_label('Email')
@@ -31,10 +38,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    # Login form:
     def fill_login_form(self, email: str, password: str):
         """
-        Fill <Login form> of the Login page
+        Fill <Login form> fields of the Login page
 
         - ▶ <Email field> - Fill
         - ▶ <Password field> - Fill
@@ -47,7 +53,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.password_field.fill(password)
         self.check_login_form_filled_correctly(email=email, password=password)
 
-    # Login button:
+
     def click_login_btn(self):
         """
         Click <Login button> of the Login page
@@ -58,7 +64,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_login_btn()
         self.login_btn.click()
 
-    # Registration link:
+
     def click_registration_link(self):
         """
         Click <Registration link> of the Login page
@@ -69,38 +75,36 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_registration_link()
         self.registration_link.click()
 
-
-
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Toolbar:
     # ───────────────────────────────────┐
-    def check_toolbar_title(self):
+    def check_title(self):
         """
-        Check <Toolbar title> of the Registration page
+        Check <Title> of the Registration page
 
         - ✔ Title - visible
         - ✔ Title text - correct
         """
-        self.check_toolbar_title_visible()
-        self.check_toolbar_title_text()
+        self.check_title_visible()
+        self.check_title_text()
     # ───────────────────────────────────┘
-    def check_toolbar_title_visible(self):
+    def check_title_visible(self):
         """
-        Check <Toolbar title> of the Login page - visible
+        Check <Title> of the Login page - visible
 
         - ✔ Title - visible
         """
-        error = '❌ <Toolbar title> of the Login page - invisible!'
-        expect(self.toolbar_title, error).to_be_visible()
+        error = '❌ <Title> of the Login page - invisible!'
+        expect(self.title, error).to_be_visible()
 
-    def check_toolbar_title_text(self):
+    def check_title_text(self):
         """
-        Check <Toolbar title text> of the Login page - correct
+        Check <Title text> of the Login page - correct
 
         - ✔ Text - correct
         """
-        error = '❌ <Toolbar title text> of the Login page - incorrect!'
-        expect(self.toolbar_title, error).to_have_text('UI Course')
+        error = '❌ <Title text> of the Login page - incorrect!'
+        expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
     # Login Form (filled):
@@ -176,7 +180,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ✔ Text - correct
         """
         error = '❌ <Login Button text> of the Login page - incorrect!'
-        expect(self.login_btn, error).to_have_text('Login')
+        expect(self.login_btn, error).to_have_text(self.LOGIN_BTN_TEXT)
 
 
     # Registration Link:
@@ -209,7 +213,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ✔ Text - correct
         """
         error = '❌ <Registration link text> of the Login page - incorrect!'
-        expect(self.registration_link, error).to_have_text('Registration')
+        expect(self.registration_link, error).to_have_text(self.REGISTRATION_LINK_TEXT)
 
     def check_registration_link_url(self):
         """
@@ -218,7 +222,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ✔ URL - correct
         """
         error = '❌ <Registration link [URL]> of the Login page - incorrect!'
-        expect(self.registration_link, error).to_have_attribute('href', '#/auth/registration')
+        expect(self.registration_link, error).to_have_attribute('href', self.REGISTRATION_LINK_URL)
 
 
     # Alert:
@@ -249,7 +253,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ✔ Text - correct
         """
         error = '❌ <Wrong Email or Password alert text> - incorrect!'
-        expect(self.wrong_email_password_alert, error).to_have_text('Wrong email or password')
+        expect(self.wrong_email_password_alert, error).to_have_text(self.ALERT_TEXT)
 
 
 #=======================================================================================================================

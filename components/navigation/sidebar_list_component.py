@@ -14,8 +14,12 @@ from playwright.sync_api import Page, expect
 class SidebarListComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str):
         """
+        - dashboard
+        - courses
+        - logout
+
         :param page: Page
-        :param identifier: Button locator identifier ("dashboard" / "courses" / "logout")
+        :param identifier: Unique component locator identifier
         """
         super().__init__(page)
 
@@ -23,7 +27,6 @@ class SidebarListComponent(BaseComponent):
         self.btn = page.get_by_test_id(f'{identifier}-drawer-list-item-button')
         self.btn_icon = page.get_by_test_id(f'{identifier}-drawer-list-item-icon')
         self.btn_title = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
-
 
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     def click_btn(self):
@@ -33,7 +36,6 @@ class SidebarListComponent(BaseComponent):
         - ✔ Button - click
         """
         self.btn.click()
-
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # ──────────────────────────────────┐
@@ -87,4 +89,6 @@ class SidebarListComponent(BaseComponent):
         """
         error = '❌ Check <Sidebar List component [Button Title text]> - incorrect!'
         expect(self.btn_title, error).to_have_text(title)
+
+
 #=======================================================================================================================

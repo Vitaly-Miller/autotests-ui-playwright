@@ -5,6 +5,7 @@ Courses List page
 from pages.base_page import BasePage
 from components.navigation.navbar_component import NavbarComponent
 from components.navigation.sidebar_component import SidebarComponent
+from components.views.emty_view_component import EmptyViewComponent
 from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
@@ -14,9 +15,15 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page)       # Navbar component
-        self.sidebar = SidebarComponent(page)     # Sidebar component
+        # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
+        self.IDENTIFIER = 'courses-list'
+        self.EMPTY_VIEW_TITLE = 'There is no results'
+        self.EMPTY_VIEW_DESCRIPTION = 'Results from the load test pipeline will be displayed here'
+
+        # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
+        self.navbar = NavbarComponent(page)
+        self.sidebar = SidebarComponent(page)
+        self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER)
 
         # ------------------------------------------ ㉧ LOCATORS (static) -----------------------------------------------
         # Toolbar
@@ -24,9 +31,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.toolbar_create_course_btn = page.get_by_test_id('courses-list-toolbar-create-course-button')
 
         # Empty view
-        self.empty_view_icon = page.get_by_test_id('courses-list-empty-view-icon')
-        self.empty_view_title = page.get_by_test_id('courses-list-empty-view-title-text')
-        self.empty_view_description = page.get_by_test_id('courses-list-empty-view-description-text')
+        # See —> /components/views/empty_view_component.py
 
         # Course Card
         self.course_title = page.get_by_test_id('course-widget-title-text')
@@ -95,7 +100,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ALL Elements (NO Course Cards)
     # ════════════════════════════╗
-    def check_all_elements(self):
+    def check_component(self):
         """
         Check ALL Elements of the Courses List page
 
@@ -163,74 +168,20 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         expect(self.toolbar_create_course_btn, error).to_be_visible()
 
 
-    # Empty view:
-    # ──────────────────────────────────────────────┐
+    # Empty View (component):
+    # ─────────────────────────────────────────────┐
     def check_empty_view(self):
         """
-        Check <Courses Empty View> of the Courses List page
-
-        (Without created Course cards)
+        Check ALL elements of the <Empty View> component of the Courses List page
 
         - ✔ Icon - visible
         - ✔ Title - visible | Text - correct
         - ✔ Description - visible | Text - correct
-
-
         """
-        self.check_empty_view_icon_visible()
-        self.check_empty_view_title_visible()
-        self.check_empty_view_description_visible()
-        self.check_empty_view_title_text()
-        self.check_empty_view_description_text()
-   # ───────────────────────────────────────────────┘
-    # Empty View [Icon]
-    def check_empty_view_icon_visible(self):
-        """
-        Check <Empty View [Icon]> of the Courses List page - visible
-
-        - ✔ Icon - visible
-        """
-        error = '❌ <Empty view [Icon]> of the Courses List page - invisible!'
-        expect(self.empty_view_icon, error).to_be_visible()
-
-    # Empty View [Title]
-    def check_empty_view_title_visible(self):
-        """
-        Check <Empty View [Title]> of the Courses List page - visible
-
-        - ✔ Title - visible
-        """
-        error = '❌ <Empty View [Title]> of the Courses List page - invisible!'
-        expect(self.empty_view_title, error).to_be_visible()
-
-    def check_empty_view_title_text(self):
-        """
-        Check <Empty View [Title] text> of the Courses List page - correct
-
-        - ✔ Text - correct
-        """
-        error = '❌ <Empty View [Title] text> of the Courses List page - incorrect!'
-        expect(self.empty_view_title, error).to_have_text('There is no results')
-
-    # Empty View [Description]
-    def check_empty_view_description_visible(self):
-        """
-        Check <Empty View [Description]> of the Courses List page - visible
-
-        - ✔ Description - visible
-        """
-        error = '❌ <Empty View [Description]> of the Courses List page - invisible!'
-        expect(self.empty_view_description, error).to_be_visible()
-
-    def check_empty_view_description_text(self):
-        """
-        Check <Empty View [Description] text> of the Courses List page - correct
-
-        - ✔ Text - correct
-        """
-        error = '❌ <Empty View [Description] text> of the Courses List page - incorrect!'
-        expect(self.empty_view_description, error).to_have_text('Results from the load test pipeline will be displayed here')
-
+        self.empty_view.check_component(
+            title=self.EMPTY_VIEW_TITLE,
+            description=self.EMPTY_VIEW_DESCRIPTION)
+    # ──────────────────────────────────────────────┘
 
     # Course Card: (by DOM-index)
     # ─────────────────────────────────────────────────────────────────────────────────────────┐
@@ -375,7 +326,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         expect(self.course_menu_btn.nth(index), error).to_be_visible()
 
 
-    # Course Card Menu [Action] buttons:
+    # Course Card Menu [Action buttons]:
     # - [Edit course] button
     def check_course_card_menu_edit_course_btn_visible(self, index: int):
         """

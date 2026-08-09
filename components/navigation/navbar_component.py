@@ -14,7 +14,6 @@ class NavbarComponent(BaseComponent):
         self.title = page.get_by_test_id('navigation-navbar-app-title-text')
         self.welcome_title = page.get_by_test_id('navigation-navbar-welcome-title-text')
 
-
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ──────────────────────────────────────────┐
     def check_navbar(self, username: str):

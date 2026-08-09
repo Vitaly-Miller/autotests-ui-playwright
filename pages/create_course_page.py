@@ -5,6 +5,7 @@ Create Course page
 from pages.base_page import BasePage
 from components.navigation.navbar_component import NavbarComponent
 from components.navigation.sidebar_component import SidebarComponent
+from components.views.emty_view_component import EmptyViewComponent
 from playwright.sync_api import Locator, Page, expect
 
 #=======================================================================================================================
@@ -14,25 +15,36 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     def __init__(self, page: Page):      # Конструктор класса, принимающий Page
         super().__init__(page)           # Передаёт page в конструктор BasePage
 
-        # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page)       # Navbar component
-        self.sidebar = SidebarComponent(page)     # Sidebar component
+        # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
+        # Preview [Empty View]
+        self.PREVIEW_EMPTY_VIEW_IDENTIFIER = 'create-course-preview'
+        self.PREVIEW_EMPTY_VIEW_TITLE = 'No image selected'
+        self.PREVIEW_EMPTY_VIEW_DESCRIPTION = 'Preview of selected image will be displayed here'
 
-        # ------------------------------------------- ㉧ LOCATORS (static) ----------------------------------------------
+        # Exercises [Empty View]
+        self.EXERCISES_EMPTY_VIEW_IDENTIFIER = 'create-course-exercises'
+        self.EXERCISES_EMPTY_VIEW_TITLE = 'There is no exercises'
+        self.EXERCISES_EMPTY_VIEW_DESCRIPTION = 'Click on "Create exercise" button to create new exercise'
+
+        # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
+        self.navbar = NavbarComponent(page)
+        self.sidebar = SidebarComponent(page)
+        self.preview_empty_view = EmptyViewComponent(page=page, identifier=self.PREVIEW_EMPTY_VIEW_IDENTIFIER)
+        self.exercises_empty_view = EmptyViewComponent(page=page, identifier=self.EXERCISES_EMPTY_VIEW_IDENTIFIER)
+
+        # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
         # Toolbar
         self.toolbar_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.create_course_btn = page.get_by_test_id('create-course-toolbar-create-course-button')
 
         # Preview - Empty View
-        self.preview_empty_view_icon = page.get_by_test_id('create-course-preview-empty-view-icon')
-        self.preview_empty_view_title = page.get_by_test_id('create-course-preview-empty-view-title-text')
-        self.preview_empty_view_description = page.get_by_test_id('create-course-preview-empty-view-description-text')
+        # See —> /components/views/empty_view_component.py
 
         # Preview - Image
         self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
 
         # Upload image View
-        self.upload_image_view_icon = page.get_by_test_id("create-course-preview-image-upload-widget-info-icon")
+        self.upload_image_view_icon = page.get_by_test_id('create-course-preview-image-upload-widget-info-icon')
         self.upload_image_view_title = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
         self.upload_image_view_description = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
 
@@ -49,14 +61,12 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.course_form_min_score_field = page.get_by_role(role='spinbutton', name='Min score')
 
         # EXERCISES:
-        # - Exercises Toolbar
+        # - Toolbar
         self.exercise_toolbar_title = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
         self.exercise_toolbar_create_exercise_btn = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
-        # - Exercises - Empty view
-        self.exercises_empty_view_icon = page.get_by_test_id('create-course-exercises-empty-view-icon')
-        self.exercises_empty_view_title = page.get_by_test_id('create-course-exercises-empty-view-title-text')
-        self.exercises_empty_view_description = page.get_by_test_id('create-course-exercises-empty-view-description-text')
+        # - Empty view
+        # See —> /components/views/empty_view_component.py
 
         # - Exercise
         # ┄┄┄┄┄┄┄┄ (lambda - index) - ⚠️ NOT USING! - FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄╮
@@ -76,7 +86,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     def delete_exercise_btn(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
 
-    # - Exercise form
+    # - Exercise Form
     def exercise_form_title_field(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-form-title-{index}-input')
 
@@ -85,7 +95,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    # COURSE:
     def click_create_course_btn(self):
         """
         Click <Create course Button> of the Create course page
@@ -126,8 +135,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
             estimated_time: str,
             description: str,
             max_score: str,
-            min_score: str
-    ):
+            min_score: str):
         """
         Fill Create course form of the Create course page
 
@@ -184,26 +192,26 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ALL Elements
     # ════════════════════════════════════╗
-    def check_all_elements(self):
+    def check_page(self):
         """
         Check ALL Elements of the Create course page
 
         - ✔ Toolbar
-        - ✔ Preview View
+        - ✔ Preview Empty View (component)
         - ✔ Upload image View
         - ✔ Course Form
         - ✔ Exercises Toolbar
-        - ✔ Exercises Empty View
+        - ✔ Exercises Empty View (component)
         """
         self.check_toolbar()
-        self.check_preview_view()
+        self.check_preview_empty_view()
         self.check_upload_image_view()
         self.check_course_form()
         self.check_exercises_toolbar()
         self.check_exercises_empty_view()
     # ════════════════════════════════════╝
 
-    # Navbar + Sidebar components
+    # Navbar + Sidebar (components)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_navbar_and_sidebar(self, username: str):
         """
@@ -280,81 +288,22 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         expect(self.create_course_btn, error).to_be_disabled()
 
 
-    # Preview View:
-    # ─────────────────────────────────────────────────────────┐
-    def check_preview_view(self):
+    # Preview [Empty View] (component)
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_preview_empty_view(self):
         """
-        Check <Preview View> of the Create course page
-
-        If Image UPLOADED:
-        -----------------
-        - ✔ Image - visible
-
-        If Image did NOT upload:
-        -----------------------
-        - ✔ Icon - visible
-        - ✔ Title - visible | - text
-        - ✔ Description - visible | - text
-        """
-        if self.preview_image.is_visible():
-            self.check_preview_view_image_visible()
-        else:    # If image did NOT upload
-            self.check_preview_empty_view_icon_visible()
-            self.check_preview_empty_view_title_visible()
-            self.check_preview_empty_view_title_text()
-            self.check_preview_empty_view_description_visible()
-            self.check_preview_empty_view_description_text()
-    # ─────────────────────────────────────────────────────────┘
-
-    # - Preview <Empty> View [Icon]
-    def check_preview_empty_view_icon_visible(self):
-        """
-        Check <Preview Empty View - Icon> of the Create course page - visible
+        Check ALL elements of the <Preview [Empty View]> component of the  Create course page
 
         - ✔ Icon - visible
+        - ✔ Title - visible | Text - correct
+        - ✔ Description - visible | Text - correct
         """
-        error = '❌ <Preview Empty View - Icon> of the Create course page - invisible!'
-        expect(self.preview_empty_view_icon, error).to_be_visible()
+        self.preview_empty_view.check_component(
+            title=self.PREVIEW_EMPTY_VIEW_TITLE,
+            description=self.PREVIEW_EMPTY_VIEW_DESCRIPTION)
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
-    # - Preview <Empty> View [Title]
-    def check_preview_empty_view_title_visible(self):
-        """
-        Check <Preview Empty View [Title]> of the Create course page - visible
-
-        - ✔ Title - visible
-        """
-        error = '❌ <Preview Empty View [Title]> of the Create course page - invisible!'
-        expect(self.preview_empty_view_title, error).to_be_visible()
-
-    def check_preview_empty_view_title_text(self):
-        """
-        Check <Preview Empty View [Title] text> of the Create course page - correct
-
-        - ✔ Text - correct
-        """
-        error = '❌ <Preview Empty View [Title] text> of the Create course page - incorrect!'
-        expect(self.preview_empty_view_title, error).to_have_text('No image selected')
-
-    # - Preview <Empty> View [Description]
-    def check_preview_empty_view_description_visible(self):
-        """
-        Check <Preview Empty View [Description]> of the Create course page - visible
-
-        - ✔ Description - visible
-        """
-        error = '❌ <Preview Empty View [Description]> of the Create course page - invisible!'
-        expect(self.preview_empty_view_description, error).to_be_visible()
-
-    def check_preview_empty_view_description_text(self):
-        """
-        Check <Preview Empty View [Description] text> of the Create course - correct
-
-        - ✔ Text - correct
-        """
-        error = '❌ <Preview Empty View [Description] text> of the Create course page - incorrect!'
-        expect(self.preview_empty_view_description, error).to_have_text('Preview of selected image will be displayed here')
-
-    # - Preview View [Image]
+    # Preview View [Image View]
     def check_preview_view_image_visible(self):
         """
         Check <Preview View [Image]> of the Create course page - visible
@@ -854,7 +803,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # EXERCISES:
-    # - Toolbar:
+    # Exercises - Toolbar:
     # ──────────────────────────────────────────────────────────────┐
     def check_exercises_toolbar(self):
         """
@@ -899,70 +848,20 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         expect(self.exercise_toolbar_create_exercise_btn, error).to_be_visible()
 
 
-    # - Empty view:
-    # ────────────────────────────────────────────────────────┐
+    # - Empty view (component):
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_exercises_empty_view(self):
         """
-        Check <Exercises [Empty view]> of the Create course page
+        Check ALL elements of the <Exercise [Empty View]> component of the  Create course page
 
         - ✔ Icon - visible
-        - ✔ Title - visible | - text
-        - ✔ Description - visible | - text
+        - ✔ Title - visible | Text - correct
+        - ✔ Description - visible | Text - correct
         """
-        self.check_exercises_empty_view_icon_visible()
-        self.check_exercises_empty_view_title_visible()
-        self.check_exercises_empty_view_title()
-        self.check_exercises_empty_view_description_visible()
-        self.check_exercises_empty_view_description()
-    # ────────────────────────────────────────────────────────┘
-    # - Empty view [Icon]
-    def check_exercises_empty_view_icon_visible(self):
-        """
-        Check <Exercises Empty view [Icon]> of the Create course page - visible
-
-        - ✔ Icon - visible
-        """
-        error = '❌ <Exercises Empty view [Icon]> of the Create course page - invisible!'
-        expect(self.exercises_empty_view_icon, error).to_be_visible()
-
-    # - Empty view [Title]
-    def check_exercises_empty_view_title_visible(self):
-        """
-        Check <Exercises Empty view [Title]> of the Create course page - visible
-
-        - ✔ Title - visible
-        """
-        error = '❌ <Exercises Empty view [Title]> of the Create course page - invisible!'
-        expect(self.exercises_empty_view_title, error).to_be_visible()
-
-    def check_exercises_empty_view_title(self):
-        """
-        Check <Exercises Empty view [Title] text> of the Create course page - correct
-
-        - ✔ Text - correct
-        """
-        error = '❌ <Exercises Empty view [Title] text> of the Create course page - incorrect!'
-        expect(self.exercises_empty_view_title, error).to_have_text('There is no exercises')
-
-    # - Empty view [Description]
-    def check_exercises_empty_view_description_visible(self):
-        """
-        Check <Exercises Empty view [Description]> of the Create course page - visible
-
-        - ✔ Description - visible
-        """
-        error = '❌ <Exercises Empty view [Description]> of the Create course page - invisible!'
-        expect(self.exercises_empty_view_description, error).to_be_visible()
-
-    def check_exercises_empty_view_description(self):
-        """
-        Check <Exercises Empty view [Description] text> of the Create course page - correct
-
-        - ✔ Text - correct
-        """
-        error = '❌ <Exercises Empty view [Description] text> of the Create course page - incorrect!'
-        expect(self.exercises_empty_view_description, error).to_have_text('Click on "Create exercise" button to create new exercise')
-
+        self.preview_empty_view.check_component(
+            title=self.PREVIEW_EMPTY_VIEW_TITLE,
+            description=self.PREVIEW_EMPTY_VIEW_DESCRIPTION)
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
     # - Exercise [SubTitle]:
     def check_exercise_subtitle_visible(self, index: int):

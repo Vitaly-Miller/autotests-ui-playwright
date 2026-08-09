@@ -11,9 +11,15 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
+        # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
+        self.TITLE_TEXT = 'UI Course'
+        self.REGISTRATION_BTN_TEXT = 'Registration'
+        self.LOGIN_LINK_TEXT = 'Login'
+        self.LOGIN_LINK_URL = '#/auth/login'
+
         # --------------------------------------------╴ ㉧ LOCATORS (static) --------------------------------------------
-        # Toolbar
-        self.toolbar_title = page.get_by_role(role='heading', name='UI Course')
+        # Title
+        self.title = page.get_by_test_id('authentication-ui-course-title-text')
 
         # Registration Form fields
         self.email_field = page.get_by_role(role='textbox', name='Email')
@@ -26,15 +32,14 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    # Registration form:
     def fill_registration_form(self, email: str, username: str, password: str):
         """
-        Fill <Registration form> of the Registration page
+        Fill <Registration Form> fields of the Registration page
 
         - ▶ <Email field> - Fill
         - ▶ <Username field> - Fill
         - ▶ <Password field> - Fill
-        - ✔ <Registration form> fields - filled correctly
+        - ✔ <Registration Form> fields - filled correctly
 
         :param email: Email
         :param username: Username
@@ -45,7 +50,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.password_field.fill(password)
         self.check_registration_form_filled_correctly(email=email, username=username, password=password)
 
-    # Registration button:
+
     def click_registration_btn(self):
         """
         Click <Registration> button of the Registration page
@@ -57,7 +62,6 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.registration_btn.click()
 
 
-    # Login link:
     def click_login_link(self):
         """
         Click <Login link> of the Registration page
@@ -70,35 +74,35 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # Toolbar:
-    # ───────────────────────────────────┐
-    def check_toolbar_title(self):
+    # Title:
+    # ──────────────────────────────┐
+    def check_title(self):
         """
-        Check <Toolbar title> of the Registration page
+        Check <Title> of the Registration page
 
         - ✔ Title - visible
         - ✔ Title text - correct
         """
-        self.check_toolbar_title_visible()
-        self.check_toolbar_title_text()
-    # ───────────────────────────────────┘
-    def check_toolbar_title_visible(self):
+        self.check_title_visible()
+        self.check_title_text()
+    # ──────────────────────────────┘
+    def check_title_visible(self):
         """
-        Check <Toolbar title> of the Registration page - visible
+        Check <Title> of the Registration page - visible
 
         - ✔ Title - visible
         """
-        error = '❌ <Toolbar title> of the Registration page - invisible!'
-        expect(self.toolbar_title, error).to_be_visible()
+        error = '❌ <Title> of the Registration page - invisible!'
+        expect(self.title, error).to_be_visible()
 
-    def check_toolbar_title_text(self):
+    def check_title_text(self):
         """
-        Check <Toolbar title text> of the Registration page - correct!
+        Check <Title text> of the Registration page - correct!
 
         - ✔ Text - correct
         """
-        error = '❌ <Toolbar title text> of the Registration page - incorrect!'
-        expect(self.toolbar_title, error).to_have_text('UI Course')
+        error = '❌ <Title text> of the Registration page - incorrect!'
+        expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
     # Registration Form (filled):
@@ -189,7 +193,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Button text - correct
         """
         error = '❌ <Registration button text> of the Registration page - incorrect!'
-        expect(self.registration_btn, error).to_have_text('Registration')
+        expect(self.registration_btn, error).to_have_text(self.REGISTRATION_BTN_TEXT)
 
 
     # Login Link:
@@ -222,7 +226,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Link text - correct
         """
         error = '❌ <Login link text> of the Registration page - incorrect!'
-        expect(self.login_link, error).to_have_text('Login')
+        expect(self.login_link, error).to_have_text(self.LOGIN_LINK_TEXT)
 
     def check_login_link_url(self):
         """
@@ -231,6 +235,6 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Link URL - correct
         """
         error = '❌ <Login link> URL of the Registration page - incorrect!'
-        expect(self.login_link, error).to_have_attribute('href', '#/auth/login')
+        expect(self.login_link, error).to_have_attribute('href', self.LOGIN_LINK_URL)
 
 #=======================================================================================================================

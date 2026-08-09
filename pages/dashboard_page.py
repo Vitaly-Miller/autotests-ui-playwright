@@ -14,7 +14,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ----------------------------------------------- ⿷ COMPONENTS ------------------------------------------------
+        # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
         self.navbar = NavbarComponent(page)       # Navbar component
         self.sidebar = SidebarComponent(page)     # Sidebar component
 
@@ -40,7 +40,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # ALL Elements
     # ═════════════════════════════════════╗
-    def check_all_elements(self):
+    def check_component(self):
         """
         Check ALL Elements of the Dashboard page
 
