@@ -21,7 +21,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.ALERT_TEXT = 'Wrong email or password'
 
         # ------------------------------------------ ㉧ LOCATORS (static) -----------------------------------------------
-        # Toolbar
+        # Title
         self.title = page.get_by_test_id('authentication-ui-course-title-text')
 
         # Login Form
@@ -92,7 +92,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_registration_link()
     # ══════════════════════════════════════╝
 
-    # Title:
+    # Title
     # ───────────────────────────────────┐
     def check_title(self):
         """
@@ -123,8 +123,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
-    # Login Form:
-    # ─────────────────────────────────────────────────────────────────────┐
+    # Login Form
+    # ───────────────────────────────────────┐
     def check_login_form(
             self,
             email: str | None = None,
@@ -140,10 +140,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.check_email_field(email)
         self.check_password_field(password)
-    # ─────────────────────────────────────────────────────────────────────┘
+    # ───────────────────────────────────────┘
 
-    # - Email field
-    # ───────────────────────────────────────────────────────┐
+    # Login Form [Email field]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_email_field(self, email: str | None = None):
         """
         Check <Login form [Email field]> of the Login page
@@ -157,7 +157,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         else:
             self.check_email_field_visible()
             self.check_email_field_name()
-    # ───────────────────────────────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_email_field_visible(self):
         """
         Check <Login form [Email field]> of the Login page - visible
@@ -185,8 +185,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         error = '❌ <Login form [Email field]> of the Login page - filled incorrectly!'
         expect(self.email_field, error).to_have_value(email)
 
-    # - Password field
-    # ──────────────────────────────────────────────────────────┐
+
+    #  Login Form [Password field]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_password_field(self, password: str | None = None):
         """
         Check <Registration form [Password field]> of the Registration page
@@ -200,7 +201,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         else:
             self.check_password_field_visible()
             self.check_password_field_name()
-    # ──────────────────────────────────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_password_field_visible(self):
         """
         Check <Login form [Password field]> of the Login page - visible
