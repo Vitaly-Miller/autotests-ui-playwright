@@ -14,6 +14,7 @@ from playwright.sync_api import Page, expect
 class SidebarListComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str):
         """
+        Identifiers:
         - dashboard
         - courses
         - logout
