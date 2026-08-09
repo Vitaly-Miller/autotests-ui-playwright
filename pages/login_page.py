@@ -131,7 +131,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     def check_login_form(
             self,
             email: str | None = None,
-            password: str| None = None):
+            password: str | None = None):
         """
         Check <Login form> fields of the Login page
 
