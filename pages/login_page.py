@@ -27,7 +27,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         # Toolbar
         self.title = page.get_by_test_id('authentication-ui-course-title-text')
 
-        # Login Form input fields
+        # Login Form
         self.email_field = page.get_by_label('Email')
         self.password_field = page.get_by_label('Password')
 

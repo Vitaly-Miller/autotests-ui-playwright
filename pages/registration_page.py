@@ -24,7 +24,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         # Title
         self.title = page.get_by_test_id('authentication-ui-course-title-text')
 
-        # Registration Form fields
+        # Registration Form
         self.email_field = page.get_by_role(role='textbox', name='Email')
         self.username_field = page.get_by_role(role='textbox', name='Username')
         self.password_field = page.get_by_role(role='textbox', name='Password')
