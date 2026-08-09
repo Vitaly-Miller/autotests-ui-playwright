@@ -13,6 +13,9 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
         self.TITLE_TEXT = 'UI Course'
+        self.EMAIL_FIELD_NAME = 'Email'
+        self.USERNAME_FIELD_NAME = 'Username'
+        self.PASSWORD_FIELD_NAME = 'Password'
         self.REGISTRATION_BTN_TEXT = 'Registration'
         self.LOGIN_LINK_TEXT = 'Login'
         self.LOGIN_LINK_URL = '#/auth/login'
@@ -32,13 +35,17 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    def fill_registration_form(self, email: str, username: str, password: str):
+    def fill_registration_form(
+            self,
+            email: str,
+            username: str,
+            password: str):
         """
         Fill <Registration Form> fields of the Registration page
 
-        - ▶ <Email field> - Fill
-        - ▶ <Username field> - Fill
-        - ▶ <Password field> - Fill
+        - ▶ Email field - Fill
+        - ▶ Username field - Fill
+        - ▶ Password field - Fill
         - ✔ <Registration Form> fields - filled correctly
 
         :param email: Email
@@ -48,8 +55,10 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.email_field.fill(email)
         self.username_field.fill(username)
         self.password_field.fill(password)
-        self.check_registration_form_filled_correctly(email=email, username=username, password=password)
-
+        self.check_registration_form(
+            email=email,
+            username=username,
+            password=password)
 
     def click_registration_btn(self):
         """
@@ -74,6 +83,23 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # ALL Elements
+    # ══════════════════════════════════════════════╗
+    def check_all_elements(self):
+        """
+        Check ALL Elements of the Registration page
+
+        - ✔ Title
+        - ✔ Registration Form (unfilled)
+        - ✔ Registration button - disabled
+        - ✔ Login link
+        """
+        self.check_title()
+        self.check_registration_form()
+        self.check_registration_btn(enable=False)
+        self.check_login_link()
+    # ══════════════════════════════════════════════╝
+
     # Title:
     # ──────────────────────────────┐
     def check_title(self):
@@ -105,50 +131,158 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
-    # Registration Form (filled):
+    # Registration Form:
     # ───────────────────────────────────────────────────────┐
-    def check_registration_form_filled_correctly(self, email: str, username: str, password: str):
+    def check_registration_form(
+            self,
+            email: str | None = None,
+            username: str | None = None,
+            password: str | None = None):
         """
-        Check <Registration form> fields of the Registration page - filled correctly (3-in-1)
+        Check <Registration form> fields of the Registration page
 
-        - ✔ <Email field> - filled correctly
-        - ✔ <Username field> - filled correctly
-        - ✔ <Password field> - filled correctly
+        - ✔ Email field - visible | Name - correct | Filled - correctly (if is passed)
+        - ✔ Username field - visible | Name - correct | Filled - correctly (if is passed)
+        - ✔ Password field - visible | Name - correct | Filled - correctly (if is passed)
 
-        :param email: Email
-        :param username: Username
-        :param password: Password
+        :param email: Email (optional)
+        :param username: Username (optional)
+        :param password: Password (optional)
         """
-        self.check_email_field_filled_correctly(email)
-        self.check_username_field_filled_correctly(username)
-        self.check_password_field_filled_correctly(password)
+        self.check_email_field(email)
+        self.check_username_field(username)
+        self.check_password_field(password)
     # ───────────────────────────────────────────────────────┘
+
+    # Email field
+    # ───────────────────────────────────────────────────────┐
+    def check_email_field(self, email: str | None = None):
+        """
+        Check <Registration form [Email field]> of the Registration page
+
+        - ✔ Field - visible
+        - ✔ Field Name - correct
+        - ✔ Field - filled correctly (if is passed)
+        """
+        if email:
+            self.check_email_field_filled_correctly(email)
+        else:
+            self.check_email_field_visible()
+            self.check_email_field_name()
+    # ───────────────────────────────────────────────────────┘
+    def check_email_field_visible(self):
+        """
+        Check <Registration form [Email field]> of the Registration page - visible
+
+        - ✔ Field - visible
+        """
+        error = '❌ <Registration form [Email field]> of the Registration page - invisible!'
+        expect(self.email_field, error).to_be_visible()
+
+    def check_email_field_name(self):
+        """
+        Check <Registration form [Email field Name]> of the Registration page - correct
+
+        - ✔ Field Name - correct
+        """
+        error = '❌ <Registration form [Email field Name]> of the Registration page - incorrect!'
+        expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
+
     def check_email_field_filled_correctly(self, email: str):
         """
-        Check <Email field> of the Registration form - filled correctly
+        Check <Registration form [Email field]> of the Registration page - filled correctly
 
-        - ✔ <Email field> - filled correctly
+        - ✔ Field - filled correctly
         """
-        error = '❌ <Email field> of the Registration form - filled incorrectly!'
+        error = '❌ <Registration form [Email field]> of the Registration page - filled incorrectly!'
         expect(self.email_field, error).to_have_value(email)
+
+    # Username field
+    # ───────────────────────────────────────────────────────┐
+    def check_username_field(self, username: str | None = None):
+        """
+        Check <Registration form [Username field]> of the Registration page
+
+        - ✔ Field - visible
+        - ✔ Field Name - correct
+        - ✔ Field - filled correctly (if is passed)
+        """
+        if username:
+            self.check_username_field_filled_correctly(username)
+        else:
+            self.check_username_field_visible()
+            self.check_username_field_name()
+    # ───────────────────────────────────────────────────────┘
+    def check_username_field_visible(self):
+        """
+        Check <Registration form [Username field]> of the Registration page - visible
+
+        - ✔ Field - visible
+        """
+        error = '❌ <Registration form [Username field]> of the Registration page - invisible!'
+        expect(self.username_field, error).to_be_visible()
+
+    def check_username_field_name(self):
+        """
+        Check <Registration form [Username field Name]> of the Registration page - correct
+
+        - ✔ Field Name - correct
+        """
+        error = '❌ <Registration form [Username field Name]> of the Registration page - incorrect!'
+        expect(self.username_field, error).to_have_accessible_name(self.USERNAME_FIELD_NAME)
 
     def check_username_field_filled_correctly(self, username: str):
         """
-        Check <Username field> of the Registration form - filled correctly
+        Check <Registration form [Username field] of the Registration page - filled correctly
 
-        - ✔ <Username field> - filled correctly
+        - ✔ Field - filled correctly
         """
-        error = '❌ <Username field> of the Registration form - filled incorrectly!'
+        error = '❌ <Registration form [Username field] of the Registration page - filled incorrectly!'
         expect(self.username_field, error).to_have_value(username)
+
+    # Password field
+    # ───────────────────────────────────────────────────────┐
+    def check_password_field(self, password: str | None = None):
+        """
+        Check <Registration form [Password field]> of the Registration page
+
+        - ✔ Field - visible
+        - ✔ Field Name - correct
+        - ✔ Field - filled correctly (if is passed)
+        """
+        if password:
+            self.check_password_field_filled_correctly(password)
+        else:
+            self.check_password_field_visible()
+            self.check_password_field_name()
+    # ───────────────────────────────────────────────────────┘
+    def check_password_field_visible(self):
+        """
+        Check <Registration form [Password field]> of the Registration page - visible
+
+        - ✔ Field - visible
+        """
+        error = '❌ <Registration form [Password field]> of the Registration page - invisible!'
+        expect(self.password_field, error).to_be_visible()
+
+    def check_password_field_name(self):
+        """
+        Check <Registration form [Password field Name]> of the Registration page - correct
+
+        - ✔ Field Name - correct
+        """
+        error = '❌ <Registration form [Password field Name]> of the Registration page - incorrect!'
+        expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
     def check_password_field_filled_correctly(self, password: str):
         """
-        Check <Password field> of the Registration form - filled correctly
+        Check <Registration form [Password field] of the Registration page - filled correctly
 
-        - ✔ <Password field> - filled correctly
+        - ✔ Field - filled correctly
         """
-        error = '❌ <Password field> of the Registration form - filled incorrectly!'
+        error = '❌ <Registration form [Password field] of the Registration page - filled incorrectly!'
         expect(self.password_field, error).to_have_value(password)
+
 
 
     # Registration Button:

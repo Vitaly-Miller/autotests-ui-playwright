@@ -38,7 +38,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    def fill_login_form(self, email: str, password: str):
+    def fill_login_form(
+            self,
+            email: str,
+            password: str):
         """
         Fill <Login form> fields of the Login page
 
@@ -51,7 +54,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.email_field.fill(email)
         self.password_field.fill(password)
-        self.check_login_form_filled_correctly(email=email, password=password)
+        self.check_login_form_filled_correctly(
+            email=email,
+            password=password)
 
 
     def click_login_btn(self):
@@ -119,6 +124,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_email_field_filled_correctly(email)
         self.check_password_field_filled_correctly(password)
     # ─────────────────────────────────────────────────────────────────────┘
+
+
+
     def check_email_field_filled_correctly(self, email: str):
         """
         Check <Email field> of the Login form - filled correctly
@@ -127,6 +135,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         error = '❌ <Email field> of the Login form - filled incorrectly!'
         expect(self.email_field, error).to_have_value(email)
+
+
+
 
     def check_password_field_filled_correctly(self, password: str):
         """

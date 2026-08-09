@@ -148,22 +148,17 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         :param max_score: Max score
         :param min_score: Min score
         """
-        # Title
         self.course_form_title_field.fill(title)
-        self.check_course_form_title_field_filled_correctly(title)
-        # Estimated time
         self.course_form_estimated_time_field.fill(estimated_time)
-        self.check_course_form_estimated_time_field_filled_correctly(estimated_time)
-        # Description
         self.course_form_description_field.fill(description)
-        self.check_course_form_description_field_filled_correctly(description)
-        # Max score
         self.course_form_max_score_field.fill(max_score)
-        self.check_course_form_max_score_field_filled_correctly(max_score)
-        # Min score
         self.course_form_min_score_field.fill(min_score)
-        self.check_course_form_min_score_field_filled_correctly(min_score)
-
+        self.check_course_form(
+            title=title,
+            estimated_time=estimated_time,
+            description=description,
+            max_score=max_score,
+            min_score=min_score)
 
     # EXERCISES:
     def click_create_exercise_btn(self):
@@ -192,7 +187,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ALL Elements
     # ════════════════════════════════════╗
-    def check_page(self):
+    def check_all_elements(self):
         """
         Check ALL Elements of the Create course page
 
@@ -533,18 +528,24 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         Check <Course Form [Title field]> of the Create course page
 
+        If filled:
+        ----------
+        - ✔ Field - filled correctly
+
+        If did not fill:
+        ----------------
         - ✔ Field - visible
         - ✔ Field name - correct
         - ✔ Field placeholder - correct
-        - ✔ Field - filled correctly (If is passed)
 
         :param title: Title (optional)
         """
-        self.check_course_form_title_field_visible()
-        self.check_course_form_title_field_name()
-        self.check_course_form_title_field_placeholder()
         if title:   # If is passed
             self.check_course_form_title_field_filled_correctly(title)
+        else:
+            self.check_course_form_title_field_visible()
+            self.check_course_form_title_field_name()
+            self.check_course_form_title_field_placeholder()
     # ────────────────────────────────────────────────────────────────┘
     def check_course_form_title_field_visible(self):
         """
@@ -591,18 +592,24 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         Check <Course Form [Estimated time field]> of the Create course page
 
+        If filled:
+        ----------
+        - ✔ Field - filled correctly
+
+        If did not fill:
+        ----------------
         - ✔ Field - visible
-        - ✔ Field Name - correct
-        - ✔ Field Placeholder - correct
-        - ✔ Field - filled correctly (if text is passed)
+        - ✔ Field name - correct
+        - ✔ Field placeholder - correct
 
         :param estimated_time: Estimated time (optional)
         """
-        self.check_course_form_estimated_time_field_visible()
-        self.check_course_form_estimated_time_field_name()
-        self.check_course_form_estimated_time_field_placeholder()
         if estimated_time:   # If is passed
             self.check_course_form_estimated_time_field_filled_correctly(estimated_time)
+        else:
+            self.check_course_form_estimated_time_field_visible()
+            self.check_course_form_estimated_time_field_name()
+            self.check_course_form_estimated_time_field_placeholder()
     # ──────────────────────────────────────────────────────────────────────────────────┘
     def check_course_form_estimated_time_field_visible(self):
         """
@@ -649,18 +656,24 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         Check <Course Form [Description field]> of the Create course page
 
+        If filled:
+        ----------
+        - ✔ Field - filled correctly
+
+        If did not fill:
+        ----------------
         - ✔ Field - visible
         - ✔ Field name - correct
         - ✔ Field placeholder - correct
-        - ✔ Field - filled correctly (if text is passed)
 
         :param description: Description (optional)
         """
-        self.check_course_form_description_field_visible()
-        self.check_course_form_description_field_name()
-        self.check_course_form_description_field_placeholder()
         if description:   # If is passed
             self.check_course_form_description_field_filled_correctly(description)
+        else:
+            self.check_course_form_description_field_visible()
+            self.check_course_form_description_field_name()
+            self.check_course_form_description_field_placeholder()
     # ────────────────────────────────────────────────────────────────────────────┘
     def check_course_form_description_field_visible(self):
         """
@@ -707,18 +720,23 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         Check <Course Form [Max score field]> of the Create course page
 
+        If filled:
+        ----------
+        - ✔ Field - filled correctly
+
+        If did not fill:
+        ----------------
         - ✔ Field - visible
         - ✔ Field name - correct
-        - ✔ Field - default value - correctly
-        - ✔ Field - filled correctly (If is passed)
+        - ✔ Field default value - correct
 
         :param max_score: Max score (optional)
         """
-        self.check_course_form_max_score_field_visible()
-        self.check_course_form_max_score_field_name()
         if max_score:   # If is passed
             self.check_course_form_max_score_field_filled_correctly(max_score)
         else:
+            self.check_course_form_max_score_field_visible()
+            self.check_course_form_max_score_field_name()
             self.check_course_form_max_score_field_filled_correctly()
     # ─────────────────────────────────────────────────────────────────────┘
     def check_course_form_max_score_field_visible(self):
@@ -757,18 +775,23 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         Check <Course Form [Min score field]> of the Create course page
 
+        If filled:
+        ----------
+        - ✔ Field - filled correctly
+
+        If did not fill:
+        ----------------
         - ✔ Field - visible
         - ✔ Field name - correct
-        - ✔ Field - default value - correctly
-        - ✔ Field - filled correctly (If is passed)
+        - ✔ Field default value - correct
 
-        :param min_score: Min score
+        :param min_score: Min score (optional)
         """
-        self.check_course_form_min_score_field_visible()
-        self.check_course_form_min_score_field_name()
         if min_score:   # If is passed
             self.check_course_form_min_score_field_filled_correctly(min_score)
         else:
+            self.check_course_form_min_score_field_visible()
+            self.check_course_form_min_score_field_name()
             self.check_course_form_min_score_field_filled_correctly()
     # ───────────────────────────────────────────────────────────────────────────┘
     def check_course_form_min_score_field_visible(self):
