@@ -43,17 +43,17 @@ class CourseViewComponent(BaseComponent):
         self.menu.click_menu_btn(index)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ALL Elements
     # ══════════════════════════════════════════════════════════════════════╗
-    def check_all_elements(
+    def check_component(
             self,
             index: int,
             title: str,
             max_score: str,
             min_score: str,
-            estimated_time: str):
+            estimated_time: str
+    ):
         """
-        Check ALL Elements of the Course View component
+        Check ALL Elements of the <Course View> component of the Courses List page
 
         - ✔ Menu (component)
         - ✔ Image - visible
@@ -68,7 +68,7 @@ class CourseViewComponent(BaseComponent):
         :param min_score: Course Min score
         :param estimated_time: Course estimated time
         """
-        self.menu.check_all_elements(index)
+        self.menu.check_component(index)
         self.check_image_visible(index)
         self.check_title(index=index, title=title)
         self.check_max_score(index=index, max_score=max_score)

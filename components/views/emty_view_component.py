@@ -24,7 +24,7 @@ class EmptyViewComponent(BaseComponent):
         self.description = page.get_by_test_id(f'{identifier}-empty-view-description-text')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ─────────────────────────────────────────────────────────┐
+    # ══════════════════════════════════════════════════════╗
     def check_component(self, title: str, description: str):
         """
         Check ALL elements of the <Empty View> component
@@ -32,13 +32,17 @@ class EmptyViewComponent(BaseComponent):
         - ✔ Icon - visible
         - ✔ Title - visible | Text - correct
         - ✔ Description - visible | Text - correct
+
+        :param title: Title text
+        :param description: Description text
         """
         self.check_icon_visible()
         self.check_title_visible()
         self.check_title_text(title)
         self.check_description_visible()
         self.check_description_text(description)
-    # ─────────────────────────────────────────────────────────┘
+    # ══════════════════════════════════════════════════════╝
+
     # Icon
     def check_icon_visible(self):
         """

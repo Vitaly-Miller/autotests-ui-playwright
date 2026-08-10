@@ -65,9 +65,8 @@ class CourseViewMenuComponent(BaseComponent):
         self.menu_delete_btn.nth(index).click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ALL Elements
     # ═══════════════════════════════════════╗
-    def check_all_elements(self, index: int):
+    def check_component(self, index: int):
         """
         Check ALL Elements of the Course View Menu component
 
