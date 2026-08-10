@@ -83,7 +83,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         - ✔ Title - visible
 
         """
-        error = '❌ <Toolbar [Title]> of the Dashboard page - invisible!'
+        error = f'❌ <Toolbar [Title]> of the Dashboard page - invisible!'
         expect(self.toolbar_title, error).to_be_visible()
 
     def check_toolbar_title_text(self):
@@ -92,7 +92,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
         - ✔ Text - correct
         """
-        error = '❌ <Toolbar [Title] text> of the Dashboard page - incorrect!'
+        error = f'❌ <Toolbar [Title] text> of the Dashboard page - incorrect!'
         expect(self.toolbar_title, error).to_have_text('Dashboard')
 
 
@@ -120,9 +120,9 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         - ✔ Title text - correct
         - ✔ Chart - visible
         """
-        error_title_visible = '❌ <Students widget [Title]> of the Dashboard page - invisible!'
-        error_title_text = '❌ <Students widget [Title] text> of the Dashboard page - incorrect!'
-        error_chart_visible = '❌ <Students widget [Chart]> of the Dashboard page - invisible!'
+        error_title_visible = f'❌ <Students widget [Title]> of the Dashboard page - invisible!'
+        error_title_text = f'❌ <Students widget [Title] text> of the Dashboard page - incorrect!'
+        error_chart_visible = f'❌ <Students widget [Chart]> of the Dashboard page - invisible!'
         expect(self.students_title, error_title_visible).to_be_visible()
         expect(self.students_title, error_title_text).to_have_text('Students')
         expect(self.students_chart, error_chart_visible).to_be_visible()
@@ -135,9 +135,9 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         - ✔ Title text - correct
         - ✔ Chart - visible
         """
-        error_title_visible = '❌ <Activities widget [Title]> of the Dashboard page - invisible!'
-        error_title_text = '❌ <Activities widget [Title] text>  of the Dashboard page - incorrect!'
-        error_chart_visible = '❌ <Activities widget [Chart]> of the Dashboard page - invisible!'
+        error_title_visible = f'❌ <Activities widget [Title]> of the Dashboard page - invisible!'
+        error_title_text = f'❌ <Activities widget [Title] text>  of the Dashboard page - incorrect!'
+        error_chart_visible = f'❌ <Activities widget [Chart]> of the Dashboard page - invisible!'
         expect(self.activities_title, error_title_visible).to_be_visible()
         expect(self.activities_title, error_title_text).to_have_text('Activities')
         expect(self.activities_chart, error_chart_visible).to_be_visible()
@@ -150,9 +150,9 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         - ✔ Title text - correct
         - ✔ Chart - visible
         """
-        error_title_visible = '❌ <Courses widget [Title]> of the Dashboard page - invisible!'
-        error_title_text = '❌ <Courses widget [Title] text> of the Dashboard page - incorrect!'
-        error_chart_visible = '❌ <Courses widget [Chart]> of the Dashboard page - invisible!'
+        error_title_visible = f'❌ <Courses widget [Title]> of the Dashboard page - invisible!'
+        error_title_text = f'❌ <Courses widget [Title] text> of the Dashboard page - incorrect!'
+        error_chart_visible = f'❌ <Courses widget [Chart]> of the Dashboard page - invisible!'
         expect(self.courses_title, error_title_visible).to_be_visible()
         expect(self.courses_title, error_title_text).to_have_text('Courses')
         expect(self.courses_chart, error_chart_visible).to_be_visible()
@@ -165,9 +165,9 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         - ✔ Title text - correct
         - ✔ Chart - visible
         """
-        error_title_visible = '❌ <Scores widget [Title]> of the Dashboard page - invisible!'
-        error_title_text = '❌ <Scores widget [Title] text> of the Dashboard page - incorrect!'
-        error_chart_visible = '❌ <Scores widget [Chart]> of the Dashboard page - invisible!'
+        error_title_visible = f'❌ <Scores widget [Title]> of the Dashboard page - invisible!'
+        error_title_text = f'❌ <Scores widget [Title] text> of the Dashboard page - incorrect!'
+        error_chart_visible = f'❌ <Scores widget [Chart]> of the Dashboard page - invisible!'
         expect(self.scores_title, error_title_visible).to_be_visible()
         expect(self.scores_title, error_title_text).to_have_text('Scores')
         expect(self.scores_chart, error_chart_visible).to_be_visible()

@@ -34,6 +34,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         # Exercises [Toolbar]
         self.EXERCISES_TOOLBAR_TITLE = 'Exercises'
         self.EXERCISE_TOOLBAR_TEXT_PART_TITLE = 'Exercise'   # Text part of title (Ex: "#1 Exercise")
+
         # Exercises [Empty View]
         self.EXERCISES_EMPTY_VIEW_IDENTIFIER = 'create-course-exercises'
         self.EXERCISES_EMPTY_VIEW_TITLE = 'There is no exercises'
@@ -118,7 +119,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Button - visible
         - ✔ Button - enabled
-        - ▶ Button - Click
+        - ▶ Button - click
         """
         self.check_toolbar_create_course_btn_visible()
         self.check_toolbar_create_course_btn_enabled()
@@ -131,7 +132,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Button - visible
         - ✔ Button - enabled
         - ✔ Button text - correct
-        - ▶ Button - Click
+        - ▶ Button - click
         """
         self.check_remove_image_btn()
         self.remove_image_btn.click()
@@ -156,7 +157,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         Fill Create course form of the Create course page
 
-        - ▶ Form fields - Fill
+        - ▶ Form fields - fill
         - ✔ Form fields - filled correctly
 
         :param title: Title
@@ -183,7 +184,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         Click <Create exercise Button> of the Create course page
 
         - ✔ Button - visible
-        - ▶ Button - Click
+        - ▶ Button - click
         """
         self.check_exercises_toolbar_create_exercise_btn_visible()
         self.exercise_toolbar_create_exercise_btn.click()
@@ -193,7 +194,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         Click <Delete exercise Button> of the Create course page
 
         - ✔ Button - visible
-        - ▶ Button - Click
+        - ▶ Button - click
 
         :param index: Exercise index
         """
@@ -259,7 +260,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Title - visible
         """
-        error = '❌ <Toolbar [Title]> of the Create course page - invisible!'
+        error = f'❌ <Toolbar [Title]> of the Create course page - invisible!'
         expect(self.toolbar_title, error).to_be_visible()
 
     def check_toolbar_title_text(self):
@@ -268,7 +269,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         did - correct
         """
-        error = '❌ <Toolbar [Title] text> of the Create course page - incorrect!'
+        error = f'❌ <Toolbar [Title] text> of the Create course page - incorrect!'
         expect(self.toolbar_title, error).to_have_text('Create course')
 
     # Toolbar [Create Course Button]
@@ -278,7 +279,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Button - visible
         """
-        error = '❌ <Toolbar [Create Course Button]> of the Create course page - invisible!'
+        error = f'❌ <Toolbar [Create Course Button]> of the Create course page - invisible!'
         expect(self.create_course_btn, error).to_be_visible()
 
     def check_toolbar_create_course_btn_enabled(self):
@@ -287,7 +288,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Button - enabled
         """
-        error = '❌ <Toolbar [Create Course Button]> of the Create course page - disabled!'
+        error = f'❌ <Toolbar [Create Course Button]> of the Create course page - disabled!'
         expect(self.create_course_btn, error).to_be_enabled()
 
     def check_toolbar_create_course_btn_disabled(self):
@@ -296,7 +297,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Button - disabled
         """
-        error = '❌ <Toolbar [Create Course Button]> of the Create course page - enabled!'
+        error = f'❌ <Toolbar [Create Course Button]> of the Create course page - enabled!'
         expect(self.create_course_btn, error).to_be_disabled()
 
 
@@ -322,7 +323,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Image - visible
         """
-        error = '❌ <Preview View [Image]> of the Create course page - invisible!'
+        error = f'❌ <Preview View [Image]> of the Create course page - invisible!'
         expect(self.preview_image, error).to_be_visible()
 
 
@@ -354,7 +355,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Icon - visible
         """
-        error = '❌ <Upload image View [Icon]> of the Create course page - invisible!'
+        error = f'❌ <Upload image View [Icon]> of the Create course page - invisible!'
         expect(self.upload_image_view_icon, error).to_be_visible()
 
     # Upload image View [Title]
@@ -364,7 +365,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Title - visible
         """
-        error = '❌ <Upload image View [Title]> of the Create course page - invisible!'
+        error = f'❌ <Upload image View [Title]> of the Create course page - invisible!'
         expect(self.upload_image_view_title, error).to_be_visible()
 
     def check_upload_image_view_title_text(self):
@@ -373,7 +374,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Text - correct
         """
-        error = '❌ <Upload image View [Title] text> of the Create course page - incorrect!'
+        error = f'❌ <Upload image View [Title] text> of the Create course page - incorrect!'
         expect(self.upload_image_view_title, error).to_have_text('Tap on "Upload image" button to select file')
 
     # - Upload image View [Description]
@@ -383,7 +384,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Description - visible
         """
-        error = '❌ <Upload image View [Description]> of the Create course page - invisible!'
+        error = f'❌ <Upload image View [Description]> of the Create course page - invisible!'
         expect(self.upload_image_view_description, error).to_be_visible()
 
     def check_upload_image_view_description_text(self):
@@ -392,7 +393,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Text - correct
         """
-        error = '❌ <Upload image View [Description] text> of the Create course page - incorrect!'
+        error = f'❌ <Upload image View [Description] text> of the Create course page - incorrect!'
         expect(self.upload_image_view_description, error).to_have_text('Recommended file size 540X300')
 
 
@@ -417,7 +418,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Button - visible
 
         """
-        error = '❌ <Upload image Button> of the Create course page - invisible!'
+        error = f'❌ <Upload image Button> of the Create course page - invisible!'
         expect(self.upload_image_btn, error).to_be_visible()
 
     def check_upload_image_btn_enable(self):
@@ -427,7 +428,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Button - enabled
 
         """
-        error = '❌ <Upload image Button> of the Create course page - disabled!'
+        error = f'❌ <Upload image Button> of the Create course page - disabled!'
         expect(self.upload_image_btn, error).to_be_enabled()
 
     def check_upload_image_btn_text(self):
@@ -436,7 +437,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Text - correct
         """
-        error = '❌ <Upload image Button text> of the Create course page - incorrect!'
+        error = f'❌ <Upload image Button text> of the Create course page - incorrect!'
         expect(self.upload_image_btn, error).to_have_text('Upload image')
 
 
@@ -472,7 +473,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Button - visible
 
         """
-        error = '❌ <Remove image Button> of the Create course page - invisible!'
+        error = f'❌ <Remove image Button> of the Create course page - invisible!'
         expect(self.remove_image_btn, error).to_be_visible()
 
     def check_remove_image_btn_invisible(self):
@@ -484,7 +485,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Button - invisible
 
         """
-        error = '❌ <Remove image Button> of the Create course page - visible!'
+        error = f'❌ <Remove image Button> of the Create course page - visible!'
         expect(self.remove_image_btn, error).not_to_be_visible()
 
     def check_remove_image_btn_enable(self):
@@ -494,7 +495,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Button - enabled
 
         """
-        error = '❌ <Remove image Button> of the Create course page - disabled!'
+        error = f'❌ <Remove image Button> of the Create course page - disabled!'
         expect(self.remove_image_btn, error).to_be_enabled()
 
     def check_remove_image_btn_text(self):
@@ -503,7 +504,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Text - correct
         """
-        error = '❌ <Remove image Button text> of the Create course page - incorrect!'
+        error = f'❌ <Remove image Button text> of the Create course page - incorrect!'
         expect(self.remove_image_btn, error).to_have_text('Remove image')
 
 
@@ -568,7 +569,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Title field - visible
         """
-        error = '❌ <Course [Title field]> of the Create course page - invisible!'
+        error = f'❌ <Course [Title field]> of the Create course page - invisible!'
         expect(self.course_form_title_field, error).to_be_visible()
 
     def check_course_title_field_name(self):
@@ -577,7 +578,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Title name - correct
         """
-        error = '❌ <Course [Title field] name> of the Create course page - incorrect!'
+        error = f'❌ <Course [Title field] name> of the Create course page - incorrect!'
         expect(self.course_form_title_field, error).to_have_accessible_name(self.TITLE_FIELD_NAME)
 
     def check_course_title_field_placeholder(self):
@@ -586,7 +587,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Placeholder - correct
         """
-        error = '❌ <Course [Title field] Placeholder> of the Create course page - incorrect!'
+        error = f'❌ <Course [Title field] Placeholder> of the Create course page - incorrect!'
         expect(self.course_form_title_field, error).to_have_attribute('placeholder', self.TITLE_FIELD_PLACEHOLDER)
 
     def check_course_title_field_filled_correctly(self, title: str):
@@ -597,7 +598,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param title: Title
         """
-        error = '❌ <Course [Title field]> of the Create course page - filled incorrectly!'
+        error = f'❌ <Course [Title field]> of the Create course page - filled incorrectly!'
         expect(self.course_form_title_field, error).to_have_value(title)
 
 
@@ -632,7 +633,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Field - visible
         """
-        error = '❌ <Course [Estimated time field]> of the Create course page - invisible!'
+        error = f'❌ <Course [Estimated time field]> of the Create course page - invisible!'
         expect(self.course_form_estimated_time_field, error).to_be_visible()
 
     def check_course_estimated_time_field_name(self):
@@ -641,7 +642,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Field name - correct
         """
-        error = '❌ <Course [Estimated time field] name> of the Create course page - incorrect!'
+        error = f'❌ <Course [Estimated time field] name> of the Create course page - incorrect!'
         expect(self.course_form_estimated_time_field, error).to_have_accessible_name(self.ESTIMATED_TIME_FIELD_NAME)
 
     def check_course_estimated_time_field_placeholder(self):
@@ -650,7 +651,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Placeholder - correct
         """
-        error = '❌ <Course [Estimated time field] Placeholder> of the Create course page - incorrect!'
+        error = f'❌ <Course [Estimated time field] Placeholder> of the Create course page - incorrect!'
         expect(self.course_form_estimated_time_field, error).to_have_attribute('placeholder', self.ESTIMATED_TIME_FIELD_PLACEHOLDER)
 
     def check_course_estimated_time_field_filled_correctly(self, estimated_time: str):
@@ -661,7 +662,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param estimated_time: Estimated time
         """
-        error = '❌ <Course [Estimated time field]> of the Create course page - filled incorrectly!'
+        error = f'❌ <Course [Estimated time field]> of the Create course page - filled incorrectly!'
         expect(self.course_form_estimated_time_field, error).to_have_value(estimated_time)
 
 
@@ -696,7 +697,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Field - visible
         """
-        error = '❌ <Course [Description field]> of the Create course page - invisible!'
+        error = f'❌ <Course [Description field]> of the Create course page - invisible!'
         expect(self.course_form_description_field, error).to_be_visible()
 
     def check_course_description_field_name(self):
@@ -705,7 +706,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Field name - correct
         """
-        error = '❌ <Course [Description field] name> of the Create course page - incorrect!'
+        error = f'❌ <Course [Description field] name> of the Create course page - incorrect!'
         expect(self.course_form_description_field, error).to_have_accessible_name(self.DESCRIPTION_FIELD_NAME)
 
     def check_course_description_field_placeholder(self):
@@ -714,7 +715,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Placeholder - correct
         """
-        error = '❌ <Course [Description field] Placeholder> of the Create course page - incorrect!'
+        error = f'❌ <Course [Description field] Placeholder> of the Create course page - incorrect!'
         expect(self.course_form_description_field, error).to_have_attribute('placeholder', self.DESCRIPTION_FIELD_PLACEHOLDER)
 
     def check_course_description_field_filled_correctly(self, description: str):
@@ -725,7 +726,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param description: Description
         """
-        error = '❌ <Course [Description field]> of the Create course page - filled incorrectly!'
+        error = f'❌ <Course [Description field]> of the Create course page - filled incorrectly!'
         expect(self.course_form_description_field, error).to_have_value(description)
 
 
@@ -760,7 +761,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Field - visible
         """
-        error = '❌ <Course [Max score field]> of the Create course page - invisible!'
+        error = f'❌ <Course [Max score field]> of the Create course page - invisible!'
         expect(self.course_form_max_score_field, error).to_be_visible()
 
     def check_course_max_score_field_name(self):
@@ -769,7 +770,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Field name - correct
         """
-        error = '❌ <Course [Max score field]> name of the Create course page - incorrect!'
+        error = f'❌ <Course [Max score field]> name of the Create course page - incorrect!'
         expect(self.course_form_max_score_field, error).to_have_accessible_name(self.MAX_SCORE_FIELD_NAME)
 
     def check_course_max_score_field_filled_correctly(self, max_score: str = '0'):
@@ -780,7 +781,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param max_score: Max score
         """
-        error = '❌ <Course [Max score field]> of the Create course page - filled incorrectly!'
+        error = f'❌ <Course [Max score field]> of the Create course page - filled incorrectly!'
         expect(self.course_form_max_score_field, error).to_have_value(max_score)
 
 
@@ -815,7 +816,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Field - visible
         """
-        error = '❌ <Course§ [Min score field]> of the Create course page - invisible!'
+        error = f'❌ <Course§ [Min score field]> of the Create course page - invisible!'
         expect(self.course_form_min_score_field, error).to_be_visible()
 
     def check_course_min_score_field_name(self):
@@ -824,7 +825,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Field name - correct
         """
-        error = '❌ <Course [Min score field]> name of the Create course page - incorrect!'
+        error = f'❌ <Course [Min score field]> name of the Create course page - incorrect!'
         expect(self.course_form_min_score_field, error).to_have_accessible_name(self.MIN_SCORE_FIELD_NAME)
 
     def check_course_min_score_field_filled_correctly(self, min_score: str = '0'):
@@ -835,7 +836,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param min_score: Min score
         """
-        error = '❌ <Course [Min score field]> of the Create course page - filled incorrectly!'
+        error = f'❌ <Course [Min score field]> of the Create course page - filled incorrectly!'
         expect(self.course_form_min_score_field, error).to_have_value(min_score)
 
 
@@ -863,7 +864,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Title - visible
         """
-        error = '❌ <Exercises Toolbar [Title]> of the Create course page - invisible!'
+        error = f'❌ <Exercises Toolbar [Title]> of the Create course page - invisible!'
         expect(self.exercise_toolbar_title, error).to_be_visible()
 
     def check_exercises_toolbar_title_text(self):
@@ -872,7 +873,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Text - correct
         """
-        error = '❌ <Exercises Toolbar [Title] text> of the Create course page - incorrect!'
+        error = f'❌ <Exercises Toolbar [Title] text> of the Create course page - incorrect!'
         expect(self.exercise_toolbar_title, error).to_have_text(self.EXERCISES_TOOLBAR_TITLE)
 
     # Exercises Toolbar [Create exercise button]
@@ -882,7 +883,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         - ✔ Button - visible
         """
-        error = '❌ <Exercises Toolbar [Create exercise Button]> of the Create course page - invisible!'
+        error = f'❌ <Exercises Toolbar [Create exercise Button]> of the Create course page - invisible!'
         expect(self.exercise_toolbar_create_exercise_btn, error).to_be_visible()
 
 
@@ -927,7 +928,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param index: Locator Index (ex: ...-exercise-{index}-box-toolbar-...)
         """
-        error = '❌ <Exercise Toolbar [Title]> of the Create course page - invisible!'
+        error = f'❌ <Exercise Toolbar [Title]> of the Create course page - invisible!'
         expect(self.exercise_subtitle(index), error).to_be_visible()
 
     def check_exercise_toolbar_title_text(self, index: int = 0):
@@ -938,7 +939,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = '❌ <Exercise Toolbar [Title] text> of the Create course page - incorrect!'
+        error = f'❌ <Exercise Toolbar [Title] text> of the Create course page - incorrect!'
         expect(self.exercise_subtitle(index), error).to_have_text(f'#{index + 1} {self.EXERCISE_TOOLBAR_TEXT_PART_TITLE}')
 
     # - Exercise [Delete exercise Button]
@@ -950,7 +951,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = '❌ <Exercise Toolbar [Delete exercise Button]> of the Create course page - invisible!'
+        error = f'❌ <Exercise Toolbar [Delete exercise Button]> of the Create course page - invisible!'
         expect(self.delete_exercise_btn(index), error).to_be_visible()
 
 
@@ -1003,7 +1004,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = '❌ <Exercise [Title field]> of the Create course page - invisible!'
+        error = f'❌ <Exercise [Title field]> of the Create course page - invisible!'
         expect(self.exercise_form_title_field(index), error).to_be_visible()
 
     def check_exercise_title_field_name(self, index: int = 0):
@@ -1014,7 +1015,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = '❌ <Exercise [Title field] name> of the Create course page - incorrect!'
+        error = f'❌ <Exercise [Title field] name> of the Create course page - incorrect!'
         expect(self.exercise_form_title_field(index), error).to_have_accessible_name(self.EXERCISE_TITLE_FIELD_NAME)
 
     def check_exercise_title_field_filled_correctly(self, index: int = 0, title: str = 'Exercise title'):
@@ -1033,10 +1034,10 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         :param title: Exercise title
 
         """
-        error = '❌ <Exercise [Title field]> of the Create course page - filled incorrectly!'
+        error = f'❌ <Exercise [Title field]> of the Create course page - filled incorrectly!'
         expect(self.exercise_form_title_field(index), error).to_have_value(title)
 
-    
+
     # Exercise [Description field]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_exercise_description_field(self, index: int = 0, description: str | None = None):
@@ -1068,7 +1069,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = '❌ <Exercise [Description field]> of the Create course page - invisible!'
+        error = f'❌ <Exercise [Description field]> of the Create course page - invisible!'
         expect(self.exercise_form_description_field(index), error).to_be_visible()
 
     def check_exercise_description_field_name(self, index: int = 0):
@@ -1079,7 +1080,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = '❌ <Exercise [Description field] name> of the Create course page - incorrect!'
+        error = f'❌ <Exercise [Description field] name> of the Create course page - incorrect!'
         expect(self.exercise_form_description_field(index), error).to_have_accessible_name(self.EXERCISE_DESCRIPTION_FIELD_NAME)
 
     def check_exercise_description_field_filled_correctly(self, index: int = 0, description: str = 'Exercise description'):
@@ -1097,5 +1098,5 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         :param description: Exercise description
         """
-        error = '❌ <Exercise [Description field]> of the Create course page - filled incorrectly!'
+        error = f'❌ <Exercise [Description field]> of the Create course page - filled incorrectly!'
         expect(self.exercise_form_description_field(index), error).to_have_value(description)

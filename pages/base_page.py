@@ -54,7 +54,7 @@ class BasePage:                                 # Родительский кл�
 
         :param expected_url: Expected Page URL
         """
-        error = '❌ Current page URL - incorrect!'
+        error = f'❌ Current page URL - incorrect!'
         expect(self.page, error).to_have_url(expected_url)
 
 #=======================================================================================================================

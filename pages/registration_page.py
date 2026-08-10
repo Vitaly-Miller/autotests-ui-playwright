@@ -43,9 +43,9 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         Fill <Registration Form> fields of the Registration page
 
-        - ▶ Email field - Fill
-        - ▶ Username field - Fill
-        - ▶ Password field - Fill
+        - ▶ Email field - fill
+        - ▶ Username field - fill
+        - ▶ Password field - fill
         - ✔ <Registration Form> fields - filled correctly
 
         :param email: Email
@@ -65,7 +65,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         Click <Registration> button of the Registration page
 
         - ✔ Button - enabled
-        - ▶ Button - Click
+        - ▶ Button - click
         """
         self.check_registration_btn()
         self.registration_btn.click()
@@ -76,7 +76,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         Click <Login link> of the Registration page
 
         - ✔ Link - visible | Text - correct | URL - correct
-        - ▶ Link - Click
+        - ▶ Link - click
         """
         self.check_login_link()
         self.login_link.click()
@@ -118,7 +118,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Title - visible
         """
-        error = '❌ <Title> of the Registration page - invisible!'
+        error = f'❌ <Title> of the Registration page - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self):
@@ -127,7 +127,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Text - correct
         """
-        error = '❌ <Title text> of the Registration page - incorrect!'
+        error = f'❌ <Title text> of the Registration page - incorrect!'
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
@@ -176,7 +176,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Field - visible
         """
-        error = '❌ <Registration form [Email field]> of the Registration page - invisible!'
+        error = f'❌ <Registration form [Email field]> of the Registration page - invisible!'
         expect(self.email_field, error).to_be_visible()
 
     def check_email_field_name(self):
@@ -185,7 +185,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Field Name - correct
         """
-        error = '❌ <Registration form [Email field Name]> of the Registration page - incorrect!'
+        error = f'❌ <Registration form [Email field Name]> of the Registration page - incorrect!'
         expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
     def check_email_field_filled_correctly(self, email: str):
@@ -194,7 +194,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Field - filled correctly
         """
-        error = '❌ <Registration form [Email field]> of the Registration page - filled incorrectly!'
+        error = f'❌ <Registration form [Email field]> of the Registration page - filled incorrectly!'
         expect(self.email_field, error).to_have_value(email)
 
 
@@ -220,7 +220,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Field - visible
         """
-        error = '❌ <Registration form [Username field]> of the Registration page - invisible!'
+        error = f'❌ <Registration form [Username field]> of the Registration page - invisible!'
         expect(self.username_field, error).to_be_visible()
 
     def check_username_field_name(self):
@@ -229,7 +229,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Field Name - correct
         """
-        error = '❌ <Registration form [Username field Name]> of the Registration page - incorrect!'
+        error = f'❌ <Registration form [Username field Name]> of the Registration page - incorrect!'
         expect(self.username_field, error).to_have_accessible_name(self.USERNAME_FIELD_NAME)
 
     def check_username_field_filled_correctly(self, username: str):
@@ -238,7 +238,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Field - filled correctly
         """
-        error = '❌ <Registration form [Username field] of the Registration page - filled incorrectly!'
+        error = f'❌ <Registration form [Username field] of the Registration page - filled incorrectly!'
         expect(self.username_field, error).to_have_value(username)
 
 
@@ -264,7 +264,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Field - visible
         """
-        error = '❌ <Registration form [Password field]> of the Registration page - invisible!'
+        error = f'❌ <Registration form [Password field]> of the Registration page - invisible!'
         expect(self.password_field, error).to_be_visible()
 
     def check_password_field_name(self):
@@ -273,7 +273,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Field Name - correct
         """
-        error = '❌ <Registration form [Password field Name]> of the Registration page - incorrect!'
+        error = f'❌ <Registration form [Password field Name]> of the Registration page - incorrect!'
         expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
     def check_password_field_filled_correctly(self, password: str):
@@ -282,7 +282,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Field - filled correctly
         """
-        error = '❌ <Registration form [Password field] of the Registration page - filled incorrectly!'
+        error = f'❌ <Registration form [Password field] of the Registration page - filled incorrectly!'
         expect(self.password_field, error).to_have_value(password)
 
 
@@ -307,7 +307,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Button - enabled
         """
-        error = '❌ <Registration button> of the Registration page - disabled!'
+        error = f'❌ <Registration button> of the Registration page - disabled!'
         expect(self.registration_btn, error).to_be_enabled()
 
     def check_registration_btn_disable(self):
@@ -318,7 +318,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Button - disabled
         """
-        error = '❌ <Registration button> of the Registration page - enabled!'
+        error = f'❌ <Registration button> of the Registration page - enabled!'
         expect(self.registration_btn, error).to_be_disabled()
 
     def check_registration_btn_text(self):
@@ -327,7 +327,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Button text - correct
         """
-        error = '❌ <Registration button text> of the Registration page - incorrect!'
+        error = f'❌ <Registration button text> of the Registration page - incorrect!'
         expect(self.registration_btn, error).to_have_text(self.REGISTRATION_BTN_TEXT)
 
 
@@ -351,7 +351,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Link - visible
         """
-        error = '❌ <Login link> of the Registration page - invisible!'
+        error = f'❌ <Login link> of the Registration page - invisible!'
         expect(self.login_link, error).to_be_visible()
 
     def check_login_link_text(self):
@@ -360,7 +360,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Link text - correct
         """
-        error = '❌ <Login link text> of the Registration page - incorrect!'
+        error = f'❌ <Login link text> of the Registration page - incorrect!'
         expect(self.login_link, error).to_have_text(self.LOGIN_LINK_TEXT)
 
     def check_login_link_url(self):
@@ -369,7 +369,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         - ✔ Link URL - correct
         """
-        error = '❌ <Login link> URL of the Registration page - incorrect!'
+        error = f'❌ <Login link> URL of the Registration page - incorrect!'
         expect(self.login_link, error).to_have_attribute('href', self.LOGIN_LINK_URL)
 
 #=======================================================================================================================

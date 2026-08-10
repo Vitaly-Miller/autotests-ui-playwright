@@ -41,8 +41,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         Fill <Login form> fields of the Login page
 
-        - ▶ <Email field> - Fill
-        - ▶ <Password field> - Fill
+        - ▶ <Email field> - fill
+        - ▶ <Password field> - fill
         - ✔ <Login form> fields - filled correctly
 
         :param email: Email
@@ -58,7 +58,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         Click <Login button> of the Login page
 
         - ✔ Button - enabled
-        - ▶ Button - Click
+        - ▶ Button - click
         """
         self.check_login_btn()
         self.login_btn.click()
@@ -69,7 +69,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         Click <Registration link> of the Login page
 
         - ✔ Link - visible | Text - correct | URL - correct
-        - ▶ Link - Click
+        - ▶ Link - click
         """
         self.check_registration_link()
         self.registration_link.click()
@@ -110,7 +110,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Title - visible
         """
-        error = '❌ <Title> of the Login page - invisible!'
+        error = f'❌ <Title> of the Login page - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self):
@@ -119,7 +119,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Text - correct
         """
-        error = '❌ <Title text> of the Login page - incorrect!'
+        error = f'❌ <Title text> of the Login page - incorrect!'
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
@@ -164,7 +164,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Field - visible
         """
-        error = '❌ <Login form [Email field]> of the Login page - invisible!'
+        error = f'❌ <Login form [Email field]> of the Login page - invisible!'
         expect(self.email_field, error).to_be_visible()
 
     def check_email_field_name(self):
@@ -173,7 +173,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Field Name - correct
         """
-        error = '❌ <Login form [Email field Name]> of the Login page - incorrect!'
+        error = f'❌ <Login form [Email field Name]> of the Login page - incorrect!'
         expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
     def check_email_field_filled_correctly(self, email: str):
@@ -182,7 +182,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Field - filled correctly
         """
-        error = '❌ <Login form [Email field]> of the Login page - filled incorrectly!'
+        error = f'❌ <Login form [Email field]> of the Login page - filled incorrectly!'
         expect(self.email_field, error).to_have_value(email)
 
 
@@ -208,7 +208,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Field - visible
         """
-        error = '❌ <Login form [Password field]> of the Login page - invisible!'
+        error = f'❌ <Login form [Password field]> of the Login page - invisible!'
         expect(self.password_field, error).to_be_visible()
 
     def check_password_field_name(self):
@@ -217,7 +217,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Field Name - correct
         """
-        error = '❌ <Login form [Password field Name]> of the Login page - incorrect!'
+        error = f'❌ <Login form [Password field Name]> of the Login page - incorrect!'
         expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
     def check_password_field_filled_correctly(self, password: str):
@@ -226,7 +226,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Field - filled correctly
         """
-        error = '❌ <Login form [Password field]> of the Login page - filled incorrectly!'
+        error = f'❌ <Login form [Password field]> of the Login page - filled incorrectly!'
         expect(self.password_field, error).to_have_value(password)
 
 
@@ -251,7 +251,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Button - enabled
         """
-        error = '❌ <Login button> of the Login page - disabled!'
+        error = f'❌ <Login button> of the Login page - disabled!'
         expect(self.login_btn, error).to_be_enabled()
 
     def check_login_btn_disabled(self):
@@ -262,7 +262,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Button - disabled
         """
-        error = '❌ <Login button> of the Login page - enabled!'
+        error = f'❌ <Login button> of the Login page - enabled!'
         expect(self.login_btn, error).to_be_disabled()
 
     def check_login_btn_text(self):
@@ -271,7 +271,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Text - correct
         """
-        error = '❌ <Login Button text> of the Login page - incorrect!'
+        error = f'❌ <Login Button text> of the Login page - incorrect!'
         expect(self.login_btn, error).to_have_text(self.LOGIN_BTN_TEXT)
 
 
@@ -295,7 +295,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Link - visible
         """
-        error = '❌ <Registration link> of the Login page - invisible!'
+        error = f'❌ <Registration link> of the Login page - invisible!'
         expect(self.registration_link, error).to_be_visible()
 
     def check_registration_link_text(self):
@@ -304,7 +304,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Text - correct
         """
-        error = '❌ <Registration link text> of the Login page - incorrect!'
+        error = f'❌ <Registration link text> of the Login page - incorrect!'
         expect(self.registration_link, error).to_have_text(self.REGISTRATION_LINK_TEXT)
 
     def check_registration_link_url(self):
@@ -313,7 +313,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ URL - correct
         """
-        error = '❌ <Registration link [URL]> of the Login page - incorrect!'
+        error = f'❌ <Registration link [URL]> of the Login page - incorrect!'
         expect(self.registration_link, error).to_have_attribute('href', self.REGISTRATION_LINK_URL)
 
 
@@ -335,7 +335,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Alert - visible
         """
-        error = '❌ <Wrong Email or Password alert> - invisible!'
+        error = f'❌ <Wrong Email or Password alert> - invisible!'
         expect(self.wrong_email_password_alert, error).to_be_visible()
 
     def check_wrong_email_or_password_alert_text(self):
@@ -344,7 +344,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         - ✔ Text - correct
         """
-        error = '❌ <Wrong Email or Password alert text> - incorrect!'
+        error = f'❌ <Wrong Email or Password alert text> - incorrect!'
         expect(self.wrong_email_password_alert, error).to_have_text(self.ALERT_TEXT)
 
 

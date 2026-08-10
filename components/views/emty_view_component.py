@@ -46,7 +46,7 @@ class EmptyViewComponent(BaseComponent):
 
         - ✔ Icon - visible
         """
-        error = '❌ [Icon] of the <Empty View> component - invisible!'
+        error = f'❌ [Icon] of the <Empty View> component - invisible!'
         expect(self.icon, error).to_be_visible()
 
     # Title
@@ -56,7 +56,7 @@ class EmptyViewComponent(BaseComponent):
 
         - ✔ Title - visible
         """
-        error = '❌ [Title] of the <Empty View> component - invisible!'
+        error = f'❌ [Title] of the <Empty View> component - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self, title: str):
@@ -67,7 +67,7 @@ class EmptyViewComponent(BaseComponent):
 
         :param title: Title text
         """
-        error = '❌ [Title text] of the <Empty View> component> - incorrect!'
+        error = f'❌ [Title text] of the <Empty View> component> - incorrect!'
         expect(self.title, error).to_have_text(title)
 
     # Description
@@ -77,7 +77,7 @@ class EmptyViewComponent(BaseComponent):
 
         - ✔ Description - visible
         """
-        error = '❌ [Description] of the <Empty View> component - invisible!'
+        error = f'❌ [Description] of the <Empty View> component - invisible!'
         expect(self.description, error).to_be_visible()
 
     def check_description_text(self, description: str):
@@ -88,7 +88,7 @@ class EmptyViewComponent(BaseComponent):
 
         :param description: Description text
         """
-        error = '❌ [Description text] of the <Empty View> component - incorrect!'
+        error = f'❌ [Description text] of the <Empty View> component - incorrect!'
         expect(self.description, error).to_have_text(description)
 
 #=======================================================================================================================

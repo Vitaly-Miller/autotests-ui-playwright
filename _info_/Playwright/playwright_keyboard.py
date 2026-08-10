@@ -16,7 +16,7 @@ with sync_playwright() as playwright:                       # Создаем о�
 
     # Email field
     email_field = page.get_by_label('Email')                # ㉧ LOCATOR
-    email_field.click()                                     # v.1 ▶ ACTION - Click по объекту
+    email_field.click()                                     # v.1 ▶ ACTION - click по объекту
     email_field.focus()                                     # v.2 ▶ ACTION - Фокус на объекте
 
     # Fill out

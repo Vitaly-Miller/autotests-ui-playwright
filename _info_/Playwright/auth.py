@@ -19,16 +19,16 @@ with sync_playwright() as playwright:                        # Создаем о
     email_field_ = page.locator('label:has-text("Email")')                              # ㉧ LOCATOR поля ввода Email  (v.2)
     email_field__ = page.locator('//div[@data-testid="login-form-email-input"]//input') # ㉧ LOCATOR поля ввода Email  (v.3 - by XPath)
     email_field___ = page.get_by_test_id('login-form-email-input').locator('input')     # ㉧ LOCATOR поля ввода Email  (v.4 - by test id + locator)
-    email_field.fill('user.name@gmail.com')                                             # ▶ ACTION - Fill email field
+    email_field.fill('user.name@gmail.com')                                             # ▶ ACTION - fill email field
 
     # Password field
     password_field = page.get_by_label('Password')                 # ㉧ LOCATOR поля ввода Password  (by label)
-    password_field.fill('password')                                # ▶ ACTION - Fill password field
+    password_field.fill('password')                                # ▶ ACTION - fill password field
 
     # Login button
     login_btn = page.get_by_test_id('login-page-login-button')     # ㉧ LOCATOR кнопки Login (v.1 - by test_id)
     login_btn_ = page.get_by_role('button', name='Login')     # ㉧ LOCATOR кнопки Login (v.2 - by role)
-    login_btn.click()                                              # ▶ ACTION - Click button
+    login_btn.click()                                              # ▶ ACTION - click button
 
     # Error message
     error_message = page.get_by_test_id('login-page-wrong-email-or-password-alert')  # ㉧ LOCATOR сообщения об ошибке при неверном вводе (v.1 - by test id)
