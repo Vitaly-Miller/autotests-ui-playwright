@@ -15,8 +15,8 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page)       # Navbar component
-        self.sidebar = SidebarComponent(page)     # Sidebar component
+        self.navbar = NavbarComponent(page)       # Navbar
+        self.sidebar = SidebarComponent(page)     # Sidebar
 
         # -------------------------------------------- ㉧ LOCATORS (static) ---------------------------------------------
         # Toolbar

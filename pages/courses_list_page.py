@@ -219,7 +219,6 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_course_card_estimated_time_text(estimated_time=estimated_time, index=index)
         self.check_course_card_menu_btn_visible(index=index)
     # ─────────────────────────────────────────────────────────────────────────────────────────┘
-
     # Course Card [Image]:
     def check_course_card_image_visible(self, index: int):
         """
@@ -251,7 +250,6 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card [Title] text> of the Courses List page - incorrect!'
         expect(self.course_title.nth(index), error).to_have_text(title)
 
-
     # Course Card [Max score]
     def check_course_card_max_score_visible(self, index: int):
         """
@@ -272,7 +270,6 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card [Max score] text> of the Courses List page - incorrect!'
         expect(self.course_max_score.nth(index), error).to_have_text(f'Max score: {max_score}')
 
-
     # Course Card [Min score]
     def check_course_card_min_score_visible(self, index: int):
         """
@@ -292,7 +289,6 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         """
         error = '❌ <Course card [Min score] text> of the Courses List page - incorrect!'
         expect(self.course_min_score.nth(index), error).to_have_text(f'Min score: {min_score}')
-
 
     # Course Card [Estimated time]
     def check_course_card_estimated_time_visible(self, index: int):
@@ -315,7 +311,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         expect(self.course_estimated_time.nth(index), error).to_have_text(f'Estimated time: {estimated_time}')
 
 
-    # Course Card [Menu] button:
+    # Course Card [Menu] button
     def check_course_card_menu_btn_visible(self, index: int):
         """
         Check <Course card [Menu] button> of the Courses List page - visible
@@ -325,9 +321,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card [Menu button]> of the Courses List page - invisible!'
         expect(self.course_menu_btn.nth(index), error).to_be_visible()
 
-
-    # Course Card Menu [Action buttons]:
-    # - [Edit course] button
+    # Course Card Menu [Edit course button]
     def check_course_card_menu_edit_course_btn_visible(self, index: int):
         """
         Check <Course card Menu [Edit course] button> of the Courses List page - visible
@@ -346,7 +340,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         error = '❌ <Course card Menu [Edit course] button text> of the Courses List page - incorrect!'
         expect(self.course_edit_menu_btn.nth(index), error).to_have_text('Edit')
 
-    # - [Delete course] button
+    # Course Card Menu [Delete course button]
     def check_course_card_menu_delete_course_btn_visible(self, index: int):
         """
         Check <Course card Menu [Delete course] button> of the Courses List page - visible

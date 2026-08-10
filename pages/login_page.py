@@ -76,7 +76,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ALL Elements
-    # ══════════════════════════════════════╗
+    # ════════════════════════════════════╗
     def check_all_elements(self):
         """
         Check ALL Elements of the Login page
@@ -90,10 +90,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_login_form()
         self.check_login_btn(enable=False)
         self.check_registration_link()
-    # ══════════════════════════════════════╝
+    # ════════════════════════════════════╝
 
     # Title
-    # ───────────────────────────────────┐
+    # ─────────────────────────────┐
     def check_title(self):
         """
         Check <Title> of the Registration page
@@ -103,7 +103,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.check_title_visible()
         self.check_title_text()
-    # ───────────────────────────────────┘
+    # ─────────────────────────────┘
     def check_title_visible(self):
         """
         Check <Title> of the Login page - visible
@@ -124,7 +124,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
 
     # Login Form
-    # ───────────────────────────────────────┐
+    # ──────────────────────────────────────┐
     def check_login_form(
             self,
             email: str | None = None,
@@ -140,7 +140,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.check_email_field(email)
         self.check_password_field(password)
-    # ───────────────────────────────────────┘
+    # ──────────────────────────────────────┘
 
     # Login Form [Email field]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
