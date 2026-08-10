@@ -30,15 +30,17 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.toolbar_title = page.get_by_test_id('courses-list-toolbar-title-text')
         self.toolbar_create_course_btn = page.get_by_test_id('courses-list-toolbar-create-course-button')
 
-        # Empty view
+        # Empty view (component)
         # See —> /components/views/empty_view_component.py
 
-        # Course Card
-        self.course_title = page.get_by_test_id('course-widget-title-text')
-        self.course_image = page.get_by_test_id('course-preview-image')
-        self.course_max_score = page.get_by_test_id('course-max-score-info-row-view-text')
-        self.course_min_score = page.get_by_test_id('course-min-score-info-row-view-text')
-        self.course_estimated_time = page.get_by_test_id('course-estimated-time-info-row-view-text')
+        # Course View (component)
+        # See — > /components/courses/course_view_component.py
+        # self.course_title = page.get_by_test_id('course-widget-title-text')
+        # self.course_image = page.get_by_test_id('course-preview-image')
+        # self.course_max_score = page.get_by_test_id('course-max-score-info-row-view-text')
+        # self.course_min_score = page.get_by_test_id('course-min-score-info-row-view-text')
+        # self.course_estimated_time = page.get_by_test_id('course-estimated-time-info-row-view-text')
+        # See —> /components/courses/course_view_menu_component.py
         # self.course_menu_btn = page.get_by_test_id('course-view-menu-button')
         # self.course_edit_menu_btn = page.get_by_test_id('course-view-edit-menu-item')
         # self.course_delete_menu_btn = page.get_by_test_id('course-view-delete-menu-item')
@@ -219,99 +221,99 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_course_card_estimated_time_text(estimated_time=estimated_time, index=index)
         self.check_course_card_menu_btn_visible(index=index)
     # ─────────────────────────────────────────────────────────────────────────────────────────┘
-    # Course Card [Image]:
-    def check_course_card_image_visible(self, index: int):
-        """
-        Check <Course card [Image]> of the Courses List page - visible
+    # # Course Card [Image]:
+    # def check_course_card_image_visible(self, index: int):
+    #     """
+    #     Check <Course card [Image]> of the Courses List page - visible
+    #
+    #     :param index: Element DOM-index if more than one <Course Card>
+    #     """
+    #     error = f'❌ <Course card [Image]> Courses List page - invisible!'
+    #     expect(self.course_image.nth(index), error).to_be_visible()
+    #
+    #
+    # # Course Card [Title]
+    # def check_course_card_title_visible(self, index: int):
+    #     """
+    #     Check <Course card [Title]> of the Courses List page - visible
+    #
+    #     :param index: Element DOM-index if more than one <Course Card>
+    #     """
+    #     error = f'❌ <Course card [Title]> of the Courses List page - invisible!'
+    #     expect(self.course_title.nth(index), error).to_be_visible()
+    #
+    # def check_course_card_title_text(self, title: str, index: int):
+    #     """
+    #     Check <Course card [Title] text> of the Courses List page - correct
+    #
+    #     :param title: Course title
+    #     :param index: Element DOM-index if more than one <Course Card>
+    #     """
+    #     error = f'❌ <Course card [Title] text> of the Courses List page - incorrect!'
+    #     expect(self.course_title.nth(index), error).to_have_text(title)
+    #
+    # # Course Card [Max score]
+    # def check_course_card_max_score_visible(self, index: int):
+    #     """
+    #     Check <Course card [Max score]> of the Courses List page - visible
+    #
+    #     :param index: Element DOM-index if more than one <Course Card>
+    #     """
+    #     error = f'❌ <Course card [Max score]> of the Courses List page - invisible!'
+    #     expect(self.course_max_score.nth(index), error).to_be_visible()
+    #
+    # def check_course_card_max_score_text(self, max_score: str, index: int):
+    #     """
+    #     Check <Course card [Max score] text> of the Courses List page - correct
+    #
+    #     :param max_score: Max score
+    #     :param index: Element DOM-index if more than one <Course Card>
+    #     """
+    #     error = f'❌ <Course card [Max score] text> of the Courses List page - incorrect!'
+    #     expect(self.course_max_score.nth(index), error).to_have_text(f'Max score: {max_score}')
+    #
+    # # Course Card [Min score]
+    # def check_course_card_min_score_visible(self, index: int):
+    #     """
+    #     Check <Course card [Min score]> of the Courses List page - visible
+    #
+    #     :param index: Element DOM-index if more than one <Course Card>
+    #     """
+    #     error = f'❌ <Course card [Min score]> of the Courses List page - invisible!'
+    #     expect(self.course_min_score.nth(index), error).to_be_visible()
+    #
+    # def check_course_card_min_score_text(self, min_score: str, index: int):
+    #     """
+    #     Check <Course card [Min score] text> of the Courses List page - correct
+    #
+    #     :param min_score: Min score
+    #     :param index: Element DOM-index if more than one <Course Card>
+    #     """
+    #     error = f'❌ <Course card [Min score] text> of the Courses List page - incorrect!'
+    #     expect(self.course_min_score.nth(index), error).to_have_text(f'Min score: {min_score}')
+    #
+    # # Course Card [Estimated time]
+    # def check_course_card_estimated_time_visible(self, index: int):
+    #     """
+    #     Check <Course card [Estimated time]> of the Courses List page - visible
+    #
+    #     :param index: Element DOM-index if more than one <Course Card>
+    #     """
+    #     error = f'❌ <Course card [Estimated time]> of the Courses List page - invisible!'
+    #     expect(self.course_estimated_time.nth(index), error).to_be_visible()
+    #
+    # def check_course_card_estimated_time_text(self, estimated_time: str, index: int):
+    #     """
+    #     Check <Course card [Estimated time] text> of the Courses List page - correct
+    #
+    #     :param estimated_time: Estimated time
+    #     :param index: Element DOM-index if more than one <Course Card>
+    #     """
+    #     error = f'❌ <Course card [Estimated time] text> of the Courses List page - incorrect!'
+    #     expect(self.course_estimated_time.nth(index), error).to_have_text(f'Estimated time: {estimated_time}')
 
-        :param index: Element DOM-index if more than one <Course Card>
-        """
-        error = f'❌ <Course card [Image]> Courses List page - invisible!'
-        expect(self.course_image.nth(index), error).to_be_visible()
 
-
-    # Course Card [Title]
-    def check_course_card_title_visible(self, index: int):
-        """
-        Check <Course card [Title]> of the Courses List page - visible
-
-        :param index: Element DOM-index if more than one <Course Card>
-        """
-        error = f'❌ <Course card [Title]> of the Courses List page - invisible!'
-        expect(self.course_title.nth(index), error).to_be_visible()
-
-    def check_course_card_title_text(self, title: str, index: int):
-        """
-        Check <Course card [Title] text> of the Courses List page - correct
-
-        :param title: Course title
-        :param index: Element DOM-index if more than one <Course Card>
-        """
-        error = f'❌ <Course card [Title] text> of the Courses List page - incorrect!'
-        expect(self.course_title.nth(index), error).to_have_text(title)
-
-    # Course Card [Max score]
-    def check_course_card_max_score_visible(self, index: int):
-        """
-        Check <Course card [Max score]> of the Courses List page - visible
-
-        :param index: Element DOM-index if more than one <Course Card>
-        """
-        error = f'❌ <Course card [Max score]> of the Courses List page - invisible!'
-        expect(self.course_max_score.nth(index), error).to_be_visible()
-
-    def check_course_card_max_score_text(self, max_score: str, index: int):
-        """
-        Check <Course card [Max score] text> of the Courses List page - correct
-
-        :param max_score: Max score
-        :param index: Element DOM-index if more than one <Course Card>
-        """
-        error = f'❌ <Course card [Max score] text> of the Courses List page - incorrect!'
-        expect(self.course_max_score.nth(index), error).to_have_text(f'Max score: {max_score}')
-
-    # Course Card [Min score]
-    def check_course_card_min_score_visible(self, index: int):
-        """
-        Check <Course card [Min score]> of the Courses List page - visible
-
-        :param index: Element DOM-index if more than one <Course Card>
-        """
-        error = f'❌ <Course card [Min score]> of the Courses List page - invisible!'
-        expect(self.course_min_score.nth(index), error).to_be_visible()
-
-    def check_course_card_min_score_text(self, min_score: str, index: int):
-        """
-        Check <Course card [Min score] text> of the Courses List page - correct
-
-        :param min_score: Min score
-        :param index: Element DOM-index if more than one <Course Card>
-        """
-        error = f'❌ <Course card [Min score] text> of the Courses List page - incorrect!'
-        expect(self.course_min_score.nth(index), error).to_have_text(f'Min score: {min_score}')
-
-    # Course Card [Estimated time]
-    def check_course_card_estimated_time_visible(self, index: int):
-        """
-        Check <Course card [Estimated time]> of the Courses List page - visible
-
-        :param index: Element DOM-index if more than one <Course Card>
-        """
-        error = f'❌ <Course card [Estimated time]> of the Courses List page - invisible!'
-        expect(self.course_estimated_time.nth(index), error).to_be_visible()
-
-    def check_course_card_estimated_time_text(self, estimated_time: str, index: int):
-        """
-        Check <Course card [Estimated time] text> of the Courses List page - correct
-
-        :param estimated_time: Estimated time
-        :param index: Element DOM-index if more than one <Course Card>
-        """
-        error = f'❌ <Course card [Estimated time] text> of the Courses List page - incorrect!'
-        expect(self.course_estimated_time.nth(index), error).to_have_text(f'Estimated time: {estimated_time}')
-
-
-    # # Course Card [Menu] button
+    # # Course View [Menu] button
     # def check_course_card_menu_btn_visible(self, index: int):
     #     """
     #     Check <Course card [Menu] button> of the Courses List page - visible
