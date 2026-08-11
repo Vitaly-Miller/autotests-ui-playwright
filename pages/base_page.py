@@ -46,6 +46,7 @@ class BasePage:                                 # Родительский кл�
         self.page.wait_for_timeout(timeout * 1000)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # ⚠️ ДУБЛИКАТ из BaseComponent - решить
     def check_current_url(self, expected_url: str | Pattern[str]):
         """
         Check Current page URL

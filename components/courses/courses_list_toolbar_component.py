@@ -1,57 +1,81 @@
 """
-Courses List Toolbar component
+Courses List [Toolbar] component
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
 
 #=======================================================================================================================
-# """
-# Elements:
-# -
-# """
-# class CoursesListToolbarComponent(BaseComponent):
-#     def __init__(self, page: Page):
-#         super().__init__(page)
-#
-#         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-#         self.
-#
-#         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-#         self.title = page.get_by_test_id(
-#
-#     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-#     def click_menu_btn(self, index: int):
-#         """
-#         Click <Course View [Menu button]> of the Courses List page
-#
-#         -  Button - ✔ visible | ▶ click
-#
-#         :param index: nth-index —> for use in: locator.nth(index)
-#         """
-#         self.menu.click_menu_btn(index)
-#
-#     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-#     # ══════════════════════════════════════════════════════════════════════╗
-#     def check_component(self):
-#         """
-#         Check ALL Elements of the <Course View> component of the Courses List page
-#
-#         - ✔ Menu button - visible | enabled
-#         - ✔ Image - visible
-#         - ✔ Title - visible | Text - correct
-#         - ✔ Max score - visible | Text - correct
-#         - ✔ Min score - visible | Text - correct
-#         - ✔ Estimated time - visible | Text - correct
-#
-#         :param index: nth-index —> for use in: locator.nth(index)
-#         :param title: Course title
-#         :param max_score: Course Max score
-#         :param min_score: Course Min score
-#         :param estimated_time: Course estimated time
-#         """
-#         self.
-#     # ═══════════════════════════════════════════════════════════════════════╝
-#
-#     # I
+"""
+Elements:
+- Title
+- Create course button
+"""
+class CoursesListToolbarComponent(BaseComponent):
+    def __init__(self, page: Page):
+        super().__init__(page)
+
+        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        self.TITLE_TEXT = 'Courses'
+        self.REDIRECT_URL = '/#/courses/create'
+
+        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+        self.title = page.get_by_test_id('courses-list-toolbar-title-text')
+        self.create_course_btn = page.get_by_test_id('courses-list-toolbar-create-course-button')
+
+    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    def click_create_course_btn(self):
+        """
+        Click <Toolbar [Create course] button>  of the Courses List page
+
+        - ✔ Button - visible
+        - ▶ Button - click
+        - ✔ Redirect new page URL - correct
+        """
+        self.check_create_course_btn_visible()
+        self.create_course_btn.click()
+        self.check_current_url(self.REDIRECT_URL)
+
+    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # ═════════════════════════════════════════╗
+    def check_component(self):
+        """
+        Check <Toolbar> component of the Courses List page
+
+        - ✔ Title - visible
+        - ✔ Title text - correct
+        - ✔ Create course button - visible
+        """
+        self.check_title_visible()
+        self.check_create_course_btn_visible()
+        self.check_title_text()
+    # ═════════════════════════════════════════╝
+    def check_title_visible(self):
+        """
+        Check <Toolbar [Title]> of the Courses List page - visible
+
+        - ✔ Title - visible
+        """
+        error = f'❌ <Toolbar [Title]> of the Courses List page - invisible!'
+        expect(self.title, error).to_be_visible()
+
+    def check_title_text(self):
+        """
+        Check <Toolbar [Title] text> of the Courses List page
+
+        - ✔ Text - correct
+        """
+        error = f'❌ <Toolbar [Title] text> of the Courses List page - incorrect!'
+        expect(self.title, error).to_have_text(self.TITLE_TEXT)
+
+    def check_create_course_btn_visible(self):
+        """
+        Check <Toolbar [Create course] button> of the Courses List page
+
+        - ✔ Button - visible
+        """
+        error = f'❌ <Toolbar [Create course] button> of the Courses List page - invisible!'
+        expect(self.create_course_btn, error).to_be_visible()
+
+
 #=======================================================================================================================

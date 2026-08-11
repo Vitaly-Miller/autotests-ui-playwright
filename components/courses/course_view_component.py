@@ -56,7 +56,7 @@ class CourseViewComponent(BaseComponent):
             estimated_time: str
     ):
         """
-        Check ALL Elements of the <Course View> component of the Courses List page
+        Check <Course View> component of the Courses List page
 
         - ✔ Menu button - visible | enabled
         - ✔ Image - visible

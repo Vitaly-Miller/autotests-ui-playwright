@@ -33,7 +33,7 @@ class EmptyViewComponent(BaseComponent):
     # ══════════════════════════════════════════════════════╗
     def check_component(self, title: str, description: str):
         """
-        Check ALL elements of the <Empty View> component
+        Check <Empty View> component
 
         - ✔ Icon - visible
         - ✔ Title - visible | Text - correct
@@ -43,10 +43,8 @@ class EmptyViewComponent(BaseComponent):
         :param description: Description text
         """
         self.check_icon_visible()
-        self.check_title_visible()
-        self.check_title_text(title)
-        self.check_description_visible()
-        self.check_description_text(description)
+        self.check_title(title)
+        self.check_description(description)
     # ══════════════════════════════════════════════════════╝
 
     # Icon
@@ -60,6 +58,19 @@ class EmptyViewComponent(BaseComponent):
         expect(self.icon, error).to_be_visible()
 
     # Title
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_title(self, title: str):
+        """
+        Check [Title] of the <Empty View> component
+
+        - ✔ Title - visible
+        - ✔ Text - correct
+
+        :param title: Title text
+        """
+        self.check_title_visible()
+        self.check_title_text(title)
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
         Check [Title] of the <Empty View> component - visible
@@ -81,6 +92,19 @@ class EmptyViewComponent(BaseComponent):
         expect(self.title, error).to_have_text(title)
 
     # Description
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_description(self, description: str):
+        """
+        Check [Description] of the <Empty View> component
+
+        - ✔ Description - visible
+        - ✔ Text - correct
+
+        :param description: Description text
+        """
+        self.check_description_visible()
+        self.check_description_text(description)
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_description_visible(self):
         """
         Check [Description] of the <Empty View> component - visible

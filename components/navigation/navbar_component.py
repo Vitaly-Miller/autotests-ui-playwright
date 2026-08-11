@@ -25,10 +25,10 @@ class NavbarComponent(BaseComponent):
         self.welcome_title = page.get_by_test_id('navigation-navbar-welcome-title-text')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ──────────────────────────────────────────┐
+    # ═══════════════════════════════════════╗
     def check_component(self, username: str):
         """
-        Check ALL elements of the <Navbar>
+        Check <Navbar> component
 
         - ✔ Title - visible | Text - correct
         - ✔ Welcome title - visible | Text - correct
@@ -37,7 +37,7 @@ class NavbarComponent(BaseComponent):
         """
         self.check_title()
         self.check_welcome_title(username)
-    # ──────────────────────────────────────────┘
+    # ═══════════════════════════════════════╝
 
     # Title
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
