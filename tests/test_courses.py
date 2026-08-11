@@ -25,7 +25,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
 
     # ✔️EXPECTATIONS (Before Course creation)
     create_course_page.check_navbar_and_sidebar(username)         # Проверка компонентов <Navbar> + <Sidebar>
-    create_course_page.check_all_elements()                       # Проверка всех элементов страницы (КАРТИНКА НЕ ЗАГРУЖЕНА)
+    create_course_page.check_page()                               # Проверка всех элементов страницы
 
     # ▶ ACTIONS (Create course)
     create_course_page.upload_image('image_1.jpg')                # Загрузка картинки курса
@@ -40,8 +40,8 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
 
     # ✔️EXPECTATIONS (After Course creation)
     courses_list_page.check_current_url(courses_list_page.URL)    # Проверка успешного редиректа на страницу - Courses List Page
-    courses_list_page.check_course_card(                          # Данные в карточке курса соответствуют заполненным полям формы
-        index=0,                                                  # Element DOM-index of <Course Card>
+    courses_list_page.check_course_view(                          # Данные в карточке курса соответствуют заполненным полям формы
+        index=0,                                                  # nth-index
         title=course_title,
         estimated_time=course_estimated_time,
         max_score=course_max_score,

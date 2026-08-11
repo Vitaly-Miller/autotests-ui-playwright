@@ -8,9 +8,12 @@ from components.courses.course_view_menu_component import CourseViewMenuComponen
 #=======================================================================================================================
 """
 Elements:
-- Menu
-- 
-- 
+- Menu (component)
+- Title
+- Image
+- Max score
+- Min score
+- Estimated time
 """
 class CourseViewComponent(BaseComponent):
     def __init__(self, page: Page):
@@ -55,7 +58,7 @@ class CourseViewComponent(BaseComponent):
         """
         Check ALL Elements of the <Course View> component of the Courses List page
 
-        - ✔ Menu (component)
+        - ✔ Menu button - visible | enabled
         - ✔ Image - visible
         - ✔ Title - visible | Text - correct
         - ✔ Max score - visible | Text - correct
@@ -68,7 +71,7 @@ class CourseViewComponent(BaseComponent):
         :param min_score: Course Min score
         :param estimated_time: Course estimated time
         """
-        self.menu.check_component(index)
+        self.menu.check_menu_btn(index)
         self.check_image_visible(index)
         self.check_title(index=index, title=title)
         self.check_max_score(index=index, max_score=max_score)
@@ -85,7 +88,7 @@ class CourseViewComponent(BaseComponent):
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View [Image]> of the Courses List page - invisible!'
+        error = f'❌ <Course View [Image] (nth-index: {index})> of the Courses List page - invisible!'
         expect(self.image.nth(index), error).to_be_visible()
 
     # Title
@@ -111,7 +114,7 @@ class CourseViewComponent(BaseComponent):
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View [Title]> of the Courses List page - invisible!'
+        error = f'❌ <Course View [Title] (nth-index: {index})> of the Courses List page - invisible!'
         expect(self.title.nth(index), error).to_be_visible()
 
     def check_title_text(self, title: str, index: int):
@@ -123,7 +126,7 @@ class CourseViewComponent(BaseComponent):
         :param title: Course title
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View [Title] text> of the Courses List page - incorrect!'
+        error = f'❌ <Course View [Title] text (nth-index: {index})> of the Courses List page - incorrect!'
         expect(self.title.nth(index), error).to_have_text(title)
 
     # Max score
@@ -149,7 +152,7 @@ class CourseViewComponent(BaseComponent):
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View [Max score]> of the Courses List page - invisible!'
+        error = f'❌ <Course View [Max score] (nth-index: {index})> of the Courses List page - invisible!'
         expect(self.max_score.nth(index), error).to_be_visible()
 
     def check_max_score_text(self, max_score: str, index: int):
@@ -161,7 +164,7 @@ class CourseViewComponent(BaseComponent):
         :param index: nth-index —> for use in: locator.nth(index)
         :param max_score: Max score
         """
-        error = f'❌ <Course View [Max score] text> of the Courses List page - incorrect!'
+        error = f'❌ <Course View [Max score] text (nth-index: {index})> of the Courses List page - incorrect!'
         expect(self.max_score.nth(index), error).to_have_text(f'{self.MAX_SCORE_PART_TEXT} {max_score}')
 
     # Min score
@@ -187,7 +190,7 @@ class CourseViewComponent(BaseComponent):
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View [Min score]> of the Courses List page - invisible!'
+        error = f'❌ <Course View [Min score] (nth-index: {index})> of the Courses List page - invisible!'
         expect(self.min_score.nth(index), error).to_be_visible()
 
     def check_min_score_text(self, index: int, min_score: str, ):
@@ -200,7 +203,7 @@ class CourseViewComponent(BaseComponent):
         :param min_score: Min score
 
         """
-        error = f'❌ <Course View [Min score] text> of the Courses List page - incorrect!'
+        error = f'❌ <Course View [Min score] text (nth-index: {index})> of the Courses List page - incorrect!'
         expect(self.min_score.nth(index), error).to_have_text(f'{self.MIN_SCORE_PART_TEXT} {min_score}')
 
     # Estimated time
@@ -226,7 +229,7 @@ class CourseViewComponent(BaseComponent):
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View [Estimated time]> of the Courses List page - invisible!'
+        error = f'❌ <Course View [Estimated time] (nth-index: {index})> of the Courses List page - invisible!'
         expect(self.estimated_time.nth(index), error).to_be_visible()
 
     def check_estimated_time_text(self, index: int, estimated_time: str):
@@ -239,7 +242,7 @@ class CourseViewComponent(BaseComponent):
         :param estimated_time: Estimated time
 
         """
-        error = f'❌ <Course View [Estimated time] text> of the Courses List page - incorrect!'
+        error = f'❌ <Course View [Estimated time] text (nth-index: {index})> of the Courses List page - incorrect!'
         expect(self.estimated_time.nth(index), error).to_have_text(f'{self.ESTIMATED_TIME_PART_TEXT} {estimated_time}')
 
 #=======================================================================================================================

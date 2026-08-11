@@ -141,11 +141,15 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         Upload image for Course
 
-        - ▶ Upload file form -  PROJECT/testdata/files/
+        - ▶ Upload image file form - /PROJECT/testdata/files/
+        - ✔ Image - visible
+        - ✔ Remove image Button - visible
 
-        :param file: File name
+        :param file: Image file name
         """
         self.upload_image_view_input.set_input_files(self.FILES/file)
+        self.check_preview_view_image_visible()
+        self.check_remove_image_btn()
 
     def fill_create_course_form(
             self,
@@ -203,9 +207,8 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ALL Elements
     # ════════════════════════════════════╗
-    def check_all_elements(self):
+    def check_page(self):
         """
         Check ALL Elements of the Create course page
 
@@ -231,10 +234,10 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         Check <Navbar> + <Sidebar> components
 
         - ✔ Navbar - visible | Text - correct
-        - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
+        - ✔ Sidebar Items - visible | Icons - visible | Titles - visible | Texts - correct
         """
         self.navbar.check_navbar(username)
-        self.sidebar.check_sidebar()
+        self.sidebar.check_component()
     # ─────────────────────────────────────────────────╯
 
     # Toolbar:

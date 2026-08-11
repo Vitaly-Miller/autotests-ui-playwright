@@ -37,15 +37,6 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
         # Course View (component)
         # See — > /components/courses/course_view_component.py
-        # self.course_title = page.get_by_test_id('course-widget-title-text')
-        # self.course_image = page.get_by_test_id('course-preview-image')
-        # self.course_max_score = page.get_by_test_id('course-max-score-info-row-view-text')
-        # self.course_min_score = page.get_by_test_id('course-min-score-info-row-view-text')
-        # self.course_estimated_time = page.get_by_test_id('course-estimated-time-info-row-view-text')
-        # See —> /components/courses/course_view_menu_component.py
-        # self.course_menu_btn = page.get_by_test_id('course-view-menu-button')
-        # self.course_edit_menu_btn = page.get_by_test_id('course-view-edit-menu-item')
-        # self.course_delete_menu_btn = page.get_by_test_id('course-view-delete-menu-item')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------

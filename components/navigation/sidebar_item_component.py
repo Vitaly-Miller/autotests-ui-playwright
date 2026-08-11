@@ -1,20 +1,20 @@
 """
 Sidebar List Component
 """
-"""
-<Button>
-  - [Icon]
-  - [Title]
-  - [Title text]
-"""
+
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
-class SidebarListComponent(BaseComponent):
+"""
+Item elements:
+- Icon
+- Title
+- Title text
+"""
+class SidebarItemComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str):
         """
-        Identifiers:
         - dashboard
         - courses
         - logout
@@ -30,65 +30,69 @@ class SidebarListComponent(BaseComponent):
         self.btn_title = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
 
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
-    def click_btn(self):
+    def click_item(self):
         """
-        Click <Sidebar List component [Button]>
+        Click <Sidebar Item>
 
-        - ✔ Button - click
+        - ✔ Item - visible
+        - ▶ Item - click
         """
+        self.check_item_visible()
         self.btn.click()
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
-    # ──────────────────────────────────┐
-    def check_btn(self, title: str):
+    # ────────────────────────────────────┐
+    def check_component(self, title: str):
         """
-        Check <Sidebar List component [Button]>
+        Check ALL elements of the <Sidebar Item> component
+
+        - ✔ Item - visible
+        - ✔ Icon - visible
+        - ✔ Title - visible | Text - correct
+
+        :param title: Item title
+        """
+        self.check_item_visible()
+        self.check_icon_visible()
+        self.check_title_visible()
+        self.check_title_text(title)
+    # ────────────────────────────────────┘
+    def check_item_visible(self):
+        """
+        Check <Sidebar Item> - visible
 
         - ✔ Button - visible
-        - ✔ Button Icon - visible
-        - ✔ Button Title - visible | Text - correct
         """
-        self.check_btn_visible()
-        self.check_btn_icon_visible()
-        self.check_btn_title_visible()
-        self.check_btn_title_text(title)
-    # ──────────────────────────────────┘
-    def check_btn_visible(self):
-        """
-        Check <Sidebar List component [Button]> - visible
-
-        - ✔ Button - visible
-        """
-        error = f'❌ Check <Sidebar List component [Button]> - invisible!'
+        error = f'❌ Check <Sidebar Item> - invisible!'
         expect(self.btn, error).to_be_visible()
 
-    def check_btn_icon_visible(self):
+    def check_icon_visible(self):
         """
-        Check <Sidebar List component [Button Icon]> - visible
+        Check <Sidebar Item [Icon]> - visible
 
         - ✔ Icon - visible
         """
-        error = f'❌ Check <Sidebar List component [Button Icon]> - invisible!'
+        error = f'❌ Check <Sidebar Item [Icon]> - invisible!'
         expect(self.btn_icon, error).to_be_visible()
 
-    def check_btn_title_visible(self):
+    def check_title_visible(self):
         """
-        Check <Sidebar List component [Button Title]> - visible
+        Check <Sidebar Item [Title]> - visible
 
         - ✔ Title - visible
         """
-        error = f'❌ Check <Sidebar List component [Button Title]> - invisible!'
+        error = f'❌ Check <Sidebar Item [Title]> - invisible!'
         expect(self.btn_title, error).to_be_visible()
 
-    def check_btn_title_text(self, title: str):
+    def check_title_text(self, title: str):
         """
-        Check <Sidebar List component [Button Title text]> - correct
+        Check <Sidebar Item [Title text]> - correct
 
         - ✔ Text - correct
 
         :param title: Title
         """
-        error = f'❌ Check <Sidebar List component [Button Title text]> - incorrect!'
+        error = f'❌ Check <Sidebar Item [Title text]> - incorrect!'
         expect(self.btn_title, error).to_have_text(title)
 
 

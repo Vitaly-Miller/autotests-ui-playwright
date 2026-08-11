@@ -6,6 +6,12 @@ from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
+"""
+Elements:
+- Icon
+- Title
+- Description
+"""
 class EmptyViewComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str):
         """
