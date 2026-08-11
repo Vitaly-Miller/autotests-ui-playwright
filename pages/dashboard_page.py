@@ -60,8 +60,8 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         - ✔ Navbar - visible | Text - correct
         - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
         """
-        self.navbar.check_navbar(username)
-        self.sidebar.check_sidebar()
+        self.navbar.check_component(username)
+        self.sidebar.check_component()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
     # Toolbar:

@@ -16,10 +16,18 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         super().__init__(page)           # Передаёт page в конструктор BasePage
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
+        # Toolbar
+        self.TOOLBAR_TITLE = 'Create course'
+
         # Preview [Empty View]
         self.PREVIEW_EMPTY_VIEW_IDENTIFIER = 'create-course-preview'
         self.PREVIEW_EMPTY_VIEW_TITLE = 'No image selected'
         self.PREVIEW_EMPTY_VIEW_DESCRIPTION = 'Preview of selected image will be displayed here'
+
+        # Upload Image View
+        self.UPLOAD_IMAGE_VIEW_TITLE_TEXT = 'Tap on "Upload image" button to select file'
+        self.UPLOAD_IMAGE_VIEW_DESCRIPTION_TEXT = 'Recommended file size 540X300'
+        self.UPLOAD_IMAGE_VIEW_BUTTON_TEXT = 'Upload image'
 
         # Course [Form]
         self.TITLE_FIELD_NAME = 'Title'
@@ -33,7 +41,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         # Exercises [Toolbar]
         self.EXERCISES_TOOLBAR_TITLE = 'Exercises'
-        self.EXERCISE_TOOLBAR_TEXT_PART_TITLE = 'Exercise'   # Text part of title (Ex: "#1 Exercise")
+        self.EXERCISE_TOOLBAR_TITLE_PART_TEXT = 'Exercise'   # Part of text (Ex: "#1 Exercise")
 
         # Exercises [Empty View]
         self.EXERCISES_EMPTY_VIEW_IDENTIFIER = 'create-course-exercises'
@@ -236,7 +244,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Navbar - visible | Text - correct
         - ✔ Sidebar Items - visible | Icons - visible | Titles - visible | Texts - correct
         """
-        self.navbar.check_navbar(username)
+        self.navbar.check_component(username)
         self.sidebar.check_component()
     # ─────────────────────────────────────────────────╯
 
@@ -273,7 +281,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         did - correct
         """
         error = f'❌ <Toolbar [Title] text> of the Create course page - incorrect!'
-        expect(self.toolbar_title, error).to_have_text('Create course')
+        expect(self.toolbar_title, error).to_have_text(self.TOOLBAR_TITLE)
 
     # Toolbar [Create Course Button]
     def check_toolbar_create_course_btn_visible(self):
@@ -378,7 +386,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Text - correct
         """
         error = f'❌ <Upload image View [Title] text> of the Create course page - incorrect!'
-        expect(self.upload_image_view_title, error).to_have_text('Tap on "Upload image" button to select file')
+        expect(self.upload_image_view_title, error).to_have_text(self.UPLOAD_IMAGE_VIEW_TITLE_TEXT)
 
     # - Upload image View [Description]
     def check_upload_image_view_description_visible(self):
@@ -397,7 +405,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Text - correct
         """
         error = f'❌ <Upload image View [Description] text> of the Create course page - incorrect!'
-        expect(self.upload_image_view_description, error).to_have_text('Recommended file size 540X300')
+        expect(self.upload_image_view_description, error).to_have_text(self.UPLOAD_IMAGE_VIEW_DESCRIPTION_TEXT)
 
 
     # Upload image View [Upload image Button]
@@ -441,7 +449,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         - ✔ Text - correct
         """
         error = f'❌ <Upload image Button text> of the Create course page - incorrect!'
-        expect(self.upload_image_btn, error).to_have_text('Upload image')
+        expect(self.upload_image_btn, error).to_have_text(self.UPLOAD_IMAGE_VIEW_BUTTON_TEXT)
 
 
     # Upload image View [Remove image Button]
@@ -943,7 +951,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         error = f'❌ <Exercise Toolbar [Title] text> of the Create course page - incorrect!'
-        expect(self.exercise_subtitle(index), error).to_have_text(f'#{index + 1} {self.EXERCISE_TOOLBAR_TEXT_PART_TITLE}')
+        expect(self.exercise_subtitle(index), error).to_have_text(f'#{index + 1} {self.EXERCISE_TOOLBAR_TITLE_PART_TEXT}')
 
     # - Exercise [Delete exercise Button]
     def check_delete_exercise_btn_visible(self, index: int = 0):

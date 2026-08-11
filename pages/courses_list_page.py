@@ -50,47 +50,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.check_toolbar_create_course_btn_visible()
         self.toolbar_create_course_btn.click()
 
-    # def click_course_card_menu_btn(self, index: int):
-    #     """
-    #     Click <Course card [Menu] button>
-    #
-    #     - ✔ Button - visible
-    #     - ▶ Button - click
-    #
-    #     :param index: Element DOM-index if more than one <Course Card>
-    #     """
-    #     self.check_course_card_menu_btn_visible(index)
-    #     self.course_menu_btn.nth(index).click()
-    #
-    #
-    # def click_course_card_menu_edit_course_btn(self, index: int):
-    #     """
-    #     Click <Course card menu [Edit course] button>  of the Courses List page
-    #
-    #     - ▶ <Course card menu> button - click
-    #     - ✔ <Edit course> button - enabled
-    #     - ▶ <Edit course> button - click
-    #
-    #     :param index: Element DOM-index if more than one <Course Card>
-    #     """
-    #     self.click_course_card_menu_btn(index)
-    #     self.check_course_card_menu_edit_course_btn_visible(index)
-    #     self.course_edit_menu_btn.nth(index).click()
-    #
-    # def click_course_card_menu_delete_course_btn(self, index: int):
-    #     """
-    #     Click <Course card menu [Delete course] button> of the Courses List page
-    #
-    #     - ▶ <Course card menu> button - click
-    #     - ✔ <Delete course> button - enabled
-    #     - ▶ <Delete course> button - click
-    #
-    #     :param index: Element DOM-index if more than one <Course Card>
-    #     """
-    #     self.click_course_card_menu_btn(index)
-    #     self.check_course_card_menu_delete_course_btn_visible(index)
-    #     self.course_delete_menu_btn.nth(index).click()
-    #
+
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ════════════════════════════╗
@@ -158,8 +118,8 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         - ✔ Navbar - visible | Text - correct
         - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
         """
-        self.navbar.check_navbar(username)
-        self.sidebar.check_sidebar()
+        self.navbar.check_component(username)
+        self.sidebar.check_component()
 
 
     # Empty View (component):
