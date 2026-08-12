@@ -39,7 +39,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def fill_login_form(self, email: str, password: str):
         """
-        Fill <Login form> fields of the Login page
+        ▶ Fill <Login form> fields of the Login page
 
         - ▶ <Email field> - fill
         - ▶ <Password field> - fill
@@ -55,7 +55,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def click_login_btn(self):
         """
-        Click <Login button> of the Login page
+        ▶ Click <Login button> of the Login page
 
         - ✔ Button - enabled
         - ▶ Button - click
@@ -66,9 +66,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def click_registration_link(self):
         """
-        Click <Registration link> of the Login page
+        ▶ Click <Registration link> of the Login page
 
-        - ✔ Link - visible | Text - correct | URL - correct
+        - ✔ Link - visible | - text | URL - correct
         - ▶ Link - click
         """
         self.check_registration_link()

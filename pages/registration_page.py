@@ -62,7 +62,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def click_registration_btn(self):
         """
-        Click <Registration> button of the Registration page
+        ▶ Click <Registration> button of the Registration page
 
         - ✔ Button - enabled
         - ▶ Button - click
@@ -73,9 +73,9 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def click_login_link(self):
         """
-        Click <Login link> of the Registration page
+        ▶ Click <Login link> of the Registration page
 
-        - ✔ Link - visible | Text - correct | URL - correct
+        - ✔ Link - visible | - text | URL - correct
         - ▶ Link - click
         """
         self.check_login_link()

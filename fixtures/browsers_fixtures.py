@@ -69,20 +69,20 @@ def storage_state(playwright: Playwright):      # Используем встр�
     email_field.fill('user.name@gmail.com')
     username_field.fill('username')
     password_field.fill('password')
-    registration_btn.click()           # —> Dashboard                                                                    https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard
+    registration_btn.click()           # —> Dashboard
     page.wait_for_url('**/dashboard')  # ❗️Дождаться открытие страницы, что бы гарантировано сформировался Storage state
     # ──────────────────────────────────────────────┘
 
-    # context.storage_state(path='storage_state.json')                # v.1 - Сохраняем Storage state в 💾JSON-файл     (optional)
-    # storage_state = context.storage_state()                         # v.2 - Сохраняем Storage state в переменную      (optional)
-    storage_state = context.storage_state(path='storage_state.json')  # v.3 - Storage state в переменную + 💾JSON-файл  (optional)
+    storage_state = context.storage_state()                             # v.1 - Storage state в переменную
+    # context.storage_state(path='storage_state.json')                  # v.2 - Storage state в 💾JSON-файл  (optional)
+    # storage_state = context.storage_state(path='storage_state.json')  # v.3 - Storage state в переменную + 💾JSON-файл  (optional)
 
     try:
-        yield storage_state                                           # Передаем Storage state
+        yield storage_state         # Передаем Storage state
 
-    finally:                                                          # Гарантия закрытия, если упадет.
-        context.close()                                               # Закрываем context!
-        browser.close()                                               # Закрываем browser!
+    finally:                        # Гарантия закрытия, если упадет.
+        context.close()             # Закрываем context!
+        browser.close()             # Закрываем browser!
 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -100,18 +100,18 @@ def page_guest(playwright: Playwright):   # Чистый (без доп. фик�
         headless=False,                           # - True/False — НЕ/Показывать браузер
         slow_mo=500                               # - Action delay (ms)
     )
-    context = browser.new_context(                # Создание браузерного окружения (NO Storage state):
+    context = browser.new_context(                        # Создание браузерного окружения (NO Storage state):
         locale='en-US',                                   # - Website language (locale)
         viewport=ViewportSize(width=1100, height=1200),   # - Window size
         base_url=None                                     # - Base URL
     )
-    page = context.new_page()                     # Создаем объект page на базе context
+    page = context.new_page()                             # Создаем объект page на базе context
 
     try:
-        yield page                                # Передаем page (на базе context)
+        yield page              # Передаем page (на базе context)
 
-    finally:                                      # Гарантия закрытия, если упадет.
-        context.close()                           # Закрываем context!
-        browser.close()                           # Закрываем browser!
+    finally:                    # Гарантия закрытия, если упадет.
+        context.close()         # Закрываем context!
+        browser.close()         # Закрываем browser!
 
 #=======================================================================================================================

@@ -36,8 +36,8 @@ class EmptyViewComponent(BaseComponent):
         ✔ Check <Empty view>
 
         - ✔ Icon - visible
-        - ✔ Title - visible | text
-        - ✔ Description - visible | text
+        - ✔ Title - visible | - text
+        - ✔ Description - visible | - text
 
         :param title: Title text
         :param description: Description text
@@ -51,7 +51,7 @@ class EmptyViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_icon(self):
         """
-        ✔ Check [Icon] of the <Empty view>
+        ✔ Check [Icon]
 
         - ✔ Icon - visible
         """

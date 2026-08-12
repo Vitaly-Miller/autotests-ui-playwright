@@ -20,7 +20,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         # Toolbar
         self.TOOLBAR_TITLE = 'Create course'
 
-
         # Course [Form]
         self.TITLE_FIELD_NAME = 'Title'
         self.TITLE_FIELD_PLACEHOLDER = 'New course'
@@ -33,7 +32,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
         # Exercises [Toolbar]
         self.EXERCISES_TOOLBAR_TITLE = 'Exercises'
-        self.EXERCISE_TOOLBAR_TITLE_PART_TEXT = 'Exercise'   # Part of text (Ex: "#1 Exercise")
+        self.EXERCISE_TOOLBAR_TITLE_TEXT = lambda index: f'#{index + 1} Exercise'
 
         # Exercises [Empty view]
         self.EXERCISES_EMPTY_VIEW_IDENTIFIER = 'create-course-exercises'
@@ -69,8 +68,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.exercise_toolbar_title = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
         self.exercise_toolbar_create_exercise_btn = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
-        # Exercises [Empty view]
-        # See —> /components/views/empty_view_component.py
 
         # Exercises [Exercise]
         # ┄┄┄┄┄┄┄┄ (lambda - index) - ⚠️ NOT USING! - FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄╮
@@ -102,7 +99,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def click_create_course_btn(self):
         """
-        Click <Create course Button> of the Create course page
+        ▶ Click <Create course Button> of the Create course page
 
         - ✔ Button - visible
         - ✔ Button - enabled
@@ -121,7 +118,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
             max_score: str,
             min_score: str):
         """
-        Fill Create course form of the Create course page
+        ▶ ▶ Fill Create course form of the Create course page
 
         - ▶ Form fields - fill
         - ✔ Form fields - filled correctly
@@ -147,7 +144,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # EXERCISES:
     def click_create_exercise_btn(self):
         """
-        Click <Create exercise Button> of the Create course page
+        ▶ Click <Create exercise Button> of the Create course page
 
         - ✔ Button - visible
         - ▶ Button - click
@@ -157,7 +154,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def click_delete_exercise_btn(self, index: int):
         """
-        Click <Delete exercise Button> of the Create course page
+        ▶ Click <Delete exercise Button> of the Create course page
 
         - ✔ Button - visible
         - ▶ Button - click
@@ -620,8 +617,8 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         ✔ Check ALL elements of the <Exercise [Empty view]> component of the  Create course page
 
         - ✔ Icon - visible
-        - ✔ Title - visible | Text - correct
-        - ✔ Description - visible | Text - correct
+        - ✔ Title - visible | - text
+        - ✔ Description - visible | - text
         """
         self.preview_empty_view.check_component(
             title=self.PREVIEW_EMPTY_VIEW_TITLE,
@@ -666,7 +663,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         :param index: Locator Index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         error = f'❌ <Exercise Toolbar [Title] text> of the Create course page - incorrect!'
-        expect(self.exercise_subtitle(index), error).to_have_text(f'#{index + 1} {self.EXERCISE_TOOLBAR_TITLE_PART_TEXT}')
+        expect(self.exercise_subtitle(index), error).to_have_text(self.EXERCISE_TOOLBAR_TITLE_TEXT(index))
 
     # - Exercise [Delete exercise Button]
     def check_delete_exercise_btn_visible(self, index: int = 0):

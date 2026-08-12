@@ -1,5 +1,5 @@
 """
-Courses List page
+Courses list page
 """
 
 from pages.base_page import BasePage
@@ -17,12 +17,12 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # 𝌆 DATA:
+        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.IDENTIFIER = 'courses-list'
         self.EMPTY_VIEW_TITLE = 'There is no results'
         self.EMPTY_VIEW_DESCRIPTION = 'Results from the load test pipeline will be displayed here'
 
-        # ⿴ COMPONENTS:
+        # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = CoursesListToolbarComponent(page)
@@ -30,16 +30,15 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.course_view = CourseViewComponent(page)
 
 
-    # ✔️EXPECTATIONS:
-
+    # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # Empty view (component):
     def check_empty_view(self):
         """
-        ✔ Check <Empty view> component of the Courses List page
+        ✔ Check <Empty view> component of the Courses list page
 
         - ✔ Icon - visible
-        - ✔ Title - visible | Text - correct
-        - ✔ Description - visible | Text - correct
+        - ✔ Title - visible | - text
+        - ✔ Description - visible | - text
         """
         self.empty_view.check_component(
             title=self.EMPTY_VIEW_TITLE,

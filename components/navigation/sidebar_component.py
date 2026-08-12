@@ -9,13 +9,14 @@ from components.navigation.sidebar_item_component import SidebarItemComponent
 #=======================================================================================================================
 """
 Elements:
-- Dashboard Item (component)
-- Courses Item (component)
-- Logout Item (component)
+- Dashboard button (component)
+- Courses button (component)
+- Logout button (component)
 """
 class SidebarComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
+
         # ----------------------------------------------- 𝌆 DATA -------------------------------------------------------
         # Identifiers
         self.DASHBOARD_IDENTIFIER = 'dashboard'
@@ -27,51 +28,48 @@ class SidebarComponent(BaseComponent):
         self.COURSES_TITLE = 'Courses'
         self.LOGOUT_TITLE = 'Logout'
 
-
         # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
-        self.dashboard_item = SidebarItemComponent(page=page, identifier=self.DASHBOARD_IDENTIFIER)
-        self.courses_item = SidebarItemComponent(page=page, identifier=self.COURSES_IDENTIFIER)
-        self.logout_item = SidebarItemComponent(page=page, identifier=self.LOGOUT_IDENTIFIER)
-
+        self.dashboard_btn = SidebarItemComponent(page=page, identifier=self.DASHBOARD_IDENTIFIER)
+        self.courses_btn = SidebarItemComponent(page=page, identifier=self.COURSES_IDENTIFIER)
+        self.logout_btn = SidebarItemComponent(page=page, identifier=self.LOGOUT_IDENTIFIER)
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    def click_dashboard_item(self):
+    def click_dashboard_btn(self):
         """
-        Click <Sidebar [Dashboard Item]>
+        ▶ Click <Sidebar [Dashboard button]>
 
-        - Item - ✔ visible | ▶ click
+        - Button - ✔ visible -> ▶ click
         """
-        self.dashboard_item.click_item()
+        self.dashboard_btn.click_btn()
 
-    def click_courses_item(self):
+    def click_courses_btn(self):
         """
-        Click <Sidebar [Courses Item]>
+        ▶ Click <Sidebar [Courses button]>
 
-        - Item - ✔ visible | ▶ click
+        - Button - ✔ visible -> ▶ click
         """
-        self.courses_item.click_item()
+        self.courses_btn.click_btn()
 
-    def click_logout_item(self):
+    def click_logout_btn(self):
         """
-        Click <Sidebar [Logout Item]>
+        ▶ Click <Sidebar [Logout button]>
 
-        - Item - ✔ visible | ▶ click
+        - Button - ✔ visible -> ▶ click
         """
-        self.logout_item.click_item()
-
+        self.logout_btn.click_btn()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    def check(self):
+    def check_component(self):
         """
-        ✔ Check <Sidebar> component
+        ✔ Check [Sidebar]
 
-        - ✔ Dashboard Item - visible | Icon - visible | Title - visible | Text - correct
-        - ✔ Courses Item - visible | Icon - visible | Title - visible | Text - correct
-        - ✔ Logout Item - visible | Icon - visible | Title - visible | Text - correct
+        - ✔ Dashboard button - visible | Icon - visible | Title - visible | - text
+        - ✔ Courses button - visible | Icon - visible | Title - visible | - text
+        - ✔ Logout button - visible | Icon - visible | Title - visible | - text
         """
-        self.dashboard_item.check_component(self.DASHBOARD_TITLE)
-        self.courses_item.check_component(self.COURSES_TITLE)
-        self.logout_item.check_component(self.LOGOUT_TITLE)
+        self.dashboard_btn.check_component(self.DASHBOARD_TITLE)
+        self.courses_btn.check_component(self.COURSES_TITLE)
+        self.logout_btn.check_component(self.LOGOUT_TITLE)
 
 
 #=======================================================================================================================

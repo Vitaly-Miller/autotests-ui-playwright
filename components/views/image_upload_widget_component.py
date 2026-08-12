@@ -48,21 +48,9 @@ class ImageUploadWidgetComponent(BaseComponent):
         self.remove_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-remove-button') # visible after upload image only
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-
-
-    def click_remove_btn(self):
-        """
-        Click <Remove image Button> of the Create course page
-
-        - ✔ Button - visible | - enabled | - text
-        - ▶ Button - click
-        """
-        self.check_remove_image_btn()
-        self.remove_image_btn.click()
-
     def upload_image(self, file: str):
         """
-        Upload image for Course
+        ▶ Upload image file
 
         - ▶ Upload image file form - /PROJECT/testdata/files/
         - ✔ Image - visible
@@ -70,16 +58,27 @@ class ImageUploadWidgetComponent(BaseComponent):
 
         :param file: Image file name
         """
-        self.upload_image_input.set_input_files(self.FILES/file)
+        self.upload_image_input.set_input_files(self.FILES / file)
         self.check_preview_image_view()
         self.check_remove_image_btn()
+
+    def click_remove_btn(self):
+        """
+        ▶ Click [Remove image button]
+
+        - ✔ Button - visible | - enabled | - text
+        - ▶ Button - click
+        """
+        self.check_remove_image_btn()
+        self.remove_image_btn.click()
+
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Preview [Empty view] (component)
     # ──────────────────────────────────────────────────────╮
     def check_preview_empty_view(self):
         """
-        ✔ Check [Preview Empty view] component
+        ✔ Check <Preview [Empty view]>
 
         - ✔ Icon - visible
         - ✔ Title - visible | - text
@@ -94,7 +93,7 @@ class ImageUploadWidgetComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_preview_image_view(self):
         """
-        ✔ Check [Image view]
+        ✔ Check Preview [Image view]
 
         - ✔ Image - visible
         """
@@ -102,7 +101,7 @@ class ImageUploadWidgetComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_preview_image_view_visible(self):
         """
-        ✔ Check [Image view] visible
+        ✔ Check Preview [Image view] visible
 
         .
         """

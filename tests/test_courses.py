@@ -17,11 +17,14 @@ def test_empty_courses_list(courses_list_page: CoursesListPage):
     courses_list_page.visit(courses_list_page.URL)
 
     # ✔️EXPECTATIONS
-    courses_list_page.navbar.check(username)
-    courses_list_page.sidebar.check()
+    courses_list_page.navbar.check_component(username)
+    courses_list_page.sidebar.check_component()
     courses_list_page.toolbar.check()
     courses_list_page.check_empty_view()
 
+    # ╴╴╴╴╴╴╴╴╴╴ ⏳╴╴╴╴╴╴╴╴╴╴╴┐
+    courses_list_page.wait()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
 @pytest.mark.courses
 @pytest.mark.files
@@ -49,7 +52,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     create_course_page.click_create_course_btn()                  # Нажатие на кнопку <Create course Button>
 
     # ✔️EXPECTATIONS (After Course creation)
-    courses_list_page.check_current_url(courses_list_page.URL)    # Проверка успешного редиректа на страницу - Courses List page
+    courses_list_page.check_current_url(courses_list_page.URL)    # Проверка успешного редиректа на страницу - Courses list page
     courses_list_page.course_view.check_component(                # Данные в карточке курса соответствуют заполненным полям формы
         index=0,                                                  # nth-index
         title=course_title,
@@ -59,6 +62,8 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     )
 
 
-    # ⏳(optional)
+
+    # ╴╴╴╴╴╴╴╴╴╴ ⏳╴╴╴╴╴╴╴╴╴╴╴┐
     create_course_page.wait()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 #=======================================================================================================================

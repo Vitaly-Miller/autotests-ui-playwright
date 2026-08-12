@@ -1,5 +1,5 @@
 """
-Courses List [Toolbar] (component)
+Courses list [Toolbar] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
@@ -17,18 +17,16 @@ class CoursesListToolbarComponent(BaseComponent):
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.TITLE_TEXT = 'Courses'
-        self.REDIRECT_URL = '/#/courses/create'
-
+        self.CREATE_COURSE_PAGE_REDIRECT_URL = '/#/courses/create'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('courses-list-toolbar-title-text')
         self.create_course_btn = page.get_by_test_id('courses-list-toolbar-create-course-button')
 
-
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def click_create_course_btn(self):
         """
-        Click <Toolbar [Create course] button>  of the Courses List page
+        ▶ Click [Create course button]
 
         - ✔ Button - visible
         - ▶ Button - click
@@ -36,7 +34,7 @@ class CoursesListToolbarComponent(BaseComponent):
         """
         self.check_create_course_btn_visible()
         self.create_course_btn.click()
-        self.check_current_url(self.REDIRECT_URL)
+        self.check_current_url(self.CREATE_COURSE_PAGE_REDIRECT_URL)
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
@@ -44,9 +42,9 @@ class CoursesListToolbarComponent(BaseComponent):
     # ─────────────────────────────────┐
     def check(self):
         """
-        ✔ Check <Toolbar> component of the Courses List page
+        ✔ Check [Toolbar]
 
-        - ✔ Title - visible | Text - correct
+        - ✔ Title - visible | - text
         - ✔ Create course button - visible
         """
         self.check_title()
@@ -57,7 +55,7 @@ class CoursesListToolbarComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self):
         """
-        ✔ Check <Toolbar [Title]> of the Courses List page
+        ✔ Check [Title]
 
         - ✔ Title - visible
         - ✔ Text - correct
@@ -67,27 +65,27 @@ class CoursesListToolbarComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
-        ✔ Check <Toolbar [Title]> of the Courses List page - visible
+        ✔ Check [Title]> visible
 
         - ✔ Title - visible
         """
-        error = f'❌ <Toolbar [Title]> of the Courses List page - invisible!'
+        error = f'❌ <Toolbar [Title]> of the Courses list page - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self):
         """
-        ✔ Check <Toolbar [Title] text> of the Courses List page
+        ✔ Check [Title] text
 
-        - ✔ Text - correct
+        .
         """
-        error = f'❌ <Toolbar [Title] text> of the Courses List page - incorrect!'
+        error = f'❌ Courses list page -> Toolbar -> [Title] - incorrect text!'
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
     # Create course button
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_create_course_btn(self):
         """
-        ✔ Check <Toolbar [Create course] button> of the Courses List page
+         ✔ Check [Create course button]
 
         - ✔ Button - visible
         """
@@ -95,11 +93,11 @@ class CoursesListToolbarComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_create_course_btn_visible(self):
         """
-        ✔ Check <Toolbar [Create course] button> of the Courses List page - visible
+        ✔ Check [Create course button] visible
 
-        - ✔ Button - visible
+        .
         """
-        error = f'❌ <Toolbar [Create course] button> of the Courses List page - invisible!'
+        error = f'❌ Courses list page -> Toolbar -> [Create course button] - invisible!'
         expect(self.create_course_btn, error).to_be_visible()
 
 

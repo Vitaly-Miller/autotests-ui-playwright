@@ -8,27 +8,26 @@ from playwright.sync_api import Page, expect
 """
 Elements:
 - Menu button
-- Menu Edit button
-- Menu Delete button
+- Edit button
+- Delete button
 """
 class CourseViewMenuComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        self.MENU_EDIT_BTN_TEXT = 'Edit'
-        self.MENU_DELETE_BTN_TEXT = 'Delete'
 
+        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        self.EDIT_BTN_TEXT = 'Edit'
+        self.DELETE_BTN_TEXT = 'Delete'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.menu_btn = page.get_by_test_id('course-view-menu-button')
-        self.menu_edit_btn = page.get_by_test_id('course-view-edit-menu-item')
-        self.menu_delete_btn = page.get_by_test_id('course-view-delete-menu-item')
-
+        self.edit_btn = page.get_by_test_id('course-view-edit-menu-item')
+        self.delete_btn = page.get_by_test_id('course-view-delete-menu-item')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def click_menu_btn(self, index: int):
         """
-        Click <Course View [Menu button]> of the Courses List page
+        ▶ Click [Menu button]
 
         - ✔ Menu button - visible
         - ▶ Menu button - click
@@ -40,7 +39,7 @@ class CourseViewMenuComponent(BaseComponent):
 
     def click_edit_btn(self, index: int):
         """
-        Click <Course View menu [Edit button]> of the Courses List page
+        ▶ Click [Edit button]>
 
         - Menu button - ✔ visible -> ▶ click
         - ✔ Edit button - enabled
@@ -50,11 +49,11 @@ class CourseViewMenuComponent(BaseComponent):
         """
         self.click_menu_btn(index)
         self.check_edit_btn_visible(index)
-        self.menu_edit_btn.nth(index).click()
+        self.edit_btn.nth(index).click()
 
     def click_delete_btn(self, index: int):
         """
-        Click <Course View menu [Delete button]> of the Courses List page
+        ▶ Click [Delete button]
 
         - Menu button - ✔ visible -> ▶ click
         - ✔ Delete button - enabled
@@ -64,15 +63,14 @@ class CourseViewMenuComponent(BaseComponent):
         """
         self.click_menu_btn(index)
         self.check_delete_btn_visible(index)
-        self.menu_delete_btn.nth(index).click()
-
+        self.delete_btn.nth(index).click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Menu button
     # ────────────────────────────────────┐
     def check_menu_btn(self, index: int):
         """
-        ✔ Check <Course View [Menu button]> of the Courses List page
+        ✔ Check [Menu button]
 
         - ✔ Button - visible
         - ✔ Button - enabled
@@ -84,24 +82,20 @@ class CourseViewMenuComponent(BaseComponent):
     # ────────────────────────────────────┘
     def check_menu_btn_visible(self, index: int):
         """
-        ✔ Check <Course View [Menu button]> of the Courses List page - visible
-
-        - ✔ Button - visible
+        ✔ Check [Menu button] visible
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View [Menu button] (nth-index: {index})> of the Courses List page - invisible!'
+        error = f'❌ Courses list page -> Course View -> [Menu button] (nth-index: {index}) - invisible!'
         expect(self.menu_btn.nth(index), error).to_be_visible()
 
     def check_menu_btn_enabled(self, index: int):
         """
-        ✔ Check <Course View [Menu button]> of the Courses List page - enabled
-
-        - ✔ Button - enabled
+        ✔ Check [Menu button] enabled
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View [Menu button] (nth-index: {index})> of the Courses List page - disabled!'
+        error = f'❌ Courses list page -> Course View -> [Menu button] (nth-index: {index}) - disabled!'
         expect(self.menu_btn.nth(index), error).to_be_enabled()
 
 
@@ -109,10 +103,10 @@ class CourseViewMenuComponent(BaseComponent):
     # ──────────────────────────────────────────────┐
     def check_edit_and_delete_btn(self, index: int):
         """
-        ✔ Check <Course View Menu [Edit] & [Delete] buttons> of the Courses List page
+        ✔ Check <Menu [Edit] & [Delete] buttons>
 
-        - ✔ Edit Button - visible | Text - correct
-        - ✔ Delete Button - visible | Text - correct
+        - ✔ Edit button - visible | - text
+        - ✔ Delete button - visible | - text
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
@@ -124,7 +118,7 @@ class CourseViewMenuComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_edit_btn(self, index: int):
         """
-        ✔ Check <Course View Menu [Edit button]> of the Courses List page
+        ✔ Check [Edit button]
 
         - ✔ Button - visible
         - ✔ Button text - correct
@@ -136,31 +130,27 @@ class CourseViewMenuComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_edit_btn_visible(self, index: int):
         """
-        ✔ Check <Course View Menu [Edit button]> of the Courses List page - visible
-
-        - ✔ Button - visible
+        ✔ Check [Edit button] visible
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View Menu [Edit button] (nth-index: {index})> of the Courses List page - invisible!'
-        expect(self.menu_edit_btn.nth(index), error).to_be_visible()
+        error = f'❌ Courses list page -> Course View -> Menu -> [Edit button] (nth-index: {index}) - invisible!'
+        expect(self.edit_btn.nth(index), error).to_be_visible()
 
     def check_edit_btn_text(self, index: int):
         """
-        ✔ Check <Course View Menu [Edit button] text> of the Courses List page - correct
-
-        - ✔ Text - correct
+        ✔ Check [Edit button] text
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View Menu [Edit button] text (nth-index: {index})> of the Courses List page - incorrect!'
-        expect(self.menu_edit_btn.nth(index), error).to_have_text(self.MENU_EDIT_BTN_TEXT)
+        error = f'❌ Courses list page -> Course View -> Menu -> [Edit button] (nth-index: {index}) - incorrect text!'
+        expect(self.edit_btn.nth(index), error).to_have_text(self.EDIT_BTN_TEXT)
 
     # Menu [Delete button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_delete_btn(self, index: int):
         """
-        ✔ Check <Course View Menu [Delete button]> of the Courses List page
+        ✔ Check [Delete button]
 
         - ✔ Button - visible
         - ✔ Button text - correct
@@ -169,28 +159,24 @@ class CourseViewMenuComponent(BaseComponent):
         """
         self.check_delete_btn_visible(index)
         self.check_delete_btn_text(index)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_delete_btn_visible(self, index: int):
         """
-        ✔ Check <Course View Menu [Delete button]> of the Courses List page - visible
-
-        - ✔ Button - visible
+        ✔ Check [Delete button] visible
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View Menu [Delete button] (nth-index: {index})> of the Courses List page - invisible!'
-        expect(self.menu_delete_btn.nth(index), error).to_be_visible()
+        error = f'❌ Courses list page -> Course View -> Menu -> [Delete button] (nth-index: {index})  - invisible!'
+        expect(self.delete_btn.nth(index), error).to_be_visible()
 
     def check_delete_btn_text(self, index: int):
         """
-        ✔ Check <Course View Menu [Delete button] text> of the Courses List page - correct
-
-        - ✔ Text - correct
+        ✔ Check [Delete button] text
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
-        error = f'❌ <Course View Menu [Delete button] text (nth-index: {index})> of the Courses List page - incorrect!'
-        expect(self.menu_delete_btn.nth(index), error).to_have_text(self.MENU_DELETE_BTN_TEXT)
+        error = f'❌ Courses list page -> Course View -> Menu -> [Delete button] (nth-index: {index}) - incorrect text!'
+        expect(self.delete_btn.nth(index), error).to_have_text(self.DELETE_BTN_TEXT)
 
 
 #=======================================================================================================================

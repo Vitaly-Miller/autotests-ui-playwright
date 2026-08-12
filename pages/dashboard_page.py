@@ -33,10 +33,6 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         self.scores_chart = page.get_by_test_id('scores-scatter-chart')
 
 
-    # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
-
-
-
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # Toolbar:
     # ──────────────────────────────────────┐
@@ -76,10 +72,10 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         """
         ✔ Check all Widgets of the Dashboard page
 
-        - ✔ Students - visible | Text - correct | Chart - visible
-        - ✔ Activities - visible | Text - correct | Chart - visible
-        - ✔ Courses - visible | Text - correct | Chart - visible
-        - ✔ Scores - visible | Text - correct | Chart - visible
+        - ✔ Students - visible | - text | Chart - visible
+        - ✔ Activities - visible | - text | Chart - visible
+        - ✔ Courses - visible | - text | Chart - visible
+        - ✔ Scores - visible | - text | Chart - visible
         """
         self.check_students_widget()
         self.check_activities_widget()

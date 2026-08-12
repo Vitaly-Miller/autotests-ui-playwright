@@ -7,10 +7,10 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Item elements:
+Elements:
+- Button
 - Icon
 - Title
-- Title text
 """
 class SidebarItemComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str):
@@ -26,77 +26,72 @@ class SidebarItemComponent(BaseComponent):
 
         # -------------------------------------- ㉧ LOCATORS (semi-dynamic) ---------------------------------------------
         self.btn = page.get_by_test_id(f'{identifier}-drawer-list-item-button')
-        self.btn_icon = page.get_by_test_id(f'{identifier}-drawer-list-item-icon')
-        self.btn_title = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
-
+        self.icon = page.get_by_test_id(f'{identifier}-drawer-list-item-icon')
+        self.title = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
 
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
-    def click_item(self):
+    def click_btn(self):
         """
-        Click <Sidebar Item>
+        ▶ Click Sidebar item [Button]
 
-        - ✔ Item - visible
-        - ▶ Item - click
+        - ✔ Button - visible
+        - ▶ Button - click
         """
-        self.check_item_visible()
+        self.check_btn_visible()
         self.btn.click()
 
-
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
-    # Component
     # ────────────────────────────────────┐
     def check_component(self, title: str):
         """
-        ✔ Check ALL elements of the <Sidebar Item> component
+        ✔ Check [Sidebar item]
 
         - ✔ Item - visible
         - ✔ Icon - visible
-        - ✔ Title - visible | Text - correct
+        - ✔ Title - visible | - text
 
         :param title: Item title
         """
-        self.check_item_visible()
+        self.check_btn_visible()
         self.check_icon_visible()
         self.check_title_visible()
         self.check_title_text(title)
     # ────────────────────────────────────┘
-    def check_item_visible(self):
+    def check_btn_visible(self):
         """
-        ✔ Check <Sidebar Item> - visible
+        ✔ Check [Button] visible
 
-        - ✔ Button - visible
+        .
         """
-        error = f'❌ ✔ Check <Sidebar Item> - invisible!'
+        error = f'❌ Sidebar item -> [Button] - invisible!'
         expect(self.btn, error).to_be_visible()
 
     def check_icon_visible(self):
         """
-        ✔ Check <Sidebar Item [Icon]> - visible
+        ✔ Check [Icon]> visible
 
-        - ✔ Icon - visible
+        .
         """
-        error = f'❌ ✔ Check <Sidebar Item [Icon]> - invisible!'
-        expect(self.btn_icon, error).to_be_visible()
+        error = f'❌ Sidebar item -> [Icon] - invisible!'
+        expect(self.icon, error).to_be_visible()
 
     def check_title_visible(self):
         """
-        ✔ Check <Sidebar Item [Title]> - visible
+        ✔ Check [Title] visible
 
-        - ✔ Title - visible
+        .
         """
-        error = f'❌ ✔ Check <Sidebar Item [Title]> - invisible!'
-        expect(self.btn_title, error).to_be_visible()
+        error = f'❌ Sidebar item -> [Title] - invisible!'
+        expect(self.title, error).to_be_visible()
 
     def check_title_text(self, title: str):
         """
-        ✔ Check <Sidebar Item [Title text]> - correct
-
-        - ✔ Text - correct
+        ✔ Check [Title] text
 
         :param title: Title
         """
-        error = f'❌ ✔ Check <Sidebar Item [Title text]> - incorrect!'
-        expect(self.btn_title, error).to_have_text(title)
+        error = f'❌ Sidebar item -> [Title] - text incorrect!'
+        expect(self.title, error).to_have_text(title)
 
 
 #=======================================================================================================================
