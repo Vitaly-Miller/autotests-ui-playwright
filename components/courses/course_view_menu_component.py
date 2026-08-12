@@ -1,5 +1,5 @@
 """
-Course View [Menu] component
+Course View [Menu] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
@@ -18,10 +18,12 @@ class CourseViewMenuComponent(BaseComponent):
         self.MENU_EDIT_BTN_TEXT = 'Edit'
         self.MENU_DELETE_BTN_TEXT = 'Delete'
 
+
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.menu_btn = page.get_by_test_id('course-view-menu-button')
         self.menu_edit_btn = page.get_by_test_id('course-view-edit-menu-item')
         self.menu_delete_btn = page.get_by_test_id('course-view-delete-menu-item')
+
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def click_menu_btn(self, index: int):
@@ -64,12 +66,13 @@ class CourseViewMenuComponent(BaseComponent):
         self.check_delete_btn_visible(index)
         self.menu_delete_btn.nth(index).click()
 
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Menu button
     # ────────────────────────────────────┐
     def check_menu_btn(self, index: int):
         """
-        Check <Course View [Menu button]> of the Courses List page
+        ✔ Check <Course View [Menu button]> of the Courses List page
 
         - ✔ Button - visible
         - ✔ Button - enabled
@@ -81,7 +84,7 @@ class CourseViewMenuComponent(BaseComponent):
     # ────────────────────────────────────┘
     def check_menu_btn_visible(self, index: int):
         """
-        Check <Course View [Menu button]> of the Courses List page - visible
+        ✔ Check <Course View [Menu button]> of the Courses List page - visible
 
         - ✔ Button - visible
 
@@ -92,7 +95,7 @@ class CourseViewMenuComponent(BaseComponent):
 
     def check_menu_btn_enabled(self, index: int):
         """
-        Check <Course View [Menu button]> of the Courses List page - enabled
+        ✔ Check <Course View [Menu button]> of the Courses List page - enabled
 
         - ✔ Button - enabled
 
@@ -106,7 +109,7 @@ class CourseViewMenuComponent(BaseComponent):
     # ──────────────────────────────────────────────┐
     def check_edit_and_delete_btn(self, index: int):
         """
-        Check <Course View Menu [Edit] & [Delete] buttons> of the Courses List page
+        ✔ Check <Course View Menu [Edit] & [Delete] buttons> of the Courses List page
 
         - ✔ Edit Button - visible | Text - correct
         - ✔ Delete Button - visible | Text - correct
@@ -121,7 +124,7 @@ class CourseViewMenuComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_edit_btn(self, index: int):
         """
-        Check <Course View Menu [Edit button]> of the Courses List page
+        ✔ Check <Course View Menu [Edit button]> of the Courses List page
 
         - ✔ Button - visible
         - ✔ Button text - correct
@@ -133,7 +136,7 @@ class CourseViewMenuComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_edit_btn_visible(self, index: int):
         """
-        Check <Course View Menu [Edit button]> of the Courses List page - visible
+        ✔ Check <Course View Menu [Edit button]> of the Courses List page - visible
 
         - ✔ Button - visible
 
@@ -144,7 +147,7 @@ class CourseViewMenuComponent(BaseComponent):
 
     def check_edit_btn_text(self, index: int):
         """
-        Check <Course View Menu [Edit button] text> of the Courses List page - correct
+        ✔ Check <Course View Menu [Edit button] text> of the Courses List page - correct
 
         - ✔ Text - correct
 
@@ -157,7 +160,7 @@ class CourseViewMenuComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_delete_btn(self, index: int):
         """
-        Check <Course View Menu [Delete button]> of the Courses List page
+        ✔ Check <Course View Menu [Delete button]> of the Courses List page
 
         - ✔ Button - visible
         - ✔ Button text - correct
@@ -169,7 +172,7 @@ class CourseViewMenuComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_delete_btn_visible(self, index: int):
         """
-        Check <Course View Menu [Delete button]> of the Courses List page - visible
+        ✔ Check <Course View Menu [Delete button]> of the Courses List page - visible
 
         - ✔ Button - visible
 
@@ -180,7 +183,7 @@ class CourseViewMenuComponent(BaseComponent):
 
     def check_delete_btn_text(self, index: int):
         """
-        Check <Course View Menu [Delete button] text> of the Courses List page - correct
+        ✔ Check <Course View Menu [Delete button] text> of the Courses List page - correct
 
         - ✔ Text - correct
 

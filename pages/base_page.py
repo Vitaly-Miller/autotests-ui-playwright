@@ -3,7 +3,6 @@ BASE PAGE
 """
 
 from playwright.sync_api import Page, expect
-from pathlib import Path
 from re import Pattern
 
 
@@ -11,12 +10,6 @@ from re import Pattern
 class BasePage:                                 # Родительский класс
     def __init__(self, page: Page):             # Конструктор класса, принимающий page
         self.page = page
-
-    # -------------------------------------------------- Directories ---------------------------------------------------
-    PROJECT = Path(__file__).parent.parent      # 🗂️Project ROOT/
-    TESTDATA = PROJECT/'testdata'               # └─ 📁testdata/
-    FILES = TESTDATA/'files'                    #    └─ 📁files/
-
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def visit(self, url: str):
@@ -49,7 +42,7 @@ class BasePage:                                 # Родительский кл�
     # ⚠️ ДУБЛИКАТ из BaseComponent - решить
     def check_current_url(self, expected_url: str | Pattern[str]):
         """
-        Check Current page URL
+        ✔ Check Current page URL
 
         - ✔ Current page URL - correct
 

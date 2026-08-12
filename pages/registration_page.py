@@ -87,7 +87,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ══════════════════════════════════════════════╗
     def check_all_elements(self):
         """
-        Check ALL Elements of the Registration page
+        ✔ Check ALL Elements of the Registration page
 
         - ✔ Title
         - ✔ Registration Form (unfilled)
@@ -104,7 +104,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ──────────────────────────────┐
     def check_title(self):
         """
-        Check <Title> of the Registration page
+        ✔ Check <Title> of the Registration page
 
         - ✔ Title - visible
         - ✔ Title text - correct
@@ -114,7 +114,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ──────────────────────────────┘
     def check_title_visible(self):
         """
-        Check <Title> of the Registration page - visible
+        ✔ Check <Title> of the Registration page - visible
 
         - ✔ Title - visible
         """
@@ -123,7 +123,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_title_text(self):
         """
-        Check <Title text> of the Registration page - correct!
+        ✔ Check <Title text> of the Registration page - correct!
 
         - ✔ Text - correct
         """
@@ -139,7 +139,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
             username: str | None = None,
             password: str | None = None):
         """
-        Check <Registration form> fields of the Registration page
+        ✔ Check <Registration form> fields of the Registration page
 
         - ✔ Email field - visible | Name - correct | Filled - correctly (if is passed)
         - ✔ Username field - visible | Name - correct | Filled - correctly (if is passed)
@@ -158,7 +158,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_email_field(self, email: str | None = None):
         """
-        Check <Registration form [Email field]> of the Registration page
+        ✔ Check <Registration form [Email field]> of the Registration page
 
         - ✔ Field - visible
         - ✔ Field Name - correct
@@ -172,7 +172,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_email_field_visible(self):
         """
-        Check <Registration form [Email field]> of the Registration page - visible
+        ✔ Check <Registration form [Email field]> of the Registration page - visible
 
         - ✔ Field - visible
         """
@@ -181,7 +181,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_email_field_name(self):
         """
-        Check <Registration form [Email field Name]> of the Registration page - correct
+        ✔ Check <Registration form [Email field Name]> of the Registration page - correct
 
         - ✔ Field Name - correct
         """
@@ -190,7 +190,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_email_field_filled_correctly(self, email: str):
         """
-        Check <Registration form [Email field]> of the Registration page - filled correctly
+        ✔ Check <Registration form [Email field]> of the Registration page - filled correctly
 
         - ✔ Field - filled correctly
         """
@@ -202,7 +202,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_username_field(self, username: str | None = None):
         """
-        Check <Registration form [Username field]> of the Registration page
+        ✔ Check <Registration form [Username field]> of the Registration page
 
         - ✔ Field - visible
         - ✔ Field Name - correct
@@ -216,7 +216,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_username_field_visible(self):
         """
-        Check <Registration form [Username field]> of the Registration page - visible
+        ✔ Check <Registration form [Username field]> of the Registration page - visible
 
         - ✔ Field - visible
         """
@@ -225,7 +225,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_username_field_name(self):
         """
-        Check <Registration form [Username field Name]> of the Registration page - correct
+        ✔ Check <Registration form [Username field Name]> of the Registration page - correct
 
         - ✔ Field Name - correct
         """
@@ -234,7 +234,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_username_field_filled_correctly(self, username: str):
         """
-        Check <Registration form [Username field] of the Registration page - filled correctly
+        ✔ Check <Registration form [Username field] of the Registration page - filled correctly
 
         - ✔ Field - filled correctly
         """
@@ -246,7 +246,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_password_field(self, password: str | None = None):
         """
-        Check <Registration form [Password field]> of the Registration page
+        ✔ Check <Registration form [Password field]> of the Registration page
 
         - ✔ Field - visible
         - ✔ Field Name - correct
@@ -260,7 +260,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_password_field_visible(self):
         """
-        Check <Registration form [Password field]> of the Registration page - visible
+        ✔ Check <Registration form [Password field]> of the Registration page - visible
 
         - ✔ Field - visible
         """
@@ -269,7 +269,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_password_field_name(self):
         """
-        Check <Registration form [Password field Name]> of the Registration page - correct
+        ✔ Check <Registration form [Password field Name]> of the Registration page - correct
 
         - ✔ Field Name - correct
         """
@@ -278,7 +278,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_password_field_filled_correctly(self, password: str):
         """
-        Check <Registration form [Password field] of the Registration page - filled correctly
+        ✔ Check <Registration form [Password field] of the Registration page - filled correctly
 
         - ✔ Field - filled correctly
         """
@@ -290,7 +290,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ────────────────────────────────────────────────────┐
     def check_registration_btn(self, enable: bool = True):
         """
-        Check <Registration button> of the Registration page
+        ✔ Check <Registration button> of the Registration page
 
         - ✔ Button - enabled / disabled
         - ✔ Button text - correct
@@ -303,7 +303,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ────────────────────────────────────────────────────┘
     def check_registration_btn_enable(self):
         """
-        Check <Registration button> of the Registration page - enabled!
+        ✔ Check <Registration button> of the Registration page - enabled!
 
         - ✔ Button - enabled
         """
@@ -312,7 +312,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_registration_btn_disable(self):
         """
-        Check <Registration button> of the Registration page - disabled!
+        ✔ Check <Registration button> of the Registration page - disabled!
 
         (Until the Registration form is completed successfully)
 
@@ -323,7 +323,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_registration_btn_text(self):
         """
-        Check <Registration button text> of the Registration page - correct
+        ✔ Check <Registration button text> of the Registration page - correct
 
         - ✔ Button text - correct
         """
@@ -335,7 +335,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ───────────────────────────────────┐
     def check_login_link(self):
         """
-        Check <Login> link of the Registration page
+        ✔ Check <Login> link of the Registration page
 
         - ✔ Link - visible
         - ✔ Link text - correct
@@ -347,7 +347,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ───────────────────────────────────┘
     def check_login_link_visible(self):
         """
-        Check <Login link> of the Registration page - visible
+        ✔ Check <Login link> of the Registration page - visible
 
         - ✔ Link - visible
         """
@@ -356,7 +356,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_login_link_text(self):
         """
-        Check <Login link text> of the Registration page - correct
+        ✔ Check <Login link text> of the Registration page - correct
 
         - ✔ Link text - correct
         """
@@ -365,7 +365,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     def check_login_link_url(self):
         """
-        Check <Login link> URL on the Registration page - correct
+        ✔ Check <Login link> URL on the Registration page - correct
 
         - ✔ Link URL - correct
         """

@@ -1,5 +1,5 @@
 """
-Navbar component
+Navbar (component)
 """
 
 from components.base_component import BaseComponent
@@ -20,15 +20,18 @@ class NavbarComponent(BaseComponent):
         self.TITLE_TEXT = 'UI Course'
         self.WELCOME_TITLE_PART_TEXT = 'Welcome,'  # Part of the text
 
+
         # ------------------------------------------- ㉧ LOCATORS (static) ----------------------------------------------
         self.title = page.get_by_test_id('navigation-navbar-app-title-text')
         self.welcome_title = page.get_by_test_id('navigation-navbar-welcome-title-text')
 
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ═══════════════════════════════════════╗
-    def check_component(self, username: str):
+    # Component
+    # ──────────────────────────────────────┐
+    def check(self, username: str):
         """
-        Check <Navbar> component
+        ✔ Check <Navbar> component
 
         - ✔ Title - visible | Text - correct
         - ✔ Welcome title - visible | Text - correct
@@ -37,13 +40,13 @@ class NavbarComponent(BaseComponent):
         """
         self.check_title()
         self.check_welcome_title(username)
-    # ═══════════════════════════════════════╝
+    # ──────────────────────────────────────┘
 
     # Title
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self):
         """
-        Check <Navbar [Title]>
+        ✔ Check <Navbar [Title]>
 
         - ✔ Title - visible
         - ✔ Text - correct
@@ -53,7 +56,7 @@ class NavbarComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
-        Check <Navbar [Title]> - visible
+        ✔ Check <Navbar [Title]> - visible
 
         - ✔ Title - visible
         """
@@ -62,7 +65,7 @@ class NavbarComponent(BaseComponent):
 
     def check_title_text(self):
         """
-        Check <Navbar [Title] text> - correct
+        ✔ Check <Navbar [Title] text> - correct
 
         - ✔ Text - correct
         """
@@ -73,7 +76,7 @@ class NavbarComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_welcome_title(self, username):
         """
-        Check <Navbar [Welcome title]>
+        ✔ Check <Navbar [Welcome title]>
 
         - ✔ Title - visible
         - ✔ Text - correct
@@ -85,7 +88,7 @@ class NavbarComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_welcome_title_visible(self):
         """
-        Check <Navbar [Welcome title]> - visible
+        ✔ Check <Navbar [Welcome title]> - visible
 
         - ✔ Title - visible
         """
@@ -94,7 +97,7 @@ class NavbarComponent(BaseComponent):
 
     def check_welcome_title_text(self, username):
         """
-        Check <Navbar [Welcome title] text> - correct
+        ✔ Check <Navbar [Welcome title] text> - correct
 
         - ✔ Text - correct
 

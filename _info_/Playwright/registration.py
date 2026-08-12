@@ -43,10 +43,10 @@ with sync_playwright() as playwright:                        # Создаем о
     registration_btn.click()                                     # Click Registration button
 
     # ✔️EXPECTATIONS (after click registration button)
-    expect(page).to_have_url(dashboard_url)                      # Check Page URL
-    expect(navbar_header).to_have_text('UI Course')              # Check Navbar header text
-    expect(navbar_welcome_title).to_contain_text('Welcome,')     # Check Navbar welcome text contains "Welcome,"
-    expect(dashboard_header).to_have_text('Dashboard')           # Check Dashboard header text
+    expect(page).to_have_url(dashboard_url)                      # ✔ Check Page URL
+    expect(navbar_header).to_have_text('UI Course')              # ✔ Check Navbar header text
+    expect(navbar_welcome_title).to_contain_text('Welcome,')     # ✔ Check Navbar welcome text contains "Welcome,"
+    expect(dashboard_header).to_have_text('Dashboard')           # ✔ Check Dashboard header text
 
     # ⏳(optional)
     page.wait_for_timeout(1000)

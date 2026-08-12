@@ -31,10 +31,11 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # ✔️EXPECTATIONS:
-    # Empty View (component):
+
+    # Empty view (component):
     def check_empty_view(self):
         """
-        Check <Empty View> component of the Courses List page
+        ✔ Check <Empty view> component of the Courses List page
 
         - ✔ Icon - visible
         - ✔ Title - visible | Text - correct

@@ -8,12 +8,26 @@ from pages.create_course_page import CreateCoursePage
 
 #=======================================================================================================================
 @pytest.mark.courses
+@pytest.mark.regression
+def test_empty_courses_list(courses_list_page: CoursesListPage):
+    # 𝌆 TEST DATA
+    username = 'username'
+
+    # ⿹ Open page
+    courses_list_page.visit(courses_list_page.URL)
+
+    # ✔️EXPECTATIONS
+    courses_list_page.navbar.check(username)
+    courses_list_page.sidebar.check()
+    courses_list_page.toolbar.check()
+    courses_list_page.check_empty_view()
+
+
+@pytest.mark.courses
 @pytest.mark.files
 @pytest.mark.regression
 def test_create_course(create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
-
     # ⏎ INPUT TEST DATA
-    username = 'username'
     course_title = 'Playwright'
     course_estimated_time = '2 weeks'
     course_description = 'Page Object Model'
@@ -23,13 +37,9 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     # ⿹ Open page
     create_course_page.visit(create_course_page.URL)
 
-    # ✔️EXPECTATIONS (Before Course creation)
-    create_course_page.check_navbar_and_sidebar(username)         # Проверка компонентов <Navbar> + <Sidebar>
-    create_course_page.check_page()                               # Проверка всех элементов страницы
-
     # ▶ ACTIONS (Create course)
-    create_course_page.upload_image('image_1.jpg')                # Загрузка картинки курса
-    create_course_page.fill_create_course_form(                   # Заполнение полей формы <Create Course>
+    create_course_page.image_upload_widget.upload_image('image_1.jpg')  # Загрузка картинки курса
+    create_course_page.fill_create_course_form(                         # Заполнение полей формы <Create Course>
         title=course_title,
         estimated_time=course_estimated_time,
         description=course_description,

@@ -1,5 +1,5 @@
 """
-Empty View Component
+Empty view (component)
 """
 
 from components.base_component import BaseComponent
@@ -20,24 +20,24 @@ class EmptyViewComponent(BaseComponent):
         - create-course-exercises
 
         :param page: Page
-        :param identifier: Unique component locator identifier
+        :param identifier: Unique part of locator
         """
         super().__init__(page)
 
-        # ---------------------------------------- ㉧ LOCATORS (semi-dynamic) -------------------------------------------
+        # ---------------------------------------------- ㉧ LOCATORS ---------------------------------------------------
         self.icon = page.get_by_test_id(f'{identifier}-empty-view-icon')
         self.title = page.get_by_test_id(f'{identifier}-empty-view-title-text')
         self.description = page.get_by_test_id(f'{identifier}-empty-view-description-text')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ══════════════════════════════════════════════════════╗
+    # ──────────────────────────────────────────────────────┐
     def check_component(self, title: str, description: str):
         """
-        Check <Empty View> component
+        ✔ Check <Empty view>
 
         - ✔ Icon - visible
-        - ✔ Title - visible | Text - correct
-        - ✔ Description - visible | Text - correct
+        - ✔ Title - visible | text
+        - ✔ Description - visible | text
 
         :param title: Title text
         :param description: Description text
@@ -45,23 +45,33 @@ class EmptyViewComponent(BaseComponent):
         self.check_icon_visible()
         self.check_title(title)
         self.check_description(description)
-    # ══════════════════════════════════════════════════════╝
+    # ──────────────────────────────────────────────────────┘
 
     # Icon
-    def check_icon_visible(self):
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_icon(self):
         """
-        Check [Icon] of the <Empty View> component - visible
+        ✔ Check [Icon] of the <Empty view>
 
         - ✔ Icon - visible
         """
-        error = f'❌ [Icon] of the <Empty View> component - invisible!'
+        self.check_icon_visible()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    def check_icon_visible(self):
+        """
+        ✔ Check [Icon] visible
+
+        .
+        """
+        error = f'❌ Empty view -> [Icon] - invisible!'
         expect(self.icon, error).to_be_visible()
+
 
     # Title
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self, title: str):
         """
-        Check [Title] of the <Empty View> component
+        ✔ Check [Title] of the <Empty view>
 
         - ✔ Title - visible
         - ✔ Text - correct
@@ -73,29 +83,28 @@ class EmptyViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
-        Check [Title] of the <Empty View> component - visible
+        ✔ Check [Title] visible
 
-        - ✔ Title - visible
+        .
         """
-        error = f'❌ [Title] of the <Empty View> component - invisible!'
+        error = f'❌ Empty view -> [Title] - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self, title: str):
         """
-        Check [Title text] of the <Empty View> component - correct
-
-        - ✔ Text - correct
+        ✔ Check [Title] text
 
         :param title: Title text
         """
-        error = f'❌ [Title text] of the <Empty View> component> - incorrect!'
+        error = f'❌ Empty view -> [Title] - incorrect text!'
         expect(self.title, error).to_have_text(title)
+
 
     # Description
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_description(self, description: str):
         """
-        Check [Description] of the <Empty View> component
+        ✔ Check [Description] of the <Empty view>
 
         - ✔ Description - visible
         - ✔ Text - correct
@@ -107,22 +116,20 @@ class EmptyViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_description_visible(self):
         """
-        Check [Description] of the <Empty View> component - visible
+        ✔ Check [Description] visible
 
-        - ✔ Description - visible
+        .
         """
-        error = f'❌ [Description] of the <Empty View> component - invisible!'
+        error = f'❌ Empty view -> [Description] - invisible!'
         expect(self.description, error).to_be_visible()
 
     def check_description_text(self, description: str):
         """
-        Check [Description text] of the <Empty View> component - correct
-
-        - ✔ Text - correct
+        ✔ Check [Description] text
 
         :param description: Description text
         """
-        error = f'❌ [Description text] of the <Empty View> component - incorrect!'
+        error = f'❌ Empty view -> [Description] - incorrect text!'
         expect(self.description, error).to_have_text(description)
 
 #=======================================================================================================================

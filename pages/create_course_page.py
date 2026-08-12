@@ -6,6 +6,7 @@ from pages.base_page import BasePage
 from components.navigation.navbar_component import NavbarComponent
 from components.navigation.sidebar_component import SidebarComponent
 from components.views.emty_view_component import EmptyViewComponent
+from components.views.image_upload_widget_component import ImageUploadWidgetComponent
 from playwright.sync_api import Locator, Page, expect
 
 #=======================================================================================================================
@@ -19,15 +20,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         # Toolbar
         self.TOOLBAR_TITLE = 'Create course'
 
-        # Preview [Empty View]
-        self.PREVIEW_EMPTY_VIEW_IDENTIFIER = 'create-course-preview'
-        self.PREVIEW_EMPTY_VIEW_TITLE = 'No image selected'
-        self.PREVIEW_EMPTY_VIEW_DESCRIPTION = 'Preview of selected image will be displayed here'
-
-        # Upload Image View
-        self.UPLOAD_IMAGE_VIEW_TITLE_TEXT = 'Tap on "Upload image" button to select file'
-        self.UPLOAD_IMAGE_VIEW_DESCRIPTION_TEXT = 'Recommended file size 540X300'
-        self.UPLOAD_IMAGE_VIEW_BUTTON_TEXT = 'Upload image'
 
         # Course [Form]
         self.TITLE_FIELD_NAME = 'Title'
@@ -43,7 +35,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.EXERCISES_TOOLBAR_TITLE = 'Exercises'
         self.EXERCISE_TOOLBAR_TITLE_PART_TEXT = 'Exercise'   # Part of text (Ex: "#1 Exercise")
 
-        # Exercises [Empty View]
+        # Exercises [Empty view]
         self.EXERCISES_EMPTY_VIEW_IDENTIFIER = 'create-course-exercises'
         self.EXERCISES_EMPTY_VIEW_TITLE = 'There is no exercises'
         self.EXERCISES_EMPTY_VIEW_DESCRIPTION = 'Click on "Create exercise" button to create new exercise'
@@ -55,7 +47,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
-        self.preview_empty_view = EmptyViewComponent(page=page, identifier=self.PREVIEW_EMPTY_VIEW_IDENTIFIER)
+        self.image_upload_widget = ImageUploadWidgetComponent(page)
         self.exercises_empty_view = EmptyViewComponent(page=page, identifier=self.EXERCISES_EMPTY_VIEW_IDENTIFIER)
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
@@ -63,21 +55,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.toolbar_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.create_course_btn = page.get_by_test_id('create-course-toolbar-create-course-button')
 
-        # Preview [Empty View]
-        # See —> /components/views/empty_view_component.py
 
-        # Preview [Image View]
-        self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
-
-        # Upload Image View
-        self.upload_image_view_icon = page.get_by_test_id('create-course-preview-image-upload-widget-info-icon')
-        self.upload_image_view_title = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
-        self.upload_image_view_description = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
-
-        # Upload Image View [Buttons]
-        self.upload_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-upload-button')
-        self.upload_image_view_input = page.get_by_test_id('create-course-preview-image-upload-widget-input')  # hidden input for upload image
-        self.remove_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-remove-button') # available after upload image only
 
         # Course Form
         self.course_form_title_field = page.get_by_role(role='textbox', name='Title')
@@ -91,7 +69,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.exercise_toolbar_title = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
         self.exercise_toolbar_create_exercise_btn = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
-        # Exercises [Empty View]
+        # Exercises [Empty view]
         # See —> /components/views/empty_view_component.py
 
         # Exercises [Exercise]
@@ -121,6 +99,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+
     def click_create_course_btn(self):
         """
         Click <Create course Button> of the Create course page
@@ -133,31 +112,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.check_toolbar_create_course_btn_enabled()
         self.create_course_btn.click()
 
-    def click_remove_image_btn(self):
-        """
-        Click <Remove image Button> of the Create course page
-
-        - ✔ Button - visible
-        - ✔ Button - enabled
-        - ✔ Button text - correct
-        - ▶ Button - click
-        """
-        self.check_remove_image_btn()
-        self.remove_image_btn.click()
-
-    def upload_image(self, file: str):
-        """
-        Upload image for Course
-
-        - ▶ Upload image file form - /PROJECT/testdata/files/
-        - ✔ Image - visible
-        - ✔ Remove image Button - visible
-
-        :param file: Image file name
-        """
-        self.upload_image_view_input.set_input_files(self.FILES/file)
-        self.check_preview_view_image_visible()
-        self.check_remove_image_btn()
 
     def fill_create_course_form(
             self,
@@ -215,44 +169,11 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ════════════════════════════════════╗
-    def check_page(self):
-        """
-        Check ALL Elements of the Create course page
-
-        - ✔ Toolbar
-        - ✔ Preview Empty View (component)
-        - ✔ Upload image View
-        - ✔ Course Form
-        - ✔ Exercises Toolbar
-        - ✔ Exercises Empty View (component)
-        """
-        self.check_toolbar()
-        self.check_preview_empty_view()
-        self.check_upload_image_view()
-        self.check_course_form()
-        self.check_exercises_toolbar()
-        self.check_exercises_empty_view()
-    # ════════════════════════════════════╝
-
-    # Navbar + Sidebar (components)
-    # ─────────────────────────────────────────────────╮
-    def check_navbar_and_sidebar(self, username: str):
-        """
-        Check <Navbar> + <Sidebar> components
-
-        - ✔ Navbar - visible | Text - correct
-        - ✔ Sidebar Items - visible | Icons - visible | Titles - visible | Texts - correct
-        """
-        self.navbar.check_component(username)
-        self.sidebar.check_component()
-    # ─────────────────────────────────────────────────╯
-
     # Toolbar:
     # ─────────────────────────────────────────────────┐
     def check_toolbar(self):
         """
-        Check <Courses Toolbar> of the Create course page
+        ✔ Check <Courses Toolbar> of the Create course page
 
         - ✔ Title - visible
         - ✔ Title text - correct
@@ -267,7 +188,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # Toolbar [Title]
     def check_toolbar_title_visible(self):
         """
-        Check <Toolbar [Title]> of the Create course page - visible
+        ✔ Check <Toolbar [Title]> of the Create course page - visible
 
         - ✔ Title - visible
         """
@@ -276,7 +197,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_toolbar_title_text(self):
         """
-        Check <Toolbar [Title] text> of the Create course page
+        ✔ Check <Toolbar [Title] text> of the Create course page
 
         did - correct
         """
@@ -286,7 +207,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # Toolbar [Create Course Button]
     def check_toolbar_create_course_btn_visible(self):
         """
-        Check <Toolbar [Create Course Button]> of the Create course page - visible
+        ✔ Check <Toolbar [Create Course Button]> of the Create course page - visible
 
         - ✔ Button - visible
         """
@@ -295,7 +216,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_toolbar_create_course_btn_enabled(self):
         """
-        Check <Toolbar [Create Course Button]> of the Create course page - enabled
+        ✔ Check <Toolbar [Create Course Button]> of the Create course page - enabled
 
         - ✔ Button - enabled
         """
@@ -304,219 +225,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_toolbar_create_course_btn_disabled(self):
         """
-        Check <Toolbar [Create Course Button]> of the Create course page - disabled
+        ✔ Check <Toolbar [Create Course Button]> of the Create course page - disabled
 
         - ✔ Button - disabled
         """
         error = f'❌ <Toolbar [Create Course Button]> of the Create course page - enabled!'
         expect(self.create_course_btn, error).to_be_disabled()
 
-
-    # Preview [Empty View] (component)
-    # ──────────────────────────────────────────────────────╮
-    def check_preview_empty_view(self):
-        """
-        Check ALL elements of the <Preview [Empty View]> component of the  Create course page
-
-        - ✔ Icon - visible
-        - ✔ Title - visible | Text - correct
-        - ✔ Description - visible | Text - correct
-        """
-        self.preview_empty_view.check_component(
-            title=self.PREVIEW_EMPTY_VIEW_TITLE,
-            description=self.PREVIEW_EMPTY_VIEW_DESCRIPTION)
-    # ──────────────────────────────────────────────────────╯
-
-    # Preview View [Image View]
-    def check_preview_view_image_visible(self):
-        """
-        Check <Preview View [Image]> of the Create course page - visible
-
-        - ✔ Image - visible
-        """
-        error = f'❌ <Preview View [Image]> of the Create course page - invisible!'
-        expect(self.preview_image, error).to_be_visible()
-
-
-    # Upload image View:
-    # ────────────────────────────────────────────────────┐
-    def check_upload_image_view(self):
-        """
-        Check <Upload image View> of the Create course page
-
-        - ✔ Icon - visible
-        - ✔ Title - visible | - text
-        - ✔ Description - visible | - text
-        - ✔ <Upload image Button> - visible | - enabled | - text
-        - ✔ <Remove image Button> - invisible  (if image did NOT upload)
-        - ✔ <Remove image Button> - visible | - enabled | - text  (if image UPLOADED)
-        """
-        self.check_upload_image_view_icon_visible()
-        self.check_upload_image_view_title_visible()
-        self.check_upload_image_view_title_text()
-        self.check_upload_image_view_description_visible()
-        self.check_upload_image_view_description_text()
-        self.check_upload_image_btn()
-        self.check_remove_image_btn()
-    # ────────────────────────────────────────────────────┘
-    # Upload image View [Icon]
-    def check_upload_image_view_icon_visible(self):
-        """
-        Check <Upload image View [Icon]> of the Create course page - visible
-
-        - ✔ Icon - visible
-        """
-        error = f'❌ <Upload image View [Icon]> of the Create course page - invisible!'
-        expect(self.upload_image_view_icon, error).to_be_visible()
-
-    # Upload image View [Title]
-    def check_upload_image_view_title_visible(self):
-        """
-        Check <Upload image View [Title]> of the Create course page - visible
-
-        - ✔ Title - visible
-        """
-        error = f'❌ <Upload image View [Title]> of the Create course page - invisible!'
-        expect(self.upload_image_view_title, error).to_be_visible()
-
-    def check_upload_image_view_title_text(self):
-        """
-        Check <Upload image View [Title] text> of the Create course page - correct
-
-        - ✔ Text - correct
-        """
-        error = f'❌ <Upload image View [Title] text> of the Create course page - incorrect!'
-        expect(self.upload_image_view_title, error).to_have_text(self.UPLOAD_IMAGE_VIEW_TITLE_TEXT)
-
-    # - Upload image View [Description]
-    def check_upload_image_view_description_visible(self):
-        """
-        Check <Upload image View [Description]> of the Create course page - visible
-
-        - ✔ Description - visible
-        """
-        error = f'❌ <Upload image View [Description]> of the Create course page - invisible!'
-        expect(self.upload_image_view_description, error).to_be_visible()
-
-    def check_upload_image_view_description_text(self):
-        """
-        Check <Upload image View [Description] text> of the Create course page - correct
-
-        - ✔ Text - correct
-        """
-        error = f'❌ <Upload image View [Description] text> of the Create course page - incorrect!'
-        expect(self.upload_image_view_description, error).to_have_text(self.UPLOAD_IMAGE_VIEW_DESCRIPTION_TEXT)
-
-
-    # Upload image View [Upload image Button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    def check_upload_image_btn(self):
-        """
-        Check <Upload image Button> of the Create course page
-
-        - ✔ Button - visible
-        - ✔ Button - enabled
-        - ✔ Text - correct
-        """
-        self.check_upload_image_btn_visible()
-        self.check_upload_image_btn_enable()
-        self.check_upload_image_btn_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    def check_upload_image_btn_visible(self):
-        """
-        Check <Upload image Button> of the Create course page - visible
-
-        - ✔ Button - visible
-
-        """
-        error = f'❌ <Upload image Button> of the Create course page - invisible!'
-        expect(self.upload_image_btn, error).to_be_visible()
-
-    def check_upload_image_btn_enable(self):
-        """
-        Check <Upload image Button> of the Create course page - enabled
-
-        - ✔ Button - enabled
-
-        """
-        error = f'❌ <Upload image Button> of the Create course page - disabled!'
-        expect(self.upload_image_btn, error).to_be_enabled()
-
-    def check_upload_image_btn_text(self):
-        """
-        Check <Upload image Button text> of the Create course page - correct
-
-        - ✔ Text - correct
-        """
-        error = f'❌ <Upload image Button text> of the Create course page - incorrect!'
-        expect(self.upload_image_btn, error).to_have_text(self.UPLOAD_IMAGE_VIEW_BUTTON_TEXT)
-
-
-    # Upload image View [Remove image Button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    def check_remove_image_btn(self):
-        """
-        Check <Remove image Button> of the Create course page
-
-        If Image UPLOADED:
-        -----------------
-        - ✔ Button - visible
-        - ✔ Button - enabled
-        - ✔ Button text - correct
-
-        If Image did NOT upload:
-        -----------------------
-        - ✔ Button - invisible
-        """
-        if self.preview_image.is_visible():  # If image uploaded
-            self.check_remove_image_btn_visible()
-            self.check_remove_image_btn_enable()
-            self.check_remove_image_btn_text()
-        else:    # If image did NOT upload
-            self.check_remove_image_btn_invisible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    def check_remove_image_btn_visible(self):
-        """
-        Check <Remove image Button> of the Create course page - visible
-
-        (For case - If image UPLOADED)
-
-        - ✔ Button - visible
-
-        """
-        error = f'❌ <Remove image Button> of the Create course page - invisible!'
-        expect(self.remove_image_btn, error).to_be_visible()
-
-    def check_remove_image_btn_invisible(self):
-        """
-        Check <Remove image Button> of the Create course page - invisible
-
-        (For case - if image did NOT upload)
-
-        - ✔ Button - invisible
-
-        """
-        error = f'❌ <Remove image Button> of the Create course page - visible!'
-        expect(self.remove_image_btn, error).not_to_be_visible()
-
-    def check_remove_image_btn_enable(self):
-        """
-        Check <Remove image Button> of the Create course page - enabled
-
-        - ✔ Button - enabled
-
-        """
-        error = f'❌ <Remove image Button> of the Create course page - disabled!'
-        expect(self.remove_image_btn, error).to_be_enabled()
-
-    def check_remove_image_btn_text(self):
-        """
-        Check <Remove image Button text> of the Create course page - correct
-
-        - ✔ Text - correct
-        """
-        error = f'❌ <Remove image Button text> of the Create course page - incorrect!'
-        expect(self.remove_image_btn, error).to_have_text('Remove image')
 
 
     # Course Form:
@@ -529,7 +244,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
             max_score: str | None = None,
             min_score: str | None = None):
         """
-        Check <Course Form> of the Create course page
+        ✔ Check <Course Form> of the Create course page
 
         - ✔ Form fields - visible
         - ✔ Form fields - correct
@@ -553,7 +268,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_course_title(self, title: str | None = None):
         """
-        Check <Course [Title field]> of the Create course page
+        ✔ Check <Course [Title field]> of the Create course page
 
         If filled:
         ----------
@@ -576,7 +291,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_course_title_field_visible(self):
         """
-        Check <Course [Title field]> of the Create course page - visible!
+        ✔ Check <Course [Title field]> of the Create course page - visible!
 
         - ✔ Title field - visible
         """
@@ -585,7 +300,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_title_field_name(self):
         """
-        Check <Course [Title field] name> of the Create course page - correct!
+        ✔ Check <Course [Title field] name> of the Create course page - correct!
 
         - ✔ Title name - correct
         """
@@ -594,7 +309,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_title_field_placeholder(self):
         """
-        Check <Course [Title field] Placeholder> of the Create course page - correct!
+        ✔ Check <Course [Title field] Placeholder> of the Create course page - correct!
 
         - ✔ Placeholder - correct
         """
@@ -603,7 +318,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_title_field_filled_correctly(self, title: str):
         """
-        Check <Course [Title field]> of the Create course page - filled correctly!
+        ✔ Check <Course [Title field]> of the Create course page - filled correctly!
 
         - ✔ Field - filled correctly
 
@@ -617,7 +332,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_course_estimated_time(self, estimated_time: str | None = None):
         """
-        Check <Course [Estimated time field]> of the Create course page
+        ✔ Check <Course [Estimated time field]> of the Create course page
 
         If filled:
         ----------
@@ -640,7 +355,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_course_estimated_time_field_visible(self):
         """
-        Check <Course [Estimated time field]> of the Create course page - visible!
+        ✔ Check <Course [Estimated time field]> of the Create course page - visible!
 
         - ✔ Field - visible
         """
@@ -649,7 +364,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_estimated_time_field_name(self):
         """
-        Check <Course [Estimated time field] name> of the Create course page - correct!
+        ✔ Check <Course [Estimated time field] name> of the Create course page - correct!
 
         - ✔ Field name - correct
         """
@@ -658,7 +373,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_estimated_time_field_placeholder(self):
         """
-        Check <Course [Estimated time field] Placeholder> of the Create course page - correct!
+        ✔ Check <Course [Estimated time field] Placeholder> of the Create course page - correct!
 
         - ✔ Placeholder - correct
         """
@@ -667,7 +382,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_estimated_time_field_filled_correctly(self, estimated_time: str):
         """
-        Check <Course [Estimated time field]> of the Create course page - filled correctly!
+        ✔ Check <Course [Estimated time field]> of the Create course page - filled correctly!
 
         - ✔ Field - filled correctly
 
@@ -681,7 +396,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_course_description(self, description: str | None = None):
         """
-        Check <Course [Description field]> of the Create course page
+        ✔ Check <Course [Description field]> of the Create course page
 
         If filled:
         ----------
@@ -704,7 +419,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_course_description_field_visible(self):
         """
-        Check <Course [Description field]> of the Create course page - visible!
+        ✔ Check <Course [Description field]> of the Create course page - visible!
 
         - ✔ Field - visible
         """
@@ -713,7 +428,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_description_field_name(self):
         """
-        Check <Course [Description field] name> of the Create course page - correct!
+        ✔ Check <Course [Description field] name> of the Create course page - correct!
 
         - ✔ Field name - correct
         """
@@ -722,7 +437,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_description_field_placeholder(self):
         """
-        Check <Course [Description field] Placeholder> of the Create course page - correct!
+        ✔ Check <Course [Description field] Placeholder> of the Create course page - correct!
 
         - ✔ Placeholder - correct
         """
@@ -731,7 +446,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_description_field_filled_correctly(self, description: str):
         """
-        Check <Course [Description field]> of the Create course page - filled correctly!
+        ✔ Check <Course [Description field]> of the Create course page - filled correctly!
 
         - ✔ Field - filled correctly
 
@@ -745,7 +460,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_course_max_score(self, max_score: str | None = None):
         """
-        Check <Course [Max score field]> of the Create course page
+        ✔ Check <Course [Max score field]> of the Create course page
 
         If filled:
         ----------
@@ -768,7 +483,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_course_max_score_field_visible(self):
         """
-        Check <Course [Max score field]> of the Create course page - visible!
+        ✔ Check <Course [Max score field]> of the Create course page - visible!
 
         - ✔ Field - visible
         """
@@ -777,7 +492,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_max_score_field_name(self):
         """
-        Check <Course [Max score field]> name of the Create course page - correct!
+        ✔ Check <Course [Max score field]> name of the Create course page - correct!
 
         - ✔ Field name - correct
         """
@@ -786,7 +501,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_max_score_field_filled_correctly(self, max_score: str = '0'):
         """
-        Check <Course [Max score field]> of the Create course page - filled correctly!
+        ✔ Check <Course [Max score field]> of the Create course page - filled correctly!
 
         - ✔ Field - filled correctly
 
@@ -800,7 +515,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_course_min_score(self, min_score: str | None = None):
         """
-        Check <Course [Min score field]> of the Create course page
+        ✔ Check <Course [Min score field]> of the Create course page
 
         If filled:
         ----------
@@ -823,7 +538,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_course_min_score_field_visible(self):
         """
-        Check <Course [Min score field]> of the Create course page - visible!
+        ✔ Check <Course [Min score field]> of the Create course page - visible!
 
         - ✔ Field - visible
         """
@@ -832,7 +547,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_min_score_field_name(self):
         """
-        Check <Course [Min score field]> name of the Create course page - correct!
+        ✔ Check <Course [Min score field]> name of the Create course page - correct!
 
         - ✔ Field name - correct
         """
@@ -841,7 +556,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_course_min_score_field_filled_correctly(self, min_score: str = '0'):
         """
-        Check <Course [Min score field]> of the Create course page - filled correctly!
+        ✔ Check <Course [Min score field]> of the Create course page - filled correctly!
 
         - ✔ Field - filled correctly
 
@@ -857,7 +572,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ──────────────────────────────────────────────────────────────┐
     def check_exercises_toolbar(self):
         """
-        Check <Exercises [Toolbar]> of the Create course page
+        ✔ Check <Exercises [Toolbar]> of the Create course page
 
         - ✔ Title - visible
         - ✔ Text - correct
@@ -871,7 +586,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # Exercises Toolbar [Title]
     def check_exercises_toolbar_title_visible(self):
         """
-        Check <Exercises Toolbar [Title]> of the Create course page - visible
+        ✔ Check <Exercises Toolbar [Title]> of the Create course page - visible
 
         - ✔ Title - visible
         """
@@ -880,7 +595,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercises_toolbar_title_text(self):
         """
-        Check <Exercises Toolbar [Title] text> of the Create course page - correct
+        ✔ Check <Exercises Toolbar [Title] text> of the Create course page - correct
 
         - ✔ Text - correct
         """
@@ -890,7 +605,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # Exercises Toolbar [Create exercise button]
     def check_exercises_toolbar_create_exercise_btn_visible(self):
         """
-        Check <Exercises Toolbar [Create exercise Button]> of the Create course page - visible
+        ✔ Check <Exercises Toolbar [Create exercise Button]> of the Create course page - visible
 
         - ✔ Button - visible
         """
@@ -902,7 +617,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ──────────────────────────────────────────────────────╮
     def check_exercises_empty_view(self):
         """
-        Check ALL elements of the <Exercise [Empty View]> component of the  Create course page
+        ✔ Check ALL elements of the <Exercise [Empty view]> component of the  Create course page
 
         - ✔ Icon - visible
         - ✔ Title - visible | Text - correct
@@ -918,7 +633,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ───────────────────────────────────────────────┐
     def check_exercise_toolbar(self, index: int = 0):
         """
-        Check <Exercises Toolbar> of the Create course page
+        ✔ Check <Exercises Toolbar> of the Create course page
 
         - ✔ Title - visible
         - ✔ Text - correct
@@ -933,7 +648,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # Exercise Toolbar [Title]
     def check_exercise_toolbar_title_visible(self, index: int = 0):
         """
-        Check <Exercise Toolbar [Title]> of the Create course page - visible
+        ✔ Check <Exercise Toolbar [Title]> of the Create course page - visible
 
         - ✔ Title - visible
 
@@ -944,7 +659,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercise_toolbar_title_text(self, index: int = 0):
         """
-        Check <Exercise Toolbar [Title] text> of the Create course page - correct
+        ✔ Check <Exercise Toolbar [Title] text> of the Create course page - correct
 
         - ✔ Text - correct (Ex: "#1 Exercise", "#2 Exercise", ...)
 
@@ -956,7 +671,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # - Exercise [Delete exercise Button]
     def check_delete_exercise_btn_visible(self, index: int = 0):
         """
-        Check <Exercise Toolbar [Delete exercise Button]> of the Create course page - visible
+        ✔ Check <Exercise Toolbar [Delete exercise Button]> of the Create course page - visible
 
         - ✔ Button - visible
 
@@ -971,7 +686,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ──────────────────────────────────────────────────────────────────────────────────┐
     def check_exercise_form(self, index: int = 0, title: str | None = None, description: str | None = None):
         """
-        Check <Exercise Form> of the Create course page
+        ✔ Check <Exercise Form> of the Create course page
 
         - ✔ Fields - visible
         - ✔ Field names - correct
@@ -989,7 +704,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_exercise_title_field(self, index: int = 0, title: str | None = None):
         """
-        Check <Exercise Form [Title field]> of the Create course page
+        ✔ Check <Exercise Form [Title field]> of the Create course page
 
         - ✔ Field - visible
         - ✔ Field name - correct
@@ -1009,7 +724,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_exercise_title_field_visible(self, index: int = 0):
         """
-        Check <Exercise [Title field]> of the Create course page - visible
+        ✔ Check <Exercise [Title field]> of the Create course page - visible
 
         - ✔ Field - visible
 
@@ -1020,7 +735,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercise_title_field_name(self, index: int = 0):
         """
-        Check <Exercise [Title field] name> of the Create course page - correct
+        ✔ Check <Exercise [Title field] name> of the Create course page - correct
 
         - ✔ Field - visible
 
@@ -1031,7 +746,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercise_title_field_filled_correctly(self, index: int = 0, title: str = 'Exercise title'):
         """
-        Check <Exercise [Title field]> of the Create course page - filled correctly
+        ✔ Check <Exercise [Title field]> of the Create course page - filled correctly
 
         If is passed:
         ------------
@@ -1053,7 +768,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_exercise_description_field(self, index: int = 0, description: str | None = None):
         """
-        Check <Exercise Form [Description field]> of the Create course page
+        ✔ Check <Exercise Form [Description field]> of the Create course page
 
         - ✔ Field - visible
         - ✔ Field name - correct
@@ -1074,7 +789,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_exercise_description_field_visible(self, index: int = 0):
         """
-        Check <Exercise [Description field]> of the Create course page - visible
+        ✔ Check <Exercise [Description field]> of the Create course page - visible
 
         - ✔ Field - visible
 
@@ -1085,7 +800,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercise_description_field_name(self, index: int = 0):
         """
-        Check <Exercise [Description field] name> of the Create course page - correct
+        ✔ Check <Exercise [Description field] name> of the Create course page - correct
 
         - ✔ Field name - correct
 
@@ -1096,7 +811,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     def check_exercise_description_field_filled_correctly(self, index: int = 0, description: str = 'Exercise description'):
         """
-        Check <Exercise [Description field]> of the Create course page - filled correctly
+        ✔ Check <Exercise [Description field]> of the Create course page - filled correctly
 
         If is passed:
         ------------

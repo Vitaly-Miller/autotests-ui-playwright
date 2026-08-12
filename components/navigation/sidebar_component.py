@@ -1,5 +1,5 @@
 """
-Sidebar Component
+Sidebar (component)
 """
 
 from components.base_component import BaseComponent
@@ -16,7 +16,7 @@ Elements:
 class SidebarComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        # ----------------------------------------------- 𝌆 DATA -------------------------------------------------------
         # Identifiers
         self.DASHBOARD_IDENTIFIER = 'dashboard'
         self.COURSES_IDENTIFIER = 'courses'
@@ -27,10 +27,12 @@ class SidebarComponent(BaseComponent):
         self.COURSES_TITLE = 'Courses'
         self.LOGOUT_TITLE = 'Logout'
 
-        # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
+
+        # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
         self.dashboard_item = SidebarItemComponent(page=page, identifier=self.DASHBOARD_IDENTIFIER)
         self.courses_item = SidebarItemComponent(page=page, identifier=self.COURSES_IDENTIFIER)
         self.logout_item = SidebarItemComponent(page=page, identifier=self.LOGOUT_IDENTIFIER)
+
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     def click_dashboard_item(self):
@@ -57,10 +59,11 @@ class SidebarComponent(BaseComponent):
         """
         self.logout_item.click_item()
 
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    def check_component(self):
+    def check(self):
         """
-        Check <Sidebar> component
+        ✔ Check <Sidebar> component
 
         - ✔ Dashboard Item - visible | Icon - visible | Title - visible | Text - correct
         - ✔ Courses Item - visible | Icon - visible | Title - visible | Text - correct

@@ -1,5 +1,5 @@
 """
-Course View component
+Course view (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
@@ -24,8 +24,10 @@ class CourseViewComponent(BaseComponent):
         self.MIN_SCORE_PART_TEXT = 'Min score:'            # Part of text (Ex: "Min score: 10")
         self.ESTIMATED_TIME_PART_TEXT = 'Estimated time:'  # Part of text (Ex: "Estimated time: 5h")
 
+
         # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
-        self.menu = CourseViewMenuComponent(page)          # Course View Menu
+        self.menu = CourseViewMenuComponent(page)
+
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('course-widget-title-text')
@@ -46,7 +48,8 @@ class CourseViewComponent(BaseComponent):
         self.menu.click_menu_btn(index)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ══════════════════════════════════════════════════════════════════════╗
+    # Component
+    # ──────────────────────────────────────────────────────────────────────┐
     def check_component(
             self,
             index: int,
@@ -56,7 +59,7 @@ class CourseViewComponent(BaseComponent):
             estimated_time: str
     ):
         """
-        Check <Course View> component of the Courses List page
+        ✔ Check <Course View> component of the Courses List page
 
         - ✔ Menu button - visible | enabled
         - ✔ Image - visible
@@ -77,12 +80,12 @@ class CourseViewComponent(BaseComponent):
         self.check_max_score(index=index, max_score=max_score)
         self.check_min_score(index=index, min_score=min_score)
         self.check_estimated_time(index=index, estimated_time=estimated_time)
-    # ═══════════════════════════════════════════════════════════════════════╝
+    # ───────────────────────────────────────────────────────────────────────┘
 
     # Image
     def check_image_visible(self, index: int):
         """
-        Check <Course View [Image]> of the Courses List page - visible
+        ✔ Check <Course View [Image]> of the Courses List page - visible
 
         - ✔ Image - visible
 
@@ -95,7 +98,7 @@ class CourseViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self, index: int, title: str):
         """
-        Check <Course View [Title]> of the Courses List page - visible
+        ✔ Check <Course View [Title]> of the Courses List page - visible
 
         - ✔ Title - visible
         - ✔ Text - correct
@@ -108,7 +111,7 @@ class CourseViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self, index: int):
         """
-        Check <Course View [Title]> of the Courses List page - visible
+        ✔ Check <Course View [Title]> of the Courses List page - visible
 
         - ✔ Title - visible
 
@@ -119,7 +122,7 @@ class CourseViewComponent(BaseComponent):
 
     def check_title_text(self, title: str, index: int):
         """
-        Check <Course View [Title] text> of the Courses List page - correct
+        ✔ Check <Course View [Title] text> of the Courses List page - correct
 
         - ✔ Text - correct
 
@@ -133,7 +136,7 @@ class CourseViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_max_score(self, index: int, max_score: str):
         """
-        Check <Course View [Max score]> of the Courses List page
+        ✔ Check <Course View [Max score]> of the Courses List page
 
         - ✔ Min score - visible
         - ✔ Text - correct
@@ -146,7 +149,7 @@ class CourseViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_max_score_visible(self, index: int):
         """
-        Check <Course View [Max score]> of the Courses List page - visible
+        ✔ Check <Course View [Max score]> of the Courses List page - visible
 
         - ✔ Max score - visible
 
@@ -157,7 +160,7 @@ class CourseViewComponent(BaseComponent):
 
     def check_max_score_text(self, max_score: str, index: int):
         """
-        Check <Course View [Max score] text> of the Courses List page - correct
+        ✔ Check <Course View [Max score] text> of the Courses List page - correct
 
         - ✔ Text - correct
 
@@ -171,7 +174,7 @@ class CourseViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_min_score(self, index: int, min_score: str):
         """
-        Check <Course View [Min score]> of the Courses List page
+        ✔ Check <Course View [Min score]> of the Courses List page
 
         - ✔ Min score - visible
         - ✔ Text - correct
@@ -184,7 +187,7 @@ class CourseViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_min_score_visible(self, index: int):
         """
-        Check <Course View [Min score]> of the Courses List page - visible
+        ✔ Check <Course View [Min score]> of the Courses List page - visible
 
         - ✔ Min score - visible
 
@@ -195,7 +198,7 @@ class CourseViewComponent(BaseComponent):
 
     def check_min_score_text(self, index: int, min_score: str, ):
         """
-        Check <Course View [Min score] text> of the Courses List page - correct
+        ✔ Check <Course View [Min score] text> of the Courses List page - correct
 
         - ✔ Text - correct
 
@@ -210,7 +213,7 @@ class CourseViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_estimated_time(self, index: int, estimated_time: str):
         """
-        Check <Course View [Estimated time]> of the Courses List page
+        ✔ Check <Course View [Estimated time]> of the Courses List page
 
         - ✔ Estimated time - visible
         - ✔ Text - correct
@@ -223,7 +226,7 @@ class CourseViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_estimated_time_visible(self, index: int):
         """
-        Check <Course View [Estimated time]> of the Courses List page - visible
+        ✔ Check <Course View [Estimated time]> of the Courses List page - visible
 
         - ✔ Estimated time - visible
 
@@ -234,7 +237,7 @@ class CourseViewComponent(BaseComponent):
 
     def check_estimated_time_text(self, index: int, estimated_time: str):
         """
-        Check <Course View [Estimated time] text> of the Courses List page - correct
+        ✔ Check <Course View [Estimated time] text> of the Courses List page - correct
 
         - ✔ Text - correct
 

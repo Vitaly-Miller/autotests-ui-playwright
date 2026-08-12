@@ -1,5 +1,5 @@
 """
-Sidebar List Component
+Sidebar list (component)
 """
 
 from components.base_component import BaseComponent
@@ -29,6 +29,7 @@ class SidebarItemComponent(BaseComponent):
         self.btn_icon = page.get_by_test_id(f'{identifier}-drawer-list-item-icon')
         self.btn_title = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
 
+
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     def click_item(self):
         """
@@ -40,11 +41,13 @@ class SidebarItemComponent(BaseComponent):
         self.check_item_visible()
         self.btn.click()
 
+
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
+    # Component
     # ────────────────────────────────────┐
     def check_component(self, title: str):
         """
-        Check ALL elements of the <Sidebar Item> component
+        ✔ Check ALL elements of the <Sidebar Item> component
 
         - ✔ Item - visible
         - ✔ Icon - visible
@@ -59,40 +62,40 @@ class SidebarItemComponent(BaseComponent):
     # ────────────────────────────────────┘
     def check_item_visible(self):
         """
-        Check <Sidebar Item> - visible
+        ✔ Check <Sidebar Item> - visible
 
         - ✔ Button - visible
         """
-        error = f'❌ Check <Sidebar Item> - invisible!'
+        error = f'❌ ✔ Check <Sidebar Item> - invisible!'
         expect(self.btn, error).to_be_visible()
 
     def check_icon_visible(self):
         """
-        Check <Sidebar Item [Icon]> - visible
+        ✔ Check <Sidebar Item [Icon]> - visible
 
         - ✔ Icon - visible
         """
-        error = f'❌ Check <Sidebar Item [Icon]> - invisible!'
+        error = f'❌ ✔ Check <Sidebar Item [Icon]> - invisible!'
         expect(self.btn_icon, error).to_be_visible()
 
     def check_title_visible(self):
         """
-        Check <Sidebar Item [Title]> - visible
+        ✔ Check <Sidebar Item [Title]> - visible
 
         - ✔ Title - visible
         """
-        error = f'❌ Check <Sidebar Item [Title]> - invisible!'
+        error = f'❌ ✔ Check <Sidebar Item [Title]> - invisible!'
         expect(self.btn_title, error).to_be_visible()
 
     def check_title_text(self, title: str):
         """
-        Check <Sidebar Item [Title text]> - correct
+        ✔ Check <Sidebar Item [Title text]> - correct
 
         - ✔ Text - correct
 
         :param title: Title
         """
-        error = f'❌ Check <Sidebar Item [Title text]> - incorrect!'
+        error = f'❌ ✔ Check <Sidebar Item [Title text]> - incorrect!'
         expect(self.btn_title, error).to_have_text(title)
 
 

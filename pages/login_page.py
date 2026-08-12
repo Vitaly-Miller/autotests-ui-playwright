@@ -79,7 +79,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ════════════════════════════════════╗
     def check_all_elements(self):
         """
-        Check ALL Elements of the Login page
+        ✔ Check ALL Elements of the Login page
 
         - ✔ Title
         - ✔ Login Form (unfilled)
@@ -96,7 +96,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ─────────────────────────────┐
     def check_title(self):
         """
-        Check <Title> of the Registration page
+        ✔ Check <Title> of the Registration page
 
         - ✔ Title - visible
         - ✔ Title text - correct
@@ -106,7 +106,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ─────────────────────────────┘
     def check_title_visible(self):
         """
-        Check <Title> of the Login page - visible
+        ✔ Check <Title> of the Login page - visible
 
         - ✔ Title - visible
         """
@@ -115,7 +115,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_title_text(self):
         """
-        Check <Title text> of the Login page - correct
+        ✔ Check <Title text> of the Login page - correct
 
         - ✔ Text - correct
         """
@@ -130,7 +130,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
             email: str | None = None,
             password: str | None = None):
         """
-        Check <Login form> fields of the Login page
+        ✔ Check <Login form> fields of the Login page
 
         - ✔ Email field - visible | Name - correct | Filled - correctly (if is passed)
         - ✔ Password field - visible | Name - correct | Filled - correctly (if is passed)
@@ -146,7 +146,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_email_field(self, email: str | None = None):
         """
-        Check <Login form [Email field]> of the Login page
+        ✔ Check <Login form [Email field]> of the Login page
 
         - ✔ Field - visible
         - ✔ Field Name - correct
@@ -160,7 +160,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_email_field_visible(self):
         """
-        Check <Login form [Email field]> of the Login page - visible
+        ✔ Check <Login form [Email field]> of the Login page - visible
 
         - ✔ Field - visible
         """
@@ -169,7 +169,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_email_field_name(self):
         """
-        Check <Login form [Email field Name]> of the Login page - correct
+        ✔ Check <Login form [Email field Name]> of the Login page - correct
 
         - ✔ Field Name - correct
         """
@@ -178,7 +178,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_email_field_filled_correctly(self, email: str):
         """
-        Check <Login form [Email field]> of the Login page - filled correctly
+        ✔ Check <Login form [Email field]> of the Login page - filled correctly
 
         - ✔ Field - filled correctly
         """
@@ -190,7 +190,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_password_field(self, password: str | None = None):
         """
-        Check <Registration form [Password field]> of the Registration page
+        ✔ Check <Registration form [Password field]> of the Registration page
 
         - ✔ Field - visible
         - ✔ Field Name - correct
@@ -204,7 +204,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_password_field_visible(self):
         """
-        Check <Login form [Password field]> of the Login page - visible
+        ✔ Check <Login form [Password field]> of the Login page - visible
 
         - ✔ Field - visible
         """
@@ -213,7 +213,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_password_field_name(self):
         """
-        Check <Login form [Password field Name]> of the Login page - correct
+        ✔ Check <Login form [Password field Name]> of the Login page - correct
 
         - ✔ Field Name - correct
         """
@@ -222,7 +222,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_password_field_filled_correctly(self, password: str):
         """
-        Check <Login form [Password field]> of the Login page - filled correctly
+        ✔ Check <Login form [Password field]> of the Login page - filled correctly
 
         - ✔ Field - filled correctly
         """
@@ -234,7 +234,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ─────────────────────────────────────────────┐
     def check_login_btn(self, enable: bool = True):
         """
-        Check <Login button> of the Login page
+        ✔ Check <Login button> of the Login page
 
         - ✔ Button - enabled / disabled
         - ✔ Button text - correct
@@ -247,7 +247,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ─────────────────────────────────────────────┘
     def check_login_btn_enable(self):
         """
-        Check <Login button> of the Login page - enabled
+        ✔ Check <Login button> of the Login page - enabled
 
         - ✔ Button - enabled
         """
@@ -256,7 +256,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_login_btn_disabled(self):
         """
-        Check <Login button> of the Login page - disabled
+        ✔ Check <Login button> of the Login page - disabled
 
         (Until the Login form is completed successfully)
 
@@ -267,7 +267,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_login_btn_text(self):
         """
-        Check <Login Button text> of the Login page - correct
+        ✔ Check <Login Button text> of the Login page - correct
 
         - ✔ Text - correct
         """
@@ -279,7 +279,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ────────────────────────────────────────┐
     def check_registration_link(self):
         """
-        Check <Registration link> of the Login page
+        ✔ Check <Registration link> of the Login page
 
         - ✔ Link - visible
         - ✔ Link text - correct
@@ -291,7 +291,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ────────────────────────────────────────┘
     def check_registration_link_visible(self):
         """
-        Check <Registration link> of the Login page - visible
+        ✔ Check <Registration link> of the Login page - visible
 
         - ✔ Link - visible
         """
@@ -300,7 +300,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_registration_link_text(self):
         """
-        Check <Registration link text> of the Login page - correct
+        ✔ Check <Registration link text> of the Login page - correct
 
         - ✔ Text - correct
         """
@@ -309,7 +309,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_registration_link_url(self):
         """
-        Check <Registration link [URL]> on the Login page - correct
+        ✔ Check <Registration link [URL]> on the Login page - correct
 
         - ✔ URL - correct
         """
@@ -321,7 +321,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ────────────────────────────────────────────────────┐
     def wrong_email_or_password_alert(self):
         """
-        Check <Wrong Email or Password> alert of the Login page
+        ✔ Check <Wrong Email or Password> alert of the Login page
 
         - ✔ Alert - visible
         - ✔ Alert text - correct
@@ -331,7 +331,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ────────────────────────────────────────────────────┘
     def check_wrong_email_or_password_alert_visible(self):
         """
-        Check <Wrong Email or Password alert> - visible
+        ✔ Check <Wrong Email or Password alert> - visible
 
         - ✔ Alert - visible
         """
@@ -340,7 +340,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_wrong_email_or_password_alert_text(self):
         """
-        Check <Wrong Email or Password alert> text - correct
+        ✔ Check <Wrong Email or Password alert> text - correct
 
         - ✔ Text - correct
         """

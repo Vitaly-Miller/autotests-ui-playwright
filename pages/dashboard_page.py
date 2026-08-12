@@ -15,8 +15,8 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
-        self.navbar = NavbarComponent(page)       # Navbar
-        self.sidebar = SidebarComponent(page)     # Sidebar
+        self.navbar = NavbarComponent(page)
+        self.sidebar = SidebarComponent(page)
 
         # -------------------------------------------- ㉧ LOCATORS (static) ---------------------------------------------
         # Toolbar
@@ -38,37 +38,11 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
-    # ALL Elements
-    # ═════════════════════════════════════╗
-    def check_component(self):
-        """
-        Check ALL Elements of the Dashboard page
-
-        - ✔ Toolbar
-        - ✔ All Widgets
-          """
-        self.check_toolbar_title_visible()
-        self.check_toolbar_title_text()
-    # ═════════════════════════════════════╝
-
-    # Navbar + Sidebar components
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    def check_navbar_and_sidebar(self, username: str):
-        """
-        Check <Navbar> + <Sidebar> components
-
-        - ✔ Navbar - visible | Text - correct
-        - ✔ Sidebar - Buttons - visible | Icons - visible | Text - correct
-        """
-        self.navbar.check_component(username)
-        self.sidebar.check_component()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-
     # Toolbar:
     # ──────────────────────────────────────┐
     def check_toolbar(self):
         """
-        Check <Toolbar> of the Dashboard page
+        ✔ Check <Toolbar> of the Dashboard page
 
         - ✔ Title - visible
         - ✔ Title text - correct
@@ -78,7 +52,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     # ──────────────────────────────────────┘
     def check_toolbar_title_visible(self):
         """
-        Check <Toolbar [Title]> of the Dashboard page
+        ✔ Check <Toolbar [Title]> of the Dashboard page
 
         - ✔ Title - visible
 
@@ -88,7 +62,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     def check_toolbar_title_text(self):
         """
-        Check <Toolbar [Title] text> of the Dashboard page
+        ✔ Check <Toolbar [Title] text> of the Dashboard page
 
         - ✔ Text - correct
         """
@@ -100,7 +74,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     # ─────────────────────────────────┐
     def check_all_widgets(self):
         """
-        Check all Widgets of the Dashboard page
+        ✔ Check all Widgets of the Dashboard page
 
         - ✔ Students - visible | Text - correct | Chart - visible
         - ✔ Activities - visible | Text - correct | Chart - visible
@@ -114,7 +88,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     # ─────────────────────────────────┘
     def check_students_widget(self):
         """
-        Check <Students widget> of the Dashboard page
+        ✔ Check <Students widget> of the Dashboard page
 
         - ✔ Title - visible
         - ✔ Title text - correct
@@ -129,7 +103,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     def check_activities_widget(self):
         """
-        Check <Activities widget> of the Dashboard page
+        ✔ Check <Activities widget> of the Dashboard page
 
         - ✔ Title - visible
         - ✔ Title text - correct
@@ -144,7 +118,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     def check_courses_widget(self):
         """
-        Check <Courses widget> of the Dashboard page
+        ✔ Check <Courses widget> of the Dashboard page
 
         - ✔ Title - visible
         - ✔ Title text - correct
@@ -159,7 +133,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     def check_scores_widget(self):
         """
-        Check <Scores widget> of the Dashboard page
+        ✔ Check <Scores widget> of the Dashboard page
 
         - ✔ Title - visible
         - ✔ Title text - correct

@@ -43,10 +43,10 @@ def test_registration_successful(guest_page):
     registration_btn.click()                        # Click button
 
     # ✔️EXPECTATIONS (after click registration button)
-    expect(page, '❌ Wrong page URL').to_have_url(dashboard_url)                                    # Check Page URL
-    expect(navbar_header, '❌ Wrong Navbar header text').to_have_text('UI Course')                  # Check Navbar header text
-    expect(navbar_welcome_title, '❌ Wrong Check Navbar welcome text').to_contain_text('Welcome,')  # Check Navbar welcome text contains "Welcome,"
-    expect(dashboard_header, '❌ Wrong Dashboard header text').to_have_text('Dashboard')            # Check Dashboard header text
+    expect(page, '❌ Wrong page URL').to_have_url(dashboard_url)                                    # ✔ Check Page URL
+    expect(navbar_header, '❌ Wrong Navbar header text').to_have_text('UI Course')                  # ✔ Check Navbar header text
+    expect(navbar_welcome_title, '❌ Wrong ✔ Check Navbar welcome text').to_contain_text('Welcome,')  # ✔ Check Navbar welcome text contains "Welcome,"
+    expect(dashboard_header, '❌ Wrong Dashboard header text').to_have_text('Dashboard')            # ✔ Check Dashboard header text
 
     # ⏳(optional)
     page.wait_for_timeout(1000)
