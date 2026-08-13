@@ -35,7 +35,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.EXERCISES_TOOLBAR_TITLE = 'Exercises'
 
         # Exercises [Empty view]
-        self.EXERCISES_EMPTY_VIEW_IDENTIFIER = 'create-course-exercises'
+        self.EXERCISES_IDENTIFIER = 'create-course-exercises'
         self.EXERCISES_EMPTY_VIEW_TITLE = 'There is no exercises'
         self.EXERCISES_EMPTY_VIEW_DESCRIPTION = 'Click on "Create exercise" button to create new exercise'
 
@@ -44,7 +44,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.image_upload_widget = ImageUploadWidgetComponent(page)
-        self.exercises_empty_view = EmptyViewComponent(page=page, identifier=self.EXERCISES_EMPTY_VIEW_IDENTIFIER)
+        self.exercises_empty_view = EmptyViewComponent(page=page, identifier=self.EXERCISES_IDENTIFIER)
         self.create_exercise = CreateCourseExerciseComponent(page)
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------

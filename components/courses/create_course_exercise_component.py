@@ -6,15 +6,14 @@ from playwright.sync_api import Locator, Page, expect
 
 #=======================================================================================================================
 """
-Elements:
 - Toolbar
   - [Title]
   - [Delete exercise button]
+
 - Form
   - [Title field]
   - [Description field]
 """
-
 class CreateCourseExerciseComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
