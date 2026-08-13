@@ -7,7 +7,7 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Elements:
+[Empty view] elements:
 - Icon
 - Title
 - Description
@@ -30,6 +30,7 @@ class EmptyViewComponent(BaseComponent):
         self.description = page.get_by_test_id(f'{identifier}-empty-view-description-text')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # [Empty view]
     # ──────────────────────────────────────────────────────┐
     def check_empty_view(self, title: str, description: str):
         """
@@ -47,7 +48,7 @@ class EmptyViewComponent(BaseComponent):
         self.check_description(description)
     # ──────────────────────────────────────────────────────┘
 
-    # Icon
+    # Empty view [Icon]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_icon(self):
         """
@@ -63,20 +64,20 @@ class EmptyViewComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Empty view -> [Icon] - invisible!'
+        error = f'❌ Empty view > [Icon] - invisible!'
         expect(self.icon, error).to_be_visible()
 
 
-    # Title
+    # Empty view [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self, title: str):
         """
-        ✔ Check [Title] of the <Empty view>
+        ✔ Check [Title]
 
         - ✔ Title - visible
         - ✔ Text - correct
 
-        :param title: Title text
+        :param title: Title
         """
         self.check_title_visible()
         self.check_title_text(title)
@@ -87,7 +88,7 @@ class EmptyViewComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Empty view -> [Title] - invisible!'
+        error = f'❌ Empty view > [Title] - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self, title: str):
@@ -96,15 +97,15 @@ class EmptyViewComponent(BaseComponent):
 
         :param title: Title text
         """
-        error = f'❌ Empty view -> [Title] - incorrect text!'
+        error = f'❌ Empty view > [Title] - incorrect text!'
         expect(self.title, error).to_have_text(title)
 
 
-    # Description
+    # Empty view [Description]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_description(self, description: str):
         """
-        ✔ Check [Description] of the <Empty view>
+        ✔ Check [Description]
 
         - ✔ Description - visible
         - ✔ Text - correct
@@ -120,16 +121,16 @@ class EmptyViewComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Empty view -> [Description] - invisible!'
+        error = f'❌ Empty view > [Description] - invisible!'
         expect(self.description, error).to_be_visible()
 
     def check_description_text(self, description: str):
         """
         ✔ Check [Description] text
 
-        :param description: Description text
+        :param description: Description
         """
-        error = f'❌ Empty view -> [Description] - incorrect text!'
+        error = f'❌ Empty view > [Description] - incorrect text!'
         expect(self.description, error).to_have_text(description)
 
 #=======================================================================================================================

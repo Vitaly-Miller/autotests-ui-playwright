@@ -1,5 +1,5 @@
 """
-Sidebar list (component)
+Sidebar > [Item] (component)
 """
 
 from components.base_component import BaseComponent
@@ -32,56 +32,94 @@ class SidebarItemComponent(BaseComponent):
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     def click_btn(self):
         """
-        ▶ Click Sidebar item [Button]
+        ▶ Click item [Button]
 
         - ✔ Button - visible
         - ▶ Button - click
         """
-        self.check_btn_visible()
+        self.check_btn()
         self.btn.click()
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
+    # [Item]
     # ────────────────────────────────────┐
     def check_item(self, title: str):
         """
-        ✔ Check [Sidebar item]
+        ✔ Check [Item]
 
         - ✔ Item - visible
         - ✔ Icon - visible
         - ✔ Title - visible | - text
 
-        :param title: Item title
+        :param title: Title
+        """
+        self.check_btn()
+        self.check_icon()
+        self.check_title(title)
+    # ────────────────────────────────────┘
+
+
+    # Item [Button]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_btn(self):
+        """
+        ✔ Check [Button]
+
+        - ✔ Button - visible
         """
         self.check_btn_visible()
-        self.check_icon_visible()
-        self.check_title_visible()
-        self.check_title_text(title)
-    # ────────────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_btn_visible(self):
         """
         ✔ Check [Button] visible
 
         .
         """
-        error = f'❌ Sidebar item -> [Button] - invisible!'
+        error = f'❌ Sidebar item > [Button] - invisible!'
         expect(self.btn, error).to_be_visible()
 
+
+    # Item [Icon]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_icon(self):
+        """
+        ✔ Check [Icon]
+
+        - ✔ Icon - visible
+        """
+        self.check_icon_visible()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_icon_visible(self):
         """
-        ✔ Check [Icon]> visible
+        ✔ Check [Icon] visible
 
         .
         """
-        error = f'❌ Sidebar item -> [Icon] - invisible!'
+        error = f'❌ Sidebar item > [Icon] - invisible!'
         expect(self.icon, error).to_be_visible()
 
+
+    # Item [Title]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_title(self, title):
+        """
+        ✔ Check [Title]
+
+        - ✔ Title - visible
+        - ✔ Text - correct
+
+        :param title: Title
+        """
+        self.check_title_visible()
+        self.check_title_text(title)
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
         ✔ Check [Title] visible
 
         .
         """
-        error = f'❌ Sidebar item -> [Title] - invisible!'
+        error = f'❌ Sidebar item > Item > [Title] - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self, title: str):
@@ -90,7 +128,7 @@ class SidebarItemComponent(BaseComponent):
 
         :param title: Title
         """
-        error = f'❌ Sidebar item -> [Title] - text incorrect!'
+        error = f'❌ Sidebar > Item > [Title] - incorrect text!'
         expect(self.title, error).to_have_text(title)
 
 

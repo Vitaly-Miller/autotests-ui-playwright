@@ -1,14 +1,16 @@
 """
 Create Course page
 """
-
+from components.courses.create_course.exercise_component import CreateCourseExerciseComponent
+from components.courses.create_course.exercises_toolbar_component import CreateCourseExercisesToolbarComponent
+from components.courses.create_course.image_upload_widget_component import CreateCourseImageUploadWidgetComponent
+from components.courses.create_course.toolbar_component import CreateCourseToolbarComponent
 from pages.base_page import BasePage
-from components.navigation.navbar_component import NavbarComponent
-from components.navigation.sidebar_component import SidebarComponent
-from components.views.emty_view_component import EmptyViewComponent
-from components.views.image_upload_widget_component import ImageUploadWidgetComponent
-from components.courses.create_course_exercise_component import CreateCourseExerciseComponent
-from playwright.sync_api import Locator, Page, expect
+from playwright.sync_api import Page, expect
+from components.navigation.navbar.navbar_component import NavbarComponent
+from components.navigation.sidebar.sidebar_component import SidebarComponent
+
+
 
 #=======================================================================================================================
 class CreateCoursePage(BasePage):        # Дочерний класс (наследует класс BasePage)
@@ -18,10 +20,10 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         super().__init__(page)           # Передаёт page в конструктор BasePage
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
-        # Page -> [Toolbar]
+        # Page > [Toolbar]
         self.TOOLBAR_TITLE = 'Create course'
 
-        # Course -> [Form]
+        # Course > [Form]
         self.TITLE_FIELD_NAME = 'Title'
         self.TITLE_FIELD_PLACEHOLDER = 'New course'
         self.ESTIMATED_TIME_FIELD_NAME = 'Estimated time'
@@ -31,28 +33,17 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.MAX_SCORE_FIELD_NAME = 'Max score'
         self.MIN_SCORE_FIELD_NAME = 'Min score'
 
-        # Exercises -> [Toolbar]
-        self.EXERCISES_TOOLBAR_TITLE = 'Exercises'
-
-        # Exercises [Empty view]
-        self.EXERCISES_IDENTIFIER = 'create-course-exercises'
-        self.EXERCISES_EMPTY_VIEW_TITLE = 'There is no exercises'
-        self.EXERCISES_EMPTY_VIEW_DESCRIPTION = 'Click on "Create exercise" button to create new exercise'
-
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
-        self.image_upload_widget = ImageUploadWidgetComponent(page)
-        self.exercises_empty_view = EmptyViewComponent(page=page, identifier=self.EXERCISES_IDENTIFIER)
-        self.create_exercise = CreateCourseExerciseComponent(page)
+        self.toolbar = CreateCourseToolbarComponent(page)
+        self.image_upload_widget = CreateCourseImageUploadWidgetComponent(page)
+        self.exercises_toolbar = CreateCourseExercisesToolbarComponent(page)
+        self.exercise = CreateCourseExerciseComponent(page)
+
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
-        # Toolbar
-        self.toolbar_title = page.get_by_test_id('create-course-toolbar-title-text')
-        self.create_course_btn = page.get_by_test_id('create-course-toolbar-create-course-button')
-
-
 
         # Course Form
         self.course_form_title_field = page.get_by_role(role='textbox', name='Title')
@@ -61,27 +52,13 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.course_form_max_score_field = page.get_by_role(role='spinbutton', name='Max score')
         self.course_form_min_score_field = page.get_by_role(role='spinbutton', name='Min score')
 
-        # EXERCISES:
-        # EXERCISES -> [Toolbar]
-        self.exercises_toolbar_title = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
-        self.exercises_toolbar_create_exercise_btn = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
+      # [Empty view]
+        self.EXERCISES_IDENTIFIER = 'create-course-exercises'
+        self.EXERCISES_EMPTY_VIEW_TITLE = 'There is no exercises'
+        self.EXERCISES_EMPTY_VIEW_DESCRIPTION = 'Click on "Create exercise" button to create new exercise'
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-
-    def click_create_course_btn(self):
-        """
-        ▶ Click <Create course Button> of the Create course page
-
-        - ✔ Button - visible
-        - ✔ Button - enabled
-        - ▶ Button - click
-        """
-        self.check_toolbar_create_course_btn_visible()
-        self.check_toolbar_create_course_btn_enabled()
-        self.create_course_btn.click()
-
-
     def fill_create_course_form(
             self,
             title: str,
@@ -113,16 +90,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
             max_score=max_score,
             min_score=min_score)
 
-    # EXERCISES:
-    def click_create_exercise_btn(self):
-        """
-        ▶ Click <Create exercise Button> of the Create course page
-
-        - ✔ Button - visible
-        - ▶ Button - click
-        """
-        self.check_exercises_toolbar_create_exercise_btn_visible()
-        self.exercises_toolbar_create_exercise_btn.click()
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
@@ -161,34 +128,33 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         error = f'❌ <Toolbar [Title] text> of the Create course page - incorrect!'
         expect(self.toolbar_title, error).to_have_text(self.TOOLBAR_TITLE)
 
-    # Toolbar [Create Course Button]
+    # Toolbar [Create Course button]
     def check_toolbar_create_course_btn_visible(self):
         """
-        ✔ Check <Toolbar [Create Course Button]> of the Create course page - visible
+        ✔ Check <Toolbar [Create Course button]> of the Create course page - visible
 
         - ✔ Button - visible
         """
-        error = f'❌ <Toolbar [Create Course Button]> of the Create course page - invisible!'
+        error = f'❌ <Toolbar [Create Course button]> of the Create course page - invisible!'
         expect(self.create_course_btn, error).to_be_visible()
 
     def check_toolbar_create_course_btn_enabled(self):
         """
-        ✔ Check <Toolbar [Create Course Button]> of the Create course page - enabled
+        ✔ Check <Toolbar [Create Course button]> of the Create course page - enabled
 
         - ✔ Button - enabled
         """
-        error = f'❌ <Toolbar [Create Course Button]> of the Create course page - disabled!'
+        error = f'❌ <Toolbar [Create Course button]> of the Create course page - disabled!'
         expect(self.create_course_btn, error).to_be_enabled()
 
     def check_toolbar_create_course_btn_disabled(self):
         """
-        ✔ Check <Toolbar [Create Course Button]> of the Create course page - disabled
+        ✔ Check <Toolbar [Create Course button]> of the Create course page - disabled
 
         - ✔ Button - disabled
         """
-        error = f'❌ <Toolbar [Create Course Button]> of the Create course page - enabled!'
+        error = f'❌ <Toolbar [Create Course button]> of the Create course page - enabled!'
         expect(self.create_course_btn, error).to_be_disabled()
-
 
 
     # Course Form:
@@ -521,54 +487,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         error = f'❌ <Course [Min score field]> of the Create course page - filled incorrectly!'
         expect(self.course_form_min_score_field, error).to_have_value(min_score)
-
-
-
-    # EXERCISES:
-    # Exercises [Toolbar]
-    # ──────────────────────────────────────────────────────────────┐
-    def check_exercises_toolbar(self):
-        """
-        ✔ Check <Exercises [Toolbar]> of the Create course page
-
-        - ✔ Title - visible
-        - ✔ Text - correct
-        - ✔ Create exercise Button - correct
-
-        """
-        self.check_exercises_toolbar_title_visible()
-        self.check_exercises_toolbar_title_text()
-        self.check_exercises_toolbar_create_exercise_btn_visible()
-    # ──────────────────────────────────────────────────────────────┘
-    # Exercises Toolbar [Title]
-    def check_exercises_toolbar_title_visible(self):
-        """
-        ✔ Check <Exercises Toolbar [Title]> of the Create course page - visible
-
-        - ✔ Title - visible
-        """
-        error = f'❌ <Exercises Toolbar [Title]> of the Create course page - invisible!'
-        expect(self.exercises_toolbar_title, error).to_be_visible()
-
-    def check_exercises_toolbar_title_text(self):
-        """
-        ✔ Check <Exercises Toolbar [Title] text> of the Create course page - correct
-
-        - ✔ Text - correct
-        """
-        error = f'❌ <Exercises Toolbar [Title] text> of the Create course page - incorrect!'
-        expect(self.exercises_toolbar_title, error).to_have_text(self.EXERCISES_TOOLBAR_TITLE)
-
-    # Exercises Toolbar [Create exercise button]
-    def check_exercises_toolbar_create_exercise_btn_visible(self):
-        """
-        ✔ Check <Exercises Toolbar [Create exercise Button]> of the Create course page - visible
-
-        - ✔ Button - visible
-        """
-        error = f'❌ <Exercises Toolbar [Create exercise Button]> of the Create course page - invisible!'
-        expect(self.exercises_toolbar_create_exercise_btn, error).to_be_visible()
-
 
     # Exercises [Empty view] (component)
     # ──────────────────────────────────────────────────────╮

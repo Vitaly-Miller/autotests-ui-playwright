@@ -24,9 +24,9 @@ class NavbarComponent(BaseComponent):
         self.title = page.get_by_test_id('navigation-navbar-app-title-text')
         self.welcome_title = page.get_by_test_id('navigation-navbar-welcome-title-text')
 
-
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ──────────────────────────────────────┐
+    # [Navbar]
+    # ────────────────────────────────────┐
     def check_navbar(self, username: str):
         """
         ✔ Check [Navbar]
@@ -38,9 +38,10 @@ class NavbarComponent(BaseComponent):
         """
         self.check_title()
         self.check_welcome_title(username)
-    # ──────────────────────────────────────┘
+    # ────────────────────────────────────┘
 
-    # Title
+
+    # Navbar [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self):
         """
@@ -56,9 +57,9 @@ class NavbarComponent(BaseComponent):
         """
         ✔ Check [Title] visible
 
-        - ✔ Title - visible
+        .
         """
-        error = f'❌ Navbar -> [Title] - invisible!'
+        error = f'❌ Navbar > [Title] - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self):
@@ -67,14 +68,15 @@ class NavbarComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Navbar -> [Title] - incorrect text!'
+        error = f'❌ Navbar > [Title] - incorrect text!'
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
-    # Welcome title
+
+    # Navbar [Welcome title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_welcome_title(self, username):
         """
-        ✔ Check <Navbar [Welcome title]>
+        ✔ Check [Welcome title]
 
         - ✔ Title - visible
         - ✔ Text - correct
@@ -88,9 +90,9 @@ class NavbarComponent(BaseComponent):
         """
         ✔ Check [Welcome title] visible
 
-        - ✔ Title - visible
+        .
         """
-        error = f'❌ Navbar -> [Welcome title] - invisible!'
+        error = f'❌ Navbar > [Welcome title] - invisible!'
         expect(self.welcome_title, error).to_be_visible()
 
     def check_welcome_title_text(self, username):
@@ -99,7 +101,7 @@ class NavbarComponent(BaseComponent):
 
         :param username: Username
         """
-        error = f'❌ Navbar -> [Welcome title] - incorrect text!'
+        error = f'❌ Navbar > [Welcome title] - incorrect text!'
         expect(self.welcome_title, error).to_have_text(self.WELCOME_TITLE_TEXT(username))
 
 #=======================================================================================================================

@@ -1,13 +1,13 @@
 """
 Courses list page
 """
-
+from components.courses.coureses_list.course_view_component import CoursesListCourseViewComponent
 from pages.base_page import BasePage
-from components.navigation.navbar_component import NavbarComponent
-from components.navigation.sidebar_component import SidebarComponent
-from components.courses.courses_list_toolbar_component import CoursesListToolbarComponent
+from components.navigation.navbar.navbar_component import NavbarComponent
+from components.navigation.sidebar.sidebar_component import SidebarComponent
+from components.courses.coureses_list.toolbar_component import CoursesListToolbarComponent
 from components.views.emty_view_component import EmptyViewComponent
-from components.courses.course_view_component import CourseViewComponent
+
 from playwright.sync_api import Page
 
 #=======================================================================================================================
@@ -27,7 +27,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.sidebar = SidebarComponent(page)
         self.toolbar = CoursesListToolbarComponent(page)
         self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER)
-        self.course_view = CourseViewComponent(page)
+        self.course_view = CoursesListCourseViewComponent(page)
 
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------

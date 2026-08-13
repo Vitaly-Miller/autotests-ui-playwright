@@ -1,18 +1,19 @@
 """
-Create course [Exercise] (component)
+Create course page > Exercises > [Exercise] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Locator, Page, expect
 
 #=======================================================================================================================
 """
+Elements:
 - Toolbar
-  - [Title]
-  - [Delete exercise button]
+  - Title
+  - Delete exercise button
 
 - Form
-  - [Title field]
-  - [Description field]
+  - Title field
+  - Description field
 """
 class CreateCourseExerciseComponent(BaseComponent):
     def __init__(self, page: Page):
@@ -21,9 +22,9 @@ class CreateCourseExerciseComponent(BaseComponent):
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         # [Toolbar]
         self.TOOLBAR_TITLE_TEXT = lambda index: f'#{index + 1} Exercise'
-        # Form -> [Title field]
+        # Form > [Title field]
         self.TITLE_FIELD_NAME = 'Title'
-        # Form -> [Description field]
+        # Form > [Description field]
         self.DESCRIPTION_FIELD_NAME = 'Description'
 
        # ---------------------------------------- ㉤ LOCATORS {dynamic} (lambda) ---------------------------------------
@@ -147,7 +148,7 @@ class CreateCourseExerciseComponent(BaseComponent):
 
         :param index: Locator DOM-index (ex: ...-exercise-{index}-box-toolbar-...)
         """
-        error = f'❌ <Create course page -> Exercises -> Exercise -> Toolbar -> [Title] - invisible!'
+        error = f'❌ <Create course page > Exercises > Exercise > Toolbar > [Title] - invisible!'
         expect(self.toolbar_title(index), error).to_be_visible()
 
     def check_toolbar_title_text(self, index: int):
@@ -158,7 +159,7 @@ class CreateCourseExerciseComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ <Create course page -> Exercises -> Exercise -> Toolbar -> [Title] - incorrect text!'
+        error = f'❌ <Create course page > Exercises > Exercise > Toolbar > [Title] - incorrect text!'
         expect(self.toolbar_title(index), error).to_have_text(self.TOOLBAR_TITLE_TEXT(index))
 
     # Toolbar [Delete exercise button]
@@ -179,7 +180,7 @@ class CreateCourseExerciseComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ Create course page -> Exercises -> Exercise -> Toolbar -> [Delete exercise button] - invisible!'
+        error = f'❌ Create course page > Exercises > Exercise > Toolbar > [Delete exercise button] - invisible!'
         expect(self.delete_exercise_btn(index), error).to_be_visible()
 
 
@@ -231,7 +232,7 @@ class CreateCourseExerciseComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ Create course page -> Exercises -> Exercise -> Form -> [Title field] - invisible!'
+        error = f'❌ Create course page > Exercises > Exercise > Form > [Title field] - invisible!'
         expect(self.title_field(index), error).to_be_visible()
 
     def check_title_field_name(self, index: int):
@@ -240,7 +241,7 @@ class CreateCourseExerciseComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ Create course page -> Exercises -> Exercise -> Form -> [Title field] - incorrect name!'
+        error = f'❌ Create course page > Exercises > Exercise > Form > [Title field] - incorrect name!'
         expect(self.title_field(index), error).to_have_accessible_name(self.TITLE_FIELD_NAME)
 
     def check_title_field_filled(self, index: int, title: str = 'Exercise title'):
@@ -258,7 +259,7 @@ class CreateCourseExerciseComponent(BaseComponent):
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         :param title: Exercise title
         """
-        error = f'❌ Create course page -> Exercises -> Exercise -> Form -> [Title field] - filled incorrectly!'
+        error = f'❌ Create course page > Exercises > Exercise > Form > [Title field] - filled incorrectly!'
         expect(self.description_field(index), error).to_have_value(title)
 
 
@@ -288,7 +289,7 @@ class CreateCourseExerciseComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ Create course page -> Exercises -> Exercise -> Form -> [Description field] - invisible!'
+        error = f'❌ Create course page > Exercises > Exercise > Form > [Description field] - invisible!'
         expect(self.description_field(index), error).to_be_visible()
 
     def check_description_field_name(self, index: int):
@@ -297,7 +298,7 @@ class CreateCourseExerciseComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ Create course page -> Exercises -> Exercise -> Form -> [Description field] - incorrect name!'
+        error = f'❌ Create course page > Exercises > Exercise > Form > [Description field] - incorrect name!'
         expect(self.description_field(index), error).to_have_accessible_name(self.DESCRIPTION_FIELD_NAME)
 
     def check_description_field_filled(self, index: int, description: str = 'Exercise description'):
@@ -315,7 +316,7 @@ class CreateCourseExerciseComponent(BaseComponent):
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         :param description: Exercise description
         """
-        error = f'❌ Create course page -> Exercises -> Exercise -> Form -> [Description field] - filled incorrectly!'
+        error = f'❌ Create course page > Exercises > Exercise > Form > [Description field] - filled incorrectly!'
         expect(self.description_field(index), error).to_have_value(description)
 
 

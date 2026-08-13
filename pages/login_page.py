@@ -230,7 +230,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         expect(self.password_field, error).to_have_value(password)
 
 
-    # Login Button:
+    # Login button:
     # ─────────────────────────────────────────────┐
     def check_login_btn(self, enable: bool = True):
         """
@@ -267,11 +267,11 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_login_btn_text(self):
         """
-        ✔ Check <Login Button text> of the Login page - correct
+        ✔ Check <Login button text> of the Login page - correct
 
         - ✔ Text - correct
         """
-        error = f'❌ <Login Button text> of the Login page - incorrect!'
+        error = f'❌ <Login button text> of the Login page - incorrect!'
         expect(self.login_btn, error).to_have_text(self.LOGIN_BTN_TEXT)
 
 

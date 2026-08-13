@@ -3,8 +3,8 @@ Dashboard page
 """
 
 from pages.base_page import BasePage
-from components.navigation.navbar_component import NavbarComponent
-from components.navigation.sidebar_component import SidebarComponent
+from components.navigation.navbar.navbar_component import NavbarComponent
+from components.navigation.sidebar.sidebar_component import SidebarComponent
 from playwright.sync_api import Page, expect
 
 #=======================================================================================================================

@@ -286,7 +286,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         expect(self.password_field, error).to_have_value(password)
 
 
-    # Registration Button:
+    # Registration button:
     # ────────────────────────────────────────────────────┐
     def check_registration_btn(self, enable: bool = True):
         """

@@ -39,16 +39,5 @@ class BasePage:                                 # Родительский кл�
         self.page.wait_for_timeout(timeout * 1000)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ⚠️ ДУБЛИКАТ из BaseComponent - решить
-    def check_current_url(self, expected_url: str | Pattern[str]):
-        """
-        ✔ Check Current page URL
-
-        - ✔ Current page URL - correct
-
-        :param expected_url: Expected Page URL
-        """
-        error = f'❌ Current page URL - incorrect!'
-        expect(self.page, error).to_have_url(expected_url)
 
 #=======================================================================================================================

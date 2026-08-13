@@ -1,5 +1,5 @@
 """
-Courses list [Toolbar] (component)
+Courses list page > [Toolbar] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
@@ -36,8 +36,8 @@ class CoursesListToolbarComponent(BaseComponent):
         self.create_course_btn.click()
         self.check_current_url(self.CREATE_COURSE_PAGE_REDIRECT_URL)
 
-
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # [Toolbar]
     # ─────────────────────────────────┐
     def check_toolbar(self):
         """
@@ -50,7 +50,8 @@ class CoursesListToolbarComponent(BaseComponent):
         self.check_create_course_btn()
     # ─────────────────────────────────┘
 
-    # Title
+
+    # Toolbar [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self):
         """
@@ -77,10 +78,11 @@ class CoursesListToolbarComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Courses list page -> Toolbar -> [Title] - incorrect text!'
+        error = f'❌ Courses list page > Toolbar > [Title] - incorrect text!'
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
-    # Create course button
+
+    # Toolbar [Create course button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_create_course_btn(self):
         """
@@ -96,7 +98,7 @@ class CoursesListToolbarComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Courses list page -> Toolbar -> [Create course button] - invisible!'
+        error = f'❌ Courses list page > Toolbar > [Create course button] - invisible!'
         expect(self.create_course_btn, error).to_be_visible()
 
 
