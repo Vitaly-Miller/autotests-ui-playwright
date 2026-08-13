@@ -40,7 +40,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         - ✔ Title - visible | - text
         - ✔ Description - visible | - text
         """
-        self.empty_view.check_component(
+        self.empty_view.check_empty_view(
             title=self.EMPTY_VIEW_TITLE,
             description=self.EMPTY_VIEW_DESCRIPTION)
 

@@ -7,9 +7,9 @@ from pages.registration_page import RegistrationPage
 from pages.dashboard_page import DashboardPage
 
 #=======================================================================================================================
-@pytest.mark.registration           # ┐ Pytest Markers
-@pytest.mark.regression             # ┘
-@pytest.mark.parametrize(           # ] Pytest Parametrize
+@pytest.mark.registration                       # ┐ Pytest Markers
+@pytest.mark.regression                         # ┘
+@pytest.mark.parametrize(                       # ] Pytest Parametrize
     'email, username, password', [
         ('user.name@gmail.com','username', 'password')
     ])

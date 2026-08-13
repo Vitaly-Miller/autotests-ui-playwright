@@ -84,7 +84,7 @@ class ImageUploadWidgetComponent(BaseComponent):
         - ✔ Title - visible | - text
         - ✔ Description - visible | - text
         """
-        self.preview_empty_view.check_component(
+        self.preview_empty_view.check_empty_view(
             title=self.PREVIEW_EMPTY_VIEW_TITLE,
             description=self.PREVIEW_EMPTY_VIEW_DESCRIPTION)
     # ──────────────────────────────────────────────────────╯

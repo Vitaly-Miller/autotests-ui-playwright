@@ -17,9 +17,9 @@ def test_empty_courses_list(courses_list_page: CoursesListPage):
     courses_list_page.visit(courses_list_page.URL)
 
     # ✔️EXPECTATIONS
-    courses_list_page.navbar.check_component(username)
-    courses_list_page.sidebar.check_component()
-    courses_list_page.toolbar.check()
+    courses_list_page.navbar.check_navbar(username)
+    courses_list_page.sidebar.check_sidebar()
+    courses_list_page.toolbar.check_toolbar()
     courses_list_page.check_empty_view()
 
     # ╴╴╴╴╴╴╴╴╴╴ ⏳╴╴╴╴╴╴╴╴╴╴╴┐

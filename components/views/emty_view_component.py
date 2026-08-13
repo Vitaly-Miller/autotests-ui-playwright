@@ -31,7 +31,7 @@ class EmptyViewComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ──────────────────────────────────────────────────────┐
-    def check_component(self, title: str, description: str):
+    def check_empty_view(self, title: str, description: str):
         """
         ✔ Check <Empty view>
 

@@ -46,8 +46,8 @@ class CourseViewComponent(BaseComponent):
         self.menu.click_menu_btn(index)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ──────────────────────────────────────────────────────────────────────┐
-    def check_component(
+    # ───────────────────────────────────────────────────────────────────────┐
+    def check_course_view(
             self,
             index: int,
             title: str,
@@ -78,7 +78,6 @@ class CourseViewComponent(BaseComponent):
         self.check_min_score(index=index, min_score=min_score)
         self.check_estimated_time(index=index, estimated_time=estimated_time)
     # ───────────────────────────────────────────────────────────────────────┘
-
     # Image
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_image(self, index: int):
@@ -170,7 +169,7 @@ class CourseViewComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_min_score(self, index: int, min_score: str):
         """
-        ✔ Check <Course View [Min score]> of the Courses list page
+        ✔ Check [Min score]
 
         - ✔ Min score - visible
         - ✔ Text - correct

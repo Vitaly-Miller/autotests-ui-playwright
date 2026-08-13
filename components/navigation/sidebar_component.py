@@ -59,7 +59,7 @@ class SidebarComponent(BaseComponent):
         self.logout_btn.click_btn()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    def check_component(self):
+    def check_sidebar(self):
         """
         ✔ Check [Sidebar]
 

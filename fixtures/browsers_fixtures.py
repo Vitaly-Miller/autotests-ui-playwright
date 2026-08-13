@@ -28,17 +28,17 @@ def chromium_page_with_storage_state(storage_state: StorageState, playwright: Pl
         viewport=ViewportSize(width=1100, height=1200),   # - Window size
         base_url=None                                     # - Base URL
     )
-    page = context.new_page()                             # Создаем объект страницы page на базе context
+    page = context.new_page()   # Создаем объект страницы page на базе context
 
     try:
-        yield page                                        # Передаем page (на базе движка chromium)
+        yield page              # Передаем page (на базе движка chromium)
 
-    finally:                                              # Гарантия закрытия, если упадет.
-        context.close()                                   # Закрываем context!
-        browser.close()                                   # Закрываем browser!
+    finally:                    # Гарантия закрытия, если упадет.
+        context.close()         # Закрываем context!
+        browser.close()         # Закрываем browser!
 
 
-
+#-----------------------------------------------------------------------------------------------------------------------
 # Storage state 📦
 @pytest.fixture(scope='session')                # Выполняется один раз за всю тестовую сессию
 def storage_state(playwright: Playwright):      # Используем встроенную фикстуру playwright из pytest_playwright plugin
@@ -105,7 +105,7 @@ def page_guest(playwright: Playwright):   # Чистый (без доп. фик�
         viewport=ViewportSize(width=1100, height=1200),   # - Window size
         base_url=None                                     # - Base URL
     )
-    page = context.new_page()                             # Создаем объект page на базе context
+    page = context.new_page()   # Создаем объект page на базе context
 
     try:
         yield page              # Передаем page (на базе context)
