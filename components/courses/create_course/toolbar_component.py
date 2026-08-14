@@ -51,7 +51,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         self.check_create_course_btn()
     # ─────────────────────────────────┘
 
-    # Toolbar [Title]
+    # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self):
         """
@@ -82,7 +82,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
-    # Toolbar [Create course button]
+    # [Create course button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_create_course_btn(self):
         """

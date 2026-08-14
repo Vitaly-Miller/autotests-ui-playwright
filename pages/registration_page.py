@@ -23,7 +23,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
         self.registration_form = RegistrationFormComponent(page)
 
-        # --------------------------------------------╴ ㉧ LOCATORS (static) --------------------------------------------
+        # -----------------------------------------------╴ ㉧ LOCATORS -------------------------------------------------
         # Title
         self.title = page.get_by_test_id('authentication-ui-course-title-text')
 

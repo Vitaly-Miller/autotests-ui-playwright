@@ -3,9 +3,11 @@ Dashboard page
 """
 
 from pages.base_page import BasePage
+from playwright.sync_api import Page, expect
 from components.navigation.navbar.navbar_component import NavbarComponent
 from components.navigation.sidebar.sidebar_component import SidebarComponent
-from playwright.sync_api import Page, expect
+from components.courses.dashboard.toolbar_component import DashboardToolbarComponent
+from components.courses.dashboard.widget_component import DashboardWidgetComponent
 
 #=======================================================================================================================
 class DashboardPage(BasePage):          # Дочерний класс (наследует класс BasePage)
@@ -13,134 +15,53 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
+        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        # # Students widgets
+        # self.STUDENTS_WIDGET_IDENTIFIER = 'students'
+        # self.STUDENTS_WIDGET_CHART_TYPE = 'bar'
+        # self.STUDENTS_WIDGET_TITLE = 'Students'
+        # # Activities widgets
+        # self.ACTIVITIES_WIDGET_IDENTIFIER = 'activities'
+        # self.ACTIVITIES_WIDGET_CHART_TYPE = 'line'
+        # self.ACTIVITIES_WIDGET_TITLE = 'Activities'
+        # # Courses widget
+        # self.COURSES_WIDGET_IDENTIFIER = 'courses'
+        # self.COURSES_WIDGET_CHART_TYPE = 'pie'
+        # self.COURSES_WIDGET_TITLE = 'Courses'
+        # # Scores widget
+        # self.SCORES_WIDGET_IDENTIFIER = 'scores'
+        # self.SCORES_WIDGET_CHART_TYPE = 'scatter'
+        # self.SCORES_WIDGET_TITLE = 'Scores'
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
-
-        # -------------------------------------------- ㉧ LOCATORS (static) ---------------------------------------------
-        # Toolbar
-        self.toolbar_title = page.get_by_test_id('dashboard-toolbar-title-text')
-
+        self.toolbar = DashboardToolbarComponent(page)
         # Widgets
-        self.students_title = page.get_by_test_id('students-widget-title-text')
-        self.students_chart = page.get_by_test_id('students-bar-chart')
-        self.activities_title = page.get_by_test_id('activities-widget-title-text')
-        self.activities_chart = page.get_by_test_id('activities-line-chart')
-        self.courses_title = page.get_by_test_id('courses-widget-title-text')
-        self.courses_chart = page.get_by_test_id('courses-pie-chart')
-        self.scores_title = page.get_by_test_id('scores-widget-title-text')
-        self.scores_chart = page.get_by_test_id('scores-scatter-chart')
+        self.student_widget = DashboardWidgetComponent(page=page, identifier='students', chart_type='bar')
+        self.activities_widget = DashboardWidgetComponent(page=page, identifier='activities', chart_type='line')
+        self.courses_widget = DashboardWidgetComponent(page=page, identifier='courses', chart_type='pie')
+        self.scores_widget = DashboardWidgetComponent(page=page, identifier='scores', chart_type='scatter')
 
+        # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
-    # Toolbar:
-    # ──────────────────────────────────────┐
-    def check_toolbar(self):
+    # [Widgets]
+    # ───────────────────────────────────────────────────┐
+    def check_widgets(self):
         """
-        ✔ Check <Toolbar> of the Dashboard page
-
-        - ✔ Title - visible
-        - ✔ Title text - correct
-        """
-        self.check_toolbar_title_visible()
-        self.check_toolbar_title_text()
-    # ──────────────────────────────────────┘
-    def check_toolbar_title_visible(self):
-        """
-        ✔ Check <Toolbar [Title]> of the Dashboard page
-
-        - ✔ Title - visible
-
-        """
-        error = f'❌ <Toolbar [Title]> of the Dashboard page - invisible!'
-        expect(self.toolbar_title, error).to_be_visible()
-
-    def check_toolbar_title_text(self):
-        """
-        ✔ Check <Toolbar [Title] text> of the Dashboard page
-
-        - ✔ Text - correct
-        """
-        error = f'❌ <Toolbar [Title] text> of the Dashboard page - incorrect!'
-        expect(self.toolbar_title, error).to_have_text('Dashboard')
-
-
-    # Widgets:
-    # ─────────────────────────────────┐
-    def check_all_widgets(self):
-        """
-        ✔ Check all Widgets of the Dashboard page
+        ✔ Check all Widgets
 
         - ✔ Students - visible | - text | Chart - visible
         - ✔ Activities - visible | - text | Chart - visible
         - ✔ Courses - visible | - text | Chart - visible
         - ✔ Scores - visible | - text | Chart - visible
         """
-        self.check_students_widget()
-        self.check_activities_widget()
-        self.check_courses_widget()
-        self.check_scores_widget()
-    # ─────────────────────────────────┘
-    def check_students_widget(self):
-        """
-        ✔ Check <Students widget> of the Dashboard page
-
-        - ✔ Title - visible
-        - ✔ Title text - correct
-        - ✔ Chart - visible
-        """
-        error_title_visible = f'❌ <Students widget [Title]> of the Dashboard page - invisible!'
-        error_title_text = f'❌ <Students widget [Title] text> of the Dashboard page - incorrect!'
-        error_chart_visible = f'❌ <Students widget [Chart]> of the Dashboard page - invisible!'
-        expect(self.students_title, error_title_visible).to_be_visible()
-        expect(self.students_title, error_title_text).to_have_text('Students')
-        expect(self.students_chart, error_chart_visible).to_be_visible()
-
-    def check_activities_widget(self):
-        """
-        ✔ Check <Activities widget> of the Dashboard page
-
-        - ✔ Title - visible
-        - ✔ Title text - correct
-        - ✔ Chart - visible
-        """
-        error_title_visible = f'❌ <Activities widget [Title]> of the Dashboard page - invisible!'
-        error_title_text = f'❌ <Activities widget [Title] text>  of the Dashboard page - incorrect!'
-        error_chart_visible = f'❌ <Activities widget [Chart]> of the Dashboard page - invisible!'
-        expect(self.activities_title, error_title_visible).to_be_visible()
-        expect(self.activities_title, error_title_text).to_have_text('Activities')
-        expect(self.activities_chart, error_chart_visible).to_be_visible()
-
-    def check_courses_widget(self):
-        """
-        ✔ Check <Courses widget> of the Dashboard page
-
-        - ✔ Title - visible
-        - ✔ Title text - correct
-        - ✔ Chart - visible
-        """
-        error_title_visible = f'❌ <Courses widget [Title]> of the Dashboard page - invisible!'
-        error_title_text = f'❌ <Courses widget [Title] text> of the Dashboard page - incorrect!'
-        error_chart_visible = f'❌ <Courses widget [Chart]> of the Dashboard page - invisible!'
-        expect(self.courses_title, error_title_visible).to_be_visible()
-        expect(self.courses_title, error_title_text).to_have_text('Courses')
-        expect(self.courses_chart, error_chart_visible).to_be_visible()
-
-    def check_scores_widget(self):
-        """
-        ✔ Check <Scores widget> of the Dashboard page
-
-        - ✔ Title - visible
-        - ✔ Title text - correct
-        - ✔ Chart - visible
-        """
-        error_title_visible = f'❌ <Scores widget [Title]> of the Dashboard page - invisible!'
-        error_title_text = f'❌ <Scores widget [Title] text> of the Dashboard page - incorrect!'
-        error_chart_visible = f'❌ <Scores widget [Chart]> of the Dashboard page - invisible!'
-        expect(self.scores_title, error_title_visible).to_be_visible()
-        expect(self.scores_title, error_title_text).to_have_text('Scores')
-        expect(self.scores_chart, error_chart_visible).to_be_visible()
+        self.student_widget.check_widget('Students')
+        self.activities_widget.check_widget('Activities')
+        self.courses_widget.check_widget('Courses')
+        self.scores_widget.check_widget('Scores')
+    # ───────────────────────────────────────────────────┘
 
 
 

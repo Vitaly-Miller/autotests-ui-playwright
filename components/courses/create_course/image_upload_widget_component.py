@@ -17,7 +17,6 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         super().__init__(page)
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
-        self.IDENTIFIER = 'create-course-preview'   # Unique part of locator
         # [Upload view]
         self.UPLOAD_VIEW_TITLE_TEXT = 'Tap on "Upload image" button to select file'
         self.UPLOAD_VIEW_DESCRIPTION_TEXT = 'Recommended file size 540X300'
@@ -29,7 +28,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
         # Preview [Empty view]
-        self.preview_empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER)
+        self.preview_empty_view = EmptyViewComponent(page=page, identifier='create-course-preview')
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         # [Upload view]

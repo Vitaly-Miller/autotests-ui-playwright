@@ -15,14 +15,13 @@ from playwright.sync_api import Page, expect
 class EmptyViewComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str):
         """
-        - courses-list
-        - create-course-preview
-        - create-course-exercises
-
         :param page: Page
-        :param identifier: Unique part of locator
+        :param identifier: Unique part of locator (courses-list | create-course-preview | create-course-exercises)
         """
         super().__init__(page)
+
+        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        self.identifier = identifier.capitalize()   # for logging
 
         # ---------------------------------------------- ㉧ LOCATORS ---------------------------------------------------
         self.icon = page.get_by_test_id(f'{identifier}-empty-view-icon')
@@ -64,7 +63,7 @@ class EmptyViewComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Empty view > [Icon] - invisible!'
+        error = f'❌ {self.identifier} > Empty view > [Icon] - invisible!'
         expect(self.icon, error).to_be_visible()
 
 
@@ -88,7 +87,7 @@ class EmptyViewComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Empty view > [Title] - invisible!'
+        error = f'❌ {self.identifier} > Empty view > [Title] - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self, title: str):
@@ -97,7 +96,7 @@ class EmptyViewComponent(BaseComponent):
 
         :param title: Title text
         """
-        error = f'❌ Empty view > [Title] - incorrect text!'
+        error = f'❌ {self.identifier} > Empty view > [Title] - incorrect text!'
         expect(self.title, error).to_have_text(title)
 
 
@@ -121,7 +120,7 @@ class EmptyViewComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Empty view > [Description] - invisible!'
+        error = f'❌ {self.identifier} > Empty view > [Description] - invisible!'
         expect(self.description, error).to_be_visible()
 
     def check_description_text(self, description: str):
@@ -130,7 +129,7 @@ class EmptyViewComponent(BaseComponent):
 
         :param description: Description
         """
-        error = f'❌ Empty view > [Description] - incorrect text!'
+        error = f'❌ {self.identifier} > Empty view > [Description] - incorrect text!'
         expect(self.description, error).to_have_text(description)
 
 #=======================================================================================================================
