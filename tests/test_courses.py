@@ -53,7 +53,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
 
     # ✔️EXPECTATIONS (After Course creation)
     courses_list_page.check_current_url(courses_list_page.URL)    # Проверка успешного редиректа на страницу - Courses list page
-    courses_list_page.course_view.check_component(                # Данные в карточке курса соответствуют заполненным полям формы
+    courses_list_page.course_card.check_component(                # Данные в карточке курса соответствуют заполненным полям формы
         index=0,                                                  # nth-index
         title=course_title,
         estimated_time=course_estimated_time,

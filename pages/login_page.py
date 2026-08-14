@@ -14,148 +14,153 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
+        # [Title]
         self.TITLE_TEXT = 'UI Course'
+        # [Login button]
         self.LOGIN_BTN_TEXT = 'Login'
+        # [Registration link]
         self.REGISTRATION_LINK_TEXT = 'Registration'
         self.REGISTRATION_LINK_URL = '#/auth/registration'
+        # [Alerts]
         self.ALERT_TEXT = 'Wrong email or password'
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
+        # [Form]
         self.login_form = LoginFormComponent(page)
 
-        # ------------------------------------------ ㉧ LOCATORS (static) -----------------------------------------------
-        # Title
+        # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
+        # [Title]
         self.title = page.get_by_test_id('authentication-ui-course-title-text')
-
-        # Buttons/Links
+        # [Login button]
         self.login_btn = page.get_by_test_id('login-page-login-button')
+        # [Registration link]
         self.registration_link = page.get_by_test_id('login-page-registration-link')
-
-        # Alerts
+        # [Alert]
         self.wrong_email_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # [Login button]
     def click_login_btn(self):
         """
-        ▶ Click <Login button> of the Login page
+        ▶ Click [Login button]
 
         - ✔ Button - enabled
         - ▶ Button - click
         """
-        self.check_login_btn()
+        self.check_login_btn(enable=True)
         self.login_btn.click()
 
-
+    # [Registration link]
     def click_registration_link(self):
         """
-        ▶ Click <Registration link> of the Login page
+        ▶ Click [Registration link]
 
-        - ✔ Link - visible | - text | URL - correct
+        - ✔ Link - visible | - text | - URL
         - ▶ Link - click
         """
         self.check_registration_link()
         self.registration_link.click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # Page
-    # ───────────────────────────────────┐
+    # [Page]
+    # ────────────────────────────────┐
     def check_page(self):
         """
-        ✔ Check ALL Elements of the Login page
+        ✔ Check [Login page] elements
 
-        - ✔ Title
+        - ✔ Title - visible | - text
         - ✔ Login Form (unfilled)
         - ✔ Login button - disabled
-        - ✔ Registration link
+        - ✔ Registration link - visible | - text | - URL
         """
         self.check_title()
         self.login_form.check_form()
-        self.check_login_btn(enable=False)
+        self.check_login_btn()
         self.check_registration_link()
-    # ────────────────────────────────────┘
+    # ────────────────────────────────┘
 
-    # Title
-    # ─────────────────────────────┐
+    # [Title]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self):
         """
-        ✔ Check <Title> of the Registration page
+        ✔ Check [Title]
 
         - ✔ Title - visible
         - ✔ Title text - correct
         """
         self.check_title_visible()
         self.check_title_text()
-    # ─────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
-        ✔ Check <Title> of the Login page - visible
+        ✔ Check [Title] visible
 
-        - ✔ Title - visible
+        .
         """
-        error = f'❌ <Title> of the Login page - invisible!'
+        error = f'❌ Login page > [Title] - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self):
         """
-        ✔ Check <Title text> of the Login page - correct
+        ✔ Check [Title] text
 
-        - ✔ Text - correct
+        .
         """
-        error = f'❌ <Title text> of the Login page - incorrect!'
+        error = f'❌ Login page > [Title] - incorrect text!'
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
-  # Login button:
-    # ─────────────────────────────────────────────┐
-    def check_login_btn(self, enable: bool = True):
+    # [Login button]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_login_btn(self, enable: bool = False):
         """
-        ✔ Check <Login button> of the Login page
+        ✔ Check [Login button]
 
         - ✔ Button - enabled / disabled
         - ✔ Button text - correct
+
+        :param enable: True/False
         """
         if enable:
             self.check_login_btn_enable()
         else:
             self.check_login_btn_disabled()
         self.check_login_btn_text()
-    # ─────────────────────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_login_btn_enable(self):
         """
-        ✔ Check <Login button> of the Login page - enabled
+        ✔ Check [Login button] enabled
 
-        - ✔ Button - enabled
+        (If the Login form is completed successfully)
         """
-        error = f'❌ <Login button> of the Login page - disabled!'
+        error = f'❌ Login page > [Login button] - disabled!'
         expect(self.login_btn, error).to_be_enabled()
 
     def check_login_btn_disabled(self):
         """
-        ✔ Check <Login button> of the Login page - disabled
+        ✔ Check [Login button] disabled
 
-        (Until the Login form is completed successfully)
-
-        - ✔ Button - disabled
+        (If the Login form is NOT completed successfully)
         """
-        error = f'❌ <Login button> of the Login page - enabled!'
+        error = f'❌ Login page > [Login button] - enabled!'
         expect(self.login_btn, error).to_be_disabled()
 
     def check_login_btn_text(self):
         """
-        ✔ Check <Login button text> of the Login page - correct
+        ✔ Check [Login button] text
 
-        - ✔ Text - correct
+        .
         """
-        error = f'❌ <Login button text> of the Login page - incorrect!'
+        error = f'❌ Login page > [Login button] - incorrect text!'
         expect(self.login_btn, error).to_have_text(self.LOGIN_BTN_TEXT)
 
 
-    # Registration Link:
-    # ────────────────────────────────────────┐
+    # [Registration link]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_registration_link(self):
         """
-        ✔ Check <Registration link> of the Login page
+        ✔ Check <Registration link
 
         - ✔ Link - visible
         - ✔ Link text - correct
@@ -164,63 +169,63 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_registration_link_visible()
         self.check_registration_link_text()
         self.check_registration_link_url()
-    # ────────────────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_registration_link_visible(self):
         """
-        ✔ Check <Registration link> of the Login page - visible
+        ✔ Check [Registration link] visible
 
-        - ✔ Link - visible
+        .
         """
-        error = f'❌ <Registration link> of the Login page - invisible!'
+        error = f'❌ Login page > [Registration link] - invisible!'
         expect(self.registration_link, error).to_be_visible()
 
     def check_registration_link_text(self):
         """
-        ✔ Check <Registration link text> of the Login page - correct
+        ✔ Check [Registration link] text
 
-        - ✔ Text - correct
+        .
         """
-        error = f'❌ <Registration link text> of the Login page - incorrect!'
+        error = f'❌ Login page > [Registration link] - incorrect text!'
         expect(self.registration_link, error).to_have_text(self.REGISTRATION_LINK_TEXT)
 
     def check_registration_link_url(self):
         """
-        ✔ Check <Registration link [URL]> on the Login page - correct
+        ✔ Check [Registration link] URL
 
-        - ✔ URL - correct
+        .
         """
-        error = f'❌ <Registration link [URL]> of the Login page - incorrect!'
+        error = f'❌ Login page > [Registration link] - incorrect URL!'
         expect(self.registration_link, error).to_have_attribute('href', self.REGISTRATION_LINK_URL)
 
 
-    # Alert:
-    # ────────────────────────────────────────────────────┐
+    # [Alert]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def wrong_email_or_password_alert(self):
         """
-        ✔ Check <Wrong Email or Password> alert of the Login page
+        ✔ Check [Wrong Email or Password alert]
 
         - ✔ Alert - visible
         - ✔ Alert text - correct
         """
         self.check_wrong_email_or_password_alert_visible()
         self.check_wrong_email_or_password_alert_text()
-    # ────────────────────────────────────────────────────┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_wrong_email_or_password_alert_visible(self):
         """
-        ✔ Check <Wrong Email or Password alert> - visible
+        ✔ Check [Wrong Email or Password alert] visible
 
-        - ✔ Alert - visible
+        .
         """
-        error = f'❌ <Wrong Email or Password alert> - invisible!'
+        error = f'❌ Login page > [Wrong Email or Password alert] - invisible!'
         expect(self.wrong_email_password_alert, error).to_be_visible()
 
     def check_wrong_email_or_password_alert_text(self):
         """
-        ✔ Check <Wrong Email or Password alert> text - correct
+        ✔ Check [Wrong Email or Password alert] text
 
-        - ✔ Text - correct
+        .
         """
-        error = f'❌ <Wrong Email or Password alert text> - incorrect!'
+        error = f'❌ Login page > [Wrong Email or Password alert] - incorrect text!'
         expect(self.wrong_email_password_alert, error).to_have_text(self.ALERT_TEXT)
 
 

@@ -148,7 +148,7 @@ class CreateCourseExerciseComponent(BaseComponent):
 
         :param index: Locator DOM-index (ex: ...-exercise-{index}-box-toolbar-...)
         """
-        error = f'❌ <Create course page > Exercises > Exercise > Toolbar > [Title] - invisible!'
+        error = f'❌ Registration page > <Create course page > Exercises > Exercise > Toolbar > [Title] - invisible!'
         expect(self.toolbar_title(index), error).to_be_visible()
 
     def check_toolbar_title_text(self, index: int):
@@ -159,7 +159,7 @@ class CreateCourseExerciseComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ <Create course page > Exercises > Exercise > Toolbar > [Title] - incorrect text!'
+        error = f'❌ Registration page > <Create course page > Exercises > Exercise > Toolbar > [Title] - incorrect text!'
         expect(self.toolbar_title(index), error).to_have_text(self.TOOLBAR_TITLE_TEXT(index))
 
     # Toolbar [Delete exercise button]

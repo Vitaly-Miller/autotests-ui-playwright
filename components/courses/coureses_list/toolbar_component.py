@@ -69,7 +69,7 @@ class CoursesListToolbarComponent(BaseComponent):
 
         - ✔ Title - visible
         """
-        error = f'❌ <Toolbar [Title]> of the Courses list page - invisible!'
+        error = f'❌ Registration page > <Toolbar [Title]> of the Courses list page - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self):

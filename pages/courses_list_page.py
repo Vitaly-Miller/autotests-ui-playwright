@@ -1,7 +1,7 @@
 """
 Courses list page
 """
-from components.courses.coureses_list.course_view_component import CoursesListCourseViewComponent
+from components.courses.coureses_list.course_card_component import CoursesListCourseCardComponent
 from pages.base_page import BasePage
 from components.navigation.navbar.navbar_component import NavbarComponent
 from components.navigation.sidebar.sidebar_component import SidebarComponent
@@ -23,18 +23,21 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.EMPTY_VIEW_DESCRIPTION = 'Results from the load test pipeline will be displayed here'
 
         # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
+        # [Bars]
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = CoursesListToolbarComponent(page)
+        # [Empty view]
         self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER)
-        self.course_view = CoursesListCourseViewComponent(page)
+        # [Course card]
+        self.course_card = CoursesListCourseCardComponent(page)
 
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
-    # Empty view (component):
+    # [Empty view] (component):
     def check_empty_view(self):
         """
-        ✔ Check <Empty view> component of the Courses list page
+        ✔ Check [Empty view]
 
         - ✔ Icon - visible
         - ✔ Title - visible | - text

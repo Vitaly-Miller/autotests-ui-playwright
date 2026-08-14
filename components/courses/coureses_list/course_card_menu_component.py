@@ -11,7 +11,7 @@ Elements:
 - Edit button
 - Delete button
 """
-class CoursesListCourseViewMenuComponent(BaseComponent):
+class CoursesListCourseCardMenuComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
@@ -39,7 +39,7 @@ class CoursesListCourseViewMenuComponent(BaseComponent):
 
     def click_edit_btn(self, index: int):
         """
-        ▶ Click [Edit button]>
+        ▶ Click <Menu [Edit button]>
 
         - Menu button - ✔ visible -> ▶ click
         - ✔ Edit button - enabled
@@ -53,7 +53,7 @@ class CoursesListCourseViewMenuComponent(BaseComponent):
 
     def click_delete_btn(self, index: int):
         """
-        ▶ Click [Delete button]
+        ▶ Click <Menu [Delete button]>
 
         - Menu button - ✔ visible -> ▶ click
         - ✔ Delete button - enabled
@@ -99,7 +99,7 @@ class CoursesListCourseViewMenuComponent(BaseComponent):
         expect(self.menu_btn.nth(index), error).to_be_enabled()
 
 
-    # Menu [Edit] & [Delete] buttons
+    # [Edit] & [Delete] buttons
     # ──────────────────────────────────────────────┐
     def check_edit_and_delete_btn(self, index: int):
         """
@@ -114,11 +114,11 @@ class CoursesListCourseViewMenuComponent(BaseComponent):
         self.check_delete_btn(index)
     # ──────────────────────────────────────────────┘
 
-    # Menu [Edit button]
+    # [Edit button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_edit_btn(self, index: int):
         """
-        ✔ Check [Edit button]
+        ✔ Check <Menu [Edit button]>
 
         - ✔ Button - visible
         - ✔ Button text - correct
@@ -130,7 +130,7 @@ class CoursesListCourseViewMenuComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_edit_btn_visible(self, index: int):
         """
-        ✔ Check [Edit button] visible
+        ✔ Check <Menu [Edit button]> visible
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
@@ -139,18 +139,18 @@ class CoursesListCourseViewMenuComponent(BaseComponent):
 
     def check_edit_btn_text(self, index: int):
         """
-        ✔ Check [Edit button] text
+        ✔ Check <Menu [Edit button]> text
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
         error = f'❌ Courses list page > Course View > Menu > [Edit button] (nth-index: {index}) - incorrect text!'
         expect(self.edit_btn.nth(index), error).to_have_text(self.EDIT_BTN_TEXT)
 
-    # Menu [Delete button]
+    # [Delete button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_delete_btn(self, index: int):
         """
-        ✔ Check [Delete button]
+        ✔ Check <Menu [Delete button]>
 
         - ✔ Button - visible
         - ✔ Button text - correct
@@ -162,7 +162,7 @@ class CoursesListCourseViewMenuComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_delete_btn_visible(self, index: int):
         """
-        ✔ Check [Delete button] visible
+        ✔ Check <Menu [Delete button]> visible
 
         :param index: nth-index —> for use in: locator.nth(index)
         """
@@ -171,7 +171,7 @@ class CoursesListCourseViewMenuComponent(BaseComponent):
 
     def check_delete_btn_text(self, index: int):
         """
-        ✔ Check [Delete button] text
+        ✔ Check <Menu [Delete button]> text
 
         :param index: nth-index —> for use in: locator.nth(index)
         """

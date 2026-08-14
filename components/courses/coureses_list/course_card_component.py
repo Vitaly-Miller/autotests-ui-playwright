@@ -1,9 +1,9 @@
 """
-Courses list page > [Course view] (component)
+Courses list page > [Course card] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
-from components.courses.coureses_list.course_view_menu_component import CourseViewMenuComponent
+from components.courses.coureses_list.course_card_menu_component import CourseCardMenuComponent
 
 #=======================================================================================================================
 """
@@ -15,7 +15,7 @@ Elements:
 - Min score
 - Estimated time
 """
-class CoursesListCourseViewComponent(BaseComponent):
+class CoursesListCourseCardComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
@@ -25,7 +25,7 @@ class CoursesListCourseViewComponent(BaseComponent):
         self.ESTIMATED_TIME_TEXT = lambda estimated_time: f'Estimated time: {estimated_time}'
 
         # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
-        self.menu = CourseViewMenuComponent(page)
+        self.menu = CourseCardMenuComponent(page)
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('course-widget-title-text')
@@ -47,7 +47,7 @@ class CoursesListCourseViewComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ───────────────────────────────────────────────────────────────────────┐
-    def check_course_view(
+    def check_course_card(
             self,
             index: int,
             title: str,

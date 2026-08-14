@@ -83,17 +83,20 @@ class CreateCourseToolbarComponent(BaseComponent):
 
 
     # [Create course button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    def check_create_course_btn(self):
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_create_course_btn(self, enabled: bool = False):
         """
          ✔ Check [Create course button]
 
         - ✔ Button - visible
-        - ✔ Button - enable
+        - ✔ Button - enabled / disabled
         """
         self.check_create_course_btn_visible()
-        self.check_create_course_btn_enabled()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+        if enabled:
+            self.check_create_course_btn_enabled()
+        else:
+            self.check_create_course_btn_disabled()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_create_course_btn_visible(self):
         """
         ✔ Check [Create course button] visible
@@ -107,7 +110,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         """
         ✔ Check [Create course button] enabled
 
-        .
+        (If create course Form filled & Image uploaded)
         """
         error = f'❌ Create course page > Toolbar > [Create course button] - disabled!'
         expect(self.create_course_btn, error).to_be_enabled()
@@ -116,7 +119,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         """
         ✔ Check [Create course button] disabled
 
-        .
+        (If create course Form did NOT filled & Image did NOT upload)
         """
         error = f'❌ Create course page > Toolbar > [Create course button] - enabled!'
         expect(self.create_course_btn, error).to_be_disabled()
