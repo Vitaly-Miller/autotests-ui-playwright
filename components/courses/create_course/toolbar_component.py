@@ -45,7 +45,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         ✔ Check [Toolbar]
 
         - ✔ Title - visible | - text
-        - ✔ Create course button - visible
+        - ✔ Create course button - visible | - enabled
         """
         self.check_title()
         self.check_create_course_btn()
@@ -81,6 +81,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         error = f'❌ Create course page > Toolbar > [Title] - incorrect text!'
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
+
     # Toolbar [Create course button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_create_course_btn(self):
@@ -88,8 +89,10 @@ class CreateCourseToolbarComponent(BaseComponent):
          ✔ Check [Create course button]
 
         - ✔ Button - visible
+        - ✔ Button - enable
         """
         self.check_create_course_btn_visible()
+        self.check_create_course_btn_enabled()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_create_course_btn_visible(self):
         """
@@ -99,6 +102,24 @@ class CreateCourseToolbarComponent(BaseComponent):
         """
         error = f'❌ Create course page > Toolbar > [Create course button] - invisible!'
         expect(self.create_course_btn, error).to_be_visible()
+
+    def check_create_course_btn_enabled(self):
+        """
+        ✔ Check [Create course button] enabled
+
+        .
+        """
+        error = f'❌ Create course page > Toolbar > [Create course button] - disabled!'
+        expect(self.create_course_btn, error).to_be_enabled()
+
+    def check_create_course_btn_disabled(self):
+        """
+        ✔ Check [Create course button] disabled
+
+        .
+        """
+        error = f'❌ Create course page > Toolbar > [Create course button] - enabled!'
+        expect(self.create_course_btn, error).to_be_disabled()
 
 
 #=======================================================================================================================

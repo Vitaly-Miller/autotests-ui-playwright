@@ -174,7 +174,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         ✔ Check <Registration form [Email field]> of the Registration page - visible
 
-        - ✔ Field - visible
+
         """
         error = f'❌ <Registration form [Email field]> of the Registration page - invisible!'
         expect(self.email_field, error).to_be_visible()
@@ -218,7 +218,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         ✔ Check <Registration form [Username field]> of the Registration page - visible
 
-        - ✔ Field - visible
+
         """
         error = f'❌ <Registration form [Username field]> of the Registration page - invisible!'
         expect(self.username_field, error).to_be_visible()
@@ -262,7 +262,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         ✔ Check <Registration form [Password field]> of the Registration page - visible
 
-        - ✔ Field - visible
+
         """
         error = f'❌ <Registration form [Password field]> of the Registration page - invisible!'
         expect(self.password_field, error).to_be_visible()

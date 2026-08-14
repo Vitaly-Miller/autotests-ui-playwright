@@ -70,9 +70,9 @@ class CreateCourseExerciseComponent(BaseComponent):
         """
         - ▶ Fill [Form]
 
-        - ✔ Check [Form] fields - titles | - visible | - names | - default values
-        - ▶ Fill [Form] fields - title | - description
-        - ✔ Check [Form] fields - titles | - visible | - names | - filled values
+        - ✔ Check [Form field]s - titles | - visible | - names | - default values
+        - ▶ Fill [Form field]s - title | - description
+        - ✔ Check [Form field]s - titles | - visible | - names | - filled values
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         :param title: Exercise title
