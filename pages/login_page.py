@@ -15,7 +15,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
         self.TITLE_TEXT = 'UI Course'
-
         self.LOGIN_BTN_TEXT = 'Login'
         self.REGISTRATION_LINK_TEXT = 'Registration'
         self.REGISTRATION_LINK_URL = '#/auth/registration'
@@ -27,9 +26,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         # ------------------------------------------ ㉧ LOCATORS (static) -----------------------------------------------
         # Title
         self.title = page.get_by_test_id('authentication-ui-course-title-text')
-
-        # Login Form
-
 
         # Buttons/Links
         self.login_btn = page.get_by_test_id('login-page-login-button')

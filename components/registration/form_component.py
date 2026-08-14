@@ -1,5 +1,5 @@
 """
-Login page > [Form] (component)
+Registration page > [Form] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
@@ -9,19 +9,22 @@ from playwright.sync_api import Page, expect
 """
 Fields:
 - Email
+- Username
 - Password
 """
-class LoginFormComponent(BaseComponent):
+class RegistrationFormComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.EMAIL_FIELD_NAME = 'Email'
+        self.USERNAME_FIELD_NAME = 'Username'
         self.PASSWORD_FIELD_NAME = 'Password'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.email_field = page.get_by_label('Email')
-        self.password_field = page.get_by_label('Password')
+        self.email_field = page.get_by_role(role='textbox', name='Email')
+        self.username_field = page.get_by_role(role='textbox', name='Username')
+        self.password_field = page.get_by_role(role='textbox', name='Password')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # [Form]
@@ -29,18 +32,22 @@ class LoginFormComponent(BaseComponent):
     def fill_form(
             self,
             email: str | None = None,
+            username: str | None = None,
             password: str | None = None
     ):
         """
         ▶ Fill [Form] fields
 
         - ▶ Email field - fill
+        - ▶ Username field - fill
         - ▶ Password field - fill
 
         :param email: Email (optional)
+        :param username: Username (optional)
         :param password: Password (optional)
         """
         self.fill_email_field(email)
+        self.fill_username_field(username)
         self.fill_password_field(password)
     # ─────────────────────────────────────────────────┘
     # [Email field]
@@ -52,6 +59,16 @@ class LoginFormComponent(BaseComponent):
         """
         if email is not None:
             self.email_field.fill(email)
+
+    # [Username field]
+    def fill_username_field(self, username: str | None = None):
+        """
+        ▶ Fill [Username field]
+
+        :param username: Username (optional)
+        """
+        if username is not None:
+            self.username_field.fill(username)
 
     # [Password field]
     def fill_password_field(self, password: str | None = None):
@@ -68,6 +85,7 @@ class LoginFormComponent(BaseComponent):
     def check_form(
             self,
             email: str | None = None,
+            username: str | None = None,
             password: str | None = None
     ):
         """
@@ -76,17 +94,21 @@ class LoginFormComponent(BaseComponent):
         If is passed:
         -------------
         - ✔ Email field - filled correctly
+        - ✔ Username field - filled correctly
         - ✔ Password field - filled correctly
 
         If is NOT passed:
         ----------------
         - ✔ Email field - visible | - name
+        - ✔ Username field - visible | - name
         - ✔ Password field - visible | - names
 
         :param email: Email (optional)
+        :param username: Username (optional)
         :param password: Password (optional)
         """
         self.check_email_field(email)
+        self.check_username_field(username)
         self.check_password_field(password)
     # ──────────────────────────────────────┘
 
@@ -119,7 +141,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Login page > Form > [Email field] - invisible!'
+        error = f'❌ Registration page > Form > [Email field] - invisible!'
         expect(self.email_field, error).to_be_visible()
 
     def check_email_field_name(self):
@@ -128,7 +150,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Login page > Form > [Email field] - incorrect name!'
+        error = f'❌ Registration page > Form > [Email field] - incorrect name!'
         expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
     def check_email_field_filled_correctly(self, email: str):
@@ -137,8 +159,59 @@ class LoginFormComponent(BaseComponent):
 
         :param email: Email
         """
-        error = f'❌ Login page > Form > [Email field] - filled incorrectly!'
+        error = f'❌ Registration page > Form > [Email field] - filled incorrectly!'
         expect(self.email_field, error).to_have_value(email)
+
+
+    #  [Username field]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_username_field(self, username: str | None = None):
+        """
+        ✔ Check [Username field]>
+
+        If is passed:
+        -------------
+        - ✔ Field - filled correctly
+
+        If is NOT passed:
+        ----------------
+        - ✔ Field - visible
+        - ✔ Field name - correct
+
+        :param username: Username (optional)
+        """
+        if username is not None:
+            self.check_username_field_filled_correctly(username)
+        else:
+            self.check_username_field_visible()
+            self.check_username_field_name()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    def check_username_field_visible(self):
+        """
+        ✔ Check [Username field] visible
+
+        .
+        """
+        error = f'❌ Registration page > Form > [Username field] - invisible!'
+        expect(self.username_field, error).to_be_visible()
+
+    def check_username_field_name(self):
+        """
+        ✔ Check [Username field] name
+
+        .
+        """
+        error = f'❌ Registration page > Form > [Username field] - incorrect name!'
+        expect(self.username_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
+
+    def check_username_field_filled_correctly(self, username: str):
+        """
+        ✔ Check [Username field] filled correctly
+
+        :param username: Username
+        """
+        error = f'❌ Registration page > Form > [Username field] - filled incorrectly!'
+        expect(self.username_field, error).to_have_value(username)
 
 
     #  [Password field]
@@ -170,7 +243,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Login page > Form > [Password field] - invisible!'
+        error = f'❌ Registration page > Form > [Password field] - invisible!'
         expect(self.password_field, error).to_be_visible()
 
     def check_password_field_name(self):
@@ -179,7 +252,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Login page > Form > [Password field] - incorrect name!'
+        error = f'❌ Registration page > Form > [Password field] - incorrect name!'
         expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
     def check_password_field_filled_correctly(self, password: str):
@@ -188,7 +261,7 @@ class LoginFormComponent(BaseComponent):
 
         :param password: Password
         """
-        error = f'❌ Login page > Form > [Password field] - filled incorrectly!'
+        error = f'❌ Registration page > Form > [Password field] - filled incorrectly!'
         expect(self.password_field, error).to_have_value(password)
 
 
