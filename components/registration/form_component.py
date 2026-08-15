@@ -202,7 +202,7 @@ class RegistrationFormComponent(BaseComponent):
         .
         """
         error = f'❌ Registration page > Form > [Username field] - incorrect name!'
-        expect(self.username_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
+        expect(self.username_field, error).to_have_accessible_name(self.USERNAME_FIELD_NAME)
 
     def check_username_field_filled_correctly(self, username: str):
         """

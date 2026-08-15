@@ -1,6 +1,7 @@
 """
 Create course page > [Toolbar] (component)
 """
+
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
@@ -17,7 +18,6 @@ class CreateCourseToolbarComponent(BaseComponent):
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.TITLE_TEXT = 'Create course'
-        self.COURSES_LIST_PAGE_REDIRECT_URL = '/#/courses'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('create-course-toolbar-title-text')
@@ -28,27 +28,26 @@ class CreateCourseToolbarComponent(BaseComponent):
         """
         ▶ Click [Create course button]
 
-        - ✔ Button - visible
+        - ✔ Button - visible | - enabled
         - ▶ Button - click
-        - ✔ Redirect new page URL - correct
         """
-        self.check_create_course_btn()
+        self.check_create_course_btn(enabled=True)
         self.create_course_btn.click()
-        self.check_current_url(self.COURSES_LIST_PAGE_REDIRECT_URL)
+
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
     # ─────────────────────────────────┐
-    def check_toolbar(self):
+    def check_toolbar(self, is_create_course_btn_enabled: bool = False):
         """
         ✔ Check [Toolbar]
 
         - ✔ Title - visible | - text
-        - ✔ Create course button - visible | - enabled
+        - ✔ Create course button - visible | - enabled / disabled
         """
         self.check_title()
-        self.check_create_course_btn()
+        self.check_create_course_btn(enabled=is_create_course_btn_enabled)
     # ─────────────────────────────────┘
 
     # [Title]

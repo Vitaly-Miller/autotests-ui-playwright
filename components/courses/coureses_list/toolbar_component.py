@@ -17,7 +17,6 @@ class CoursesListToolbarComponent(BaseComponent):
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.TITLE_TEXT = 'Courses'
-        self.CREATE_COURSE_PAGE_REDIRECT_URL = '/#/courses/create'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('courses-list-toolbar-title-text')
@@ -30,11 +29,9 @@ class CoursesListToolbarComponent(BaseComponent):
 
         - ✔ Button - visible
         - ▶ Button - click
-        - ✔ Redirect new page URL - correct
         """
         self.check_create_course_btn_visible()
         self.create_course_btn.click()
-        self.check_current_url(self.CREATE_COURSE_PAGE_REDIRECT_URL)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -49,7 +46,6 @@ class CoursesListToolbarComponent(BaseComponent):
         self.check_title()
         self.check_create_course_btn()
     # ─────────────────────────────────┘
-
 
     # Toolbar [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐

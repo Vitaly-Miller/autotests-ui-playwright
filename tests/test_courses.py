@@ -1,5 +1,5 @@
 """
-Test Create Course
+Test Create course
 """
 
 import pytest
@@ -42,19 +42,19 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
 
     # ▶ ACTIONS (Create course)
     create_course_page.image_upload_widget.upload_image('image_1.jpg')  # Загрузка картинки курса
-    create_course_page.fill_create_course_form(                         # Заполнение полей формы <Create Course>
+    create_course_page.form.fill_form(                                  # Заполнение полей формы <Create Course>
         title=course_title,
         estimated_time=course_estimated_time,
         description=course_description,
         max_score=course_max_score,
         min_score=course_min_score
     )
-    create_course_page.click_create_course_btn()                  # Нажатие на кнопку <Create course button>
+    create_course_page.toolbar.click_create_course_btn()                # Нажатие на кнопку <Create course button>
 
     # ✔️EXPECTATIONS (After Course creation)
-    courses_list_page.check_current_url(courses_list_page.URL)    # Проверка успешного редиректа на страницу - Courses list page
-    courses_list_page.course_card.check_component(                # Данные в карточке курса соответствуют заполненным полям формы
-        index=0,                                                  # nth-index
+    courses_list_page.check_current_url(courses_list_page.URL)          # Проверка успешного редиректа на страницу - Courses list page
+    courses_list_page.course_card.check_course_card(                    # Данные в карточке курса соответствуют заполненным полям формы
+        index=0,                                                        # nth-index
         title=course_title,
         estimated_time=course_estimated_time,
         max_score=course_max_score,

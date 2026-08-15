@@ -25,10 +25,10 @@ def test_login_with_wrong_email_or_password_negative(
     login_page.visit(login_page.URL)
 
     # ✔️EXPECTATIONS (Before fill Login form)
-    login_page.check_all_elements()
+    login_page.check_page()
 
     # ▶ ACTIONS
-    login_page.fill_login_form(email=email, password=password)
+    login_page.form.fill_form(email=email, password=password)
     login_page.click_login_btn()
 
     # ✔️EXPECTATIONS

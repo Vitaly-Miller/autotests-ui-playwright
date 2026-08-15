@@ -26,7 +26,6 @@ def chromium_page_with_storage_state(storage_state: StorageState, playwright: Pl
         # storage_state='storage_state.json',      # ┘    # - Storage state из JSON-файла (optional)
         locale='en-US',                                   # - Website language (locale)
         viewport=ViewportSize(width=1100, height=1200),   # - Window size
-        base_url=None                                     # - Base URL
     )
     page = context.new_page()   # Создаем объект страницы page на базе context
 
@@ -102,8 +101,7 @@ def page_guest(playwright: Playwright):   # Чистый (без доп. фик�
     )
     context = browser.new_context(                        # Создание браузерного окружения (NO Storage state):
         locale='en-US',                                   # - Website language (locale)
-        viewport=ViewportSize(width=1100, height=1200),   # - Window size
-        base_url=None                                     # - Base URL
+        viewport=ViewportSize(width=1100, height=1200),   # - Window size                                  # - Base URL
     )
     page = context.new_page()   # Создаем объект page на базе context
 

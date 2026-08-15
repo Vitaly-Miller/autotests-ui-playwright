@@ -25,8 +25,8 @@ class DashboardWidgetComponent(BaseComponent):
         self.chart_type = chart_type.capitalize()   # for logging
 
         # -----------------------------------------------╴ ㉧ LOCATORS -------------------------------------------------
-        self.title = f'{identifier}-widget-title-text'
-        self.chart = f'{identifier}-{chart_type}-chart'
+        self.title = page.get_by_test_id(f'{identifier}-widget-title-text')
+        self.chart = page.get_by_test_id(f'{identifier}-{chart_type}-chart')
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Widget]

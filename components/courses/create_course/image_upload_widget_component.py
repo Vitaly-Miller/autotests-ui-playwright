@@ -44,7 +44,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    def upload_image_file(self, file: str):
+    def upload_image(self, file: str):
         """
         ▶ Upload image file
 

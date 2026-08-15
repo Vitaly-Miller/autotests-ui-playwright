@@ -3,7 +3,7 @@ Courses list page > [Course card] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
-from components.courses.coureses_list.course_card_menu_component import CourseCardMenuComponent
+from components.courses.coureses_list.course_card_menu_component import CoursesListCourseCardMenuComponent
 
 #=======================================================================================================================
 """
@@ -25,7 +25,7 @@ class CoursesListCourseCardComponent(BaseComponent):
         self.ESTIMATED_TIME_TEXT = lambda estimated_time: f'Estimated time: {estimated_time}'
 
         # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
-        self.menu = CourseCardMenuComponent(page)
+        self.menu = CoursesListCourseCardMenuComponent(page)
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('course-widget-title-text')

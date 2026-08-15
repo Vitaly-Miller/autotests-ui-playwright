@@ -23,10 +23,10 @@ def test_registration_successful(               # Принимает:
     registration_page.visit(registration_page.URL)
 
     # ✔️EXPECTATIONS (Before fill Registration form)
-    registration_page.check_all_elements()
+    registration_page.check_page()
 
     # ▶ ACTIONS
-    registration_page.fill_registration_form(email=email, username=username, password=password)
+    registration_page.form.fill_form(email=email, username=username, password=password)
     registration_page.click_registration_btn()
 
     # ✔️EXPECTATIONS
@@ -36,4 +36,4 @@ def test_registration_successful(               # Принимает:
     # ⏳(optional)
     registration_page.wait()
 
-#=======================================================================================================================
+#=======================================================================================================================xx

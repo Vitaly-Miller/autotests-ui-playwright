@@ -24,7 +24,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
         # <Registration form>
-        self.registration_form = RegistrationFormComponent(page)
+        self.form = RegistrationFormComponent(page)
 
         # -----------------------------------------------╴ ㉧ LOCATORS -------------------------------------------------
         # [Title]
@@ -71,7 +71,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Login link - visible | - text | - URL
         """
         self.check_title()
-        self.registration_form.check_form()
+        self.form.check_form()
         self.check_registration_btn()
         self.check_login_link()
     # ──────────────────────────────────────┘

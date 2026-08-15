@@ -26,7 +26,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
         # <Form>
-        self.login_form = LoginFormComponent(page)
+        self.form = LoginFormComponent(page)
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
         # [Title]
@@ -75,7 +75,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ✔ Registration link - visible | - text | - URL
         """
         self.check_title()
-        self.login_form.check_form()
+        self.form.check_form()
         self.check_login_btn()
         self.check_registration_link()
     # ────────────────────────────────┘
