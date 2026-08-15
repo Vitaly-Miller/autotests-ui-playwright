@@ -41,7 +41,7 @@ class SidebarItemComponent(BaseComponent):
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Item]
-    # ────────────────────────────────────┐
+    # ────────────────────────────────┐
     def check_item(self, title: str):
         """
         ✔ Check [Item]
@@ -55,7 +55,7 @@ class SidebarItemComponent(BaseComponent):
         self.check_btn()
         self.check_icon()
         self.check_title(title)
-    # ────────────────────────────────────┘
+    # ────────────────────────────────┘
 
 
     # [Button]

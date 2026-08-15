@@ -21,7 +21,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         super().__init__(page)           # Передаёт page в конструктор BasePage
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
-        # Exercises [Empty view]
+        # <Exercises [Empty view]>
         self.EXERCISES_IDENTIFIER = 'create-course-exercises'
         self.EXERCISES_EMPTY_VIEW_TITLE = 'There is no exercises'
         self.EXERCISES_EMPTY_VIEW_DESCRIPTION = 'Click on "Create exercise" button to create new exercise'

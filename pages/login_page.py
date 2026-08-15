@@ -25,7 +25,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.ALERT_TEXT = 'Wrong email or password'
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
-        # [Form]
+        # <Form>
         self.login_form = LoginFormComponent(page)
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------

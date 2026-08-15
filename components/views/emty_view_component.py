@@ -7,7 +7,7 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-[Empty view] elements:
+Elements:
 - Icon
 - Title
 - Description

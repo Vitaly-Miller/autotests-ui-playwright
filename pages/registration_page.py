@@ -23,7 +23,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.LOGIN_LINK_URL = '#/auth/login'
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
-        # [Registration form]
+        # <Registration form>
         self.registration_form = RegistrationFormComponent(page)
 
         # -----------------------------------------------╴ ㉧ LOCATORS -------------------------------------------------

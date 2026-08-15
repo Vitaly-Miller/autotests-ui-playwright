@@ -18,18 +18,19 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        # [Empty view]
         self.IDENTIFIER = 'courses-list'
         self.EMPTY_VIEW_TITLE = 'There is no results'
         self.EMPTY_VIEW_DESCRIPTION = 'Results from the load test pipeline will be displayed here'
 
         # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
-        # [Bars]
+        # <Bars>
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = CoursesListToolbarComponent(page)
-        # [Empty view]
+        # <Empty view>
         self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER)
-        # [Course card]
+        # <Course card>
         self.course_card = CoursesListCourseCardComponent(page)
 
 

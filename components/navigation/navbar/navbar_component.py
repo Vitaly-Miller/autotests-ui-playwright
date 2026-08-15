@@ -40,8 +40,7 @@ class NavbarComponent(BaseComponent):
         self.check_welcome_title(username)
     # ────────────────────────────────────┘
 
-
-    # Navbar [Title]
+    # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_title(self):
         """
@@ -72,7 +71,7 @@ class NavbarComponent(BaseComponent):
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
-    # Navbar [Welcome title]
+    # [Welcome title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_welcome_title(self, username):
         """

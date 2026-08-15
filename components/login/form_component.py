@@ -62,6 +62,7 @@ class LoginFormComponent(BaseComponent):
         """
         if password is not None:
             self.password_field.fill(password)
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Form]
     # ──────────────────────────────────────┐

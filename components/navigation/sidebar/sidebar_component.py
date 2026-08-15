@@ -4,26 +4,26 @@ Sidebar (component)
 
 from components.base_component import BaseComponent
 from playwright.sync_api import Page
-from components.navigation.sidebar.item_component import SidebarItemComponent
+from components.navigation.sidebar.sidebar_item_component import SidebarItemComponent
 
 #=======================================================================================================================
 """
 Elements:
-- Dashboard item (component)
-- Courses item (component)
-- Logout item (component)
+- Dashboard item
+- Courses item
+- Logout item
 """
 class SidebarComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
         # ----------------------------------------------- 𝌆 DATA -------------------------------------------------------
-        # Identifiers
+        # <Item [Identifiers]>
         self.DASHBOARD_IDENTIFIER = 'dashboard'
         self.COURSES_IDENTIFIER = 'courses'
         self.LOGOUT_IDENTIFIER = 'logout'
 
-        # Item titles
+        # <Item [Titles]>
         self.DASHBOARD_TITLE = 'Dashboard'
         self.COURSES_TITLE = 'Courses'
         self.LOGOUT_TITLE = 'Logout'

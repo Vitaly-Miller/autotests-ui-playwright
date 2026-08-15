@@ -34,11 +34,11 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         # self.SCORES_WIDGET_TITLE = 'Scores'
 
         # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
-        # [Bars]
+        # <Bars>
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = DashboardToolbarComponent(page)
-        # [Widgets]
+        # <Widgets>
         self.student_widget = DashboardWidgetComponent(page=page, identifier='students', chart_type='bar')
         self.activities_widget = DashboardWidgetComponent(page=page, identifier='activities', chart_type='line')
         self.courses_widget = DashboardWidgetComponent(page=page, identifier='courses', chart_type='pie')
