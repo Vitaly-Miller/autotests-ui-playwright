@@ -7,7 +7,7 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Fields:
+[Form]:
 - Email
 - Password
 """
@@ -24,7 +24,7 @@ class LoginFormComponent(BaseComponent):
         self.password_field = page.get_by_test_id('login-form-password-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    # [Form]
+    # Fill [Form]
     # ─────────────────────────────────────────────────┐
     def fill_form(
             self,
@@ -43,7 +43,8 @@ class LoginFormComponent(BaseComponent):
         self.fill_email_field(email)
         self.fill_password_field(password)
     # ─────────────────────────────────────────────────┘
-    # [Email field]
+
+    # Fill [Email field]
     def fill_email_field(self, email: str | None = None):
         """
         ▶ Fill [Email field]
@@ -53,7 +54,7 @@ class LoginFormComponent(BaseComponent):
         if email is not None:
             self.email_field.fill(email)
 
-    # [Password field]
+    # Fill [Password field]
     def fill_password_field(self, password: str | None = None):
         """
         ▶ Fill [Password field]

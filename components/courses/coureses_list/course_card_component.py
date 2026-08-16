@@ -7,7 +7,7 @@ from components.courses.coureses_list.course_card_menu_component import CourseCa
 
 #=======================================================================================================================
 """
-Elements:
+[Course card]:
 - Menu (component)
 - Title
 - Image

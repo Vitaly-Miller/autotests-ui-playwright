@@ -1,12 +1,12 @@
 """
-Create course page > Exercises > Exercise > Toolbar (component)
+Create course page > Exercises > Exercise > [Toolbar] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Locator, Page, expect
 
 #=======================================================================================================================
 """
-Toolbar:
+[Toolbar]:
 - Title
 - Delete exercise button
 """
@@ -24,9 +24,8 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         # [Delete exercise button]
         self.delete_exercise_btn = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
 
-
     # -------------------------------------------- ㉤ LOCATORS {dynamic} (def)-------------------------------------------
-    # ┄┄┄┄┄┄┄┄ ⚠️ NOT USING! - FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄┄╮
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ⚠️ NOT USING! ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╮
     # [Title]
     def _toolbar_title(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
@@ -34,9 +33,10 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
     # [Delete exercise button]
     def _delete_exercise_btn(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
-    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╯
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ FOR EXAMPLE ONLY┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╯
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # Click [Delete exercise button]
     def click_delete_exercise_btn(self, index: int):
         """
         ▶ Click [Delete exercise button]
@@ -98,6 +98,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         """
         error = f'❌ Registration page > <Create course page > Exercises > Exercise > Toolbar > [Title] - incorrect text!'
         expect(self.title(index), error).to_have_text(self.TITLE_TEXT(index))
+
 
     # Toolbar [Delete exercise button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐

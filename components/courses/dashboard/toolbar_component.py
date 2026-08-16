@@ -6,7 +6,7 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Elements:
+[Toolbar]:
 - Title
 """
 class DashboardToolbarComponent(BaseComponent):

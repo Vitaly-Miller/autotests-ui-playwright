@@ -20,7 +20,7 @@ class NavbarComponent(BaseComponent):
         self.TITLE_TEXT = 'UI Course'
         self.WELCOME_TITLE_TEXT = lambda username: f'Welcome, {username}!'
 
-        # ------------------------------------------- ㉧ LOCATORS (static) ----------------------------------------------
+        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('navigation-navbar-app-title-text')
         self.welcome_title = page.get_by_test_id('navigation-navbar-welcome-title-text')
 

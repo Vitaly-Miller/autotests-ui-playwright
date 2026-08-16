@@ -8,9 +8,11 @@ from components.views.emty_view_component import EmptyViewComponent
 
 #=======================================================================================================================
 """
-Widget:
+[Image Upload Widget]:
 - Upload view
-- Preview [Empty view] / [Image view]
+- Preview: 
+    - Empty view
+    - Image view
 """
 class CreateCourseImageUploadWidgetComponent(BaseComponent):
     def __init__(self, page: Page):
@@ -36,7 +38,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         self.upload_image_view_title = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
         self.upload_image_view_description = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
         self.upload_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-upload-button')
-        self.upload_image_input = page.get_by_test_id('create-course-preview-image-upload-widget-input')  # hidden input for upload file
+        self.upload_image_input = page.get_by_test_id('create-course-preview-image-upload-widget-input')        # hidden input for upload file
         self.remove_image_btn = page.get_by_test_id('create-course-preview-image-upload-widget-remove-button')  # visible after upload image only
 
         # Preview [Image View]
@@ -44,6 +46,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # [Upload image]
     def upload_image(self, file: str):
         """
         ▶ Upload image file
@@ -58,6 +61,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         self.check_preview(is_image_uploaded=True)
         self.check_remove_image_btn(is_image_uploaded=True)
 
+    # Click [Remove image button]
     def click_remove_btn(self):
         """
         ▶ Click [Remove image button]

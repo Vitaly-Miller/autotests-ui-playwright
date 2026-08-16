@@ -6,7 +6,7 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Toolbar:
+[Toolbar]:
 - Title
 - Create exercise button
 """
@@ -22,6 +22,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         self.create_exercise_btn = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # Click [Create exercise button]
     def click_create_exercise_btn(self):
         """
         ▶ Click [Create exercise button]

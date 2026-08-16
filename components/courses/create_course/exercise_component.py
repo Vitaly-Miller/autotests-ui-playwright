@@ -11,7 +11,7 @@ from components.courses.create_course.exercise_form_component import CreateCours
 
 #=======================================================================================================================
 """
-Exercise:
+[Exercise]:
 - Toolbar (component)
   - Title
   - Delete exercise button
@@ -29,6 +29,7 @@ class CreateCourseExerciseComponent(BaseComponent):
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = CreateCourseExerciseToolbarComponent(page)
+        # <Form>
         self.form = CreateCourseExerciseFormComponent(page)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------

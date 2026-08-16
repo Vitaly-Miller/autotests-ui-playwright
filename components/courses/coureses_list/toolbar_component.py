@@ -7,7 +7,7 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Elements:
+[Toolbar]:
 - Title
 - Create course button
 """
@@ -23,6 +23,7 @@ class CoursesListToolbarComponent(BaseComponent):
         self.create_course_btn = page.get_by_test_id('courses-list-toolbar-create-course-button')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # Click [Create course button]
     def click_create_course_btn(self):
         """
         ▶ Click [Create course button]

@@ -13,6 +13,7 @@ class BasePage:                                 # Родительский кл�
         self.page = page
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # Open page
     def visit(self, url: str):
         """
         ⿹ Open page
@@ -23,6 +24,7 @@ class BasePage:                                 # Родительский кл�
         """
         self.page.goto(url=url)
 
+    # Reload page
     def reload(self):
         """
         ↺ Reload current page
@@ -31,11 +33,12 @@ class BasePage:                                 # Родительский кл�
         """
         self.page.reload()
 
+    # Wait (timeout)
     def wait(self, timeout: int = 2):
         """
-        Wait 2 sec. (by default)
+        Wait (timeout)
 
-        :param timeout: Timeout in sec
+        :param timeout: Timeout in sec (2 sec by default)
         """
         self.page.wait_for_timeout(timeout * 1000)
 

@@ -7,7 +7,7 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Elements:
+[Menu]:
 - Menu button
 - Edit button
 - Delete button
@@ -26,6 +26,7 @@ class CourseCardMenuComponent(BaseComponent):
         self.delete_btn = page.get_by_test_id('course-view-delete-menu-item')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # Click [Menu button]
     def click_menu_btn(self, index: int):
         """
         ▶ Click [Menu button]
@@ -38,6 +39,7 @@ class CourseCardMenuComponent(BaseComponent):
         self.check_menu_btn_visible(index)
         self.menu_btn.nth(index).click()
 
+    # Click <Menu [Edit button]>
     def click_edit_btn(self, index: int):
         """
         ▶ Click <Menu [Edit button]>
@@ -52,6 +54,7 @@ class CourseCardMenuComponent(BaseComponent):
         self.check_edit_btn_visible(index)
         self.edit_btn.nth(index).click()
 
+    # Click <Menu [Delete button]>
     def click_delete_btn(self, index: int):
         """
         ▶ Click <Menu [Delete button]>
@@ -67,7 +70,7 @@ class CourseCardMenuComponent(BaseComponent):
         self.delete_btn.nth(index).click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # Menu button
+    # [Menu button]
     # ────────────────────────────────────┐
     def check_menu_btn(self, index: int):
         """
@@ -114,7 +117,6 @@ class CourseCardMenuComponent(BaseComponent):
         self.check_edit_btn(index)
         self.check_delete_btn(index)
     # ──────────────────────────────────────────────┘
-
     # [Edit button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_edit_btn(self, index: int):

@@ -7,7 +7,7 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Elements:
+[Item]:
 - Button
 - Icon
 - Title
@@ -29,6 +29,7 @@ class SidebarItemComponent(BaseComponent):
         self.title = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
 
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
+    # Click [Button]
     def click_btn(self):
         """
         ▶ Click item [Button]
@@ -57,7 +58,6 @@ class SidebarItemComponent(BaseComponent):
         self.check_title(title)
     # ────────────────────────────────┘
 
-
     # [Button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_btn(self):
@@ -77,7 +77,6 @@ class SidebarItemComponent(BaseComponent):
         error = f'❌ Sidebar > {self.identifier} item > [Button] - invisible!'
         expect(self.btn, error).to_be_visible()
 
-
     # [Icon]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_icon(self):
@@ -96,7 +95,6 @@ class SidebarItemComponent(BaseComponent):
         """
         error = f'❌ Sidebar > {self.identifier} item > [Icon] - invisible!'
         expect(self.icon, error).to_be_visible()
-
 
     # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐

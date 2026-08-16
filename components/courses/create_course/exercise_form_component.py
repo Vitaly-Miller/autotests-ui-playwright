@@ -1,12 +1,12 @@
 """
-Create course page > Exercises > Exercise > Form (component)
+Create course page > Exercises > Exercise > [Form] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Locator, Page, expect
 
 #=======================================================================================================================
 """
-Form:
+[Form]:
 - Title field
 - Description field
 """
@@ -27,7 +27,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         self.description_field = lambda index: page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
 
     # -------------------------------------------- ㉤ LOCATORS {dynamic} (def)-------------------------------------------
-    # ┄┄┄┄┄┄┄┄ ⚠️ NOT USING! - FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄╮
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ⚠️ NOT USING!  ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╮
     # [Title field]
     def _title_field(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-form-title-{index}-input')
@@ -35,7 +35,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
     # [Description field]
     def _description_field(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
-    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╯
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╯
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------

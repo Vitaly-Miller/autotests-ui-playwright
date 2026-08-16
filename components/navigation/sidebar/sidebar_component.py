@@ -8,7 +8,7 @@ from components.navigation.sidebar.sidebar_item_component import SidebarItemComp
 
 #=======================================================================================================================
 """
-Elements:
+[Sidebar]:
 - Dashboard item
 - Courses item
 - Logout item
