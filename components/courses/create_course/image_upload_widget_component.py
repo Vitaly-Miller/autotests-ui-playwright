@@ -8,7 +8,7 @@ from components.views.emty_view_component import EmptyViewComponent
 
 #=======================================================================================================================
 """
-Elements:
+Widget:
 - Upload view
 - Preview [Empty view] / [Image view]
 """

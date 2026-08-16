@@ -1,10 +1,11 @@
 """
 Test authorization (Login)
 with Parametrize (3-in-1)
+(⚠️Page factory)
 """
 
 import pytest
-from pages.login_page import LoginPage
+from pages.login_page_ import LoginPage
 
 #=======================================================================================================================
 @pytest.mark.auth                 # ┐

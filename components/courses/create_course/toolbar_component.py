@@ -8,7 +8,7 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Elements:
+Toolbar:
 - Title
 - Create course button
 """

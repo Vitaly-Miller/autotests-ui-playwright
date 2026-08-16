@@ -7,12 +7,12 @@ from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Fields:
-- Title
-- Estimated time
-- Description
-- Max score
-- Min score
+Form:
+- Title field
+- Estimated time field
+- Description field
+- Max score field
+- Min score field
 """
 class CreateCourseFormComponent(BaseComponent):
     def __init__(self, page: Page):

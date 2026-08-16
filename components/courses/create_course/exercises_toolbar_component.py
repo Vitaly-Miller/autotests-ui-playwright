@@ -1,12 +1,12 @@
 """
-Create course page > [Exercises toolbar] (component)
+Create course page > Exercises > [Toolbar] (component)
 """
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
-Elements:
+Toolbar:
 - Title
 - Create exercise button
 """
