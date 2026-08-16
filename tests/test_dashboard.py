@@ -9,7 +9,6 @@ from pages.dashboard_page import DashboardPage
 @pytest.mark.dashboard
 @pytest.mark.regression
 def test_dashboard(dashboard_page: DashboardPage):
-
     # 𝌆 TEST DATA
     username = 'username'
 
@@ -17,8 +16,6 @@ def test_dashboard(dashboard_page: DashboardPage):
     dashboard_page.visit(dashboard_page.URL)
 
     # ✔️EXPECTATIONS
-    dashboard_page.check_page(username)
+    dashboard_page.check_page(username)  # <— 30 внутренних проверок
 
-    # ⏳(optional)
-    dashboard_page.wait()
 #=======================================================================================================================

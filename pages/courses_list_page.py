@@ -1,7 +1,7 @@
 """
 Courses list page
 """
-from components.courses.coureses_list.course_card_component import CoursesListCourseCardComponent
+from components.courses.coureses_list.course_card_component import CourseCardComponent
 from pages.base_page import BasePage
 from components.navigation.navbar.navbar_component import NavbarComponent
 from components.navigation.sidebar.sidebar_component import SidebarComponent
@@ -31,7 +31,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         # <Empty view>
         self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER)
         # <Course card>
-        self.course_card = CoursesListCourseCardComponent(page)
+        self.course_card = CourseCardComponent(page)
 
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------

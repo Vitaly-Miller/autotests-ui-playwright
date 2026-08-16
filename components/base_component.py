@@ -1,5 +1,6 @@
 """
 BASE component
+(Page component)
 """
 
 from playwright.sync_api import Page, expect
@@ -16,8 +17,8 @@ class BaseComponent:
     TESTDATA = PROJECT/'testdata'               # └─ 📁testdata/
     FILES = TESTDATA/'files'                    #    └─ 📁files/
 
-
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
+    # [Current URL]
     def check_current_url(self, expected_url: str | Pattern[str]):
         """
         ✔ Check [Current page URL]

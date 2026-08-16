@@ -22,9 +22,9 @@ class RegistrationFormComponent(BaseComponent):
         self.PASSWORD_FIELD_NAME = 'Password'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.email_field = page.get_by_role(role='textbox', name='Email')
-        self.username_field = page.get_by_role(role='textbox', name='Username')
-        self.password_field = page.get_by_role(role='textbox', name='Password')
+        self.email_field = page.get_by_test_id('registration-form-email-input').locator('input')
+        self.username_field = page.get_by_test_id('registration-form-username-input').locator('input')
+        self.password_field = page.get_by_test_id('registration-form-password-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # [Form]

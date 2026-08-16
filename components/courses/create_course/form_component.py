@@ -34,11 +34,11 @@ class CreateCourseFormComponent(BaseComponent):
         self.MIN_SCORE_FIELD_NAME = 'Min score'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title_field = page.get_by_role(role='textbox', name='Title')
-        self.estimated_time_field = page.get_by_role(role='textbox', name='Estimated time')
-        self.description_field = page.get_by_role(role='textbox', name='Description')
-        self.max_score_field = page.get_by_role(role='spinbutton', name='Max score')
-        self.min_score_field = page.get_by_role(role='spinbutton', name='Min score')
+        self.title_field = page.get_by_test_id('create-course-form-title-input').locator('input')
+        self.estimated_time_field = page.get_by_test_id('create-course-form-estimated-time-input').locator('input')
+        self.description_field = page.get_by_test_id('create-course-form-description-input').locator('textarea:visible') # ⚠
+        self.max_score_field = page.get_by_test_id('create-course-form-max-score-input').locator('input')
+        self.min_score_field = page.get_by_test_id('create-course-form-min-score-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # [Form]

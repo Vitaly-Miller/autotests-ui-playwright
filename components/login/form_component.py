@@ -20,8 +20,8 @@ class LoginFormComponent(BaseComponent):
         self.PASSWORD_FIELD_NAME = 'Password'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.email_field = page.get_by_label('Email')
-        self.password_field = page.get_by_label('Password')
+        self.email_field = page.get_by_test_id('login-form-email-input').locator('input')
+        self.password_field = page.get_by_test_id('login-form-password-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # [Form]

@@ -1,5 +1,6 @@
 """
-BASE PAGE
+Base page
+(Page object model)
 """
 
 from playwright.sync_api import Page, expect
@@ -40,6 +41,7 @@ class BasePage:                                 # Родительский кл�
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ⚠️Дублирование из BaseComponent
+    # [Current URL]
     def check_current_url(self, expected_url: str | Pattern[str]):
         """
         ✔ Check [Current page URL]

@@ -1,7 +1,7 @@
 """
 Courses list page > Course View > [Menu] (component)
+(⚠️Page factory)
 """
-
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
