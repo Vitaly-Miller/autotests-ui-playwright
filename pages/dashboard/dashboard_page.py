@@ -3,11 +3,11 @@ Dashboard page
 """
 
 from pages.base_page import BasePage
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 from components.navigation.navbar.navbar_component import NavbarComponent
 from components.navigation.sidebar.sidebar_component import SidebarComponent
-from components.courses.dashboard.toolbar_component import DashboardToolbarComponent
-from components.courses.dashboard.widget_component import DashboardWidgetComponent
+from components.dashboard.toolbar_component import DashboardToolbarComponent
+from components.dashboard.widget_component import DashboardWidgetComponent
 
 #=======================================================================================================================
 class DashboardPage(BasePage):          # Дочерний класс (наследует класс BasePage)

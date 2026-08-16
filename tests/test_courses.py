@@ -3,8 +3,8 @@ Test Create course
 """
 
 import pytest
-from pages.courses_list_page import CoursesListPage
-from pages.create_course_page import CreateCoursePage
+from pages.courses.courses_list.courses_list_page import CoursesListPage
+from pages.courses.create_course.create_course_page import CreateCoursePage
 
 #=======================================================================================================================
 @pytest.mark.courses
@@ -54,7 +54,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     # ✔️EXPECTATIONS (After Course creation)
     courses_list_page.check_current_url(courses_list_page.URL)          # Проверка успешного редиректа на страницу - Courses list page
     courses_list_page.course_card.check_course_card(                    # Данные в карточке курса соответствуют заполненным полям формы
-        index=0,                                                        # nth-index
+        nth_index=0,                                                        # nth-index
         title=course_title,
         estimated_time=course_estimated_time,
         max_score=course_max_score,

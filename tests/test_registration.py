@@ -3,8 +3,8 @@ Test registration
 """
 
 import pytest
-from pages.registration_page import RegistrationPage
-from pages.dashboard_page import DashboardPage
+from pages.auth.regustration.registration_page import RegistrationPage
+from pages.dashboard.dashboard_page import DashboardPage
 
 #=======================================================================================================================
 @pytest.mark.registration                       # ┐ Pytest Markers

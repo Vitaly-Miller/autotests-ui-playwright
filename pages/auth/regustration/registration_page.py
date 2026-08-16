@@ -4,7 +4,7 @@ Registration page
 
 from pages.base_page import BasePage
 from playwright.sync_api import Page, expect
-from components.registration.form_component import RegistrationFormComponent
+from components.auth.registration.form_component import RegistrationFormComponent
 
 #=======================================================================================================================
 class RegistrationPage(BasePage):       # Дочерний класс (наследует класс BasePage)

@@ -7,8 +7,8 @@ from playwright.sync_api import Page, expect
 #=======================================================================================================================
 """
 [Widget]:
-- Title
-- Chart
+- Title (students | activities | courses | scores)
+- Chart (bar | line | pie | scatter)
 """
 
 class DashboardWidgetComponent(BaseComponent):
@@ -21,8 +21,9 @@ class DashboardWidgetComponent(BaseComponent):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        self.identifier = identifier.capitalize()   # for logging
-        self.chart_type = chart_type.capitalize()   # for logging
+        # Element names (for logging)
+        self.widget_name = identifier.capitalize()
+        self.chart_name = chart_type.capitalize()
 
         # ------------------------------------------------ ㉧ LOCATORS -------------------------------------------------
         self.title = page.get_by_test_id(f'{identifier}-widget-title-text')
@@ -60,7 +61,7 @@ class DashboardWidgetComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Dashboard page > {self.identifier}-widget > [Title] - invisible!'
+        error = f'❌ Dashboard page > {self.widget_name}-widget > [Title] - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self, title: str):
@@ -69,7 +70,7 @@ class DashboardWidgetComponent(BaseComponent):
 
         :param title: Title
         """
-        error = f'❌ Dashboard page > {self.identifier}-widget > [Title] - incorrect text!'
+        error = f'❌ Dashboard page > {self.widget_name}-widget > [Title] - incorrect text!'
         expect(self.title, error).to_have_text(title)
 
 
@@ -89,7 +90,7 @@ class DashboardWidgetComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Dashboard page > {self.identifier}-widget > [{self.chart}-chart] - invisible!'
+        error = f'❌ Dashboard page > {self.widget_name}-widget > [{self.chart_name}-chart] - invisible!'
         expect(self.chart, error).to_be_visible()
 
 

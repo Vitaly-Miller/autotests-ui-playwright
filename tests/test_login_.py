@@ -5,7 +5,7 @@ with Parametrize (3-in-1)
 """
 
 import pytest
-from pages.login_page_ import LoginPage
+from pages.auth.login.login_page_ import LoginPage
 
 #=======================================================================================================================
 @pytest.mark.auth                 # ┐

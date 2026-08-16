@@ -1,16 +1,10 @@
 """
 Login page
-(⚠️Page factory)
 """
-
-
 
 from pages.base_page import BasePage
 from playwright.sync_api import Page, expect
-from components.login.form_component import LoginFormComponent
-from elements_.button_ import Button
-from elements_.link_ import Link
-from elements_.text_ import Text
+from components.auth.login.form_component import LoginFormComponent
 
 #=======================================================================================================================
 class LoginPage(BasePage):              # Дочерний класс (наследует класс BasePage)
@@ -21,7 +15,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
         # [Title]
-
         self.TITLE_TEXT = 'UI Course'
         # [Login button]
         self.LOGIN_BTN_TEXT = 'Login'
@@ -37,13 +30,13 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
         # [Title]
-        self.title = Text(page, 'authentication-ui-course-title-text', 'Title')
+        self.title = page.get_by_test_id('authentication-ui-course-title-text')
         # [Login button]
-        self.login_btn = Button(page, 'login-page-login-button', 'Login')
+        self.login_btn = page.get_by_test_id('login-page-login-button')
         # [Registration link]
-        self.registration_link = Link(page, 'login-page-registration-link', 'Registration')
+        self.registration_link = page.get_by_test_id('login-page-registration-link')
         # [Alert]
-        self.wrong_email_or_password_alert = Text(page,'login-page-wrong-email-or-password-alert', 'Wrong email or password')
+        self.wrong_email_or_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
@@ -206,11 +199,34 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
 
     # [Alert]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_wrong_email_or_password_alert(self):
-        self.wrong_email_or_password_alert.check_visible()
-        self.wrong_email_or_password_alert.check_text(self.ALERT_TEXT)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+        """
+        ✔ Check [Wrong Email or Password alert]
+
+        - ✔ Alert - visible
+        - ✔ Alert text - correct
+        """
+        self.check_wrong_email_or_password_alert_visible()
+        self.check_wrong_email_or_password_alert_text()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    def check_wrong_email_or_password_alert_visible(self):
+        """
+        ✔ Check [Wrong Email or Password alert] visible
+
+        .
+        """
+        error = f'❌ Login page > [Wrong Email or Password alert] - invisible!'
+        expect(self.wrong_email_or_password_alert, error).to_be_visible()
+
+    def check_wrong_email_or_password_alert_text(self):
+        """
+        ✔ Check [Wrong Email or Password alert] text
+
+        .
+        """
+        error = f'❌ Login page > [Wrong Email or Password alert] - incorrect text!'
+        expect(self.wrong_email_or_password_alert, error).to_have_text(self.ALERT_TEXT)
 
 
 

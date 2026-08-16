@@ -1,11 +1,11 @@
 """
 Courses list page
 """
-from components.courses.coureses_list.course_card_component import CourseCardComponent
+from components.courses.courses_list.course_card_component import CourseCardComponent
 from pages.base_page import BasePage
 from components.navigation.navbar.navbar_component import NavbarComponent
 from components.navigation.sidebar.sidebar_component import SidebarComponent
-from components.courses.coureses_list.toolbar_component import CoursesListToolbarComponent
+from components.courses.courses_list.toolbar_component import CoursesListToolbarComponent
 from components.views.emty_view_component import EmptyViewComponent
 
 from playwright.sync_api import Page
