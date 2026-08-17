@@ -25,65 +25,59 @@ class LoginFormComponent(BaseComponent):
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Login form]
-    # ─────────────────────────────────────────────────┐
-    def fill_login_form(
-            self,
-            email: str | None = None,
-            password: str | None = None
-    ):
+    # ───────────────────────────────────────────────────┐
+    def fill_login_form(self, email: str, password: str):
         """
-        ▶ Fill [Login form] fields
+        ▶ Fill [Login form]
 
         - ▶ Email field - fill
         - ▶ Password field - fill
 
-        :param email: Email (optional)
-        :param password: Password (optional)
+        :param email: Email
+        :param password: Password
         """
         self.fill_email_field(email)
         self.fill_password_field(password)
-    # ─────────────────────────────────────────────────┘
-
+    # ───────────────────────────────────────────────────┘
     # Fill [Email field]
-    def fill_email_field(self, email: str | None = None):
+    def fill_email_field(self, email: str):
         """
         ▶ Fill [Email field]
 
-        :param email: Email (optional)
+        :param email: Email
         """
-        if email is not None:
-            self.email_field.fill(email)
+        self.email_field.fill(email)
 
     # Fill [Password field]
-    def fill_password_field(self, password: str | None = None):
+    def fill_password_field(self, password: str):
         """
         ▶ Fill [Password field]
 
-        :param password: Password (optional)
+        :param password: Password
         """
-        if password is not None:
-            self.password_field.fill(password)
+        self.password_field.fill(password)
+
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Form]
     # ──────────────────────────────────────┐
-    def check_form(
+    def check_login_form(
             self,
             email: str | None = None,
             password: str | None = None
     ):
         """
-        ✔ Check [Form]
+        ✔ Check [Login form]
 
         If is passed:
         -------------
-        - ✔ Email field - filled correctly
-        - ✔ Password field - filled correctly
+        - ✔ Email field - value
+        - ✔ Password field - value
 
         If is NOT passed:
         ----------------
         - ✔ Email field - visible | - name
-        - ✔ Password field - visible | - names
+        - ✔ Password field - visible | - name
 
         :param email: Email (optional)
         :param password: Password (optional)
@@ -100,17 +94,17 @@ class LoginFormComponent(BaseComponent):
 
         If is passed:
         -------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         If is NOT passed:
         ----------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
 
         :param email: Email (optional)
         """
         if email is not None:
-            self.check_email_field_filled_correctly(email)
+            self.check_email_field_value(email)
         else:
             self.check_email_field_visible()
             self.check_email_field_name()
@@ -133,35 +127,35 @@ class LoginFormComponent(BaseComponent):
         error = f'❌ Login page > Form > [Email field] - incorrect name!'
         expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
-    def check_email_field_filled_correctly(self, email: str):
+    def check_email_field_value(self, email: str):
         """
-        ✔ Check [Email field] filled correctly
+        ✔ Check [Email field] value
 
         :param email: Email
         """
-        error = f'❌ Login page > Form > [Email field] - filled incorrectly!'
+        error = f'❌ Login page > Form > [Email field] - incorrect value!'
         expect(self.email_field, error).to_have_value(email)
 
 
-    #  [Password field]
+    # [Password field]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_password_field(self, password: str | None = None):
         """
-        ✔ Check [Password field]>
+        ✔ Check [Password field]
 
         If is passed:
         -------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         If is NOT passed:
         ----------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
 
         :param password: Password (optional)
         """
         if password is not None:
-            self.check_password_field_filled_correctly(password)
+            self.check_password_field_value(password)
         else:
             self.check_password_field_visible()
             self.check_password_field_name()
@@ -184,13 +178,13 @@ class LoginFormComponent(BaseComponent):
         error = f'❌ Login page > Form > [Password field] - incorrect name!'
         expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
-    def check_password_field_filled_correctly(self, password: str):
+    def check_password_field_value(self, password: str):
         """
-        ✔ Check [Password field] filled correctly
+        ✔ Check [Password field] value
 
         :param password: Password
         """
-        error = f'❌ Login page > Form > [Password field] - filled incorrectly!'
+        error = f'❌ Login page > Form > [Password field] - incorrect value!'
         expect(self.password_field, error).to_have_value(password)
 
 

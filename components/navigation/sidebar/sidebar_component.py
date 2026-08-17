@@ -18,12 +18,12 @@ class SidebarComponent(BaseComponent):
         super().__init__(page)
 
         # ----------------------------------------------- 𝌆 DATA -------------------------------------------------------
-        # <Item [Identifiers]>
+        # <Item [Identifiers]
         self.DASHBOARD_IDENTIFIER = 'dashboard'
         self.COURSES_IDENTIFIER = 'courses'
         self.LOGOUT_IDENTIFIER = 'logout'
 
-        # <Item [Titles]>
+        # <Item [Titles]
         self.DASHBOARD_TITLE = 'Dashboard'
         self.COURSES_TITLE = 'Courses'
         self.LOGOUT_TITLE = 'Logout'

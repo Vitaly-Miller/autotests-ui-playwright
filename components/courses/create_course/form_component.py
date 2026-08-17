@@ -133,7 +133,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         If is passed:
         -------------
-        - ✔ Fields - filled correctly
+        - ✔ Fields - values
 
         If is NOT passed:
         ----------------
@@ -162,18 +162,18 @@ class CreateCourseFormComponent(BaseComponent):
 
         If is passed:
         -------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         If is NOT passed:
         ----------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
         - ✔ Field placeholder - correct
 
         :param title: Title (optional)
         """
         if title is not None:
-            self.check_title_field_filled(title)
+            self.check_title_field_value(title)
         else:
             self.check_title_field_visible()
             self.check_title_field_name()
@@ -206,15 +206,15 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Title field] - incorrect placeholder!'
         expect(self.title_field, error).to_have_attribute('placeholder', self.TITLE_FIELD_PLACEHOLDER)
 
-    def check_title_field_filled(self, title: str):
+    def check_title_field_value(self, title: str):
         """
-        ✔ Check [Title field] filled correctly
+        ✔ Check [Title field] value
 
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         :param title: Title
         """
-        error = f'❌ Create course page > Form > [Title field] - filled incorrectly!'
+        error = f'❌ Create course page > Form > [Title field] - incorrect value!'
         expect(self.title_field, error).to_have_value(title)
 
 
@@ -226,18 +226,18 @@ class CreateCourseFormComponent(BaseComponent):
 
         If is passed:
         -------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         If is NOT passed:
         ----------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
         - ✔ Field placeholder - correct
 
         :param estimated_time: Estimated time (optional)
         """
         if estimated_time is not None:
-            self.check_estimated_time_field_filled(estimated_time)
+            self.check_estimated_time_field_value(estimated_time)
         else:
             self.check_estimated_time_field_visible()
             self.check_estimated_time_field_name()
@@ -270,13 +270,13 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Estimated time field] - incorrect placeholder!'
         expect(self.estimated_time_field, error).to_have_attribute('placeholder', self.ESTIMATED_TIME_FIELD_PLACEHOLDER)
 
-    def check_estimated_time_field_filled(self, estimated_time: str):
+    def check_estimated_time_field_value(self, estimated_time: str):
         """
-        ✔ Check [Estimated time field] filled correctly
+        ✔ Check [Estimated time field] value
 
         :param estimated_time: Estimated time
         """
-        error = f'❌ Create course page > Form > [Estimated time field] - filled incorrectly!'
+        error = f'❌ Create course page > Form > [Estimated time field] - incorrect value!'
         expect(self.estimated_time_field, error).to_have_value(estimated_time)
 
 
@@ -288,18 +288,18 @@ class CreateCourseFormComponent(BaseComponent):
 
         If is passed:
         -------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         If is NOT passed:
         ----------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
         - ✔ Field placeholder - correct
 
         :param description: Description (optional)
         """
         if description is not None:
-            self.check_description_field_filled(description)
+            self.check_description_field_value(description)
         else:
             self.check_description_field_visible()
             self.check_description_field_name()
@@ -332,13 +332,13 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Description field] - incorrect placeholder!'
         expect(self.description_field, error).to_have_attribute('placeholder', self.DESCRIPTION_FIELD_PLACEHOLDER)
 
-    def check_description_field_filled(self, description: str):
+    def check_description_field_value(self, description: str):
         """
-        ✔ Check [Description field] filled correctly
+        ✔ Check [Description field] value
 
         :param description: Description
         """
-        error = f'❌ Create course page > Form > [Description field] - filled incorrectly!'
+        error = f'❌ Create course page > Form > [Description field] - incorrect value!'
         expect(self.description_field, error).to_have_value(description)
 
 
@@ -350,22 +350,22 @@ class CreateCourseFormComponent(BaseComponent):
 
          If is passed:
         --------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
          If is NOT passed:
         ------------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
         - ✔ Field - has a default value
 
         :param max_score: Max score (optional)
         """
         if max_score is not None:
-            self.check_max_score_field_filled(max_score)
+            self.check_max_score_field_value(max_score)
         else:
             self.check_max_score_field_visible()
             self.check_max_score_field_name()
-            self.check_max_score_field_filled()
+            self.check_max_score_field_value()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_max_score_field_visible(self):
         """
@@ -385,13 +385,13 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Max score field] - incorrect name!'
         expect(self.max_score_field, error).to_have_accessible_name(self.MAX_SCORE_FIELD_NAME)
 
-    def check_max_score_field_filled(self, max_score: str = '0'):
+    def check_max_score_field_value(self, max_score: str = '0'):
         """
-        ✔ Check [Max score field] filled correctly
+        ✔ Check [Max score field] value
 
         :param max_score: Max score
         """
-        error = f'❌ Create course page > Form > [Max score field] - filled incorrectly!'
+        error = f'❌ Create course page > Form > [Max score field] - incorrect value!'
         expect(self.max_score_field, error).to_have_value(max_score)
 
 
@@ -403,22 +403,22 @@ class CreateCourseFormComponent(BaseComponent):
 
         If is passed:
         -------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         If is NOT passed:
         ----------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
         - ✔ Field - has a default value
 
         :param min_score: Min score (optional)
         """
         if min_score is not None:
-            self.check_min_score_field_filled(min_score)
+            self.check_min_score_field_value(min_score)
         else:
             self.check_min_score_field_visible()
             self.check_min_score_field_name()
-            self.check_min_score_field_filled()
+            self.check_min_score_field_value()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_min_score_field_visible(self):
         """
@@ -438,13 +438,13 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Min score field] - incorrect name!'
         expect(self.min_score_field, error).to_have_accessible_name(self.MIN_SCORE_FIELD_NAME)
 
-    def check_min_score_field_filled(self, min_score: str = '0'):
+    def check_min_score_field_value(self, min_score: str = '0'):
         """
-        ✔ Check [Min score field] filled correctly
+        ✔ Check [Min score field] value
 
         :param min_score: Min score
         """
-        error = f'❌ Create course page > Form > [Min score field] - filled incorrectly!'
+        error = f'❌ Create course page > Form > [Min score field] - incorrect value!'
         expect(self.min_score_field, error).to_have_value(min_score)
 
 

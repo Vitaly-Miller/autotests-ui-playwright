@@ -82,20 +82,20 @@ class RegistrationFormComponent(BaseComponent):
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Form]
     # ──────────────────────────────────────┐
-    def check_form(
+    def check_registration_form(
             self,
             email: str | None = None,
             username: str | None = None,
             password: str | None = None
     ):
         """
-        ✔ Check [Form]
+        ✔ Check [Registration form]
 
         If is passed:
         -------------
-        - ✔ Email field - filled correctly
-        - ✔ Username field - filled correctly
-        - ✔ Password field - filled correctly
+        - ✔ Email field - value
+        - ✔ Username field - value
+        - ✔ Password field - value
 
         If is NOT passed:
         ----------------
@@ -120,17 +120,17 @@ class RegistrationFormComponent(BaseComponent):
 
         If is passed:
         -------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         If is NOT passed:
         ----------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
 
         :param email: Email (optional)
         """
         if email is not None:
-            self.check_email_field_filled_correctly(email)
+            self.check_email_field_value(email)
         else:
             self.check_email_field_visible()
             self.check_email_field_name()
@@ -153,13 +153,13 @@ class RegistrationFormComponent(BaseComponent):
         error = f'❌ Registration page > Form > [Email field] - incorrect name!'
         expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
-    def check_email_field_filled_correctly(self, email: str):
+    def check_email_field_value(self, email: str):
         """
-        ✔ Check [Email field] filled correctly
+        ✔ Check [Email field] value
 
         :param email: Email
         """
-        error = f'❌ Registration page > Form > [Email field] - filled incorrectly!'
+        error = f'❌ Registration page > Form > [Email field] - incorrect value!'
         expect(self.email_field, error).to_have_value(email)
 
 
@@ -167,21 +167,21 @@ class RegistrationFormComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_username_field(self, username: str | None = None):
         """
-        ✔ Check [Username field]>
+        ✔ Check [Username field]
 
         If is passed:
         -------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         If is NOT passed:
         ----------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
 
         :param username: Username (optional)
         """
         if username is not None:
-            self.check_username_field_filled_correctly(username)
+            self.check_username_field_value(username)
         else:
             self.check_username_field_visible()
             self.check_username_field_name()
@@ -204,13 +204,13 @@ class RegistrationFormComponent(BaseComponent):
         error = f'❌ Registration page > Form > [Username field] - incorrect name!'
         expect(self.username_field, error).to_have_accessible_name(self.USERNAME_FIELD_NAME)
 
-    def check_username_field_filled_correctly(self, username: str):
+    def check_username_field_value(self, username: str):
         """
-        ✔ Check [Username field] filled correctly
+        ✔ Check [Username field] value
 
         :param username: Username
         """
-        error = f'❌ Registration page > Form > [Username field] - filled incorrectly!'
+        error = f'❌ Registration page > Form > [Username field] - incorrect value!'
         expect(self.username_field, error).to_have_value(username)
 
 
@@ -218,21 +218,21 @@ class RegistrationFormComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_password_field(self, password: str | None = None):
         """
-        ✔ Check [Password field]>
+        ✔ Check [Password field]
 
         If is passed:
         -------------
-        - ✔ Field - filled correctly
+        - ✔ Field - value
 
         If is NOT passed:
         ----------------
         - ✔ Field - visible
-        - ✔ Field name - correct
+        - ✔ Field - name
 
         :param password: Password (optional)
         """
         if password is not None:
-            self.check_password_field_filled_correctly(password)
+            self.check_password_field_value(password)
         else:
             self.check_password_field_visible()
             self.check_password_field_name()
@@ -255,13 +255,13 @@ class RegistrationFormComponent(BaseComponent):
         error = f'❌ Registration page > Form > [Password field] - incorrect name!'
         expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
-    def check_password_field_filled_correctly(self, password: str):
+    def check_password_field_value(self, password: str):
         """
-        ✔ Check [Password field] filled correctly
+        ✔ Check [Password field] value
 
         :param password: Password
         """
-        error = f'❌ Registration page > Form > [Password field] - filled incorrectly!'
+        error = f'❌ Registration page > Form > [Password field] - incorrect value!'
         expect(self.password_field, error).to_have_value(password)
 
 

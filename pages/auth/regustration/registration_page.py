@@ -71,7 +71,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Login link - visible | - text | - URL
         """
         self.check_title()
-        self.form.check_form()
+        self.form.check_registration_form()
         self.check_registration_btn()
         self.check_login_link()
     # ──────────────────────────────────────┘
@@ -192,5 +192,15 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         error = f'❌ Registration page > [Login link] - incorrect URL!'
         expect(self.login_link, error).to_have_attribute('href', self.LOGIN_LINK_URL)
+
+
+    def check_login_link_redirect(self):
+        """
+        ✔ Check [Login link] redirect to Login page
+
+        .
+        """
+        login_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
+        self.check_current_url(login_page_url)
 
 #=======================================================================================================================

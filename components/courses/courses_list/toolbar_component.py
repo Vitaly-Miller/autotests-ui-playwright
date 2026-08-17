@@ -62,7 +62,7 @@ class CoursesListToolbarComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
-        ✔ Check [Title]> visible
+        ✔ Check [Title] visible
 
         - ✔ Title - visible
         """

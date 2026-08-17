@@ -65,18 +65,27 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Page]
     # ────────────────────────────────┐
-    def check_page(self):
+    def check_page(
+            self,
+            email: str | None = None,
+            password: str | None = None,
+            is_login_button_enable: bool = False
+    ):
         """
-        ✔ Check [Login page] elements
+        ✔ Check [Login page] all elements
 
         - ✔ Title - visible | - text
-        - ✔ Login Form (unfilled)
-        - ✔ Login button - disabled
+        - ✔ Login form - UI | - value (If is passed)
+        - ✔ Login button - disabled / enabled
         - ✔ Registration link - visible | - text | - URL
+
+        :param email: Email (optional)
+        :param password: Password (optional)
+        :param is_login_button_enable: False/True
         """
         self.check_title()
-        self.form.check_form()
-        self.check_login_btn()
+        self.form.check_login_form(email=email, password=password)
+        self.check_login_btn(enable=is_login_button_enable)
         self.check_registration_link()
     # ────────────────────────────────┘
 
@@ -196,6 +205,16 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         error = f'❌ Login page > [Registration link] - incorrect URL!'
         expect(self.registration_link, error).to_have_attribute('href', self.REGISTRATION_LINK_URL)
+
+
+    def check_registration_link_redirect(self):
+        """
+        ✔ Check [Registration link] redirect Registration page
+
+        .
+        """
+        registration_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
+        self.check_current_url(registration_page_url)
 
 
     # [Alert]

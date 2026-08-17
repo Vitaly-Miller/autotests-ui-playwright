@@ -175,7 +175,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_upload_view_icon_visible(self):
         """
-        ✔ Check [Icon]> visible
+        ✔ Check [Icon] visible
 
         .
         """

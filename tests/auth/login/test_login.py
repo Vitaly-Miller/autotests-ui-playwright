@@ -12,6 +12,7 @@ from pages.dashboard.dashboard_page import DashboardPage
 @pytest.mark.login             # │ Pytest Markers
 @pytest.mark.regression        # ┘
 class TestLogin:
+    @pytest.mark.e2e
     def test_login(self, login_page: LoginPage):
         # User data
         email = 'user.name@gmail.com'
@@ -34,7 +35,7 @@ class TestLogin:
         # login_page.visit(login_page.URL)
 
         # ▶ ACTIONS
-        login_page.form.fill_login_form(email, password)
+        login_page.form.fill_login_form(email=email, password=password)
         login_page.click_login_btn()
 
         # ✔ Expectations

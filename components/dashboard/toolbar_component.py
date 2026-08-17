@@ -45,11 +45,11 @@ class DashboardToolbarComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
-        ✔ Check [Title]> visible
+        ✔ Check [Title] visible
 
         - ✔ Title - visible
         """
-        error = f'❌ Dashboard page > Toolbar > [Title]> - invisible!'
+        error = f'❌ Dashboard page > Toolbar > [Title] - invisible!'
         expect(self.title, error).to_be_visible()
 
     def check_title_text(self):
