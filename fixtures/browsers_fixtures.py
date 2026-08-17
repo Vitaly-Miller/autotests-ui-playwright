@@ -3,6 +3,7 @@ Browsers fixtures
 """
 import pytest
 from playwright.sync_api import Playwright, StorageState, ViewportSize
+from pages.auth.regustration.registration_page import RegistrationPage
 
 #=======================================================================================================================
 # Chromium Page + Storage state 📦
@@ -54,23 +55,17 @@ def storage_state(playwright: Playwright):      # Используем встр�
     context = browser.new_context()             # Создание браузерного окружения
     page = context.new_page()                   # Создаем объект страницы page на базе context
 
-    # ────────────── User Registration ─────────────┐ <— ⚠️ Убрать в отдельную функцию
-    # Open Registration page
-    page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
-
-    # ㉧ LOCATORS
-    email_field = page.get_by_role(role='textbox', name='Email')
-    username_field = page.get_by_role(role='textbox', name='Username')
-    password_field = page.get_by_role(role='textbox', name='Password')
-    registration_btn = page.get_by_role(role='button', name='Registration')
-
-    # ▶ ACTIONS
-    email_field.fill('user.name@gmail.com')
-    username_field.fill('username')
-    password_field.fill('password')
-    registration_btn.click()           # —> Dashboard
-    page.wait_for_url('**/dashboard')  # ❗️Дождаться открытие страницы, что бы гарантировано сформировался Storage state
-    # ──────────────────────────────────────────────┘
+    # ─────────── User Registration ──────────┐
+    registration_page = RegistrationPage(page)  # Инициализация страницы в переменную
+    registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
+    registration_page.form.fill_form(
+        email='user.name@gmail.com',
+        username='username',
+        password='password'
+    )
+    registration_page.click_registration_btn()
+    page.wait_for_url('**/dashboard')           # ❗️Дождаться открытие страницы, что бы гарантировано сформировался Storage state
+    # ────────────────────────────────────────┘
 
     storage_state = context.storage_state()                             # v.1 - Storage state в переменную
     # context.storage_state(path='storage_state.json')                  # v.2 - Storage state в 💾JSON-файл  (optional)

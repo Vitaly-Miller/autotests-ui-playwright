@@ -30,9 +30,9 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         # [Title]
         self.title = page.get_by_test_id('authentication-ui-course-title-text')
         # [Registration button]
-        self.registration_btn = page.get_by_role(role='button', name='Registration')
+        self.registration_btn = page.get_by_test_id('registration-page-registration-button')
         # [Login link]
-        self.login_link = page.get_by_role(role='link', name='Login')
+        self.login_link = page.get_by_test_id('registration-page-login-link')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
