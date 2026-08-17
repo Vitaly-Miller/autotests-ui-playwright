@@ -41,9 +41,9 @@ class CreateCourseFormComponent(BaseComponent):
         self.min_score_field = page.get_by_test_id('create-course-form-min-score-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    # [Form]
+    # Fill [Course form]
     # ─────────────────────────────────────────────────┐
-    def fill_form(
+    def fill_course_form(
             self,
             title: str | None = None,
             estimated_time: str | None = None,
@@ -52,7 +52,7 @@ class CreateCourseFormComponent(BaseComponent):
             min_score: str | None = None
     ):
         """
-        ▶ Fill [Form] fields
+        ▶ Fill [Course form]
 
         - ▶ Fields - fill
 
@@ -88,6 +88,7 @@ class CreateCourseFormComponent(BaseComponent):
         if estimated_time is not None:
             self.estimated_time_field.fill(estimated_time)
 
+
     # [Description field]
     def fill_description_field(self, description: str | None = None):
         """
@@ -119,9 +120,9 @@ class CreateCourseFormComponent(BaseComponent):
             self.min_score_field.fill(min_score)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # [Form]
+    # [Course form]
     # ────────────────────────────────────────────────┐
-    def check_form(
+    def check_course_form(
             self,
             title: str | None = None,
             estimated_time: str | None = None,
@@ -129,7 +130,7 @@ class CreateCourseFormComponent(BaseComponent):
             max_score: str | None = None,
             min_score: str | None = None):
         """
-        ✔ Check [Course Form]
+        ✔ Check [Course form]
 
         If is passed:
         -------------

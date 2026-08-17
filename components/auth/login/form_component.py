@@ -1,6 +1,8 @@
 """
 Login page > [Form] (component)
 """
+from tabnanny import check
+
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
@@ -26,7 +28,11 @@ class LoginFormComponent(BaseComponent):
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Login form]
     # ───────────────────────────────────────────────────┐
-    def fill_login_form(self, email: str, password: str):
+    def fill_login_form(
+            self,
+            email: str | None = None,
+            password: str | None = None
+    ):
         """
         ▶ Fill [Login form]
 
@@ -40,23 +46,24 @@ class LoginFormComponent(BaseComponent):
         self.fill_password_field(password)
     # ───────────────────────────────────────────────────┘
     # Fill [Email field]
-    def fill_email_field(self, email: str):
+    def fill_email_field(self, email: str | None = None):
         """
         ▶ Fill [Email field]
 
         :param email: Email
         """
-        self.email_field.fill(email)
+        if email is not None:
+            self.email_field.fill(email)
 
     # Fill [Password field]
-    def fill_password_field(self, password: str):
+    def fill_password_field(self, password: str | None = None):
         """
         ▶ Fill [Password field]
 
         :param password: Password
         """
-        self.password_field.fill(password)
-
+        if password is not None:
+            self.password_field.fill(password)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Form]

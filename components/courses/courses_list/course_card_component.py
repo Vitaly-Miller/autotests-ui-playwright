@@ -29,31 +29,35 @@ class CourseCardComponent(BaseComponent):
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('course-widget-title-text')
+        self.menu_btn = page.get_by_test_id('course-view-menu-button')
         self.image = page.get_by_test_id('course-preview-image')
         self.max_score = page.get_by_test_id('course-max-score-info-row-view-text')
         self.min_score = page.get_by_test_id('course-min-score-info-row-view-text')
         self.estimated_time = page.get_by_test_id('course-estimated-time-info-row-view-text')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # Click [Menu button]
     def click_menu_btn(self, nth_index: int = 0):
         """
         ▶ Click [Menu button]
 
-        - Button - ✔ visible | - ▶ click
+        - ✔ Menu button - visible
+        - ▶ Menu button - click
 
-        :param nth_index: For use: locator.nth(nth_index) - (default: 0)
+        :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
-        self.menu.click_menu_btn(nth_index)
+        self.check_menu_btn_visible(nth_index)
+        self.menu_btn.nth(nth_index).click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ───────────────────────────────────────────────────────────────────────┐
     def check_course_card(
             self,
-            nth_index: int,
             title: str,
             max_score: str,
             min_score: str,
-            estimated_time: str
+            estimated_time: str,
+            nth_index: int = 0
     ):
         """
         ✔ Check [Course View]
@@ -65,39 +69,19 @@ class CourseCardComponent(BaseComponent):
         - ✔ Min score - visible | - text
         - ✔ Estimated time - visible | - text
 
-        :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         :param title: Course title
         :param max_score: Max score
         :param min_score: Min score
         :param estimated_time: Estimated time
+        :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.menu.check_menu_btn(nth_index)
+        self.check_menu_btn(nth_index)
         self.check_image(nth_index)
         self.check_title(nth_index=nth_index, title=title)
         self.check_max_score(nth_index=nth_index, max_score=max_score)
         self.check_min_score(nth_index=nth_index, min_score=min_score)
         self.check_estimated_time(nth_index=nth_index, estimated_time=estimated_time)
     # ───────────────────────────────────────────────────────────────────────┘
-
-    # Image
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    def check_image(self, nth_index: int = 0):
-        """
-        ✔ Check [Image]
-
-        :param nth_index: For use: locator.nth(nth_index) - (default: 0)
-        """
-        self.check_image_visible(nth_index)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    def check_image_visible(self, nth_index: int = 0):
-        """
-        ✔ Check [Image] visible
-
-        :param nth_index: For use: locator.nth(nth_index) - (default: 0)
-        """
-        error = f'❌ Courses list page > Course View > [Image] (nth-index: {nth_index}) - invisible!'
-        expect(self.image.nth(nth_index), error).to_be_visible()
-
 
     # Title
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
@@ -132,6 +116,59 @@ class CourseCardComponent(BaseComponent):
         """
         error = f'❌ Courses list page > Course View > [Title] (nth-index: {nth_index}) - incorrect text!'
         expect(self.title.nth(nth_index), error).to_have_text(title)
+
+
+    # [Menu button]
+    # ───────────────────────────────────────────┐
+    def check_menu_btn(self, nth_index: int = 0):
+        """
+        ✔ Check [Menu button]
+
+        - ✔ Button - visible
+        - ✔ Button - enabled
+
+        :param nth_index: nth_index —> for use in: locator.nth(nth_index)
+        """
+        self.check_menu_btn_visible(nth_index)
+        self.check_menu_btn_enabled(nth_index)
+    # ───────────────────────────────────────────┘
+    def check_menu_btn_visible(self, nth_index: int = 0):
+        """
+        ✔ Check [Menu button] visible
+
+        :param nth_index: nth_index —> for use in: locator.nth(nth_index)
+        """
+        error = f'❌ Courses list page > Course View > [Menu button] (nth_index: {nth_index}) - invisible!'
+        expect(self.menu_btn.nth(nth_index), error).to_be_visible()
+
+    def check_menu_btn_enabled(self, nth_index: int = 0):
+        """
+        ✔ Check [Menu button] enabled
+
+        :param nth_index: nth_index —> for use in: locator.nth(nth_index)
+        """
+        error = f'❌ Courses list page > Course View > [Menu button] (nth_index: {nth_index}) - disabled!'
+        expect(self.menu_btn.nth(nth_index), error).to_be_enabled()
+
+
+    # Image
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    def check_image(self, nth_index: int = 0):
+        """
+        ✔ Check [Image]
+
+        :param nth_index: For use: locator.nth(nth_index) - (default: 0)
+        """
+        self.check_image_visible(nth_index)
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    def check_image_visible(self, nth_index: int = 0):
+        """
+        ✔ Check [Image] visible
+
+        :param nth_index: For use: locator.nth(nth_index) - (default: 0)
+        """
+        error = f'❌ Courses list page > Course View > [Image] (nth-index: {nth_index}) - invisible!'
+        expect(self.image.nth(nth_index), error).to_be_visible()
 
 
     # Max score

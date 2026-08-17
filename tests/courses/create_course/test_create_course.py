@@ -29,7 +29,7 @@ class TestCreateCourse:
 
         # ▶ ACTIONS (Create course)
         create_course_page.image_upload_widget.upload_image('image_1.jpg')  # Загрузка картинки курса
-        create_course_page.form.fill_form(                                  # Заполнение полей формы <Create Course>
+        create_course_page.form.fill_course_form(                                  # Заполнение полей формы <Create Course>
             title=course_title,
             estimated_time=course_estimated_time,
             description=course_description,

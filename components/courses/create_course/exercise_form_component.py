@@ -29,11 +29,11 @@ class CreateCourseExerciseFormComponent(BaseComponent):
     # -------------------------------------------- ㉤ LOCATORS {dynamic} (def)-------------------------------------------
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ⚠️ NOT USING ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╮
     # [Title field]
-    def _title_field(self, index: int) -> Locator:
+    def _title_field(self, index: int = 0) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-form-title-{index}-input')
 
     # [Description field]
-    def _description_field(self, index: int) -> Locator:
+    def _description_field(self, index: int = 0) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╯
 
@@ -41,7 +41,12 @@ class CreateCourseExerciseFormComponent(BaseComponent):
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Form]
     # ─────────────────────────────────────────────────────────────────────┐
-    def fill_exercise_form(self, index: int, title: str, description: str):
+    def fill_exercise_form(
+            self,
+            index: int = 0,
+            title: str | None = None,
+            description: str | None = None
+    ):
         """
         - ▶ Fill [Exercise form]
 
@@ -52,37 +57,37 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         :param title: Title
         :param description: Description
         """
-        self.title_field(index).fill(title)
-        self.description_field(index).fill(description)
+        self.fill_title_field(index=index, title=title)
+        self.fill_description_field(index=index, description=description)
     # ─────────────────────────────────────────────────────────────────────┘
-
     # Fill [Title field]
-    def fill_title_field(self, index: int, title: str):
+    def fill_title_field(self, index: int = 0, title: str | None = None):
         """
         ▶ Fill [Title field]
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         :param title: Title
         """
-        self.description_field(index).fill(title)
+        if title is not None:
+            self.title_field(index).fill(title)
 
     # Fill [Description field]
-    def fill_description_field(self, index: int, description: str):
+    def fill_description_field(self, index: int = 0, description: str | None = None):
         """
         ▶ Fill [Description field]
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         :param description: Description
         """
-        self.description_field(index).fill(description)
-
+        if description is not None:
+            self.description_field(index).fill(description)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Form]
     # ───────────────────────────────────────────────────────────────────┐
     def check_exercise_form(
             self,
-            index: int,
+            index: int = 0,
             title: str | None = None,
             description: str | None = None
     ):
@@ -109,7 +114,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
     # [Title field]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    def check_title_field(self, index: int, title: str | None = None):
+    def check_title_field(self, index: int = 0, title: str | None = None):
         """
         ✔ Check [Title field]
 
@@ -133,7 +138,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
             self.check_title_field_name(index)
             self.check_title_field_value(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    def check_title_field_visible(self, index: int):
+    def check_title_field_visible(self, index: int = 0):
         """
         ✔ Check [Title field] visible
 
@@ -142,7 +147,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         error = f'❌ Create course page > Exercises > Exercise > Form > [Title field] - invisible!'
         expect(self.title_field(index), error).to_be_visible()
 
-    def check_title_field_name(self, index: int):
+    def check_title_field_name(self, index: int = 0):
         """
         ✔ Check [Title field] name
 
@@ -151,7 +156,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         error = f'❌ Create course page > Exercises > Exercise > Form > [Title field] - incorrect name!'
         expect(self.title_field(index), error).to_have_accessible_name(self.TITLE_FIELD_NAME)
 
-    def check_title_field_value(self, index: int, title: str = 'Exercise title'):
+    def check_title_field_value(self, index: int = 0, title: str = 'Exercise title'):
         """
         ✔ Check [Title field] value
 
@@ -171,7 +176,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
     # [Description field]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    def check_description_field(self, index: int, description: str | None = None):
+    def check_description_field(self, index: int = 0, description: str | None = None):
         """
         ✔ Check [Description field]
 
@@ -195,7 +200,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
             self.check_description_field_name(index)
             self.check_description_field_value(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    def check_description_field_visible(self, index: int):
+    def check_description_field_visible(self, index: int = 0):
         """
         ✔ Check [Description field] visible
 
@@ -204,7 +209,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         error = f'❌ Create course page > Exercises > Exercise > Form > [Description field] - invisible!'
         expect(self.description_field(index), error).to_be_visible()
 
-    def check_description_field_name(self, index: int):
+    def check_description_field_name(self, index: int = 0):
         """
         ✔ Check [Description field] name
 
@@ -213,7 +218,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         error = f'❌ Create course page > Exercises > Exercise > Form > [Description field] - incorrect name!'
         expect(self.description_field(index), error).to_have_accessible_name(self.DESCRIPTION_FIELD_NAME)
 
-    def check_description_field_value(self, index: int, description: str = 'Exercise description'):
+    def check_description_field_value(self, index: int = 0, description: str = 'Exercise description'):
         """
         ✔ Check [Description field] value
 
