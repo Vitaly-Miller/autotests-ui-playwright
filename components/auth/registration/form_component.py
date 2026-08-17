@@ -27,16 +27,16 @@ class RegistrationFormComponent(BaseComponent):
         self.password_field = page.get_by_test_id('registration-form-password-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    # [Form]
+    # Fill [Registration form]
     # ─────────────────────────────────────────────────┐
-    def fill_form(
+    def fill_registration_form(
             self,
             email: str | None = None,
             username: str | None = None,
             password: str | None = None
     ):
         """
-        ▶ Fill [Form] fields
+        ▶ Fill [Registration form] fields
 
         - ▶ Email field - fill
         - ▶ Username field - fill
@@ -50,7 +50,7 @@ class RegistrationFormComponent(BaseComponent):
         self.fill_username_field(username)
         self.fill_password_field(password)
     # ─────────────────────────────────────────────────┘
-    # [Email field]
+    # Fill [Email field]
     def fill_email_field(self, email: str | None = None):
         """
         ▶ Fill [Email field]
@@ -60,7 +60,7 @@ class RegistrationFormComponent(BaseComponent):
         if email is not None:
             self.email_field.fill(email)
 
-    # [Username field]
+    # Fill [Username field]
     def fill_username_field(self, username: str | None = None):
         """
         ▶ Fill [Username field]
@@ -70,7 +70,7 @@ class RegistrationFormComponent(BaseComponent):
         if username is not None:
             self.username_field.fill(username)
 
-    # [Password field]
+    # Fill [Password field]
     def fill_password_field(self, password: str | None = None):
         """
         ▶ Fill [Password field]

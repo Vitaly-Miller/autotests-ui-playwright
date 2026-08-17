@@ -8,7 +8,7 @@ from pages.auth.regustration.registration_page import RegistrationPage
 #=======================================================================================================================
 # Chromium Page + Storage state 📦
 @pytest.fixture
-def chromium_page_with_storage_state(storage_state: StorageState, playwright: Playwright): # Используем фикстуру storage_state с авторизацией + встроенную фикстуру playwright из pytest_playwright plugin
+def page(storage_state: StorageState, playwright: Playwright): # Используем фикстуру storage_state с авторизацией + встроенную фикстуру playwright из pytest_playwright plugin
     """
     Fixture for authorized user (registered)
 
@@ -19,15 +19,12 @@ def chromium_page_with_storage_state(storage_state: StorageState, playwright: Pl
     browser = playwright.chromium.launch(                 # Создаем объект браузера на движке chromium c параметрами:
         channel='chromium',                               # - UI оболочка: 'chromium', 'chrome', 'msedge'
         headless=False,                                   # - True/False — НЕ/Показывать браузер
-        slow_mo=500                                       # - Action delay (ms)
-
-    )
+        slow_mo=500)                                      # - Action delay (ms)
     context = browser.new_context(                        # Создание браузерного окружения с Storage state:
         storage_state=storage_state,               # ┐    # - Storage state из фикстуры
         # storage_state='storage_state.json',      # ┘    # - Storage state из JSON-файла (optional)
         locale='en-US',                                   # - Website language (locale)
-        viewport=ViewportSize(width=1100, height=1200),   # - Window size
-    )
+        viewport=ViewportSize(width=1100, height=1200))   # - Window size
     page = context.new_page()   # Создаем объект страницы page на базе context
 
     try:
@@ -48,21 +45,17 @@ def storage_state(playwright: Playwright):      # Используем встр�
     :param playwright: Playwright
     :return: yield - StorageState / storage_state.json
     """
-    browser = playwright.chromium.launch(       # Создаем объект браузера на движке chromium c параметрами:
-        headless=True,                          # - True/False — НЕ/Показывать браузер
-        slow_mo=None                            # - Action delay (ms)
-    )
+    browser = playwright.chromium.launch()      # Создаем объект браузера на движке chromium c параметрами:
     context = browser.new_context()             # Создание браузерного окружения
     page = context.new_page()                   # Создаем объект страницы page на базе context
 
     # ─────────── User Registration ──────────┐
     registration_page = RegistrationPage(page)  # Инициализация страницы в переменную
     registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
-    registration_page.form.fill_form(
+    registration_page.form.fill_registration_form(
         email='user.name@gmail.com',
         username='username',
-        password='password'
-    )
+        password='password')
     registration_page.click_registration_btn()
     page.wait_for_url('**/dashboard')           # ❗️Дождаться открытие страницы, что бы гарантировано сформировался Storage state
     # ────────────────────────────────────────┘
@@ -72,11 +65,11 @@ def storage_state(playwright: Playwright):      # Используем встр�
     # storage_state = context.storage_state(path='storage_state.json')  # v.3 - Storage state в переменную + 💾JSON-файл  (optional)
 
     try:
-        yield storage_state         # Передаем Storage state
+        yield storage_state          # Передаем Storage state
 
-    finally:                        # Гарантия закрытия, если упадет.
-        context.close()             # Закрываем context!
-        browser.close()             # Закрываем browser!
+    finally:                         # Гарантия закрытия, если упадет.
+        context.close()              # Закрываем context!
+        browser.close()              # Закрываем browser!
 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -89,22 +82,20 @@ def page_guest(playwright: Playwright):   # Чистый (без доп. фик�
     :param playwright: Playwright
     :return: yield page: Page
     """
-    browser = playwright.chromium.launch(         # Создаем объект браузера на движке chromium c параметрами:
-        channel='chromium',                       # - UI оболочка: 'chromium', 'chrome', 'opera'
-        headless=False,                           # - True/False — НЕ/Показывать браузер
-        slow_mo=500                               # - Action delay (ms)
-    )
+    browser = playwright.chromium.launch(                 # Создаем объект браузера на движке chromium c параметрами:
+        channel='chromium',                               # - UI оболочка: 'chromium', 'chrome', 'opera'
+        headless=False,                                   # - True/False — НЕ/Показывать браузер
+        slow_mo=500)                                      # - Action delay (ms)
     context = browser.new_context(                        # Создание браузерного окружения (NO Storage state):
         locale='en-US',                                   # - Website language (locale)
-        viewport=ViewportSize(width=1100, height=1200),   # - Window size                                  # - Base URL
-    )
-    page = context.new_page()   # Создаем объект page на базе context
+        viewport=ViewportSize(width=1100, height=1200))   # - Window size
+    page = context.new_page()        # Создаем объект page на базе context
 
     try:
-        yield page              # Передаем page (на базе context)
+        yield page                   # Передаем page (на базе context)
 
-    finally:                    # Гарантия закрытия, если упадет.
-        context.close()         # Закрываем context!
-        browser.close()         # Закрываем browser!
+    finally:                         # Гарантия закрытия, если упадет.
+        context.close()              # Закрываем context!
+        browser.close()              # Закрываем browser!
 
 #=======================================================================================================================

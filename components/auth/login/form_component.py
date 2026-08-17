@@ -24,15 +24,15 @@ class LoginFormComponent(BaseComponent):
         self.password_field = page.get_by_test_id('login-form-password-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    # Fill [Form]
+    # Fill [Login form]
     # ─────────────────────────────────────────────────┐
-    def fill_form(
+    def fill_login_form(
             self,
             email: str | None = None,
             password: str | None = None
     ):
         """
-        ▶ Fill [Form] fields
+        ▶ Fill [Login form] fields
 
         - ▶ Email field - fill
         - ▶ Password field - fill

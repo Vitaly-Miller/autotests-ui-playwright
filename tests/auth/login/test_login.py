@@ -4,14 +4,41 @@ Test login
 
 import pytest
 from pages.auth.login.login_page import LoginPage
+from pages.auth.regustration.registration_page import RegistrationPage
+from pages.dashboard.dashboard_page import DashboardPage
 
 #=======================================================================================================================
 @pytest.mark.auth              # ┐
 @pytest.mark.login             # │ Pytest Markers
 @pytest.mark.regression        # ┘
 class TestLogin:
-    ...
+    def test_login(self, login_page: LoginPage):
+        # User data
+        email = 'user.name@gmail.com'
+        username = 'username'
+        password = 'password'
 
+        # Pages initialization
+        registration_page = RegistrationPage(login_page.page)
+        dashboard_page = DashboardPage(login_page.page)
+
+        # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ Precondition ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+        # New user registration
+        registration_page.visit(registration_page.URL)                            # ⿹ Open page
+        registration_page.form.fill_registration_form(email, username, password)  # ▶︎ Fill registration form
+        registration_page.click_registration_btn()                                # ▶︎ Click registration button
+        dashboard_page.sidebar.click_logout()                                     # ▶︎ Click Sidebar Logout item
+        # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+
+        # ⿹ Open page (не требуется - т.к. уже на странице)
+        # login_page.visit(login_page.URL)
+
+        # ▶ ACTIONS
+        login_page.form.fill_login_form(email, password)
+        login_page.click_login_btn()
+
+        # ✔ Expectations
+        login_page.check_current_url(dashboard_page.URL)
 
 
 @pytest.mark.auth              # ┐
@@ -38,7 +65,7 @@ class TestLoginNegative:
         login_page.check_page()
 
         # ▶ ACTIONS
-        login_page.form.fill_form(email=email, password=password)
+        login_page.form.fill_login_form(email=email, password=password)
         login_page.click_login_btn()
 
         # ✔️EXPECTATIONS

@@ -34,25 +34,25 @@ class SidebarComponent(BaseComponent):
         self.logout_item = SidebarItemComponent(page=page, identifier=self.LOGOUT_IDENTIFIER)
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    def click_dashboard_item(self):
+    def click_dashboard(self):
         """
-        ▶ Click [Dashboard item]
+        ▶ Click [Dashboard]
 
         - Button - ✔ visible -> ▶ click
         """
         self.dashboard_item.click_btn()
 
-    def click_courses_item(self):
+    def click_courses(self):
         """
-        ▶ Click [Courses item]
+        ▶ Click [Courses]
 
         - Button - ✔ visible -> ▶ click
         """
         self.courses_item.click_btn()
 
-    def click_logout_item(self):
+    def click_logout(self):
         """
-        ▶ Click [Logout item]
+        ▶ Click [Logout]
 
         - Button - ✔ visible -> ▶ click
         """

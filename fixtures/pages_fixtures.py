@@ -35,35 +35,35 @@ def registration_page(page_guest: Page) -> RegistrationPage:
 
 #---------------------------------------- Chromium Pages (+ Storage State 📦) ------------------------------------------
 @pytest.fixture
-def dashboard_page(chromium_page_with_storage_state: Page) -> DashboardPage:
+def dashboard_page(page: Page) -> DashboardPage:
     """
     Фикстура инициализации класса DashboardPage()
 
-    :param chromium_page_with_storage_state: Фикстура chromium_page (with Storage State)
-    :return: DashboardPage(page=chromium_page_with_storage_state)
+    :param page: Фикстура chromium_page (with Storage State)
+    :return: DashboardPage(page=page)
     """
-    return DashboardPage(page=chromium_page_with_storage_state)
+    return DashboardPage(page=page)
 
 
 @pytest.fixture
-def courses_list_page(chromium_page_with_storage_state: Page) -> CoursesListPage:
+def courses_list_page(page: Page) -> CoursesListPage:
     """
     Фикстура инициализации класса CoursesListPage()
 
-    :param chromium_page_with_storage_state: Фикстура chromium_page (with Storage State)
-    :return: CoursesListPage(page=chromium_page_with_storage_state)
+    :param page: Фикстура chromium_page (with Storage State)
+    :return: CoursesListPage(page=page)
     """
-    return CoursesListPage(page=chromium_page_with_storage_state)
+    return CoursesListPage(page=page)
 
 
 @pytest.fixture
-def create_course_page(chromium_page_with_storage_state: Page) -> CreateCoursePage:
+def create_course_page(page: Page) -> CreateCoursePage:
     """
     Фикстура инициализации класса CreateCoursePage()
 
-    :param chromium_page_with_storage_state: Фикстура chromium_page (with Storage State)
-    :return: CreateCoursePage(page=chromium_page_with_storage_state)
+    :param page: Фикстура chromium_page (with Storage State)
+    :return: CreateCoursePage(page=page)
     """
-    return CreateCoursePage(page=chromium_page_with_storage_state)
+    return CreateCoursePage(page=page)
 
 #=======================================================================================================================
