@@ -20,7 +20,7 @@ class Button(BaseElement):
         """
         locator = self.get_locator(nth, **kwargs)          # инициализация локатора
         error = f'❌ Button - disabled!'
-        expect(locator, error).to_be_enabled()        # Playwright expect
+        expect(locator, error).to_be_enabled()                      # Playwright expect
 
     # [Disabled]
     def check_disabled(self, nth: int = 0, **kwargs):               # принимает именованные параметры для подстановки в шаблон
@@ -32,7 +32,7 @@ class Button(BaseElement):
         """
         locator = self.get_locator(nth, **kwargs)          # инициализация локатора
         error = f'❌ Button - enabled!'
-        expect(locator, error).to_be_disabled()       # Playwright expect
+        expect(locator, error).to_be_disabled()                     # Playwright expect
 
 
 #=======================================================================================================================

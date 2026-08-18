@@ -39,13 +39,13 @@ class BaseElement:
         :param kwargs: Additional named parameters for create locator
         :return: Locator by .get_by_test_id
         """
-        locator = self.locator.format(**kwargs)                              # подставляет значения в шаблон локатора
+        locator = self.locator.format(**kwargs)                                    # подставляет значения в шаблон локатора
         locator_get_by_test_id = self.page.get_by_test_id(locator).nth(nth_index)  # создаёт локатор по data-testid c ntx-index
         return locator_get_by_test_id
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # [Click]
-    def click(self, nth_index: int = 0, **kwargs):               # принимает именованные параметры для подстановки в шаблон
+    def click(self, nth_index: int = 0, **kwargs):                   # принимает именованные параметры для подстановки в шаблон
         """
         ▶ Click element
 
@@ -57,7 +57,7 @@ class BaseElement:
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Visible]
-    def check_visible(self, nth_index: int = 0, **kwargs):       # принимает именованные параметры для подстановки в шаблон
+    def check_visible(self, nth_index: int = 0, **kwargs):           # принимает именованные параметры для подстановки в шаблон
         """
         ✔ Check element is visible
 
@@ -66,7 +66,7 @@ class BaseElement:
         """
         locator = self.get_locator(nth_index, **kwargs)     # инициализация локатора
         error = '❌Element - invisible!'
-        expect(locator, error).to_be_visible()             # Playwright expect
+        expect(locator, error).to_be_visible()                       # Playwright expect
 
     # [Text]
     def check_text(self, element_text: str, nth_index: int = 0, **kwargs):  # принимает текст и именованные параметры для подстановки в шаблон
@@ -77,9 +77,9 @@ class BaseElement:
         :param element_text: Expected element text
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index, **kwargs)                # инициализация локатора
+        locator = self.get_locator(nth_index, **kwargs)            # инициализация локатора
         error = '❌Element - incorrect text!'
-        expect(locator, error).to_have_text(element_text)             # Playwright expect
+        expect(locator, error).to_have_text(element_text)                   # Playwright expect
 
 
 #=======================================================================================================================

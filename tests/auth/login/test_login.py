@@ -53,7 +53,7 @@ class TestLoginNegative:
             ('user.name@gmail.com', '  '),        # - Invalid password
             ('  ', 'password')                    # - Invalid email
         ])
-    def test_login_with_wrong_email_or_password_negative(
+    def test_login_with_wrong_email_or_password(
             self,
             login_page: LoginPage,    # Принимает фикстуру login_page
             email: str,               # Принимает email     ┐ из parametrize

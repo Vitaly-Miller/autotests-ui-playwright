@@ -34,7 +34,7 @@ class FieldInput(BaseElement):
         :param kwargs: Additional named parameters for create locator
         """
         locator = self.get_locator(nth_index=nth_index, **kwargs)  # инициализация локатора
-        locator.fill(value)  # Playwright action
+        locator.fill(value)                                        # Playwright action
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Name]
