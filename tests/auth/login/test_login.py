@@ -33,13 +33,13 @@ class TestLogin:
         # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ◁ PRE-CONDITION ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
         # New user registration
         registration_page.open(registration_page.URL)                             # ⿹ Open page
-        registration_page.form.fill_registration_form(email, username, password)  # ▶︎ Fill registration form
+        registration_page.form.fill(email, username, password)  # ▶︎ Fill registration form
         registration_page.click_registration_btn()                                # ▶︎ Click registration button
         dashboard_page.sidebar.click_logout()                                     # ▶︎ Click Sidebar Logout item
         # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
         # ▶ ACTIONS
-        login_page.form.fill_login_form(email=email, password=password)
+        login_page.form.fill(email=email, password=password)
         login_page.click_login_btn()
 
         # ✔ Expectations

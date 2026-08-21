@@ -32,7 +32,7 @@ class TestRegistration:
         registration_page.check()
 
         # ▶ ACTIONS
-        registration_page.form.fill_registration_form(email=email, username=username, password=password)
+        registration_page.form.fill(email=email, username=username, password=password)
         registration_page.click_registration_btn()
 
         # ✔️EXPECTATIONS

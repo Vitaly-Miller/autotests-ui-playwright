@@ -28,7 +28,7 @@ class LoginFormComponent(BaseComponent):
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Login form]
     # ───────────────────────────────────────────────────┐
-    def fill_login_form(
+    def fill(
             self,
             email: str | None = None,
             password: str | None = None

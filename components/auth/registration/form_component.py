@@ -29,7 +29,7 @@ class RegistrationFormComponent(BaseComponent):
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Registration form]
     # ─────────────────────────────────────────────────┐
-    def fill_registration_form(
+    def fill(
             self,
             email: str | None = None,
             username: str | None = None,

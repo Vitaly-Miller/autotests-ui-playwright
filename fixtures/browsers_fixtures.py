@@ -52,7 +52,7 @@ def storage_state(playwright: Playwright):      # Используем встр�
     # ─────────── User Registration ──────────┐
     registration_page = RegistrationPage(page)  # Инициализация страницы в переменную
     registration_page.open('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
-    registration_page.form.fill_registration_form(
+    registration_page.form.fill(
         email='user.name@gmail.com',
         username='username',
         password='password')
