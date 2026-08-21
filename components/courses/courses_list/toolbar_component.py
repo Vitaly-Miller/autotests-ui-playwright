@@ -37,7 +37,7 @@ class CoursesListToolbarComponent(BaseComponent):
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
     # ─────────────────────────────────┐
-    def check_toolbar(self):
+    def check(self):
         """
         ✔ Check [Toolbar]
 

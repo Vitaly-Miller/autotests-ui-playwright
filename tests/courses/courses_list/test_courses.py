@@ -25,9 +25,9 @@ class TestCourses:
         courses_list_page.open(courses_list_page.URL)
 
         # ✔️EXPECTATIONS
-        courses_list_page.navbar.check_navbar(username)
-        courses_list_page.sidebar.check_sidebar()
-        courses_list_page.toolbar.check_toolbar()
+        courses_list_page.navbar.check(username)
+        courses_list_page.sidebar.check()
+        courses_list_page.toolbar.check()
         courses_list_page.check_empty_view()
 
         # ╴╴╴╴╴╴╴╴╴╴ ⏳╴╴╴╴╴╴╴╴╴╴╴┐

@@ -43,7 +43,7 @@ class CreateCourseFormComponent(BaseComponent):
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Course form]
     # ─────────────────────────────────────────────────┐
-    def fill_course_form(
+    def fill(
             self,
             title: str | None = None,
             estimated_time: str | None = None,

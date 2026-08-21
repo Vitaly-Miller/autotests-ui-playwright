@@ -24,6 +24,6 @@ class TestDashboard:
         dashboard_page.open(dashboard_page.URL)
 
         # ✔️EXPECTATIONS
-        dashboard_page.check_page(username)  # <— 30 внутренних проверок
+        dashboard_page.check(username)  # <— 30 внутренних проверок
 
 #=======================================================================================================================

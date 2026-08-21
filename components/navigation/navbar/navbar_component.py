@@ -27,7 +27,7 @@ class NavbarComponent(BaseComponent):
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Navbar]
     # ────────────────────────────────────┐
-    def check_navbar(self, username: str):
+    def check(self, username: str):
         """
         ✔ Check [Navbar]
 

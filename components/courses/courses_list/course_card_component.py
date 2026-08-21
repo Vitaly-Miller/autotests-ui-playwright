@@ -24,7 +24,7 @@ class CourseCardComponent(BaseComponent):
         self.MIN_SCORE_TEXT = lambda min_score: f'Min score: {min_score}'
         self.ESTIMATED_TIME_TEXT = lambda estimated_time: f'Estimated time: {estimated_time}'
 
-        # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
+        # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
         self.menu = CourseCardMenuComponent(page)
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
@@ -51,7 +51,7 @@ class CourseCardComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # ───────────────────────────────────────────────────────────────────────┐
-    def check_course_card(
+    def check(
             self,
             title: str,
             max_score: str,

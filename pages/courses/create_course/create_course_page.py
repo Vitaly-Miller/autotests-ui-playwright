@@ -26,7 +26,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.EXERCISES_EMPTY_VIEW_TITLE = 'There is no exercises'
         self.EXERCISES_EMPTY_VIEW_DESCRIPTION = 'Click on "Create exercise" button to create new exercise'
 
-        # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
+        # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
         # <Bars>
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
@@ -43,7 +43,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # <Exercises [Empty view] (component)
+    # <Exercises [Empty view]> (component)
     # ───────────────────────────────────────────────────┐
     def check_exercises_empty_view(self):
         """

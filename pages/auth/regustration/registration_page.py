@@ -22,7 +22,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.LOGIN_LINK_TEXT = 'Login'
         self.LOGIN_LINK_URL = '#/auth/login'
 
-        # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
+        # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
         # <Registration form>
         self.form = RegistrationFormComponent(page)
 
@@ -61,7 +61,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Page]
     # ──────────────────────────────────────┐
-    def check_page(self):
+    def check(self):
         """
         ✔ Check [Registration page] elements
 

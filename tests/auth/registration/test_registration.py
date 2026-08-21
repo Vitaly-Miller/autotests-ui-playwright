@@ -29,7 +29,7 @@ class TestRegistration:
         registration_page.open(registration_page.URL)
 
         # ✔️PRE-EXPECTATIONS (Before actions)
-        registration_page.check_page()
+        registration_page.check()
 
         # ▶ ACTIONS
         registration_page.form.fill_registration_form(email=email, username=username, password=password)
@@ -59,7 +59,7 @@ class TestRegistration:
 
         # ✔️EXPECTATIONS
         registration_page.check_login_link_redirect()
-        login_page.check_page(email='', password='')
+        login_page.check(email='', password='')
 
 
 #=======================================================================================================================

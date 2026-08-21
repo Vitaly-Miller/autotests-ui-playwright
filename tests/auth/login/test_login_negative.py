@@ -34,7 +34,7 @@ class TestLoginNegative:
         login_page.open(login_page.URL)
 
         # ✔️EXPECTATIONS (Before fill Login form)
-        login_page.check_page()
+        login_page.check()
 
         # ▶ ACTIONS
         login_page.form.fill_login_form(email=email, password=password)

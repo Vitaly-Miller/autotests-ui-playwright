@@ -26,7 +26,7 @@ class TestLogin:
         username = 'username'
         password = 'password'
 
-        # ⿴ PAGES OBJECTS
+        # ⿰ PAGES OBJECTS
         registration_page = RegistrationPage(login_page.page)
         dashboard_page = DashboardPage(login_page.page)
 

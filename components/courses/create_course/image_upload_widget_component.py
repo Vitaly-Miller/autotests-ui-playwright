@@ -28,7 +28,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         self.PREVIEW_EMPTY_VIEW_TITLE_TEXT = 'Tap on "Upload image" button to select file'
         self.PREVIEW_EMPTY_VIEW_DESCRIPTION_TEXT = 'Recommended file size 540X300'
 
-        # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
+        # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
         # Preview [Empty view]
         self.preview_empty_view = EmptyViewComponent(page=page, identifier='create-course-preview')
 
@@ -75,7 +75,8 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Image Upload Widget]
-    def check_image_upload_widget(self, is_image_uploaded: bool = False):
+    # ───────────────────────────────────────────────────────┐
+    def check(self, is_image_uploaded: bool = False):
         """
         ✔ Check [Image Upload Widget]
 
@@ -86,6 +87,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         """
         self.check_preview(is_image_uploaded)
         self.check_upload_view(is_image_uploaded)
+    # ───────────────────────────────────────────────────────┘
 
     # [Preview]
     # ───────────────────────────────────────────────────────┐

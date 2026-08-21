@@ -23,7 +23,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.EMPTY_VIEW_TITLE = 'There is no results'
         self.EMPTY_VIEW_DESCRIPTION = 'Results from the load test pipeline will be displayed here'
 
-        # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
+        # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
         # <Bars>
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
@@ -44,7 +44,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         - ✔ Title - visible | - text
         - ✔ Description - visible | - text
         """
-        self.empty_view.check_empty_view(
+        self.empty_view.check(
             title=self.EMPTY_VIEW_TITLE,
             description=self.EMPTY_VIEW_DESCRIPTION)
 

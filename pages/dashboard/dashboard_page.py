@@ -33,7 +33,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         # self.SCORES_WIDGET_CHART_TYPE = 'scatter'
         # self.SCORES_WIDGET_TITLE = 'Scores'
 
-        # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
+        # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
         # <Bars>
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
@@ -49,7 +49,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Page]
     # ─────────────────────────────────────┐
-    def check_page(self, username: str):
+    def check(self, username: str):
         """
         ✔ Check [Dashboard page] elements
 
@@ -58,9 +58,9 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         - ✔ Toolbar
         - ✔ Widgets
         """
-        self.navbar.check_navbar(username)
-        self.sidebar.check_sidebar()
-        self.toolbar.check_toolbar()
+        self.navbar.check(username)
+        self.sidebar.check()
+        self.toolbar.check()
         self.check_widgets()
     # ─────────────────────────────────────┘
 

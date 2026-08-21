@@ -41,7 +41,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Form]
     # ─────────────────────────────────────────────────────────────────────┐
-    def fill_exercise_form(
+    def fill(
             self,
             index: int = 0,
             title: str | None = None,
@@ -85,7 +85,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Form]
     # ───────────────────────────────────────────────────────────────────┐
-    def check_exercise_form(
+    def check(
             self,
             index: int = 0,
             title: str | None = None,

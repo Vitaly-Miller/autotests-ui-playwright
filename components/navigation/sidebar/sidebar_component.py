@@ -28,7 +28,7 @@ class SidebarComponent(BaseComponent):
         self.COURSES_TITLE = 'Courses'
         self.LOGOUT_TITLE = 'Logout'
 
-        # --------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
+        # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
         self.dashboard_item = SidebarItemComponent(page=page, identifier=self.DASHBOARD_IDENTIFIER)
         self.courses_item = SidebarItemComponent(page=page, identifier=self.COURSES_IDENTIFIER)
         self.logout_item = SidebarItemComponent(page=page, identifier=self.LOGOUT_IDENTIFIER)
@@ -61,7 +61,7 @@ class SidebarComponent(BaseComponent):
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Sidebar]
     # ────────────────────────────────────────────────────────────┐
-    def check_sidebar(self):
+    def check(self):
         """
         ✔ Check [Sidebar]
 
@@ -69,9 +69,9 @@ class SidebarComponent(BaseComponent):
         - ✔ Courses item - visible | Icon - visible | Title - visible | - text
         - ✔ Logout item - visible | Icon - visible | Title - visible | - text
         """
-        self.dashboard_item.check_item(title=self.DASHBOARD_TITLE)
-        self.courses_item.check_item(title=self.COURSES_TITLE)
-        self.logout_item.check_item(title=self.LOGOUT_TITLE)
+        self.dashboard_item.check(title=self.DASHBOARD_TITLE)
+        self.courses_item.check(title=self.COURSES_TITLE)
+        self.logout_item.check(title=self.LOGOUT_TITLE)
     # ────────────────────────────────────────────────────────────┘
 
 

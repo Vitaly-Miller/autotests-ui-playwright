@@ -52,7 +52,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
     # ───────────────────────────────────────┐
-    def check_toolbar(self, index: int):
+    def check(self, index: int):
         """
         ✔ Check [Toolbar]
 

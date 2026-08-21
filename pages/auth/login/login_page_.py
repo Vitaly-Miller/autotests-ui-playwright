@@ -31,7 +31,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         # [Alerts]
         self.ALERT_TEXT = 'Wrong email or password'
 
-        # ----------------------------------------------- ⿴ COMPONENTS ------------------------------------------------
+        # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
         # <Form>
         self.form = LoginFormComponent(page)
 
@@ -72,7 +72,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Page]
     # ────────────────────────────────┐
-    def check_page(self):
+    def check(self):
         """
         ✔ Check [Login page] elements
 

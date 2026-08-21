@@ -43,7 +43,7 @@ class SidebarItemComponent(BaseComponent):
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Item]
     # ────────────────────────────────┐
-    def check_item(self, title: str):
+    def check(self, title: str):
         """
         ✔ Check [Item]
 

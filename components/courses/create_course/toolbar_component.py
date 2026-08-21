@@ -40,7 +40,7 @@ class CreateCourseToolbarComponent(BaseComponent):
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
     # ─────────────────────────────────┐
-    def check_toolbar(self, is_create_course_btn_enabled: bool = False):
+    def check(self, is_create_course_btn_enabled: bool = False):
         """
         ✔ Check [Toolbar]
 

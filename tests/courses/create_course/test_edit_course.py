@@ -36,7 +36,7 @@ class TestEditCourse:
 
         # ▶ ACTIONS (Create course)
         create_course_page.image_upload_widget.upload_image('image_1.jpg')  # Загрузка картинки курса
-        create_course_page.form.fill_course_form(                           # Заполнение полей формы <Create Course>
+        create_course_page.form.fill(                           # Заполнение полей формы <Create Course>
             title=title,
             estimated_time=estimated_time,
             description=description,
@@ -47,7 +47,7 @@ class TestEditCourse:
 
         # ✔️EXPECTATIONS (After Course creation)
         courses_list_page.check_current_url(courses_list_page.URL)          # Проверка успешного редиректа на страницу - Courses list page
-        courses_list_page.course_card.check_course_card(                    # Данные в карточке курса соответствуют заполненным полям формы
+        courses_list_page.course_card.check(                                # Данные в карточке курса соответствуют заполненным полям формы
             title=title,
             estimated_time=estimated_time,
             max_score=max_score,
@@ -66,7 +66,7 @@ class TestEditCourse:
         courses_list_page.course_card.click_menu_btn()                     # Нажатие на кнопку <Menu>
         courses_list_page.course_card.menu.click_edit_btn()                # Нажатие на кнопку <Edit course>
         create_course_page.image_upload_widget.upload_image('image_2.jpg') # Загрузка новой картинки курса
-        create_course_page.form.fill_course_form(                          # Заполнение полей формы новыми данными
+        create_course_page.form.fill(                                      # Заполнение полей формы новыми данными
             title=new_title,
             estimated_time=new_estimated_time,
             description=new_description,
@@ -77,7 +77,7 @@ class TestEditCourse:
 
         # ✔️EXPECTATIONS
         courses_list_page.check_current_url(courses_list_page.URL)         # Проверка успешного редиректа на страницу - Courses list page
-        courses_list_page.course_card.check_course_card(                   # Данные в карточке курса соответствуют заполненным полям формы
+        courses_list_page.course_card.check(                               # Данные в карточке курса соответствуют заполненным полям формы
             title=new_title,
             estimated_time=new_estimated_time,
             max_score=new_max_score,

@@ -24,7 +24,7 @@ class CreateCourseExerciseComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-    # ------------------------------------------------- ⿴ COMPONENTS --------------------------------------------------
+    # ------------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
         # <Bars>
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
@@ -52,8 +52,8 @@ class CreateCourseExerciseComponent(BaseComponent):
         :param description: Description
         :return:
         """
-        self.toolbar.check_toolbar(index)
-        self.form.check_form(
+        self.toolbar.check(index)
+        self.form.check(
             index=index,
             title=title,
             description=description)
