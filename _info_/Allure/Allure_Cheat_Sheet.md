@@ -137,7 +137,7 @@ def test_create_user():
 ------------------------------------------------------------------------
 
 
-## Иерархия 
+## Иерархия (Hierarchy)
 ### Behaviors
 
 ``` python
@@ -192,20 +192,20 @@ def test_create_user():
 # Test
 def test_steps_in_test_with():
     with allure.step('Step-1 in test'):     # Step-1 теста (через <with>)
-        ...                                 # ▶ Actions
+        ...                                 # ▶ ACTIONS
     with allure.step('Step-2 in test'):     # Step-2 теста (через <with>)
-        ...                                 # ▶ Actions
+        ...                                 # ▶ ACTIONS
 ``` 
 
 ``` python
 # Функции:
 def func_1_with():                          # Функция-1
     with allure.step('Step in Func-1'):     # Step функции-1 (через <with>)
-        ...                                 # ▶ Actions
+        ...                                 # ▶ ACTIONS
 
 def func_2_with():                          # Функция-1
     with allure.step('Step in Func-2'):     # Step функции-2 (через <with>)
-        ...                                 # ▶ Actions
+        ...                                 # ▶ ACTIONS
 
 #-----------------------------
 # Test
@@ -221,11 +221,11 @@ def test_steps_in_func_with():
 # Функции:
 @allure.step('Func-1 (decorator)')          # Step функции-1 (через @decorator)
 def func_1_decorator():                     # Функция
-    ...                                     # ▶ Actions
+    ...                                     # ▶ ACTIONS
 
 @allure.step('Func-2 (decorator)')          # Step функции-2 (через @decorator)
 def func_2_decorator():                     # Функция
-    ...                                     # ▶ Actions
+    ...                                     # ▶ ACTIONS
 
 #--------------------------------
 # Test
@@ -245,9 +245,9 @@ def test_step_in_func_decorator():
 @allure.step('Build API-Client')                  # ОБЩИЙ step функции (через @декоратор)
 def build_api_client():
     with allure.step('Get Auth-token'):           # SUB-step функции (через with)
-        ...                                       # ▶ Actions
+        ...                                       # ▶ ACTIONS
     with allure.step('Create API client'):        # SUB-step функции (через with)
-        ...                                       # ▶ Actions
+        ...                                       # ▶ ACTIONS
 
 #------------------------------------------------
 # Test
@@ -261,7 +261,7 @@ def test_step_in_func_decorator_with_sub_steps():
 @allure.step('Update to: {last_name}')                     # ДИНАМИЧЕСКИЙ ОБЩИЙ step функции с {Allure-placeholder} <— из параметра функции
 def func_decorator_param_with_param(last_name: str):       # Функция (принимает параметр)
     with allure.step(f'Printing Last name: {last_name}'):  # ДИНАМИЧЕСКИЙ SUB-step с f'{string}' <— из параметра функции
-        ...                                                # ▶ Actions
+        ...                                                # ▶ ACTIONS
 
 #------------------------------------------------------
 # Test

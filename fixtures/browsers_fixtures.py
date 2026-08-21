@@ -18,8 +18,8 @@ def page(storage_state: StorageState, playwright: Playwright): # Использ�
     """
     browser = playwright.chromium.launch(                 # Создаем объект браузера на движке chromium c параметрами:
         channel='chromium',                               # - UI оболочка: 'chromium', 'chrome', 'msedge'
-        headless=False,                                   # - True/False — НЕ/Показывать браузер
-        slow_mo=500)                                      # - Action delay (ms)
+        headless=True,                                    # - True/False — НЕ/Показывать браузер
+        slow_mo=None)                                     # - Action delay (ms)
     context = browser.new_context(                        # Создание браузерного окружения с Storage state:
         storage_state=storage_state,               # ┐    # - Storage state из фикстуры
         # storage_state='storage_state.json',      # ┘    # - Storage state из JSON-файла (optional)
@@ -51,7 +51,7 @@ def storage_state(playwright: Playwright):      # Используем встр�
 
     # ─────────── User Registration ──────────┐
     registration_page = RegistrationPage(page)  # Инициализация страницы в переменную
-    registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
+    registration_page.open('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
     registration_page.form.fill_registration_form(
         email='user.name@gmail.com',
         username='username',
@@ -84,8 +84,8 @@ def page_guest(playwright: Playwright):   # Чистый (без доп. фик�
     """
     browser = playwright.chromium.launch(                 # Создаем объект браузера на движке chromium c параметрами:
         channel='chromium',                               # - UI оболочка: 'chromium', 'chrome', 'opera'
-        headless=False,                                   # - True/False — НЕ/Показывать браузер
-        slow_mo=500)                                      # - Action delay (ms)
+        headless=True,                                    # - True/False — НЕ/Показывать браузер
+        slow_mo=None)                                     # - Action delay (ms)
     context = browser.new_context(                        # Создание браузерного окружения (NO Storage state):
         locale='en-US',                                   # - Website language (locale)
         viewport=ViewportSize(width=1100, height=1200))   # - Window size

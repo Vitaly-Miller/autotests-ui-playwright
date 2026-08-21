@@ -1,17 +1,23 @@
 """
 Test Create course
 """
-
 import pytest
+import allure
+from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.courses.courses_list.courses_list_page import CoursesListPage
 from pages.courses.create_course.create_course_page import CreateCoursePage
 
+
 #=======================================================================================================================
 @pytest.mark.courses
-@pytest.mark.create_course
 @pytest.mark.files
 @pytest.mark.regression
+@allure.tag(Tag.COURSES,Tag.CREATE, Tag.FILES, Tag.REGRESSION)
+@allure.epic(Epic.COURSES)
+@allure.feature(Feature.COURSES)
+@allure.story(Story.CREATE)
 class TestCreateCourse:
+    @allure.title('Create course')
     def test_create_course(
             self,
             create_course_page: CreateCoursePage,
@@ -25,7 +31,7 @@ class TestCreateCourse:
         course_min_score = '10'
 
         # ⿹ Open page
-        create_course_page.visit(create_course_page.URL)
+        create_course_page.open(create_course_page.URL)
 
         # ▶ ACTIONS (Create course)
         create_course_page.image_upload_widget.upload_image('image_1.jpg')  # Загрузка картинки курса

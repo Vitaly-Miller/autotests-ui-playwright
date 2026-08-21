@@ -14,7 +14,7 @@ class BasePage:                                 # Родительский кл�
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Open page
-    def visit(self, url: str):
+    def open(self, url: str):
         """
         ⿹ Open page
 

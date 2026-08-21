@@ -82,7 +82,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ✔ Registration link - visible | - text | - URL
         """
         self.check_title()
-        self.form.check_form()
+        self.form.check_login_form()
         self.check_login_btn()
         self.check_registration_link()
     # ────────────────────────────────┘

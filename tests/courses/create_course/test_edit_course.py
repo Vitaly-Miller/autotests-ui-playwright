@@ -3,22 +3,29 @@ Edit course
 """
 
 import pytest
+import allure
+from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.courses.courses_list.courses_list_page import CoursesListPage
 from pages.courses.create_course.create_course_page import CreateCoursePage
 
+
 #=======================================================================================================================
 @pytest.mark.courses
-@pytest.mark.create_course
 @pytest.mark.files
 @pytest.mark.regression
-class TestCreateCourse:
+@allure.tag(Tag.COURSES, Tag.UPDATE, Tag.FILES, Tag.REGRESSION)
+@allure.epic(Epic.COURSES)
+@allure.feature(Feature.COURSES)
+@allure.story(Story.UPDATE)
+class TestEditCourse:
+    @allure.title('Edit course')
     def test_edit_course(
             self,
             create_course_page: CreateCoursePage,
             courses_list_page: CoursesListPage
     ):
-        # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ Precondition (Create course)  ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-        # ⏎ INPUT TEST DATA
+        # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ◁ PRE-CONDITION (Create course)  ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+        # ⏎ INPUT TEST DATA (🤦🏻‍♂️просто решил побаловаться с методами)
         title = 'eltit esruoc tset yM'                              # NOQA
         estimated_time = 'emit detamitse esruoc tset yM'            # NOQA
         description = 'noitpircsed esruoc tset yM'                  # NOQA
@@ -26,7 +33,7 @@ class TestCreateCourse:
         min_score = '10'
 
         # ⿹ Open page
-        create_course_page.visit(create_course_page.URL)
+        create_course_page.open(create_course_page.URL)
 
         # ▶ ACTIONS (Create course)
         create_course_page.image_upload_widget.upload_image('image_1.jpg')  # Загрузка картинки курса
@@ -48,7 +55,8 @@ class TestCreateCourse:
             min_score=min_score
         )
         # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-        # ⏎ NEW INPUT TEST DATA (🤦🏻‍♂️просто решил побаловаться с методами)
+
+        # ⏎ NEW INPUT TEST DATA
         new_title = title.upper()[::-1]
         new_estimated_time = estimated_time.upper()[::-1]
         new_description = description.upper()[::-1]
@@ -76,7 +84,6 @@ class TestCreateCourse:
             max_score=new_max_score,
             min_score=new_min_score
         )
-
 
 
 #=======================================================================================================================
