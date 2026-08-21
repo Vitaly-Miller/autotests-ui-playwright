@@ -8,7 +8,6 @@ from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.courses.courses_list.courses_list_page import CoursesListPage
 from pages.courses.create_course.create_course_page import CreateCoursePage
 
-
 #=======================================================================================================================
 @pytest.mark.courses
 @pytest.mark.files
@@ -56,7 +55,7 @@ class TestEditCourse:
         )
         # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
-        # ⏎ NEW INPUT TEST DATA
+        # ⏎ NEW INPUT TEST DATA (Reverse + Upper case)
         new_title = title.upper()[::-1]
         new_estimated_time = estimated_time.upper()[::-1]
         new_description = description.upper()[::-1]

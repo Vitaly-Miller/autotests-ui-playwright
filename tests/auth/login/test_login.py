@@ -9,7 +9,6 @@ from pages.auth.login.login_page import LoginPage
 from pages.auth.regustration.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
 
-
 #=======================================================================================================================
 @pytest.mark.auth                                           # ┐
 @pytest.mark.login                                          # │  Pytest class markers

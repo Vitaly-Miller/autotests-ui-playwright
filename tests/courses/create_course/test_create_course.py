@@ -7,7 +7,6 @@ from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.courses.courses_list.courses_list_page import CoursesListPage
 from pages.courses.create_course.create_course_page import CreateCoursePage
 
-
 #=======================================================================================================================
 @pytest.mark.courses
 @pytest.mark.files
