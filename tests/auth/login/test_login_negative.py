@@ -4,6 +4,7 @@ Test login (Negative)
 
 import pytest
 import allure
+from allure_commons.types import Severity
 from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.auth.login.login_page import LoginPage
 
@@ -12,6 +13,7 @@ from pages.auth.login.login_page import LoginPage
 @pytest.mark.login
 @pytest.mark.regression
 @pytest.mark.negative
+@allure.severity(Severity.CRITICAL)
 @allure.tag(Tag.AUTH, Tag.LOGIN, Tag.REGRESSION, Tag.NEGATIVE)
 @allure.epic(Epic.AUTH)
 @allure.feature(Feature.LOGIN)

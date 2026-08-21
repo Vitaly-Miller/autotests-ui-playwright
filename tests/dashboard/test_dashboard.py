@@ -4,12 +4,15 @@ Test Dashboard
 
 import pytest
 import allure
+from allure_commons.types import Severity
 from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.dashboard.dashboard_page import DashboardPage
 
 #=======================================================================================================================
 @pytest.mark.dashboard
 @pytest.mark.regression
+@pytest.mark.ui
+@allure.severity(Severity.NORMAL)
 @allure.tag(Tag.DASHBOARD, Tag.REGRESSION, Tag.UI)
 @allure.epic(Epic.DASHBOARD)
 @allure.story(Story.DASHBOARD)

@@ -122,7 +122,7 @@ def test_create_user():
 from allure_commons.types import Severity
 
 #----------------------------------------
-@allure.severity(allure.severity_level.CRITICAL)
+@allure.severity(Severity.BLOCKER)
 def test_create_user():
     ...
 ```

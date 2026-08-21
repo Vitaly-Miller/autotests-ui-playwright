@@ -5,6 +5,7 @@ Test login
 import pytest
 import allure
 from tools.allure.annotations import Epic, Feature, Story, Tag
+from allure_commons.types import Severity
 from pages.auth.login.login_page import LoginPage
 from pages.auth.regustration.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
@@ -13,6 +14,7 @@ from pages.dashboard.dashboard_page import DashboardPage
 @pytest.mark.auth                                           # ┐
 @pytest.mark.login                                          # │  Pytest class markers
 @pytest.mark.regression                                     # ┘
+@allure.severity(Severity.BLOCKER)                          # ]  Allure severity
 @allure.tag(Tag.AUTH, Tag.LOGIN, Tag.REGRESSION)      # ]  Allure tags
 @allure.epic(Epic.AUTH)                                     # ┐
 @allure.feature(Feature.LOGIN)                              # │  Allure Behaviors

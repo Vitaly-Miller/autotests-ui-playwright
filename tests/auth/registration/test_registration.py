@@ -4,6 +4,7 @@ Test registration
 
 import pytest
 import allure
+from allure_commons.types import Severity
 from pages.auth.login.login_page import LoginPage
 from pages.dashboard.dashboard_page import DashboardPage
 from pages.auth.regustration.registration_page import RegistrationPage
@@ -17,6 +18,7 @@ from tools.allure.annotations import Epic, Feature, Story, Tag
 @allure.epic(Epic.AUTH)
 @allure.feature(Feature.REGISTRATION)
 class TestRegistration:
+    @allure.severity(Severity.BLOCKER)
     @allure.story(Story.REGISTRATION)
     @allure.title('Registration successful')
     def test_registration_successful(self, registration_page: RegistrationPage):
@@ -39,7 +41,7 @@ class TestRegistration:
         registration_page.check_current_url(DashboardPage.URL)
 
 
-
+    @allure.severity(Severity.NORMAL)
     @allure.tag(Tag.NAVIGATE)
     @allure.story(Story.NAVIGATE)
     @allure.title('Login-link redirect')
