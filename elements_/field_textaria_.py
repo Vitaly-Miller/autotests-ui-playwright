@@ -2,11 +2,16 @@
 Field <textarea> element
 (⚠️Page factory)
 """
+import allure
 from elements_.base_element_ import BaseElement
 from playwright.sync_api import Locator, expect
 
 #=======================================================================================================================
 class FieldTextarea(BaseElement):
+    # Переопределенный метод
+    @property
+    def type_of(self) -> str:
+        return 'textarea field'
 
     # --------------------------------------------------- ㉤ LOCATOR ----------------------------------------------------
     # [Locator] for <textarea> field (переопределенный из BaseElement())
@@ -26,7 +31,7 @@ class FieldTextarea(BaseElement):
         locator = super().get_locator(nth_index=nth_index, **kwargs).locator('textarea:visible')  # Вызываем базовый (super) get_locator() и добавляем 'textarea:visible'
         return locator                                                              # Locator (for <textarea> fields)
 
-    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # [Fill]
     def fill(self, value: str, nth_index: int = 0, **kwargs):
         """
@@ -36,12 +41,13 @@ class FieldTextarea(BaseElement):
         :param nth_index: nth-index
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index=nth_index, **kwargs)                   # инициализация локатора
-        locator.fill(value)                                                         # Playwright action
+        locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
+        with allure.step(f'▶ Fill [{self.name} {self.type_of}] with value: {value}'):     # Allure-step (динамический)
+            locator.fill(value)                                                           # Playwright action
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Name]
-    def check_name(self, name: str, nth_index: int = 0, **kwargs):                  # принимает именованные параметры для подстановки в шаблон
+    def check_name(self, name: str, nth_index: int = 0, **kwargs):   # принимает именованные параметры для подстановки в шаблон
         """
         ✔ Check Field name
 
@@ -49,12 +55,13 @@ class FieldTextarea(BaseElement):
         :param nth_index: nth-index
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index=nth_index, **kwargs)                   # инициализация локатора
-        error = f'❌ Field - incorrect name!'
-        expect(locator, error).to_have_accessible_name(name)                        # Playwright expect
+        locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
+        with allure.step(f'✔ Check [{self.name} {self.type_of}] name is "{name}"'):       # Allure-step (динамический)
+            error = f'❌ [{self.name} {self.type_of}] (nth-index: {nth_index}) - incorrect name!'
+            expect(locator, error).to_have_accessible_name(name)                          # Playwright expect
 
     # [Placeholder]
-    def check_placeholder(self, placeholder: str, nth_index: int = 0,  **kwargs):
+    def check_placeholder(self, placeholder: str, nth_index: int = 0, **kwargs):
         """
         ✔ Check Field placeholder
 
@@ -62,12 +69,13 @@ class FieldTextarea(BaseElement):
         :param nth_index: nth-index
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index=nth_index, **kwargs)                   # инициализация локатора
-        error = f'❌ Field - incorrect placeholder!'
-        expect(locator, error).to_have_attribute('placeholder', placeholder)        # Playwright expect
+        locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
+        with allure.step(f'✔ Check [{self.name} {self.type_of}] has "{placeholder}"'):    # Allure-step (динамический)
+            error = f'❌ [{self.name} {self.type_of}] (nth-index: {nth_index}) - incorrect placeholder!'
+            expect(locator, error).to_have_attribute('placeholder', placeholder)          # Playwright expect
 
     # [Value]
-    def check_value(self, value: str, nth_index: int = 0,  **kwargs):
+    def check_value(self, value: str, nth_index: int = 0, **kwargs):
         """
         ✔ Check Field value
 
@@ -75,9 +83,9 @@ class FieldTextarea(BaseElement):
         :param nth_index: nth-index
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index=nth_index, **kwargs)                   # инициализация локатора
-        error = f'❌ Field - incorrect value!'
-        expect(locator, error).to_have_value(value)                                 # Playwright expect
-
+        locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
+        with allure.step(f'✔ Check [{self.name} {self.type_of}] has a value "{value}"'):  # Allure-step (динамический)
+            error = f'❌ Field - incorrect value!'
+            expect(locator, error).to_have_value(value)                                   # Playwright expect
 
 #=======================================================================================================================

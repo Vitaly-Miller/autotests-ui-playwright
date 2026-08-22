@@ -2,6 +2,7 @@
 BASE element
 (⚠️Page factory)
 """
+import allure
 from playwright.sync_api import Page, Locator, expect
 from pathlib import Path
 
@@ -24,6 +25,11 @@ class BaseElement:
         self.locator = locator
         self.name = name
 
+    # Переопределяемый метод (в дочерних элементах)
+    @property
+    def type_of(self) -> str:
+        return 'element'
+
     # -------------------------------------------------- Directories ---------------------------------------------------
     PROJECT = Path(__file__).parent.parent      # 🗂️Project ROOT/
     TESTDATA = PROJECT/'testdata'               # └─ 📁testdata/
@@ -41,7 +47,8 @@ class BaseElement:
         """
         locator = self.locator.format(**kwargs)                                    # подставляет значения в шаблон локатора
         locator_get_by_test_id = self.page.get_by_test_id(locator).nth(nth_index)  # создаёт локатор по data-testid c ntx-index
-        return locator_get_by_test_id
+        with allure.step(f'⚙ Getting locator with [data-testid] = {locator} (nth-index: {nth_index})'): # Allure-step (динамический)
+            return locator_get_by_test_id
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # [Click]
@@ -53,33 +60,36 @@ class BaseElement:
         :param kwargs: Additional named parameters for create locator
         """
         locator = self.get_locator(nth_index, **kwargs)     # инициализация локатора
-        locator.click()                                    # Playwright action
+        with allure.step(f'Clicking [{self.name} {self.type_of}]'):    # Allure-step (динамический)
+            locator.click()                                          # Playwright action
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Visible]
-    def check_visible(self, nth_index: int = 0, **kwargs):           # принимает именованные параметры для подстановки в шаблон
+    def check_visible(self, nth_index: int = 0, **kwargs):                 # принимает именованные параметры для подстановки в шаблон
         """
         ✔ Check element is visible
 
         :param nth_index: nth-index
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index, **kwargs)     # инициализация локатора
-        error = '❌Element - invisible!'
-        expect(locator, error).to_be_visible()                       # Playwright expect
+        locator = self.get_locator(nth_index, **kwargs)           # инициализация локатора
+        with allure.step(f'✔ Check [{self.name} {self.type_of}] is visible'): # Allure-step (динамический)
+            error = f'❌ [{self.name}] {self.type_of} (nth-index: {nth_index}) - invisible!'
+            expect(locator, error).to_be_visible()                         # Playwright expect
 
     # [Text]
-    def check_text(self, element_text: str, nth_index: int = 0, **kwargs):  # принимает текст и именованные параметры для подстановки в шаблон
+    def check_text(self, text: str, nth_index: int = 0, **kwargs):  # принимает текст и именованные параметры для подстановки в шаблон
         """
         ✔ Check element text
 
         :param nth_index: nth-index
-        :param element_text: Expected element text
+        :param text: Expected element text
         :param kwargs: Additional named parameters for create locator
         """
         locator = self.get_locator(nth_index, **kwargs)            # инициализация локатора
-        error = '❌Element - incorrect text!'
-        expect(locator, error).to_have_text(element_text)                   # Playwright expect
+        with allure.step(f'✔ Check [{self.name} {self.type_of}] has a text "{text}"'):     # Allure-step (динамический)
+            error = f'❌ [{self.name}] {self.type_of} (nth-index: {nth_index}) - incorrect text!'
+            expect(locator, error).to_have_text(text)               # Playwright expect
 
 
 #=======================================================================================================================

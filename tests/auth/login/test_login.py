@@ -48,4 +48,21 @@ class TestLogin:
         login_page.check_current_url(dashboard_page.URL)
 
 
+    @allure.severity(Severity.NORMAL)
+    @allure.tag(Tag.NAVIGATE)
+    @allure.story(Story.NAVIGATE)
+    @allure.title('Registration-link redirect')
+    def test_registration_link_redirect(self, login_page: LoginPage):
+        # ⿹ Open page
+        login_page.open(login_page.URL)
+
+        # ✔️PRE-EXPECTATIONS (Before actions)
+        login_page.check_registration_link()
+
+        # ▶ ACTIONS
+        login_page.click_registration_link()
+
+        # ✔️EXPECTATIONS
+        login_page.check_registration_link_redirect()
+
 #=======================================================================================================================

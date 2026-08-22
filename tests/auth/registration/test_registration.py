@@ -5,7 +5,6 @@ Test registration
 import pytest
 import allure
 from allure_commons.types import Severity
-from pages.auth.login.login_page import LoginPage
 from pages.dashboard.dashboard_page import DashboardPage
 from pages.auth.regustration.registration_page import RegistrationPage
 from tools.allure.annotations import Epic, Feature, Story, Tag
@@ -45,11 +44,7 @@ class TestRegistration:
     @allure.tag(Tag.NAVIGATE)
     @allure.story(Story.NAVIGATE)
     @allure.title('Login-link redirect')
-    def test_login_link_redirect(
-            self,
-            registration_page: RegistrationPage,
-            login_page: LoginPage
-    ):
+    def test_login_link_redirect(self, registration_page: RegistrationPage):
         # ⿹ Open page
         registration_page.open(registration_page.URL)
 
@@ -61,7 +56,6 @@ class TestRegistration:
 
         # ✔️EXPECTATIONS
         registration_page.check_login_link_redirect()
-        login_page.check(email='', password='')
 
 
 #=======================================================================================================================

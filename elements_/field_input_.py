@@ -2,11 +2,16 @@
 Field <input> element
 (⚠️Page factory)
 """
+import allure
 from playwright.sync_api import Locator, expect
 from elements_.base_element_ import BaseElement
 
 #=======================================================================================================================
 class FieldInput(BaseElement):
+    # Переопределенный метод
+    @property
+    def type_of(self) -> str:
+        return 'input field'
 
     # ---------------------------------------------------- ㉤ LOCATOR ---------------------------------------------------
     # [Locator] for <input> field (переопределенный из BaseElement())
@@ -33,13 +38,13 @@ class FieldInput(BaseElement):
         :param nth_index: nth-index
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index=nth_index, **kwargs)  # инициализация локатора
-        locator.fill(value)                                        # Playwright action
+        locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
+        with allure.step(f'▶ Fill [{self.name} {self.type_of}] with value: {value}'):     # Allure-step (динамический)
+            locator.fill(value)                                                           # Playwright action
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Name]
-    def check_name(self, name: str, nth_index: int = 0,
-                   **kwargs):                                                 # принимает именованные параметры для подстановки в шаблон
+    def check_name(self, name: str, nth_index: int = 0, **kwargs):   # принимает именованные параметры для подстановки в шаблон
         """
         ✔ Check Field name
 
@@ -47,9 +52,10 @@ class FieldInput(BaseElement):
         :param nth_index: nth-index
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index=nth_index, **kwargs)             # инициализация локатора
-        error = f'❌ Field - incorrect name!'
-        expect(locator, error).to_have_accessible_name(name)                  # Playwright expect
+        locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
+        with allure.step(f'✔ Check [{self.name} {self.type_of}] name is "{name}"'):       # Allure-step (динамический)
+            error = f'❌ [{self.name} {self.type_of}] (nth-index: {nth_index}) - incorrect name!'
+            expect(locator, error).to_have_accessible_name(name)                          # Playwright expect
 
     # [Placeholder]
     def check_placeholder(self, placeholder: str, nth_index: int = 0, **kwargs):
@@ -60,9 +66,10 @@ class FieldInput(BaseElement):
         :param nth_index: nth-index
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index=nth_index, **kwargs)             # инициализация локатора
-        error = f'❌ Field - incorrect placeholder!'
-        expect(locator, error).to_have_attribute('placeholder', placeholder)  # Playwright expect
+        locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
+        with allure.step(f'✔ Check [{self.name} {self.type_of}] has "{placeholder}"'):    # Allure-step (динамический)
+            error = f'❌ [{self.name} {self.type_of}] (nth-index: {nth_index}) - incorrect placeholder!'
+            expect(locator, error).to_have_attribute('placeholder', placeholder)          # Playwright expect
 
     # [Value]
     def check_value(self, value: str, nth_index: int = 0, **kwargs):
@@ -73,8 +80,9 @@ class FieldInput(BaseElement):
         :param nth_index: nth-index
         :param kwargs: Additional named parameters for create locator
         """
-        locator = self.get_locator(nth_index=nth_index, **kwargs)              # инициализация локатора
-        error = f'❌ Field - incorrect value!'
-        expect(locator, error).to_have_value(value)                            # Playwright expect
+        locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
+        with allure.step(f'✔ Check [{self.name} {self.type_of}] has a value "{value}"'):  # Allure-step (динамический)
+            error = f'❌ Field - incorrect value!'
+            expect(locator, error).to_have_value(value)                                   # Playwright expect
 
 #=======================================================================================================================

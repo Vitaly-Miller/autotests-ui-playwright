@@ -259,15 +259,15 @@ def test_step_in_func_decorator_with_sub_steps():
 ``` python
 # Функция
 @allure.step('Update to: {last_name}')                     # ДИНАМИЧЕСКИЙ ОБЩИЙ step функции с {Allure-placeholder} <— из параметра функции
-def func_decorator_param_with_param(last_name: str):       # Функция (принимает параметр)
+def func_with_param(last_name: str):                       # Функция (принимает параметр)
     with allure.step(f'Printing Last name: {last_name}'):  # ДИНАМИЧЕСКИЙ SUB-step с f'{string}' <— из параметра функции
         ...                                                # ▶ ACTIONS
 
 #------------------------------------------------------
 # Test
 def test_step_in_func_decorator_with_sub_steps_param():
-    func_decorator_param_with_param('Connor')              # Вызываем функцию (со встроенными ДИНАМИЧЕСКИМИ steps)
-    func_decorator_param_with_param('Smith')               # Вызываем функцию (со встроенными ДИНАМИЧЕСКИМИ steps)
+    func_1_with_param('Connor')              # Вызываем функцию (со встроенными ДИНАМИЧЕСКИМИ steps)
+    func_2_with_param('Smith')               # Вызываем функцию (со встроенными ДИНАМИЧЕСКИМИ steps)
 
 ```
 ------------------------------------------------------------------------

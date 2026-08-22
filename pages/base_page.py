@@ -5,6 +5,7 @@ Base page
 
 from playwright.sync_api import Page, expect
 from re import Pattern
+import allure
 
 
 #=======================================================================================================================
@@ -14,6 +15,7 @@ class BasePage:                                 # Родительский кл�
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Open page
+    @allure.step('⿹ Open page {url}')
     def open(self, url: str):
         """
         ⿹ Open page
@@ -25,6 +27,7 @@ class BasePage:                                 # Родительский кл�
         self.page.goto(url=url)
 
     # Reload page
+    @allure.step('↺ Reload page {self.page.url}')
     def reload(self):
         """
         ↺ Reload current page
@@ -34,9 +37,10 @@ class BasePage:                                 # Родительский кл�
         self.page.reload()
 
     # Wait (timeout)
+    @allure.step('...wait {timeout} sec')
     def wait(self, timeout: int = 2):
         """
-        Wait (timeout)
+        Wait (timeout) sec
 
         :param timeout: Timeout in sec (2 sec by default)
         """
@@ -44,6 +48,7 @@ class BasePage:                                 # Родительский кл�
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Current URL] - ⚠️Дублирование из BaseComponent
+    @allure.step('✔ Check that current URL is {expected_url}')
     def check_current_url(self, expected_url: str | Pattern[str]):
         """
         ✔ Check [Current page URL]
