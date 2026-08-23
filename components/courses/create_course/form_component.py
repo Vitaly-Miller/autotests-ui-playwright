@@ -1,9 +1,10 @@
 """
 Create course page > [Form] (component)
 """
+
+import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
-
 
 #=======================================================================================================================
 """
@@ -43,24 +44,25 @@ class CreateCourseFormComponent(BaseComponent):
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Course form]
     # ─────────────────────────────────────────────────┐
+    @allure.step('▶ Fill [Course form]')
     def fill(
             self,
-            title: str | None = None,
-            estimated_time: str | None = None,
-            description: str | None = None,
-            max_score: str | None = None,
-            min_score: str | None = None
+            title: str,
+            estimated_time: str,
+            description: str,
+            max_score: str,
+            min_score: str
     ):
         """
         ▶ Fill [Course form]
 
-        - ▶ Fields - fill
+        - ▶ Fields -  ▶ fill | ✔ value
 
-        :param title: Title (optional)
-        :param estimated_time: Estimated time (optional)
-        :param description: Description (optional)
-        :param max_score: Max score (optional)
-        :param min_score: Min score (optional)
+        :param title: Title
+        :param estimated_time: Estimated time
+        :param description: Description
+        :param max_score: Max score
+        :param min_score: Min score
         """
         self.fill_title_field(title)
         self.fill_estimated_time_field(estimated_time)
@@ -69,55 +71,74 @@ class CreateCourseFormComponent(BaseComponent):
         self.fill_min_score_field(min_score)
     # ─────────────────────────────────────────────────┘
     # [Title field]
-    def fill_title_field(self, title: str | None = None):
+    @allure.step('▶ Fill [Title field]')
+    def fill_title_field(self, title: str):
         """
         ▶ Fill [Title field]
 
-        :param title: Title (optional)
+        - ▶ Field - fill
+        - ✔ Field - value
+
+        :param title: Title
         """
-        if title is not None:
-            self.title_field.fill(title)
+        self.title_field.fill(title)
+        self.check_title_field_value(title)
 
     # [Estimated time field]
-    def fill_estimated_time_field(self, estimated_time: str | None = None):
+    @allure.step('▶ Fill [Estimated time field]')
+    def fill_estimated_time_field(self, estimated_time: str):
         """
         ▶ Fill [Estimated time field]
 
-        :param estimated_time: Estimated time (optional)
-        """
-        if estimated_time is not None:
-            self.estimated_time_field.fill(estimated_time)
+        - ▶ Field - fill
+        - ✔ Field - value
 
+        :param estimated_time: Estimated time
+        """
+        self.estimated_time_field.fill(estimated_time)
+        self.check_estimated_time_field_value(estimated_time)
 
     # [Description field]
-    def fill_description_field(self, description: str | None = None):
+    @allure.step('▶ Fill [Description field]')
+    def fill_description_field(self, description: str):
         """
         ▶ Fill [Description field]
 
-        :param description: Description (optional)
+        - ▶ Field - fill
+        - ✔ Field - value
+
+        :param description: Description
         """
-        if description is not None:
-            self.description_field.fill(description)
+        self.description_field.fill(description)
+        self.check_description_field_value(description)
 
     # [Max score field]
-    def fill_max_score_field(self, max_score: str | None = None):
+    @allure.step('▶ Fill [Max score field]')
+    def fill_max_score_field(self, max_score: str):
         """
         ▶ Fill [Max score field]
 
-        :param max_score: Max score (optional)
+        - ▶ Field - fill
+        - ✔ Field - value
+
+        :param max_score: Max score
         """
-        if max_score is not None:
-            self.max_score_field.fill(max_score)
+        self.max_score_field.fill(max_score)
+        self.check_max_score_field_value(max_score)
 
     # [Min score field]
-    def fill_min_score_field(self, min_score: str | None = None):
+    @allure.step('▶ Fill [Min score field]')
+    def fill_min_score_field(self, min_score: str):
         """
         ▶ Fill [Min score field]
 
-        :param min_score: Min score (optional)
+        - ▶ Field - fill
+        - ✔ Field - value
+
+        :param min_score: Min score
         """
-        if min_score is not None:
-            self.min_score_field.fill(min_score)
+        self.min_score_field.fill(min_score)
+        self.check_min_score_field_value(min_score)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Course form]
@@ -128,7 +149,8 @@ class CreateCourseFormComponent(BaseComponent):
             estimated_time: str | None = None,
             description: str | None = None,
             max_score: str | None = None,
-            min_score: str | None = None):
+            min_score: str | None = None
+    ):
         """
         ✔ Check [Course form]
 
@@ -139,8 +161,8 @@ class CreateCourseFormComponent(BaseComponent):
         If is NOT passed:
         ----------------
         - ✔ Fields - visible
-        - ✔ Field names - correct
-        - ✔ Field placeholders/values - correct
+        - ✔ Fields - names
+        - ✔ Fields - placeholders / default values
 
         :param title: Title
         :param estimated_time: Estimated Time
@@ -148,11 +170,16 @@ class CreateCourseFormComponent(BaseComponent):
         :param max_score: Max score
         :param min_score: Min score
         """
-        self.check_title_field(title)
-        self.check_estimated_time_field(estimated_time)
-        self.check_description_field(description)
-        self.check_max_score_field(max_score)
-        self.check_min_score_field(min_score)
+        with allure.step(
+                '✔ Check [Course form] field values'
+                if all(param is not None for param in (title, estimated_time, description, max_score, min_score))
+                else '✔ Check [Course form] UI'
+        ):
+            self.check_title_field(title)
+            self.check_estimated_time_field(estimated_time)
+            self.check_description_field(description)
+            self.check_max_score_field(max_score)
+            self.check_min_score_field(min_score)
     # ─────────────────────────────────────────────────┘
 
     # [Title field]
@@ -169,17 +196,20 @@ class CreateCourseFormComponent(BaseComponent):
         ----------------
         - ✔ Field - visible
         - ✔ Field - name
-        - ✔ Field placeholder - correct
+        - ✔ Field - placeholder
 
         :param title: Title (optional)
         """
         if title is not None:
-            self.check_title_field_value(title)
+            with allure.step('✔ Check [Title field] value'):
+                self.check_title_field_value(title)
         else:
-            self.check_title_field_visible()
-            self.check_title_field_name()
-            self.check_title_field_placeholder()
+            with allure.step('✔ Check [Title field] UI'):
+                self.check_title_field_visible()
+                self.check_title_field_name()
+                self.check_title_field_placeholder()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Title field] visible')
     def check_title_field_visible(self):
         """
         ✔ Check [Title field] visible
@@ -189,6 +219,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Title field] - invisible!'
         expect(self.title_field, error).to_be_visible()
 
+    @allure.step('✔ Check [Title field] name')
     def check_title_field_name(self):
         """
         ✔ Check [Title field] name
@@ -198,6 +229,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Title field] - incorrect name!'
         expect(self.title_field, error).to_have_accessible_name(self.TITLE_FIELD_NAME)
 
+    @allure.step('✔ Check [Title field] placeholder')
     def check_title_field_placeholder(self):
         """
         ✔ Check [Title field] placeholder
@@ -207,6 +239,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Title field] - incorrect placeholder!'
         expect(self.title_field, error).to_have_attribute('placeholder', self.TITLE_FIELD_PLACEHOLDER)
 
+    @allure.step('✔ Check [Title field] value')
     def check_title_field_value(self, title: str):
         """
         ✔ Check [Title field] value
@@ -233,17 +266,20 @@ class CreateCourseFormComponent(BaseComponent):
         ----------------
         - ✔ Field - visible
         - ✔ Field - name
-        - ✔ Field placeholder - correct
+        - ✔ Field - placeholder
 
         :param estimated_time: Estimated time (optional)
         """
         if estimated_time is not None:
-            self.check_estimated_time_field_value(estimated_time)
+            with allure.step('✔ Check [Estimated time field] value'):
+                self.check_estimated_time_field_value(estimated_time)
         else:
-            self.check_estimated_time_field_visible()
-            self.check_estimated_time_field_name()
-            self.check_estimated_time_field_placeholder()
+            with allure.step('✔ Check [Estimated time field] UI'):
+                self.check_estimated_time_field_visible()
+                self.check_estimated_time_field_name()
+                self.check_estimated_time_field_placeholder()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Estimated time field] visible')
     def check_estimated_time_field_visible(self):
         """
         ✔ Check [Estimated time field] visible
@@ -253,6 +289,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Estimated time field] - invisible!'
         expect(self.estimated_time_field, error).to_be_visible()
 
+    @allure.step('✔ Check [Estimated time field] name')
     def check_estimated_time_field_name(self):
         """
         ✔ Check [Estimated time field] name
@@ -262,6 +299,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Estimated time field] - incorrect name!'
         expect(self.estimated_time_field, error).to_have_accessible_name(self.ESTIMATED_TIME_FIELD_NAME)
 
+    @allure.step('✔ Check [Estimated time field] placeholder')
     def check_estimated_time_field_placeholder(self):
         """
         ✔ Check [Estimated time field] placeholder
@@ -271,6 +309,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Estimated time field] - incorrect placeholder!'
         expect(self.estimated_time_field, error).to_have_attribute('placeholder', self.ESTIMATED_TIME_FIELD_PLACEHOLDER)
 
+    @allure.step('✔ Check [Estimated time field] value')
     def check_estimated_time_field_value(self, estimated_time: str):
         """
         ✔ Check [Estimated time field] value
@@ -295,17 +334,20 @@ class CreateCourseFormComponent(BaseComponent):
         ----------------
         - ✔ Field - visible
         - ✔ Field - name
-        - ✔ Field placeholder - correct
+        - ✔ Field - placeholder
 
         :param description: Description (optional)
         """
         if description is not None:
-            self.check_description_field_value(description)
+            with allure.step('✔ Check [Description field] value'):
+                self.check_description_field_value(description)
         else:
-            self.check_description_field_visible()
-            self.check_description_field_name()
-            self.check_description_field_placeholder()
+            with allure.step('✔ Check [Description field] UI'):
+                self.check_description_field_visible()
+                self.check_description_field_name()
+                self.check_description_field_placeholder()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Description field] visible')
     def check_description_field_visible(self):
         """
         ✔ Check [Description field] visible
@@ -315,6 +357,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Description field] - invisible!'
         expect(self.description_field, error).to_be_visible()
 
+    @allure.step('✔ Check [Description field] name')
     def check_description_field_name(self):
         """
         ✔ Check [Description field] name correct
@@ -324,6 +367,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Description field] - incorrect name!'
         expect(self.description_field, error).to_have_accessible_name(self.DESCRIPTION_FIELD_NAME)
 
+    @allure.step('✔ Check [Description field] placeholder')
     def check_description_field_placeholder(self):
         """
         ✔ Check [Description field] placeholder
@@ -333,6 +377,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Description field] - incorrect placeholder!'
         expect(self.description_field, error).to_have_attribute('placeholder', self.DESCRIPTION_FIELD_PLACEHOLDER)
 
+    @allure.step('✔ Check [Description field] description')
     def check_description_field_value(self, description: str):
         """
         ✔ Check [Description field] value
@@ -344,7 +389,7 @@ class CreateCourseFormComponent(BaseComponent):
 
 
     # [Max score field]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_max_score_field(self, max_score: str | None = None):
         """
         ✔ Check [Max score field]
@@ -357,17 +402,20 @@ class CreateCourseFormComponent(BaseComponent):
         ------------------
         - ✔ Field - visible
         - ✔ Field - name
-        - ✔ Field - has a default value
+        - ✔ Field - default value
 
         :param max_score: Max score (optional)
         """
         if max_score is not None:
-            self.check_max_score_field_value(max_score)
+            with allure.step('✔ Check [Max score field] value'):
+                self.check_max_score_field_value(max_score)
         else:
-            self.check_max_score_field_visible()
-            self.check_max_score_field_name()
-            self.check_max_score_field_value()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+            with allure.step('✔ Check [Max score field] UI'):
+                self.check_max_score_field_visible()
+                self.check_max_score_field_name()
+                self.check_max_score_field_value()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Max score field] visible')
     def check_max_score_field_visible(self):
         """
         ✔ Check [Max score field] visible
@@ -377,6 +425,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Max score field] - invisible!'
         expect(self.max_score_field, error).to_be_visible()
 
+    @allure.step('✔ Check [Max score field] name')
     def check_max_score_field_name(self):
         """
         ✔ Check [Max score field] name
@@ -386,6 +435,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Max score field] - incorrect name!'
         expect(self.max_score_field, error).to_have_accessible_name(self.MAX_SCORE_FIELD_NAME)
 
+    @allure.step('✔ Check [Max score field] value')
     def check_max_score_field_value(self, max_score: str = '0'):
         """
         ✔ Check [Max score field] value
@@ -397,7 +447,7 @@ class CreateCourseFormComponent(BaseComponent):
 
 
     # [Min score field]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_min_score_field(self, min_score: str | None = None):
         """
         ✔ Check [Min score field]
@@ -410,17 +460,20 @@ class CreateCourseFormComponent(BaseComponent):
         ----------------
         - ✔ Field - visible
         - ✔ Field - name
-        - ✔ Field - has a default value
+        - ✔ Field - default value
 
         :param min_score: Min score (optional)
         """
         if min_score is not None:
-            self.check_min_score_field_value(min_score)
+            with allure.step('✔ Check [Min score field] value'):
+                self.check_min_score_field_value(min_score)
         else:
-            self.check_min_score_field_visible()
-            self.check_min_score_field_name()
-            self.check_min_score_field_value()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+            with allure.step('✔ Check [Min score field] UI'):
+                self.check_min_score_field_visible()
+                self.check_min_score_field_name()
+                self.check_min_score_field_value()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Min score field] visible')
     def check_min_score_field_visible(self):
         """
         ✔ Check [Min score field] visible
@@ -430,6 +483,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Min score field] - invisible!'
         expect(self.min_score_field, error).to_be_visible()
 
+    @allure.step('✔ Check [Min score field] name')
     def check_min_score_field_name(self):
         """
         ✔ Check [Min score field] name
@@ -439,6 +493,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'❌ Create course page > Form > [Min score field] - incorrect name!'
         expect(self.min_score_field, error).to_have_accessible_name(self.MIN_SCORE_FIELD_NAME)
 
+    @allure.step('✔ Check [Min score field] value')
     def check_min_score_field_value(self, min_score: str = '0'):
         """
         ✔ Check [Min score field] value

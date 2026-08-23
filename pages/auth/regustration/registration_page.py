@@ -52,7 +52,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         ▶ Click <Login link>
 
-        - ✔ Link - visible | - text | URL - correct
+        - ✔ Link - visible | - text | - URL
         - ▶ Link - click
         """
         self.check_login_link()

@@ -38,7 +38,7 @@ class DashboardToolbarComponent(BaseComponent):
         ✔ Check [Title]
 
         - ✔ Title - visible
-        - ✔ Text - correct
+        - ✔ Title - text
         """
         self.check_title_visible()
         self.check_title_text()

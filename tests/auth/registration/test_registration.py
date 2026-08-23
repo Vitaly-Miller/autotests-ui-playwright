@@ -48,9 +48,6 @@ class TestRegistration:
         # ⿹ Open page
         registration_page.open(registration_page.URL)
 
-        # ✔️PRE-EXPECTATIONS (Before actions)
-        registration_page.check_login_link()
-
         # ▶ ACTIONS
         registration_page.click_login_link()
 

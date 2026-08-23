@@ -103,7 +103,7 @@ class SidebarItemComponent(BaseComponent):
         ✔ Check [Title]
 
         - ✔ Title - visible
-        - ✔ Text - correct
+        - ✔ Title - text
 
         :param title: Title
         """

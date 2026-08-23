@@ -1,6 +1,7 @@
 """
 Courses list page > [Course card] (component)
 """
+import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 from components.courses.courses_list.course_card_menu_component import CourseCardMenuComponent
@@ -37,6 +38,7 @@ class CourseCardComponent(BaseComponent):
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Menu button]
+    @allure.step('▶ Click [Menu button]')
     def click_menu_btn(self, nth_index: int = 0):
         """
         ▶ Click [Menu button]
@@ -50,7 +52,9 @@ class CourseCardComponent(BaseComponent):
         self.menu_btn.nth(nth_index).click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # ───────────────────────────────────────────────────────────────────────┐
+    # [Course card]
+    # ──────────────────────────────────────────────────────────────────────────────┐
+    @allure.step('✔ Check [Course card]')
     def check(
             self,
             title: str,
@@ -60,7 +64,7 @@ class CourseCardComponent(BaseComponent):
             nth_index: int = 0
     ):
         """
-        ✔ Check [Course View]
+        ✔ Check [Course card]
 
         - ✔ Menu button - visible | - enabled
         - ✔ Image - visible
@@ -81,16 +85,17 @@ class CourseCardComponent(BaseComponent):
         self.check_max_score(nth_index=nth_index, max_score=max_score)
         self.check_min_score(nth_index=nth_index, min_score=min_score)
         self.check_estimated_time(nth_index=nth_index, estimated_time=estimated_time)
-    # ───────────────────────────────────────────────────────────────────────┘
+    # ───────────────────────────────────────────────────────────────────────────────┘
 
-    # Title
+    # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Title]')
     def check_title(self, title: str, nth_index: int = 0):
         """
         ✔ Check [Title] visible
 
         - ✔ Title - visible
-        - ✔ Text - correct
+        - ✔ Title - text
 
         :param title: Course title
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
@@ -98,6 +103,7 @@ class CourseCardComponent(BaseComponent):
         self.check_title_visible(nth_index)
         self.check_title_text(title=title, nth_index=nth_index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Title] visible')
     def check_title_visible(self, nth_index: int = 0):
         """
         ✔ Check [Title] visible
@@ -107,6 +113,7 @@ class CourseCardComponent(BaseComponent):
         error = f'❌ Courses list page > Course View > [Title] (nth-index: {nth_index}) - invisible!'
         expect(self.title.nth(nth_index), error).to_be_visible()
 
+    @allure.step('✔ Check [Title] text')
     def check_title_text(self, title: str, nth_index: int = 0):
         """
         ✔ Check [Title] text
@@ -119,7 +126,8 @@ class CourseCardComponent(BaseComponent):
 
 
     # [Menu button]
-    # ───────────────────────────────────────────┐
+    # ────────────────────────────────────────┐
+    @allure.step('✔ Check [Menu button]')
     def check_menu_btn(self, nth_index: int = 0):
         """
         ✔ Check [Menu button]
@@ -131,7 +139,8 @@ class CourseCardComponent(BaseComponent):
         """
         self.check_menu_btn_visible(nth_index)
         self.check_menu_btn_enabled(nth_index)
-    # ───────────────────────────────────────────┘
+    # ────────────────────────────────────────┘
+    @allure.step('✔ Check [Menu button] visible')
     def check_menu_btn_visible(self, nth_index: int = 0):
         """
         ✔ Check [Menu button] visible
@@ -141,6 +150,7 @@ class CourseCardComponent(BaseComponent):
         error = f'❌ Courses list page > Course View > [Menu button] (nth_index: {nth_index}) - invisible!'
         expect(self.menu_btn.nth(nth_index), error).to_be_visible()
 
+    @allure.step('✔ Check [Menu button] enabled')
     def check_menu_btn_enabled(self, nth_index: int = 0):
         """
         ✔ Check [Menu button] enabled
@@ -151,8 +161,9 @@ class CourseCardComponent(BaseComponent):
         expect(self.menu_btn.nth(nth_index), error).to_be_enabled()
 
 
-    # Image
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # [Image]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Image]')
     def check_image(self, nth_index: int = 0):
         """
         ✔ Check [Image]
@@ -160,7 +171,8 @@ class CourseCardComponent(BaseComponent):
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
         self.check_image_visible(nth_index)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Image] visible')
     def check_image_visible(self, nth_index: int = 0):
         """
         ✔ Check [Image] visible
@@ -171,14 +183,15 @@ class CourseCardComponent(BaseComponent):
         expect(self.image.nth(nth_index), error).to_be_visible()
 
 
-    # Max score
+    # [Max score]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Max score]')
     def check_max_score(self, max_score: str, nth_index: int = 0):
         """
         ✔ Check [Max score]
 
         - ✔ Max score - visible
-        - ✔ Text - correct
+        - ✔ Max score - text
 
         :param max_score: Max score
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
@@ -186,6 +199,7 @@ class CourseCardComponent(BaseComponent):
         self.check_max_score_visible(nth_index)
         self.check_max_score_text(nth_index=nth_index, max_score=max_score)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Max score] visible')
     def check_max_score_visible(self, nth_index: int = 0):
         """
         ✔ Check [Max score] visible
@@ -195,6 +209,7 @@ class CourseCardComponent(BaseComponent):
         error = f'❌ Courses list page > Course View > [Max score] (nth-index: {nth_index}) - invisible!'
         expect(self.max_score.nth(nth_index), error).to_be_visible()
 
+    @allure.step('✔ Check [Max score] text')
     def check_max_score_text(self, max_score: str, nth_index: int = 0):
         """
         ✔ Check [Max score] text
@@ -206,14 +221,15 @@ class CourseCardComponent(BaseComponent):
         expect(self.max_score.nth(nth_index), error).to_have_text(self.MAX_SCORE_TEXT(max_score))
 
 
-    # Min score
+    # [Min score]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Min score]')
     def check_min_score(self, min_score: str, nth_index: int = 0):
         """
         ✔ Check [Min score]
 
         - ✔ Min score - visible
-        - ✔ Text - correct
+        - ✔ Min score - text
 
         :param min_score: Min score
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
@@ -221,6 +237,7 @@ class CourseCardComponent(BaseComponent):
         self.check_min_score_visible(nth_index)
         self.check_min_score_text(nth_index=nth_index, min_score=min_score)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Min score] visible')
     def check_min_score_visible(self, nth_index: int = 0):
         """
         ✔ Check [Min score] visible
@@ -230,6 +247,7 @@ class CourseCardComponent(BaseComponent):
         error = f'❌ [Min score] (nth-index: {nth_index}) - invisible!'
         expect(self.min_score.nth(nth_index), error).to_be_visible()
 
+    @allure.step('✔ Check [Min score] text')
     def check_min_score_text(self, min_score: str, nth_index: int = 0):
         """
         ✔ Check [Min score] text
@@ -241,14 +259,15 @@ class CourseCardComponent(BaseComponent):
         expect(self.min_score.nth(nth_index), error).to_have_text(self.MIN_SCORE_TEXT(min_score))
 
 
-    # Estimated time
+    # [Estimated time]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Estimated time]')
     def check_estimated_time(self, estimated_time: str, nth_index: int = 0):
         """
         ✔ Check [Estimated time]
 
         - ✔ Estimated time - visible
-        - ✔ Text - correct
+        - ✔ Estimated time - text
 
         :param estimated_time: Estimated time
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
@@ -256,6 +275,7 @@ class CourseCardComponent(BaseComponent):
         self.check_estimated_time_visible(nth_index)
         self.check_estimated_time_text(nth_index=nth_index, estimated_time=estimated_time)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Estimated time] visible')
     def check_estimated_time_visible(self, nth_index: int = 0):
         """
         ✔ Check [Estimated time] visible
@@ -265,6 +285,7 @@ class CourseCardComponent(BaseComponent):
         error = f'❌ Courses list page > Course View > [Estimated time] (nth-index: {nth_index}) - invisible!'
         expect(self.estimated_time.nth(nth_index), error).to_be_visible()
 
+    @allure.step('✔ Check [Estimated time] text')
     def check_estimated_time_text(self, estimated_time: str, nth_index: int = 0):
         """
         ✔ Check [Estimated time] text

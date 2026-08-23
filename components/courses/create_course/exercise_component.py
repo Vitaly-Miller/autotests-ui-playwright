@@ -1,11 +1,9 @@
 """
 Create course page > Exercises > [Exercise] (component)
 """
-
+import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Page
-from components.navigation.sidebar.sidebar_component import SidebarComponent
-from components.navigation.navbar.navbar_component import NavbarComponent
 from components.courses.create_course.exercise_toolbar_component import CreateCourseExerciseToolbarComponent
 from components.courses.create_course.exercise_form_component import CreateCourseExerciseFormComponent
 
@@ -24,18 +22,15 @@ class CreateCourseExerciseComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-    # ------------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
-        # <Bars>
-        self.navbar = NavbarComponent(page)
-        self.sidebar = SidebarComponent(page)
+        # ---------------------------------------------- ⿳ COMPONENTS -------------------------------------------------
         self.toolbar = CreateCourseExerciseToolbarComponent(page)
-        # <Form>
         self.form = CreateCourseExerciseFormComponent(page)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Exercise]
-    # ───────────────────────────────────────┐
-    def check_exercise(
+    # ────────────────────────────────┐
+    @allure.step('✔ Check [Exercise]')
+    def check(
             self,
             index: int,
             title: str | None = None,
@@ -57,7 +52,7 @@ class CreateCourseExerciseComponent(BaseComponent):
             index=index,
             title=title,
             description=description)
-    # ───────────────────────────────────────┘
+    # ────────────────────────────────┘
 
 
 #=======================================================================================================================

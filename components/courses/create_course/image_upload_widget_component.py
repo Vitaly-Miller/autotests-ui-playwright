@@ -192,7 +192,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         ✔ Check [Title]
 
         - ✔ Title - visible
-        - ✔ Text - correct
+        - ✔ Title - text
         """
         self.check_upload_view_title_visible()
         self.check_upload_view_title_text()
@@ -223,7 +223,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         ✔ Check [Description]
 
         - ✔ Description - visible
-        - ✔ Text - correct
+        - ✔ Description - text
         """
         self.check_upload_view_description_visible()
         self.check_upload_view_description_text()
@@ -255,7 +255,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         - ✔ Button - visible
         - ✔ Button - enabled
-        - ✔ Text - correct
+        - ✔ Button - text
         """
         self.check_upload_image_btn_visible()
         self.check_upload_image_btn_enable()

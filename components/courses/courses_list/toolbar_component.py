@@ -1,6 +1,8 @@
 """
 Courses list page > [Toolbar] (component)
 """
+import allure
+
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
@@ -16,7 +18,17 @@ class CoursesListToolbarComponent(BaseComponent):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        # [Title]
         self.TITLE_TEXT = 'Courses'
+
+        # --------------------------------------- >>> [Element] path (for debug) ---------------------------------------
+        # [Toolbar]
+        self.toolbar_component = '❌ Courses list page > Toolbar'
+        # [Title]
+        self.title_element = f'{self.toolbar_component} > [Title]'
+        # [Create course button]
+        self.create_course_btn_element = f'{self.toolbar_component} > [Create course button]'
+
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('courses-list-toolbar-title-text')
@@ -24,6 +36,7 @@ class CoursesListToolbarComponent(BaseComponent):
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Create course button]
+    @allure.step('▶ Click [Create course button]')
     def click_create_course_btn(self):
         """
         ▶ Click [Create course button]
@@ -36,7 +49,8 @@ class CoursesListToolbarComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
-    # ─────────────────────────────────┐
+    # ────────────────────────────────┐
+    @allure.step('✔ Check [Toolbar]')
     def check(self):
         """
         ✔ Check [Toolbar]
@@ -46,41 +60,45 @@ class CoursesListToolbarComponent(BaseComponent):
         """
         self.check_title()
         self.check_create_course_btn()
-    # ─────────────────────────────────┘
+    # ────────────────────────────────┘
 
-    # Toolbar [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # [Title]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Title]')
     def check_title(self):
         """
         ✔ Check [Title]
 
         - ✔ Title - visible
-        - ✔ Text - correct
+        - ✔ Title - text
         """
         self.check_title_visible()
         self.check_title_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Title button] visible')
     def check_title_visible(self):
         """
         ✔ Check [Title] visible
 
         - ✔ Title - visible
         """
-        error = f'❌ Registration page > <Toolbar [Title]> of the Courses list page - invisible!'
+        error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
+    @allure.step('✔ Check [Title button] text')
     def check_title_text(self):
         """
         ✔ Check [Title] text
 
         .
         """
-        error = f'❌ Courses list page > Toolbar > [Title] - incorrect text!'
+        error = f'{self.title_element} - incorrect text!'
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 
-    # Toolbar [Create course button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # [Create course button]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Create course button]')
     def check_create_course_btn(self):
         """
          ✔ Check [Create course button]
@@ -88,14 +106,15 @@ class CoursesListToolbarComponent(BaseComponent):
         - ✔ Button - visible
         """
         self.check_create_course_btn_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Create course button] visible')
     def check_create_course_btn_visible(self):
         """
         ✔ Check [Create course button] visible
 
         .
         """
-        error = f'❌ Courses list page > Toolbar > [Create course button] - invisible!'
+        error = f'{self.create_course_btn_element} - invisible!'
         expect(self.create_course_btn, error).to_be_visible()
 
 

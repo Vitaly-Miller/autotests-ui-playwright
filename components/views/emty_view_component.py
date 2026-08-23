@@ -74,7 +74,7 @@ class EmptyViewComponent(BaseComponent):
         ✔ Check [Title]
 
         - ✔ Title - visible
-        - ✔ Text - correct
+        - ✔ Title - text
 
         :param title: Title
         """
@@ -107,7 +107,7 @@ class EmptyViewComponent(BaseComponent):
         ✔ Check [Description]
 
         - ✔ Description - visible
-        - ✔ Text - correct
+        - ✔ Description - text
 
         :param description: Description text
         """

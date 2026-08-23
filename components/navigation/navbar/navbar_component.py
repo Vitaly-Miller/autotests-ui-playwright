@@ -47,7 +47,7 @@ class NavbarComponent(BaseComponent):
         ✔ Check [Title]
 
         - ✔ Title - visible
-        - ✔ Text - correct
+        - ✔ Title - text
         """
         self.check_title_visible()
         self.check_title_text()
@@ -78,7 +78,7 @@ class NavbarComponent(BaseComponent):
         ✔ Check [Welcome title]
 
         - ✔ Title - visible
-        - ✔ Text - correct
+        - ✔ Title - text
 
         :param username: Username
         """
