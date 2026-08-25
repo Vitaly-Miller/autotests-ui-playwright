@@ -26,7 +26,7 @@ class DashboardToolbarComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
-    # ──────────────────────┐
+    # ───────────────────────────────┐
     @allure.step('✔ Check [Toolbar]')
     def check(self):
         """
@@ -35,10 +35,10 @@ class DashboardToolbarComponent(BaseComponent):
         - ✔ Title - visible | - text
         """
         self.check_title()
-    # ──────────────────────┘
+    # ───────────────────────────────┘
 
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_title(self):
         """
@@ -49,7 +49,7 @@ class DashboardToolbarComponent(BaseComponent):
         """
         self.check_title_visible()
         self.check_title_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
