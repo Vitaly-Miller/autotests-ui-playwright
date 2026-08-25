@@ -81,11 +81,11 @@ class SidebarItemComponent(BaseComponent):
     @allure.step('✔ Check [Button] is visible')
     def check_btn_visible(self):
         """
-        ✔ Check [Button]  is visible
+        ✔ Check [Button] is visible
 
         .
         """
-        error = f'{self.icon_element} - invisible!'
+        error = f'{self.btn_element} - invisible!'
         expect(self.btn, error).to_be_visible()
 
     # [Icon]
@@ -102,7 +102,7 @@ class SidebarItemComponent(BaseComponent):
     @allure.step('✔ Check [Icon] is visible')
     def check_icon_visible(self):
         """
-        ✔ Check [Icon]  is visible
+        ✔ Check [Icon] is visible
 
         .
         """
@@ -127,7 +127,7 @@ class SidebarItemComponent(BaseComponent):
     @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title]  is visible
+        ✔ Check [Title] is visible
 
         .
         """

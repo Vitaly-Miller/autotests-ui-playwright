@@ -114,7 +114,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title]  is visible
+        ✔ Check [Title] is visible
 
         .
         """
@@ -155,7 +155,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     @allure.step('✔ Check [Registration button] is visible')
     def check_registration_btn_visible(self):
         """
-        ✔ Check [Registration button]  is visible
+        ✔ Check [Registration button] is visible
 
         .
         """
@@ -211,7 +211,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     @allure.step('✔ Check [Login link] is visible')
     def check_login_link_visible(self):
         """
-        ✔ Check [Login link]  is visible
+        ✔ Check [Login link] is visible
 
         .
         """

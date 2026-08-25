@@ -3,7 +3,7 @@ Browsers fixtures
 """
 import pytest
 from playwright.sync_api import Playwright, StorageState, ViewportSize
-from pages.auth.regustration.registration_page import RegistrationPage
+from pages.auth.registration.registration_page import RegistrationPage
 
 #=======================================================================================================================
 # Chromium Page + Storage state 📦
@@ -83,7 +83,7 @@ def page_guest(playwright: Playwright):   # Чистый (без доп. фик�
     :return: yield page: Page
     """
     browser = playwright.chromium.launch(                 # Создаем объект браузера на движке chromium c параметрами:
-        channel='chromium',                               # - UI оболочка: 'chromium', 'chrome', 'opera'
+        channel='chromium',                               # - UI оболочка: 'chromium', 'chrome', 'msedge'
         headless=True,                                    # - True/False — НЕ/Показывать браузер
         slow_mo=None)                                     # - Action delay (ms)
     context = browser.new_context(                        # Создание браузерного окружения (NO Storage state):

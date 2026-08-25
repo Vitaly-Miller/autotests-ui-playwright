@@ -113,10 +113,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] text')
+    @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title]  is visible
+        ✔ Check [Title] is visible
 
         .
         """
@@ -157,7 +157,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     @allure.step('✔ Check [Login button] is visible')
     def check_login_btn_visible(self):
         """
-        ✔ Check [Login button]  is visible
+        ✔ Check [Login button] is visible
 
         .
         """
@@ -200,7 +200,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     @allure.step('✔ Check [Registration link]')
     def check_registration_link(self):
         """
-        ✔ Check <Registration link
+        ✔ Check [Registration link]
 
         - ✔ Link - visible
         - ✔ Link - text
@@ -213,7 +213,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     @allure.step('✔ Check [Registration link] is visible')
     def check_registration_link_visible(self):
         """
-        ✔ Check [Registration link]  is visible
+        ✔ Check [Registration link] is visible
 
         .
         """
@@ -267,7 +267,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     @allure.step('✔ Check [Wrong Email or Password alert] is visible')
     def check_wrong_email_or_password_alert_visible(self):
         """
-        ✔ Check [Wrong Email or Password alert]  is visible
+        ✔ Check [Wrong Email or Password alert] is visible
 
         .
         """

@@ -8,7 +8,7 @@ from playwright.sync_api import Page
 from components.navigation.navbar.navbar_component import NavbarComponent
 from components.navigation.sidebar.sidebar_component import SidebarComponent
 from components.courses.create_course.toolbar_component import CreateCourseToolbarComponent
-from components.views.emty_view_component import EmptyViewComponent
+from components.views.empty_view_component import EmptyViewComponent
 from components.courses.create_course.image_upload_widget_component import CreateCourseImageUploadWidgetComponent
 from components.courses.create_course.form_component import CreateCourseFormComponent
 from components.courses.create_course.exercises_toolbar_component import CreateCourseExercisesToolbarComponent
@@ -47,7 +47,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Exercises [Empty view]
-    # ───────────────────────────────────────────────────┐
+    # ────────────────────────────────────────────────────────┐
     @allure.step('✔ Check Exercises [Empty view]')
     def check_exercises_empty_view(self):
         """
@@ -59,5 +59,5 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         """
         self.exercises_empty_view.check(
             title=self.EXERCISES_EMPTY_VIEW_TITLE,
-            description=self.EXERCISES_EMPTY_VIEW_TITLE)
-    # ───────────────────────────────────────────────────┘
+            description=self.EXERCISES_EMPTY_VIEW_DESCRIPTION)
+    # ────────────────────────────────────────────────────────┘

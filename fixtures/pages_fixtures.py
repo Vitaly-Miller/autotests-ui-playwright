@@ -6,7 +6,7 @@ from playwright.sync_api import Page
 from pages.courses.courses_list.courses_list_page import CoursesListPage
 from pages.courses.create_course.create_course_page import CreateCoursePage
 from pages.auth.login.login_page import LoginPage
-from pages.auth.regustration.registration_page import RegistrationPage
+from pages.auth.registration.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
 
 #=======================================================================================================================

@@ -71,7 +71,7 @@ class CreateCourseToolbarComponent(BaseComponent):
     @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title]  is visible
+        ✔ Check [Title] is visible
 
         - ✔ Title - visible
         """
@@ -108,7 +108,7 @@ class CreateCourseToolbarComponent(BaseComponent):
     @allure.step('✔ Check [Create course button] is visible')
     def check_create_course_btn_visible(self):
         """
-        ✔ Check [Create course button]  is visible
+        ✔ Check [Create course button] is visible
 
         .
         """

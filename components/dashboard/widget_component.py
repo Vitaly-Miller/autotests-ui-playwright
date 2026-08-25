@@ -41,7 +41,7 @@ class DashboardWidgetComponent(BaseComponent):
     # ─────────────────────────────────┐
     def check_widget(self, title: str):
         """
-        ✔ Check [{self.widget_name}-widget]
+        ✔ Check [Widget]
 
         - ✔ Title - visible | - text
         - ✔ Chart - visible
@@ -67,7 +67,7 @@ class DashboardWidgetComponent(BaseComponent):
     @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title]  is visible
+        ✔ Check [Title] is visible
 
         .
         """
@@ -89,7 +89,7 @@ class DashboardWidgetComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_chart(self):
         """
-        ✔ Check [{self.chart_name}-chart]
+        ✔ Check [Chart]
 
         - ✔ Chart - visible
         """
@@ -98,7 +98,7 @@ class DashboardWidgetComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_chart_visible(self):
         """
-        ✔ Check [{self.chart_name}-chart] is visible
+        ✔ Check [Chart] is visible
 
         .
         """

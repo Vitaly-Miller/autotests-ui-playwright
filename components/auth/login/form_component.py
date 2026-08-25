@@ -141,7 +141,7 @@ class LoginFormComponent(BaseComponent):
     @allure.step('✔ Check [Email field] is visible')
     def check_email_field_visible(self):
         """
-        ✔ Check [Email field]  is visible
+        ✔ Check [Email field] is visible
 
         .
         """
@@ -197,7 +197,7 @@ class LoginFormComponent(BaseComponent):
     @allure.step('✔ Check [Password field] is visible')
     def check_password_field_visible(self):
         """
-        ✔ Check [Password field]  is visible
+        ✔ Check [Password field] is visible
 
         .
         """

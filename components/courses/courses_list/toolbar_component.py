@@ -69,17 +69,17 @@ class CoursesListToolbarComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title button] is visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title]  is visible
+        ✔ Check [Title] is visible
 
         - ✔ Title - visible
         """
         error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
-    @allure.step('✔ Check [Title button] text')
+    @allure.step('✔ Check [Title] text')
     def check_title_text(self):
         """
         ✔ Check [Title] text
@@ -104,7 +104,7 @@ class CoursesListToolbarComponent(BaseComponent):
     @allure.step('✔ Check [Create course button] is visible')
     def check_create_course_btn_visible(self):
         """
-        ✔ Check [Create course button]  is visible
+        ✔ Check [Create course button] is visible
 
         .
         """

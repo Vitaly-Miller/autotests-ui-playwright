@@ -159,7 +159,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
     @allure.step('✔ Check [Title field] is visible')
     def check_title_field_visible(self, index: int = 0):
         """
-        ✔ Check [Title field]  is visible
+        ✔ Check [Title field] is visible
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
@@ -193,7 +193,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         :param title: Exercise title
         """
         error = f'{self.title_field_element(index)} - incorrect value!'
-        expect(self.description_field(index), error).to_have_value(title)
+        expect(self.title_field(index), error).to_have_value(title)
 
 
     # [Description field]
@@ -227,7 +227,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
     @allure.step('✔ Check [Description field] is visible')
     def check_description_field_visible(self, index: int = 0):
         """
-        ✔ Check [Description field]  is visible
+        ✔ Check [Description field] is visible
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """

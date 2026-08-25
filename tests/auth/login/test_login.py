@@ -7,7 +7,7 @@ import allure
 from tools.allure.annotations import Epic, Feature, Story, Tag
 from allure_commons.types import Severity
 from pages.auth.login.login_page import LoginPage
-from pages.auth.regustration.registration_page import RegistrationPage
+from pages.auth.registration.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
 
 #=======================================================================================================================

@@ -6,7 +6,7 @@ import pytest
 import allure
 from allure_commons.types import Severity
 from pages.dashboard.dashboard_page import DashboardPage
-from pages.auth.regustration.registration_page import RegistrationPage
+from pages.auth.registration.registration_page import RegistrationPage
 from tools.allure.annotations import Epic, Feature, Story, Tag
 
 #=======================================================================================================================

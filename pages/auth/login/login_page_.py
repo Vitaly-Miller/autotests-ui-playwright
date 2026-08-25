@@ -101,7 +101,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
-        ✔ Check [Title]  is visible
+        ✔ Check [Title] is visible
 
         .
         """
@@ -179,7 +179,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_registration_link_visible(self):
         """
-        ✔ Check [Registration link]  is visible
+        ✔ Check [Registration link] is visible
 
         .
         """

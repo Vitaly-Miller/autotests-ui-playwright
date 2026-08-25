@@ -8,7 +8,7 @@ from pages.base_page import BasePage
 from components.navigation.navbar.navbar_component import NavbarComponent
 from components.navigation.sidebar.sidebar_component import SidebarComponent
 from components.courses.courses_list.toolbar_component import CoursesListToolbarComponent
-from components.views.emty_view_component import EmptyViewComponent
+from components.views.empty_view_component import EmptyViewComponent
 
 #=======================================================================================================================
 """

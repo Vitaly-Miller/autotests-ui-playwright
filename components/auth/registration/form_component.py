@@ -122,7 +122,7 @@ class RegistrationFormComponent(BaseComponent):
         ----------------
         - ✔ Email field - visible | - name
         - ✔ Username field - visible | - name
-        - ✔ Password field - visible | - names
+        - ✔ Password field - visible | - name
 
         :param email: Email (optional)
         :param username: Username (optional)
@@ -166,7 +166,7 @@ class RegistrationFormComponent(BaseComponent):
     @allure.step('✔ Check [Email field] is visible')
     def check_email_field_visible(self):
         """
-        ✔ Check [Email field]  is visible
+        ✔ Check [Email field] is visible
 
         .
         """
@@ -222,7 +222,7 @@ class RegistrationFormComponent(BaseComponent):
     @allure.step('✔ Check [Username field] is visible')
     def check_username_field_visible(self):
         """
-        ✔ Check [Username field]  is visible
+        ✔ Check [Username field] is visible
 
         .
         """
@@ -278,7 +278,7 @@ class RegistrationFormComponent(BaseComponent):
     @allure.step('✔ Check [Password field] is visible')
     def check_password_field_visible(self):
         """
-        ✔ Check [Password field]  is visible
+        ✔ Check [Password field] is visible
 
         .
         """

@@ -30,7 +30,7 @@ class CreateCourseFormComponent(BaseComponent):
         self.MIN_SCORE_FIELD_NAME = 'Min score'
 
         # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
-        self.form_component = '❌ Create course page > Exercises > Toolbar'
+        self.form_component = '❌ Create course page > Form'
         self.title_field_element = f'{self.form_component} > [Title field]'
         self.estimated_time_field_element = f'{self.form_component} > [Estimated time field]'
         self.description_field_element = f'{self.form_component} > [Description field]'
@@ -215,11 +215,11 @@ class CreateCourseFormComponent(BaseComponent):
     @allure.step('✔ Check [Title field] is visible')
     def check_title_field_visible(self):
         """
-        ✔ Check [Title field]  is visible
+        ✔ Check [Title field] is visible
 
         .
         """
-        error = f'{self.title_field} - invisible!'
+        error = f'{self.title_field_element} - invisible!'
         expect(self.title_field, error).to_be_visible()
 
     @allure.step('✔ Check [Title field] name')
@@ -229,7 +229,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        error = f'{self.title_field} - incorrect name!'
+        error = f'{self.title_field_element} - incorrect name!'
         expect(self.title_field, error).to_have_accessible_name(self.TITLE_FIELD_NAME)
 
     @allure.step('✔ Check [Title field] placeholder')
@@ -239,7 +239,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        error = f'{self.title_field} - incorrect placeholder!'
+        error = f'{self.title_field_element} - incorrect placeholder!'
         expect(self.title_field, error).to_have_attribute('placeholder', self.TITLE_FIELD_PLACEHOLDER)
 
     @allure.step('✔ Check [Title field] value')
@@ -251,7 +251,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param title: Title
         """
-        error = f'{self.title_field} - incorrect value!'
+        error = f'{self.title_field_element} - incorrect value!'
         expect(self.title_field, error).to_have_value(title)
 
 
@@ -285,7 +285,7 @@ class CreateCourseFormComponent(BaseComponent):
     @allure.step('✔ Check [Estimated time field] is visible')
     def check_estimated_time_field_visible(self):
         """
-        ✔ Check [Estimated time field]  is visible
+        ✔ Check [Estimated time field] is visible
 
         .
         """
@@ -353,7 +353,7 @@ class CreateCourseFormComponent(BaseComponent):
     @allure.step('✔ Check [Description field] is visible')
     def check_description_field_visible(self):
         """
-        ✔ Check [Description field]  is visible
+        ✔ Check [Description field] is visible
 
         .
         """
@@ -363,7 +363,7 @@ class CreateCourseFormComponent(BaseComponent):
     @allure.step('✔ Check [Description field] name')
     def check_description_field_name(self):
         """
-        ✔ Check [Description field] name correct
+        ✔ Check [Description field] name
 
         .
         """
@@ -380,7 +380,7 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'{self.description_field_element} - incorrect placeholder!'
         expect(self.description_field, error).to_have_attribute('placeholder', self.DESCRIPTION_FIELD_PLACEHOLDER)
 
-    @allure.step('✔ Check [Description field] description')
+    @allure.step('✔ Check [Description field] value')
     def check_description_field_value(self, description: str):
         """
         ✔ Check [Description field] value
@@ -421,7 +421,7 @@ class CreateCourseFormComponent(BaseComponent):
     @allure.step('✔ Check [Max score field] is visible')
     def check_max_score_field_visible(self):
         """
-        ✔ Check [Max score field]  is visible
+        ✔ Check [Max score field] is visible
 
         .
         """
@@ -479,7 +479,7 @@ class CreateCourseFormComponent(BaseComponent):
     @allure.step('✔ Check [Min score field] is visible')
     def check_min_score_field_visible(self):
         """
-        ✔ Check [Min score field]  is visible
+        ✔ Check [Min score field] is visible
 
         .
         """
