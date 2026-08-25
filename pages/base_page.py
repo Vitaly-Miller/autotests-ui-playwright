@@ -15,7 +15,7 @@ class BasePage:                                 # Родительский кл�
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Open page
-    @allure.step('⿹ Open page {url}')
+    @allure.step('⿹ Open page')
     def open(self, url: str):
         """
         ⿹ Open page
@@ -48,7 +48,7 @@ class BasePage:                                 # Родительский кл�
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Current URL] - ⚠️Дублирование из BaseComponent
-    @allure.step('✔ Check that current URL is {expected_url}')
+    @allure.step('✔ Check current page URL')
     def check_current_url(self, expected_url: str | Pattern[str]):
         """
         ✔ Check [Current page URL]

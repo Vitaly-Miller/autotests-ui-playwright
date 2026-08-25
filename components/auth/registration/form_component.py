@@ -18,9 +18,16 @@ class RegistrationFormComponent(BaseComponent):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        # Fields names
         self.EMAIL_FIELD_NAME = 'Email'
         self.USERNAME_FIELD_NAME = 'Username'
         self.PASSWORD_FIELD_NAME = 'Password'
+
+        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        self.form_component = '❌ Registration page > Form'
+        self.email_field_element = f'{self.form_component} > [Email field]'
+        self.username_field_element = f'{self.form_component} > [Username field]'
+        self.password_field_element = f'{self.form_component} > [Password field]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.email_field = page.get_by_test_id('registration-form-email-input').locator('input')
@@ -163,7 +170,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Registration page > Form > [Email field] - invisible!'
+        error = f'{self.email_field_element} - invisible!'
         expect(self.email_field, error).to_be_visible()
 
     @allure.step('✔ Check [Email field] name')
@@ -173,7 +180,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Registration page > Form > [Email field] - incorrect name!'
+        error = f'{self.email_field_element} - incorrect name!'
         expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
     @allure.step('✔ Check [Email field] value')
@@ -183,7 +190,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param email: Email
         """
-        error = f'❌ Registration page > Form > [Email field] - incorrect value!'
+        error = f'{self.email_field_element} - incorrect value!'
         expect(self.email_field, error).to_have_value(email)
 
 
@@ -219,7 +226,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Registration page > Form > [Username field] - invisible!'
+        error = f'{self.username_field_element} - invisible!'
         expect(self.username_field, error).to_be_visible()
 
     @allure.step('✔ Check [Username field] name')
@@ -229,7 +236,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Registration page > Form > [Username field] - incorrect name!'
+        error = f'{self.username_field_element} - incorrect name!'
         expect(self.username_field, error).to_have_accessible_name(self.USERNAME_FIELD_NAME)
 
     @allure.step('✔ Check [Username field] value')
@@ -239,7 +246,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param username: Username
         """
-        error = f'❌ Registration page > Form > [Username field] - incorrect value!'
+        error = f'{self.username_field_element} - incorrect value!'
         expect(self.username_field, error).to_have_value(username)
 
 
@@ -275,7 +282,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Registration page > Form > [Password field] - invisible!'
+        error = f'{self.password_field_element} - invisible!'
         expect(self.password_field, error).to_be_visible()
 
     @allure.step('✔ Check [Password field] name')
@@ -285,7 +292,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Registration page > Form > [Password field] - incorrect name!'
+        error = f'{self.password_field_element} - incorrect name!'
         expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
     @allure.step('✔ Check [Password field] value')
@@ -295,7 +302,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param password: Password
         """
-        error = f'❌ Registration page > Form > [Password field] - incorrect value!'
+        error = f'{self.password_field_element} - incorrect value!'
         expect(self.password_field, error).to_have_value(password)
 
 

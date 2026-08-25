@@ -83,7 +83,7 @@ def test_create_user():
 ### `Title` - заголовок теста (динамический)
 
 ``` python
-@allure.title('Create user')      # <– ⚠️ Статический title - игнорируется при наличии динамического
+@allure.title('Create user')        # <– ⚠️ Статический title - игнорируется при наличии динамического
 @pytest.mark.parametrize(           # ┐
     'email', [                      # │
         'email_1@amazon.com',       # │

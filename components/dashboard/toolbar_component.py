@@ -1,6 +1,7 @@
 """
-Dashboard > [Toolbar] (component)
+Dashboard page > [Toolbar] (component)
 """
+import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
@@ -19,9 +20,14 @@ class DashboardToolbarComponent(BaseComponent):
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('dashboard-toolbar-title-text')
 
+        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        self.toolbar_component = '❌ Dashboard page > Toolbar'
+        self.title_element = f'{self.toolbar_component} > [Title]'
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
     # ──────────────────────┐
+    @allure.step('✔ Check [Toolbar]')
     def check(self):
         """
         ✔ Check [Toolbar]
@@ -33,6 +39,7 @@ class DashboardToolbarComponent(BaseComponent):
 
     # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Title]')
     def check_title(self):
         """
         ✔ Check [Title]
@@ -43,22 +50,24 @@ class DashboardToolbarComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Title] visible')
     def check_title_visible(self):
         """
         ✔ Check [Title] visible
 
-        - ✔ Title - visible
+        .
         """
-        error = f'❌ Dashboard page > Toolbar > [Title] - invisible!'
+        error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
+    @allure.step('✔ Check [Title] text')
     def check_title_text(self):
         """
         ✔ Check [Title] text
 
         .
         """
-        error = f'❌ Dashboard page > Toolbar > [Title] - incorrect text!'
+        error = f'{self.title_element} - incorrect text!'
         expect(self.title, error).to_have_text(self.TITLE_TEXT)
 
 #=======================================================================================================================

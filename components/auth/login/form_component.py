@@ -18,17 +18,13 @@ class LoginFormComponent(BaseComponent):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # [Email field]
+        # Fields names
         self.EMAIL_FIELD_NAME = 'Email'
-        # [Password field]
         self.PASSWORD_FIELD_NAME = 'Password'
 
-        # --------------------------------------- >>> [Element] path (for debug) ---------------------------------------
-        # [Form]
+        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
         self.form_component = '❌ Login page > Form'
-        # [Email field]
         self.email_field_element = f'{self.form_component} > [Email field]'
-        # [Password field]
         self.password_field_element = f'{self.form_component} > [Password field]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
@@ -118,7 +114,7 @@ class LoginFormComponent(BaseComponent):
     # ─────────────────────────────────────────┘
 
     # [Email field]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_email_field(self, email: str | None = None):
         """
         ✔ Check [Email field]
@@ -141,7 +137,7 @@ class LoginFormComponent(BaseComponent):
             with allure.step('✔ Check [Email field] UI'):
                 self.check_email_field_visible()
                 self.check_email_field_name()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     @allure.step('✔ Check [Email field] visible')
     def check_email_field_visible(self):
         """
@@ -149,7 +145,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Login page > Form > [Email field] - invisible!'
+        error = f'{self.email_field_element} - invisible!'
         expect(self.email_field, error).to_be_visible()
 
     @allure.step('✔ Check [Email field] name')
@@ -159,7 +155,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Login page > Form > [Email field] - incorrect name!'
+        error = f'{self.email_field_element} - incorrect name!'
         expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
     @allure.step('✔ Check [Email field] value')
@@ -169,7 +165,7 @@ class LoginFormComponent(BaseComponent):
 
         :param email: Email
         """
-        error = f'❌ Login page > Form > [Email field] - incorrect value!'
+        error = f'{self.email_field_element} - incorrect value!'
         expect(self.email_field, error).to_have_value(email)
 
 
@@ -205,7 +201,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Login page > Form > [Password field] - invisible!'
+        error = f'{self.password_field_element} - invisible!'
         expect(self.password_field, error).to_be_visible()
 
     @allure.step('✔ Check [Password field] name')
@@ -215,7 +211,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        error = f'❌ Login page > Form > [Password field] - incorrect name!'
+        error = f'{self.password_field_element} - incorrect name!'
         expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
     @allure.step('✔ Check [Password field] value')
@@ -225,7 +221,7 @@ class LoginFormComponent(BaseComponent):
 
         :param password: Password
         """
-        error = f'❌ Login page > Form > [Password field] - incorrect value!'
+        error = f'{self.password_field_element} - incorrect value!'
         expect(self.password_field, error).to_have_value(password)
 
 

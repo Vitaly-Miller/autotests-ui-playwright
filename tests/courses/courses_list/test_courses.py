@@ -18,7 +18,7 @@ from pages.courses.courses_list.courses_list_page import CoursesListPage
 @allure.feature(Feature.COURSES)
 @allure.story(Story.UI)
 class TestCourses:
-    @allure.title('Check empty courses list UI')
+    @allure.title('✔ Check empty courses list UI')
     def test_empty_courses_list(self, courses_list_page: CoursesListPage):
         # 𝌆 TEST DATA
         username = 'username'

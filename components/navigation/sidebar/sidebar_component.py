@@ -1,7 +1,7 @@
 """
 Sidebar (component)
 """
-
+import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Page
 from components.navigation.sidebar.sidebar_item_component import SidebarItemComponent
@@ -18,12 +18,12 @@ class SidebarComponent(BaseComponent):
         super().__init__(page)
 
         # ----------------------------------------------- 𝌆 DATA -------------------------------------------------------
-        # <Item [Identifiers]
+        # Item [Identifiers]
         self.DASHBOARD_IDENTIFIER = 'dashboard'
         self.COURSES_IDENTIFIER = 'courses'
         self.LOGOUT_IDENTIFIER = 'logout'
 
-        # <Item [Titles]
+        # Item [Titles]
         self.DASHBOARD_TITLE = 'Dashboard'
         self.COURSES_TITLE = 'Courses'
         self.LOGOUT_TITLE = 'Logout'
@@ -34,6 +34,7 @@ class SidebarComponent(BaseComponent):
         self.logout_item = SidebarItemComponent(page=page, identifier=self.LOGOUT_IDENTIFIER)
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    @allure.step('▶ Click [Dashboard]')
     def click_dashboard(self):
         """
         ▶ Click [Dashboard]
@@ -42,6 +43,7 @@ class SidebarComponent(BaseComponent):
         """
         self.dashboard_item.click_btn()
 
+    @allure.step('▶ Click [Courses]')
     def click_courses(self):
         """
         ▶ Click [Courses]
@@ -50,6 +52,7 @@ class SidebarComponent(BaseComponent):
         """
         self.courses_item.click_btn()
 
+    @allure.step('▶ Click [Logout]')
     def click_logout(self):
         """
         ▶ Click [Logout]
@@ -61,6 +64,7 @@ class SidebarComponent(BaseComponent):
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Sidebar]
     # ────────────────────────────────────────────────────────────┐
+    @allure.step('✔ Check [Sidebar]')
     def check(self):
         """
         ✔ Check [Sidebar]

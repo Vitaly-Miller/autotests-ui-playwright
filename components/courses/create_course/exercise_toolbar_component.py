@@ -16,21 +16,15 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # [Title]
         self.TITLE_TEXT = lambda index: f'#{index + 1} Exercise'
 
-        # --------------------------------------- >>> [Element] path (for debug) ---------------------------------------
-        # [Toolbar]
+        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
         self.toolbar_component = '❌ Create course page > Exercises > Exercise > Toolbar'
-        # [Title]
         self.title_element = lambda index: f'{self.toolbar_component} > [Title] (index: {index})'
-        # [Delete exercise button]
         self.delete_exercise_btn_element = lambda index: f'{self.toolbar_component} > [Delete exercise button] (index: {index})'
 
         # --------------------------------------- ㉧ LOCATORS {dynamic} (lambda) ----------------------------------------
-        # [Title]
         self.title = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
-        # [Delete exercise button]
         self.delete_exercise_btn = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
 
     # -------------------------------------------- ㉧ LOCATORS {dynamic} (def) ------------------------------------------

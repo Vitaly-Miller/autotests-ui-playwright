@@ -17,27 +17,27 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # [Title field]
+        # Fields names
         self.TITLE_FIELD_NAME = 'Title'
-        # [Description field]
         self.DESCRIPTION_FIELD_NAME = 'Description'
 
+        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        self.form_component = '❌ Create course page > Exercises > Exercise > Form'
+        self.title_field_element = lambda index: f'{self.form_component} > [Title] (index: {index})'
+        self.description_field_element = lambda index: f'{self.form_component} > [Description field] (index: {index})'
+
         # --------------------------------------- ㉧ LOCATORS {dynamic} (lambda) ----------------------------------------
-        # [Title field]
         self.title_field = lambda index: page.get_by_test_id(f'create-course-exercise-form-title-{index}-input')
-        # [Description field]
         self.description_field = lambda index: page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
 
     # -------------------------------------------- ㉧ LOCATORS {dynamic} (def)-------------------------------------------
-    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ⚠️ NOT USING ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╮
-    # [Title field]
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ⚠️ NOT USING ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╮
     def _title_field(self, index: int = 0) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-form-title-{index}-input')
 
-    # [Description field]
     def _description_field(self, index: int = 0) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
-    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╯
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╯
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
@@ -163,7 +163,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ Create course page > Exercises > Exercise > Form > [Title field] (index: {index}) - invisible!'
+        error = f'{self.title_field_element(index)} - invisible!'
         expect(self.title_field(index), error).to_be_visible()
 
     @allure.step('✔ Check [Title field] name')
@@ -173,7 +173,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ Create course page > Exercises > Exercise > Form > [Title field] (index: {index}) - incorrect name!'
+        error = f'{self.title_field_element(index)} - incorrect name!'
         expect(self.title_field(index), error).to_have_accessible_name(self.TITLE_FIELD_NAME)
 
     @allure.step('✔ Check [Title field] value')
@@ -192,7 +192,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         :param title: Exercise title
         """
-        error = f'❌ Create course page > Exercises > Exercise > Form > [Title field] (index: {index}) - incorrect value!'
+        error = f'{self.title_field_element(index)} - incorrect value!'
         expect(self.description_field(index), error).to_have_value(title)
 
 
@@ -231,7 +231,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ Create course page > Exercises > Exercise > Form > [Description field] (index: {index}) - invisible!'
+        error = f'{self.description_field_element(index)} - invisible!'
         expect(self.description_field(index), error).to_be_visible()
 
     @allure.step('✔ Check [Description field] name')
@@ -241,7 +241,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'❌ Create course page > Exercises > Exercise > Form > [Description field] (index: {index}) - incorrect name!'
+        error = f'{self.description_field_element(index)} - incorrect name!'
         expect(self.description_field(index), error).to_have_accessible_name(self.DESCRIPTION_FIELD_NAME)
 
     @allure.step('✔ Check [Description field] value')
@@ -260,7 +260,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         :param description: Exercise description
         """
-        error = f'❌ Create course page > Exercises > Exercise > Form > [Description field] (index: {index}) - incorrect value!'
+        error = f'{self.description_field_element(index)} - incorrect value!'
         expect(self.description_field(index), error).to_have_value(description)
 
 

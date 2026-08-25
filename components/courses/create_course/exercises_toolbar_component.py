@@ -17,15 +17,11 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # [Title]
         self.TITLE_TEXT = 'Exercises'
 
-        # --------------------------------------- >>> [Element] path (for debug) ---------------------------------------
-        # [Toolbar]
+        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
         self.toolbar_component = '❌ Create course page > Exercises > Toolbar'
-        # [Title]
         self.title_element = f'{self.toolbar_component} > [Title]'
-        # [Create exercise button]
         self.create_exercise_btn_element = f'{self.toolbar_component} > [Create exercise button]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
@@ -96,7 +92,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
 
 
     # [Create exercise button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Create exercise button]')
     def check_create_exercise_btn(self):
         """
@@ -105,7 +101,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         - ✔ Button - visible
         """
         self.check_create_exercise_btn_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     @allure.step('✔ Check [Create exercise button] visible')
     def check_create_exercise_btn_visible(self):
         """

@@ -1,6 +1,8 @@
 """
 Courses list page
 """
+import allure
+from playwright.sync_api import Page
 from components.courses.courses_list.course_card_component import CourseCardComponent
 from pages.base_page import BasePage
 from components.navigation.navbar.navbar_component import NavbarComponent
@@ -8,9 +10,16 @@ from components.navigation.sidebar.sidebar_component import SidebarComponent
 from components.courses.courses_list.toolbar_component import CoursesListToolbarComponent
 from components.views.emty_view_component import EmptyViewComponent
 
-from playwright.sync_api import Page
-
 #=======================================================================================================================
+"""
+[Courses list page]
+- Navbar (component)
+- Sidebar (component)
+- Toolbar (component)
+- Empty view (component)
+- Course card (component)
+
+"""
 class CoursesListPage(BasePage):       # Дочерний класс (наследует класс BasePage)
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses'
 
@@ -18,24 +27,23 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # [Empty view]
         self.IDENTIFIER = 'courses-list'
+        self.COMPONENT = 'Courses list page'
+        
         self.EMPTY_VIEW_TITLE = 'There is no results'
         self.EMPTY_VIEW_DESCRIPTION = 'Results from the load test pipeline will be displayed here'
 
         # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
-        # <Bars>
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = CoursesListToolbarComponent(page)
-        # <Empty view>
-        self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER)
-        # <Course card>
+        self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, component=self.COMPONENT)
         self.course_card = CourseCardComponent(page)
 
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Empty view] (component):
+    @allure.step('✔ Check [Empty view]')
     def check_empty_view(self):
         """
         ✔ Check [Empty view]

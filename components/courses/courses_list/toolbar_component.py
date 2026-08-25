@@ -18,17 +18,12 @@ class CoursesListToolbarComponent(BaseComponent):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # [Title]
         self.TITLE_TEXT = 'Courses'
 
-        # --------------------------------------- >>> [Element] path (for debug) ---------------------------------------
-        # [Toolbar]
+        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
         self.toolbar_component = '❌ Courses list page > Toolbar'
-        # [Title]
         self.title_element = f'{self.toolbar_component} > [Title]'
-        # [Create course button]
         self.create_course_btn_element = f'{self.toolbar_component} > [Create course button]'
-
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title = page.get_by_test_id('courses-list-toolbar-title-text')

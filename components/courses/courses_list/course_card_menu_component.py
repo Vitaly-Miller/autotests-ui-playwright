@@ -1,5 +1,5 @@
 """
-Courses list page > Course View > [Menu] (component)
+Courses list page > Course card > [Menu] (component)
 """
 import allure
 from components.base_component import BaseComponent
@@ -15,24 +15,18 @@ class CourseCardMenuComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.EDIT_BTN_TEXT = 'Edit'
         self.DELETE_BTN_TEXT = 'Delete'
 
-        # --------------------------------------- >>> [Element] path (for debug) ---------------------------------------
-        # # [Toolbar]
-        # self.toolbar_component = '❌ Courses list page > Toolbar'
-        # # [Title]
-        # self.title_element = f'{self.toolbar_component} > [Title]'
-        # # [Create course button]
-        # self.create_course_btn_element = f'{self.toolbar_component} > [Create course button]'
-
+        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        self.menu_component = '❌ Courses list page > Course card > Menu'
+        self.edit_btn_element = lambda nth_index: f'{self.menu_component} > [Edit button] (nth_index: {nth_index})'
+        self.delete_btn_element = lambda nth_index: f'{self.menu_component} > [Delete button] (nth_index: {nth_index})'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.edit_btn = page.get_by_test_id('course-view-edit-menu-item')
         self.delete_btn = page.get_by_test_id('course-view-delete-menu-item')
-
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Edit button]
@@ -88,7 +82,7 @@ class CourseCardMenuComponent(BaseComponent):
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
-        error = f'❌ Courses list page > Course View > Menu > [Edit button] (nth_index: {nth_index}) - invisible!'
+        error = f'{self.edit_btn_element(nth_index)} - invisible!'
         expect(self.edit_btn.nth(nth_index), error).to_be_visible()
 
     @allure.step('✔ Check [Edit button] text')
@@ -98,7 +92,7 @@ class CourseCardMenuComponent(BaseComponent):
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
-        error = f'❌ Courses list page > Course View > Menu > [Edit button] (nth_index: {nth_index}) - incorrect text!'
+        error = f'{self.edit_btn_element(nth_index)} - incorrect text!'
         expect(self.edit_btn.nth(nth_index), error).to_have_text(self.EDIT_BTN_TEXT)
 
 
@@ -124,7 +118,7 @@ class CourseCardMenuComponent(BaseComponent):
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
-        error = f'❌ Courses list page > Course View > Menu > [Delete button] (nth_index: {nth_index})  - invisible!'
+        error = f'{self.delete_btn_element(nth_index)}  - invisible!'
         expect(self.delete_btn.nth(nth_index), error).to_be_visible()
 
     @allure.step('✔ Check [Delete button] text')
@@ -134,7 +128,7 @@ class CourseCardMenuComponent(BaseComponent):
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
-        error = f'❌ Courses list page > Course View > Menu > [Delete button] (nth_index: {nth_index}) - incorrect text!'
+        error = f'{self.delete_btn_element(nth_index)} - incorrect text!'
         expect(self.delete_btn.nth(nth_index), error).to_have_text(self.DELETE_BTN_TEXT)
 
 

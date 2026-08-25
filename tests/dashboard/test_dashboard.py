@@ -18,7 +18,7 @@ from pages.dashboard.dashboard_page import DashboardPage
 @allure.story(Story.DASHBOARD)
 @allure.feature(Feature.DASHBOARD)
 class TestDashboard:
-    @allure.title('Check Dashboard page components UI')
+    @allure.title('✔ Check Dashboard page components UI')
     def test_dashboard(self, dashboard_page: DashboardPage):
         # 𝌆 TEST DATA
         username = 'username'

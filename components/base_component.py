@@ -2,7 +2,7 @@
 BASE component
 (Page component)
 """
-
+import allure
 from playwright.sync_api import Page, expect
 from pathlib import Path
 from re import Pattern
@@ -19,6 +19,7 @@ class BaseComponent:
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Current URL]
+    @allure.step('✔ Check current page URL')
     def check_current_url(self, expected_url: str | Pattern[str]):
         """
         ✔ Check [Current page URL]

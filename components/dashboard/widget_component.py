@@ -1,14 +1,16 @@
 """
 Dashboard page > [Widget] (component)
 """
+import allure
+
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
 #=======================================================================================================================
 """
 [Widget]:
-- Title (students | activities | courses | scores)
-- Chart (bar | line | pie | scatter)
+- Title  (students | activities | courses | scores )
+- Chart  (   bar   |    line    |   pie   | scatter)
 """
 
 class DashboardWidgetComponent(BaseComponent):
@@ -25,6 +27,11 @@ class DashboardWidgetComponent(BaseComponent):
         self.widget_name = identifier.capitalize()
         self.chart_name = chart_type.capitalize()
 
+        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        self.widget_component = f'❌ Dashboard page > {self.widget_name}-widget'
+        self.title_element = f'{self.widget_component} > [Title]'
+        self.chart_element = f'{self.widget_component} > {self.chart_name}-chart > [Chart]'
+
         # ------------------------------------------------ ㉧ LOCATORS -------------------------------------------------
         self.title = page.get_by_test_id(f'{identifier}-widget-title-text')
         self.chart = page.get_by_test_id(f'{identifier}-{chart_type}-chart')
@@ -32,6 +39,7 @@ class DashboardWidgetComponent(BaseComponent):
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Widget]
     # ─────────────────────────────────┐
+    @allure.step('✔ Check [Widget]')
     def check_widget(self, title: str):
         """
         ✔ Check [Widget]
@@ -45,6 +53,7 @@ class DashboardWidgetComponent(BaseComponent):
 
     # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Title]')
     def check_title(self, title: str):
         """
         ✔ Check [Title]
@@ -55,27 +64,30 @@ class DashboardWidgetComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Title] visible')
     def check_title_visible(self):
         """
         ✔ Check [Title] visible
 
         .
         """
-        error = f'❌ Dashboard page > {self.widget_name}-widget > [Title] - invisible!'
+        error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
+    @allure.step('✔ Check [Title] text')
     def check_title_text(self, title: str):
         """
         ✔ Check [Title] text
 
         :param title: Title
         """
-        error = f'❌ Dashboard page > {self.widget_name}-widget > [Title] - incorrect text!'
+        error = f'{self.title_element} - incorrect text!'
         expect(self.title, error).to_have_text(title)
 
 
     # [Chart]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Chart]')
     def check_chart(self):
         """
         ✔ Check [Chart]
@@ -83,14 +95,15 @@ class DashboardWidgetComponent(BaseComponent):
         - ✔ Chart - visible
         """
         self.check_chart_visible()
-    # ╴╴╴╴╴╴╴╴╴╴-╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴-╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check [Chart] visible')
     def check_chart_visible(self):
         """
         ✔ Check [Chart] visible
 
         .
         """
-        error = f'❌ Dashboard page > {self.widget_name}-widget > [{self.chart_name}-chart] - invisible!'
+        error = f'{self.chart_element} - invisible!'
         expect(self.chart, error).to_be_visible()
 
 

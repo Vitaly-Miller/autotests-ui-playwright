@@ -1,6 +1,7 @@
 """
 Dashboard page
 """
+import allure
 
 from pages.base_page import BasePage
 from playwright.sync_api import Page
@@ -15,30 +16,13 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # # [Students widget]
-        # self.STUDENTS_WIDGET_IDENTIFIER = 'students'
-        # self.STUDENTS_WIDGET_CHART_TYPE = 'bar'
-        # self.STUDENTS_WIDGET_TITLE = 'Students'
-        # # [Activities widget]
-        # self.ACTIVITIES_WIDGET_IDENTIFIER = 'activities'
-        # self.ACTIVITIES_WIDGET_CHART_TYPE = 'line'
-        # self.ACTIVITIES_WIDGET_TITLE = 'Activities'
-        # # [Courses widget]
-        # self.COURSES_WIDGET_IDENTIFIER = 'courses'
-        # self.COURSES_WIDGET_CHART_TYPE = 'pie'
-        # self.COURSES_WIDGET_TITLE = 'Courses'
-        # # [Scores widget]
-        # self.SCORES_WIDGET_IDENTIFIER = 'scores'
-        # self.SCORES_WIDGET_CHART_TYPE = 'scatter'
-        # self.SCORES_WIDGET_TITLE = 'Scores'
 
         # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
-        # <Bars>
+        # Bars
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = DashboardToolbarComponent(page)
-        # <Widgets>
+        # Widgets
         self.student_widget = DashboardWidgetComponent(page=page, identifier='students', chart_type='bar')
         self.activities_widget = DashboardWidgetComponent(page=page, identifier='activities', chart_type='line')
         self.courses_widget = DashboardWidgetComponent(page=page, identifier='courses', chart_type='pie')
@@ -48,10 +32,11 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Page]
-    # ─────────────────────────────────────┐
+    # ─────────────────────────────┐
+    @allure.step('✔ Check [Dashboard page]')
     def check(self, username: str):
         """
-        ✔ Check [Dashboard page] elements
+        ✔ Check [Dashboard page]
 
         - ✔ Navbar
         - ✔ Sidebar
@@ -62,13 +47,14 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         self.sidebar.check()
         self.toolbar.check()
         self.check_widgets()
-    # ─────────────────────────────────────┘
+    # ─────────────────────────────┘
 
     # [Widgets]
-    # # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check all [Widgets]')
     def check_widgets(self):
         """
-        ✔ Check all Widgets
+        ✔ Check all [Widgets]
 
         - ✔ Students - visible | - text | Chart - visible
         - ✔ Activities - visible | - text | Chart - visible

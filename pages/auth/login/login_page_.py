@@ -94,7 +94,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         ✔ Check [Title]
 
         - ✔ Title - visible
-        - ✔ Title text - correct
+        - ✔ Title - text
         """
         self.check_title_visible()
         self.check_title_text()
@@ -125,7 +125,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         ✔ Check [Login button]
 
         - ✔ Button - enabled / disabled
-        - ✔ Button text - correct
+        - ✔ Button - text
 
         :param enable: True/False
         """
@@ -170,7 +170,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         ✔ Check <Registration link
 
         - ✔ Link - visible
-        - ✔ Link text - correct
+        - ✔ Link - text
         - ✔ Link URL - correct
         """
         self.check_registration_link_visible()
