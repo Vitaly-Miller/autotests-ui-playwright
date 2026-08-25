@@ -158,7 +158,7 @@ class CourseCardComponent(BaseComponent):
         error = f'{self.menu_btn_element(nth_index)} - invisible!'
         expect(self.menu_btn.nth(nth_index), error).to_be_visible()
 
-    @allure.step('✔ Check [Menu button] enabled')
+    @allure.step('✔ Check [Menu button] is enabled')
     def check_menu_btn_enabled(self, nth_index: int = 0):
         """
         ✔ Check [Menu button] is enabled

@@ -1,7 +1,7 @@
 """
 Courses list page
 """
-
+import allure
 from playwright.sync_api import Page
 from components.courses.courses_list.course_card_component import CourseCardComponent
 from pages.base_page import BasePage
@@ -18,7 +18,6 @@ from components.views.emty_view_component import EmptyViewComponent
 - Toolbar (component)
 - Empty view (component)
 - Course card (component)
-
 """
 class CoursesListPage(BasePage):       # Дочерний класс (наследует класс BasePage)
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses'
@@ -42,10 +41,11 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
-    # [Empty view] (component):
+    # Courses list page [Empty view]:
+    @allure.step('✔ Check Courses list page [Empty view]')
     def check_empty_view(self):
         """
-        ✔ Check [Empty view]
+        ✔ Check  Courses list page [Empty view]
 
         - ✔ Icon - visible
         - ✔ Title - visible | - text

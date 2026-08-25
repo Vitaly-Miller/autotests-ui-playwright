@@ -27,6 +27,6 @@ class TestDashboard:
         dashboard_page.open(dashboard_page.URL)
 
         # ✔️EXPECTATIONS
-        dashboard_page.check(username)
+        dashboard_page.check(username)    # ⬅︎ 60 sub-tests
 
 #=======================================================================================================================

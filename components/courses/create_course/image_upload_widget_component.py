@@ -132,9 +132,10 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
     # Preview view [Empty view] (component)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check Preview view [Empty view]')
     def check_preview_view_empty_view(self):
         """
-        ✔ Check [Empty view]
+        ✔ Check Preview view [Empty view]
 
         - ✔ Icon - visible
         - ✔ Title - visible | - text
