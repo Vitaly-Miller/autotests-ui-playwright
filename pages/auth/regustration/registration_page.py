@@ -111,10 +111,10 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         .
         """
@@ -152,30 +152,30 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
             self.check_registration_btn_disable()
         self.check_registration_btn_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Registration button] visible')
+    @allure.step('✔ Check [Registration button] is visible')
     def check_registration_btn_visible(self):
         """
-        ✔ Check [Registration button] visible
+        ✔ Check [Registration button]  is visible
 
         .
         """
         error = f'{self.registration_btn_element} - invisible!'
         expect(self.registration_btn, error).to_be_visible()
 
-    @allure.step('✔ Check [Registration button] enabled')
+    @allure.step('✔ Check [Registration button] is enabled')
     def check_registration_btn_enable(self):
         """
-        ✔ Check [Registration button] enabled
+        ✔ Check [Registration button] is enabled
 
         (If the Registration form is completed successfully)
         """
         error = f'{self.registration_btn_element} - disabled!'
         expect(self.registration_btn, error).to_be_enabled()
 
-    @allure.step('✔ Check [Registration button] disable')
+    @allure.step('✔ Check [Registration button] is disable')
     def check_registration_btn_disable(self):
         """
-        ✔ Check [Registration button] disabled
+        ✔ Check [Registration button] is disabled
 
         (If the Registration form is NOT completed successfully)
         """
@@ -208,10 +208,10 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.check_login_link_text()
         self.check_login_link_url()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Login link] visible')
+    @allure.step('✔ Check [Login link] is visible')
     def check_login_link_visible(self):
         """
-        ✔ Check [Login link] visible
+        ✔ Check [Login link]  is visible
 
         .
         """

@@ -212,10 +212,10 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_title_field_name()
                 self.check_title_field_placeholder()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title field] visible')
+    @allure.step('✔ Check [Title field] is visible')
     def check_title_field_visible(self):
         """
-        ✔ Check [Title field] visible
+        ✔ Check [Title field]  is visible
 
         .
         """
@@ -282,10 +282,10 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_estimated_time_field_name()
                 self.check_estimated_time_field_placeholder()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Estimated time field] visible')
+    @allure.step('✔ Check [Estimated time field] is visible')
     def check_estimated_time_field_visible(self):
         """
-        ✔ Check [Estimated time field] visible
+        ✔ Check [Estimated time field]  is visible
 
         .
         """
@@ -350,10 +350,10 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_description_field_name()
                 self.check_description_field_placeholder()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Description field] visible')
+    @allure.step('✔ Check [Description field] is visible')
     def check_description_field_visible(self):
         """
-        ✔ Check [Description field] visible
+        ✔ Check [Description field]  is visible
 
         .
         """
@@ -418,10 +418,10 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_max_score_field_name()
                 self.check_max_score_field_value()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Max score field] visible')
+    @allure.step('✔ Check [Max score field] is visible')
     def check_max_score_field_visible(self):
         """
-        ✔ Check [Max score field] visible
+        ✔ Check [Max score field]  is visible
 
         .
         """
@@ -476,10 +476,10 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_min_score_field_name()
                 self.check_min_score_field_value()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Min score field] visible')
+    @allure.step('✔ Check [Min score field] is visible')
     def check_min_score_field_visible(self):
         """
-        ✔ Check [Min score field] visible
+        ✔ Check [Min score field]  is visible
 
         .
         """

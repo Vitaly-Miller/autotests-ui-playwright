@@ -51,7 +51,6 @@ class SidebarItemComponent(BaseComponent):
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Item]
     # ─────────────────────────────┐
-    @allure.step('✔ Check [Item]')
     def check(self, title: str):
         """
         ✔ Check [Item]
@@ -62,9 +61,10 @@ class SidebarItemComponent(BaseComponent):
 
         :param title: Title
         """
-        self.check_btn()
-        self.check_icon()
-        self.check_title(title)
+        with allure.step(f'✔ Check [{self.identifier}-item]'):
+            self.check_btn()
+            self.check_icon()
+            self.check_title(title)
     # ─────────────────────────────┘
 
     # [Button]
@@ -78,10 +78,10 @@ class SidebarItemComponent(BaseComponent):
         """
         self.check_btn_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Button] visible')
+    @allure.step('✔ Check [Button] is visible')
     def check_btn_visible(self):
         """
-        ✔ Check [Button] visible
+        ✔ Check [Button]  is visible
 
         .
         """
@@ -99,10 +99,10 @@ class SidebarItemComponent(BaseComponent):
         """
         self.check_icon_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Icon] visible')
+    @allure.step('✔ Check [Icon] is visible')
     def check_icon_visible(self):
         """
-        ✔ Check [Icon] visible
+        ✔ Check [Icon]  is visible
 
         .
         """
@@ -124,10 +124,10 @@ class SidebarItemComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         .
         """

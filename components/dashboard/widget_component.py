@@ -39,16 +39,16 @@ class DashboardWidgetComponent(BaseComponent):
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Widget]
     # ─────────────────────────────────┐
-    @allure.step('✔ Check [Widget]')
     def check_widget(self, title: str):
         """
-        ✔ Check [Widget]
+        ✔ Check [{self.widget_name}-widget]
 
         - ✔ Title - visible | - text
         - ✔ Chart - visible
         """
-        self.check_title(title)
-        self.check_chart()
+        with allure.step(f'✔ Check [{self.widget_name}-widget]'):
+            self.check_title(title)
+            self.check_chart()
     # ─────────────────────────────────┘
 
     # [Title]
@@ -64,10 +64,10 @@ class DashboardWidgetComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         .
         """
@@ -86,25 +86,25 @@ class DashboardWidgetComponent(BaseComponent):
 
 
     # [Chart]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    @allure.step('✔ Check [Chart]')
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_chart(self):
         """
-        ✔ Check [Chart]
+        ✔ Check [{self.chart_name}-chart]
 
         - ✔ Chart - visible
         """
-        self.check_chart_visible()
-    # ╴╴╴╴╴╴╴╴╴╴-╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Chart] visible')
+        with allure.step(f'✔ Check [{self.chart_name}-chart]'):
+            self.check_chart_visible()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_chart_visible(self):
         """
-        ✔ Check [Chart] visible
+        ✔ Check [{self.chart_name}-chart] is visible
 
         .
         """
-        error = f'{self.chart_element} - invisible!'
-        expect(self.chart, error).to_be_visible()
+        with allure.step(f'✔ Check [{self.chart_name}-chart] is visible'):
+            error = f'{self.chart_element} - invisible!'
+            expect(self.chart, error).to_be_visible()
 
 
 #=======================================================================================================================

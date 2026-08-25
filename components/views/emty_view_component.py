@@ -66,10 +66,10 @@ class EmptyViewComponent(BaseComponent):
         """
         self.check_icon_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Icon] visible')
+    @allure.step('✔ Check [Icon] is visible')
     def check_icon_visible(self):
         """
-        ✔ Check [Icon] visible
+        ✔ Check [Icon]  is visible
 
         .
         """
@@ -92,10 +92,10 @@ class EmptyViewComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         .
         """
@@ -128,10 +128,10 @@ class EmptyViewComponent(BaseComponent):
         self.check_description_visible()
         self.check_description_text(description)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Description] visible')
+    @allure.step('✔ Check [Description] is visible')
     def check_description_visible(self):
         """
-        ✔ Check [Description] visible
+        ✔ Check [Description]  is visible
 
         .
         """

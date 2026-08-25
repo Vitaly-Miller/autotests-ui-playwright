@@ -34,10 +34,12 @@ class TestLogin:
 
         # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ◁ PRE-CONDITION ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
         # New user registration
-        registration_page.open(registration_page.URL)                             # ⿹ Open page
-        registration_page.form.fill(email, username, password)  # ▶︎ Fill registration form
-        registration_page.click_registration_btn()                                # ▶︎ Click registration button
-        dashboard_page.sidebar.click_logout()                                     # ▶︎ Click Sidebar Logout item
+        registration_page.open(registration_page.URL)                                   # ⿹ Open page
+        registration_page.form.fill(email=email, username=username, password=password)  # ▶︎ Fill registration form
+        registration_page.click_registration_btn()                                      # ▶︎ Click registration button
+        dashboard_page.sidebar.click_logout()                                           # ▶︎ Click logout
+        # # ✔ Expectations
+        login_page.check_current_url(login_page.URL)                                    # ✔ Current login page URL
         # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
         # ▶ ACTIONS

@@ -70,10 +70,10 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         .
         """
@@ -102,10 +102,10 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         """
         self.check_create_exercise_btn_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Create exercise button] visible')
+    @allure.step('✔ Check [Create exercise button] is visible')
     def check_create_exercise_btn_visible(self):
         """
-        ✔ Check [Create exercise button] visible
+        ✔ Check [Create exercise button]  is visible
 
         .
         """

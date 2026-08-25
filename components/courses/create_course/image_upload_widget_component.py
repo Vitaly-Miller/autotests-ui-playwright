@@ -132,10 +132,9 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
     # Preview view [Empty view] (component)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    @allure.step('✔ Check <Preview view [Image view]>')
     def check_preview_view_empty_view(self):
         """
-        ✔ Check <Preview view [Empty view]>
+        ✔ Check [Empty view]
 
         - ✔ Icon - visible
         - ✔ Title - visible | - text
@@ -148,21 +147,21 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
     # Preview view [Image view]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    @allure.step('✔ Check <Preview view [Image view]>')
+    @allure.step('✔ Check [Image view]')
     def check_preview_view_image_view(self):
         """
-        ✔ Check <Preview view [Image view]>
+        ✔ Check [Image view]
 
         - ✔ Image view - image
         """
         self.check_preview_view_image_view_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check <Preview view [Image view]> visible')
+    @allure.step('✔ Check [Image view] is visible')
     def check_preview_view_image_view_visible(self):
         """
-        ✔ Check <Preview view [Image view]> visible
+        ✔ Check [Image view]  is visible
 
-        - Image view - Image
+        - Image view - image
         """
         error = f'{self.preview_view_image_view_element} - invisible!'
         expect(self.preview_view_image_view, error).to_be_visible()
@@ -199,10 +198,10 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         """
         self.check_upload_view_icon_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Icon] visible')
+    @allure.step('✔ Check [Icon] is visible')
     def check_upload_view_icon_visible(self):
         """
-        ✔ Check [Icon] visible
+        ✔ Check [Icon]  is visible
 
         .
         """
@@ -222,10 +221,10 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         self.check_upload_view_title_visible()
         self.check_upload_view_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_upload_view_title_visible(self):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         .
         """
@@ -256,10 +255,10 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         self.check_upload_view_description_visible()
         self.check_upload_view_description_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Description] visible')
+    @allure.step('✔ Check [Description] is visible')
     def check_upload_view_description_visible(self):
         """
-        ✔ Check [Description] visible
+        ✔ Check [Description]  is visible
 
         .
         """
@@ -292,20 +291,20 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         self.check_upload_image_btn_enable()
         self.check_upload_image_btn_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Upload image button] visible')
+    @allure.step('✔ Check [Upload image button] is visible')
     def check_upload_image_btn_visible(self):
         """
-        ✔ Check [Upload image button] visible
+        ✔ Check [Upload image button]  is visible
 
         .
         """
         error = f'{self.upload_image_btn_element} - invisible!'
         expect(self.upload_image_btn, error).to_be_visible()
 
-    @allure.step('✔ Check [Upload image button] enable')
+    @allure.step('✔ Check [Upload image button] is enable')
     def check_upload_image_btn_enable(self):
         """
-        ✔ Check [Upload image button] enabled
+        ✔ Check [Upload image button] is enabled
 
         .
         """
@@ -349,10 +348,10 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         else:
             self.check_remove_image_btn_invisible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Remove image button] visible')
+    @allure.step('✔ Check [Remove image button] is visible')
     def check_remove_image_btn_visible(self):
         """
-        ✔ Check [Remove image button] visible
+        ✔ Check [Remove image button]  is visible
 
         (For case - If image UPLOADED)
 
@@ -361,20 +360,20 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         error = f'{self.remove_image_btn_element} - invisible!'
         expect(self.remove_image_btn, error).to_be_visible()
 
-    @allure.step('✔ Check [Remove image button] invisible')
+    @allure.step('✔ Check [Remove image button] is invisible')
     def check_remove_image_btn_invisible(self):
         """
-        ✔ Check [Remove image button] invisible
+        ✔ Check [Remove image button] is invisible
 
         (For case - if image did NOT upload)
         """
         error = f'{self.remove_image_btn_element} - visible!'
         expect(self.remove_image_btn, error).not_to_be_visible()
 
-    @allure.step('✔ Check [Remove image button] enable')
+    @allure.step('✔ Check [Remove image button] is enable')
     def check_remove_image_btn_enable(self):
         """
-        ✔ Check [Remove image button] enabled
+        ✔ Check [Remove image button] is enabled
 
         .
         """

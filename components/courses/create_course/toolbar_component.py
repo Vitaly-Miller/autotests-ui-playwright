@@ -70,10 +70,10 @@ class CreateCourseToolbarComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         - ✔ Title - visible
         """
@@ -107,30 +107,30 @@ class CreateCourseToolbarComponent(BaseComponent):
         else:
             self.check_create_course_btn_disabled()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Create course button] visible')
+    @allure.step('✔ Check [Create course button] is visible')
     def check_create_course_btn_visible(self):
         """
-        ✔ Check [Create course button] visible
+        ✔ Check [Create course button]  is visible
 
         .
         """
         error = f'{self.create_course_btn_element} - invisible!'
         expect(self.create_course_btn, error).to_be_visible()
 
-    @allure.step('✔ Check [Create course button] enabled')
+    @allure.step('✔ Check [Create course button] is enabled')
     def check_create_course_btn_enabled(self):
         """
-        ✔ Check [Create course button] enabled
+        ✔ Check [Create course button] is enabled
 
         (If create course Form filled & Image uploaded)
         """
         error = f'{self.create_course_btn_element} - disabled!'
         expect(self.create_course_btn, error).to_be_enabled()
 
-    @allure.step('✔ Check [Create course button] disabled')
+    @allure.step('✔ Check [Create course button] is disabled')
     def check_create_course_btn_disabled(self):
         """
-        ✔ Check [Create course button] disabled
+        ✔ Check [Create course button] is disabled
 
         (If create course Form did NOT filled & Image did NOT upload)
         """

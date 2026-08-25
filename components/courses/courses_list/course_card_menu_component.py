@@ -75,10 +75,10 @@ class CourseCardMenuComponent(BaseComponent):
         self.check_edit_btn_visible(nth_index)
         self.check_edit_btn_text(nth_index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Edit button] visible')
+    @allure.step('✔ Check [Edit button] is visible')
     def check_edit_btn_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Edit button] visible
+        ✔ Check [Edit button]  is visible
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
@@ -111,10 +111,10 @@ class CourseCardMenuComponent(BaseComponent):
         self.check_delete_btn_visible(nth_index)
         self.check_delete_btn_text(nth_index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Delete button] visible')
+    @allure.step('✔ Check [Delete button] is visible')
     def check_delete_btn_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Delete button] visible
+        ✔ Check [Delete button]  is visible
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """

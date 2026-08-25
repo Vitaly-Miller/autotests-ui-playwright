@@ -100,7 +100,7 @@ class CourseCardComponent(BaseComponent):
     @allure.step('✔ Check [Title]')
     def check_title(self, title: str, nth_index: int = 0):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         - ✔ Title - visible
         - ✔ Title - text
@@ -111,10 +111,10 @@ class CourseCardComponent(BaseComponent):
         self.check_title_visible(nth_index)
         self.check_title_text(title=title, nth_index=nth_index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_title_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
@@ -148,10 +148,10 @@ class CourseCardComponent(BaseComponent):
         self.check_menu_btn_visible(nth_index)
         self.check_menu_btn_enabled(nth_index)
     # ────────────────────────────────────────┘
-    @allure.step('✔ Check [Menu button] visible')
+    @allure.step('✔ Check [Menu button] is visible')
     def check_menu_btn_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Menu button] visible
+        ✔ Check [Menu button]  is visible
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
@@ -161,7 +161,7 @@ class CourseCardComponent(BaseComponent):
     @allure.step('✔ Check [Menu button] enabled')
     def check_menu_btn_enabled(self, nth_index: int = 0):
         """
-        ✔ Check [Menu button] enabled
+        ✔ Check [Menu button] is enabled
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
@@ -180,10 +180,10 @@ class CourseCardComponent(BaseComponent):
         """
         self.check_image_visible(nth_index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Image] visible')
+    @allure.step('✔ Check [Image] is visible')
     def check_image_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Image] visible
+        ✔ Check [Image]  is visible
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
@@ -207,10 +207,10 @@ class CourseCardComponent(BaseComponent):
         self.check_max_score_visible(nth_index)
         self.check_max_score_text(nth_index=nth_index, max_score=max_score)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Max score] visible')
+    @allure.step('✔ Check [Max score] is visible')
     def check_max_score_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Max score] visible
+        ✔ Check [Max score]  is visible
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
@@ -245,10 +245,10 @@ class CourseCardComponent(BaseComponent):
         self.check_min_score_visible(nth_index)
         self.check_min_score_text(nth_index=nth_index, min_score=min_score)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Min score] visible')
+    @allure.step('✔ Check [Min score] is visible')
     def check_min_score_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Min score] visible
+        ✔ Check [Min score]  is visible
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
@@ -283,10 +283,10 @@ class CourseCardComponent(BaseComponent):
         self.check_estimated_time_visible(nth_index)
         self.check_estimated_time_text(nth_index=nth_index, estimated_time=estimated_time)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Estimated time] visible')
+    @allure.step('✔ Check [Estimated time] is visible')
     def check_estimated_time_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Estimated time] visible
+        ✔ Check [Estimated time]  is visible
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """

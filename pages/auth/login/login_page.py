@@ -116,7 +116,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     @allure.step('✔ Check [Title] text')
     def check_title_visible(self):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         .
         """
@@ -154,30 +154,30 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
             self.check_login_btn_disabled()
         self.check_login_btn_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Login button] visible')
+    @allure.step('✔ Check [Login button] is visible')
     def check_login_btn_visible(self):
         """
-        ✔ Check [Login button] visible
+        ✔ Check [Login button]  is visible
 
         .
         """
         error = f'{self.login_btn_element} - invisible!'
         expect(self.login_btn, error).to_be_visible()
 
-    @allure.step('✔ Check [Login button] enabled')
+    @allure.step('✔ Check [Login button] is enabled')
     def check_login_btn_enable(self):
         """
-        ✔ Check [Login button] enabled
+        ✔ Check [Login button] is enabled
 
         (If the Login form is completed successfully)
         """
         error = f'{self.login_btn_element} - disabled!'
         expect(self.login_btn, error).to_be_enabled()
 
-    @allure.step('✔ Check [Login button] disable')
+    @allure.step('✔ Check [Login button] is disable')
     def check_login_btn_disabled(self):
         """
-        ✔ Check [Login button] disabled
+        ✔ Check [Login button] is disabled
 
         (If the Login form is NOT completed successfully)
         """
@@ -210,10 +210,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_registration_link_text()
         self.check_registration_link_url()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Registration link] visible')
+    @allure.step('✔ Check [Registration link] is visible')
     def check_registration_link_visible(self):
         """
-        ✔ Check [Registration link] visible
+        ✔ Check [Registration link]  is visible
 
         .
         """
@@ -264,10 +264,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_wrong_email_or_password_alert_visible()
         self.check_wrong_email_or_password_alert_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Wrong Email or Password alert] visible')
+    @allure.step('✔ Check [Wrong Email or Password alert] is visible')
     def check_wrong_email_or_password_alert_visible(self):
         """
-        ✔ Check [Wrong Email or Password alert] visible
+        ✔ Check [Wrong Email or Password alert]  is visible
 
         .
         """

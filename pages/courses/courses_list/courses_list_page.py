@@ -1,7 +1,7 @@
 """
 Courses list page
 """
-import allure
+
 from playwright.sync_api import Page
 from components.courses.courses_list.course_card_component import CourseCardComponent
 from pages.base_page import BasePage
@@ -29,7 +29,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.IDENTIFIER = 'courses-list'
         self.COMPONENT = 'Courses list page'
-        
+
         self.EMPTY_VIEW_TITLE = 'There is no results'
         self.EMPTY_VIEW_DESCRIPTION = 'Results from the load test pipeline will be displayed here'
 
@@ -43,7 +43,6 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Empty view] (component):
-    @allure.step('✔ Check [Empty view]')
     def check_empty_view(self):
         """
         ✔ Check [Empty view]

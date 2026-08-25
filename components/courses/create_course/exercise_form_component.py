@@ -156,10 +156,10 @@ class CreateCourseExerciseFormComponent(BaseComponent):
                 self.check_title_field_name(index)
                 self.check_title_field_value(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title field] visible')
+    @allure.step('✔ Check [Title field] is visible')
     def check_title_field_visible(self, index: int = 0):
         """
-        ✔ Check [Title field] visible
+        ✔ Check [Title field]  is visible
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
@@ -224,10 +224,10 @@ class CreateCourseExerciseFormComponent(BaseComponent):
                 self.check_description_field_name(index)
                 self.check_description_field_value(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Description field] visible')
+    @allure.step('✔ Check [Description field] is visible')
     def check_description_field_visible(self, index: int = 0):
         """
-        ✔ Check [Description field] visible
+        ✔ Check [Description field]  is visible
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """

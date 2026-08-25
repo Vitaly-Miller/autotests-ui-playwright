@@ -85,10 +85,10 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         self.check_toolbar_title_visible(index)
         self.check_toolbar_title_text(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] visible')
+    @allure.step('✔ Check [Title] is visible')
     def check_toolbar_title_visible(self, index: int):
         """
-        ✔ Check [Title] visible
+        ✔ Check [Title]  is visible
 
         :param index: Locator DOM-index (ex: ...-exercise-{index}-box-toolbar-...)
         """
@@ -121,10 +121,10 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         """
         self.check_delete_exercise_btn_visible(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Delete exercise button] visible')
+    @allure.step('✔ Check [Delete exercise button] is visible')
     def check_delete_exercise_btn_visible(self, index: int):
         """
-        ✔ Check [Delete exercise button] visible
+        ✔ Check [Delete exercise button]  is visible
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
