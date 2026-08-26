@@ -4,14 +4,16 @@ Browsers fixtures
 import pytest
 from playwright.sync_api import Playwright, StorageState, ViewportSize
 from pages.auth.registration.registration_page import RegistrationPage
+from _pytest.fixtures import SubRequest
 
 #=======================================================================================================================
 # Chromium Page + Storage state 📦
 @pytest.fixture
-def page(storage_state: StorageState, playwright: Playwright): # Используем фикстуру storage_state с авторизацией + встроенную фикстуру playwright из pytest_playwright plugin
+def page(request: SubRequest, storage_state: StorageState, playwright: Playwright): # Используем фикстуру storage_state с авторизацией + встроенную фикстуру playwright из pytest_playwright plugin
     """
     Fixture for authorized user (registered)
 
+    :param request: SubRequest.request (for tracing test naming)
     :param storage_state: Фикстура с сохраненными авторизационными данными
     :param playwright: Playwright
     :return: yield page: Page
@@ -25,12 +27,18 @@ def page(storage_state: StorageState, playwright: Playwright): # Использ�
         # storage_state='storage_state.json',      # ┘    # - Storage state из JSON-файла (optional)
         locale='en-US',                                   # - Website language (locale)
         viewport=ViewportSize(width=1100, height=1200))   # - Window size
+    context.tracing.start(                                # Включаем Tracing для Playwright Trace Viewer
+        screenshots=True,                                 # - Screenshots
+        snapshots=True,                                   # - Snapshots
+        sources=True                                      # - Sources
+    )
     page = context.new_page()   # Создаем объект страницы page на базе context
 
     try:
         yield page              # Передаем page (на базе движка chromium)
 
     finally:                    # Гарантия закрытия, если упадет.
+        context.tracing.stop(path=f'./tracing/{request.node.name}.zip')  # Сохраняем трейсинг в zip-файл (c именем текущего теста)
         context.close()         # Закрываем context!
         browser.close()         # Закрываем browser!
 
@@ -75,10 +83,11 @@ def storage_state(playwright: Playwright):      # Используем встр�
 #-----------------------------------------------------------------------------------------------------------------------
 # GUEST Page (NO Storage state)
 @pytest.fixture
-def page_guest(playwright: Playwright):   # Чистый (без доп. фикстур)
+def page_guest(request: SubRequest, playwright: Playwright):   # Чистый (без доп. фикстур)
     """
     Fixture for GUEST user (unregister)
 
+    :param request: SubRequest.request (for tracing test naming)
     :param playwright: Playwright
     :return: yield page: Page
     """
@@ -89,12 +98,18 @@ def page_guest(playwright: Playwright):   # Чистый (без доп. фик�
     context = browser.new_context(                        # Создание браузерного окружения (NO Storage state):
         locale='en-US',                                   # - Website language (locale)
         viewport=ViewportSize(width=1100, height=1200))   # - Window size
+    context.tracing.start(                                # Включаем Tracing для Playwright Trace Viewer
+        screenshots=True,                                 # - Screenshots
+        snapshots=True,                                   # - Snapshots
+        sources=True                                      # - Sources
+    )
     page = context.new_page()        # Создаем объект page на базе context
 
     try:
         yield page                   # Передаем page (на базе context)
 
     finally:                         # Гарантия закрытия, если упадет.
+        context.tracing.stop(path=f'./tracing/{request.node.name}.zip')  # Сохраняем трейсинг в zip-файл (c именем текущего теста)
         context.close()              # Закрываем context!
         browser.close()              # Закрываем browser!
 
