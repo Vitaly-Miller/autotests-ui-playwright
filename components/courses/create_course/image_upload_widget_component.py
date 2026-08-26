@@ -342,7 +342,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         :param is_image_uploaded: True/False
         """
         if is_image_uploaded:
-            with allure.step('✔ Check [Remove image button] UI'):
+            with allure.step('✔ Check UI of [Remove image button]'):
                 self.check_remove_image_btn_visible()
                 self.check_remove_image_btn_enable()
                 self.check_remove_image_btn_text()

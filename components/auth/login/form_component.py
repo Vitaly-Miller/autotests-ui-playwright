@@ -105,9 +105,9 @@ class LoginFormComponent(BaseComponent):
         :param password: Password (optional)
         """
         with allure.step(
-                '✔ Check [Login form] field values'
+                '✔ Check values of [Login form] fields'
                 if all(param is not None for param in (email, password))
-                else '✔ Check [Login form] UI'
+                else '✔ Check UI of [Login form]'
         ):
             self.check_email_field(email)
             self.check_password_field(password)
@@ -134,7 +134,7 @@ class LoginFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Email field]'):
                 self.check_email_field_value(email)
         else:
-            with allure.step('✔ Check [Email field] UI'):
+            with allure.step('✔ Check UI of [Email field]'):
                 self.check_email_field_visible()
                 self.check_email_field_name()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
@@ -190,7 +190,7 @@ class LoginFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Password field]'):
                 self.check_password_field_value(password)
         else:
-            with allure.step('✔ Check [Password field] UI'):
+            with allure.step('✔ Check UI of [Password field]'):
                 self.check_password_field_visible()
                 self.check_password_field_name()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘

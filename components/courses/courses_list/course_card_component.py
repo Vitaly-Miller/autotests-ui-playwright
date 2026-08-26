@@ -63,7 +63,7 @@ class CourseCardComponent(BaseComponent):
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Course card]
     # ──────────────────────────────────────────────────────────────────────────────┐
-    @allure.step('✔ Check [Course card]')
+    @allure.step('✔ Check [{title} - course card]')
     def check(
             self,
             title: str,

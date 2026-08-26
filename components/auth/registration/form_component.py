@@ -129,9 +129,9 @@ class RegistrationFormComponent(BaseComponent):
         :param password: Password (optional)
         """
         with allure.step(
-                '✔ Check [Registration form] field values'
+                '✔ Check values of [Registration form] fields'
                 if all(param is not None for param in (email, username, password))
-                else '✔ Check [Registration form] UI'
+                else '✔ Check UI of [Registration form]'
         ):
             self.check_email_field(email)
             self.check_username_field(username)
@@ -159,7 +159,7 @@ class RegistrationFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Email field]'):
                 self.check_email_field_value(email)
         else:
-            with allure.step('✔ Check [Email field] UI'):
+            with allure.step('✔ Check UI of [Email field]'):
                 self.check_email_field_visible()
                 self.check_email_field_name()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
@@ -215,7 +215,7 @@ class RegistrationFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Username field]'):
                 self.check_username_field_value(username)
         else:
-            with allure.step('✔ Check [Username field] UI'):
+            with allure.step('✔ Check UI of [Username field]'):
                 self.check_username_field_visible()
                 self.check_username_field_name()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
@@ -271,7 +271,7 @@ class RegistrationFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Password field]'):
                 self.check_password_field_value(password)
         else:
-            with allure.step('✔ Check [Password field] UI'):
+            with allure.step('✔ Check UI of [Password field]'):
                 self.check_password_field_visible()
                 self.check_password_field_name()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘

@@ -120,9 +120,9 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         :param description: Exercise description
         """
         with allure.step(
-            '✔ Check [Exercise form] field values'
+            '✔ Check values of [Exercise form] fields'
             if all(param is not None for param in (title, description))
-            else '✔ Check [Exercise form] UI'
+            else '✔ Check UI of [Exercise form]'
         ):
             self.check_title_field(index=index, title=title)
             self.check_description_field(index=index, description=description)
@@ -151,7 +151,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Title field]'):
                 self.check_title_field_value(index=index, title=title)
         else:
-            with allure.step('✔ Check [Title field] UI'):
+            with allure.step('✔ Check UI of [Title field]'):
                 self.check_title_field_visible(index)
                 self.check_title_field_name(index)
                 self.check_title_field_value(index)
@@ -219,7 +219,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Description field]'):
                 self.check_description_field_value(index=index, description=description)
         else:
-            with allure.step('✔ Check [Description field] UI'):
+            with allure.step('✔ Check UI of [Description field]'):
                 self.check_description_field_visible(index)
                 self.check_description_field_name(index)
                 self.check_description_field_value(index)

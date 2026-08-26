@@ -174,9 +174,9 @@ class CreateCourseFormComponent(BaseComponent):
         :param min_score: Min score
         """
         with allure.step(
-                '✔ Check [Course form] field values'
+                '✔ Check values of [Course form] fields'
                 if all(param is not None for param in (title, estimated_time, description, max_score, min_score))
-                else '✔ Check [Course form] UI'
+                else '✔ Check UI of [Course form]'
         ):
             self.check_title_field(title)
             self.check_estimated_time_field(estimated_time)
@@ -207,7 +207,7 @@ class CreateCourseFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Title field]'):
                 self.check_title_field_value(title)
         else:
-            with allure.step('✔ Check [Title field] UI'):
+            with allure.step('✔ Check UI of [Title field]'):
                 self.check_title_field_visible()
                 self.check_title_field_name()
                 self.check_title_field_placeholder()
@@ -277,7 +277,7 @@ class CreateCourseFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Estimated time field]'):
                 self.check_estimated_time_field_value(estimated_time)
         else:
-            with allure.step('✔ Check [Estimated time field] UI'):
+            with allure.step('✔ Check UI of [Estimated time field]'):
                 self.check_estimated_time_field_visible()
                 self.check_estimated_time_field_name()
                 self.check_estimated_time_field_placeholder()
@@ -345,7 +345,7 @@ class CreateCourseFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Description field]'):
                 self.check_description_field_value(description)
         else:
-            with allure.step('✔ Check [Description field] UI'):
+            with allure.step('✔ Check UI of [Description field]'):
                 self.check_description_field_visible()
                 self.check_description_field_name()
                 self.check_description_field_placeholder()
@@ -413,7 +413,7 @@ class CreateCourseFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Max score field]'):
                 self.check_max_score_field_value(max_score)
         else:
-            with allure.step('✔ Check [Max score field] UI'):
+            with allure.step('✔ Check UI of [Max score field]'):
                 self.check_max_score_field_visible()
                 self.check_max_score_field_name()
                 self.check_max_score_field_value()
@@ -471,7 +471,7 @@ class CreateCourseFormComponent(BaseComponent):
             with allure.step('✔ Check value of [Min score field]'):
                 self.check_min_score_field_value(min_score)
         else:
-            with allure.step('✔ Check [Min score field] UI'):
+            with allure.step('✔ Check UI of [Min score field]'):
                 self.check_min_score_field_visible()
                 self.check_min_score_field_name()
                 self.check_min_score_field_value()
