@@ -78,10 +78,10 @@ class SidebarItemComponent(BaseComponent):
         """
         self.check_btn_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Button] is visible')
+    @allure.step('✔ Check visible [Button]')
     def check_btn_visible(self):
         """
-        ✔ Check [Button] is visible
+        ✔ Check visible [Button]
 
         .
         """
@@ -99,10 +99,10 @@ class SidebarItemComponent(BaseComponent):
         """
         self.check_icon_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Icon] is visible')
+    @allure.step('✔ Check visible [Icon]')
     def check_icon_visible(self):
         """
-        ✔ Check [Icon] is visible
+        ✔ Check visible [Icon]
 
         .
         """
@@ -124,20 +124,20 @@ class SidebarItemComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] is visible')
+    @allure.step('✔ Check visible [Title]')
     def check_title_visible(self):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         .
         """
         error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
-    @allure.step('✔ Check [Title] text')
+    @allure.step('✔ Check text of [Title]')
     def check_title_text(self, title: str):
         """
-        ✔ Check [Title] text
+        ✔ Check text of [Title]
 
         :param title: Title
         """

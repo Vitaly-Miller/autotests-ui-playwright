@@ -64,20 +64,20 @@ class DashboardWidgetComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] is visible')
+    @allure.step('✔ Check visible [Title]')
     def check_title_visible(self):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         .
         """
         error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
-    @allure.step('✔ Check [Title] text')
+    @allure.step('✔ Check text of [Title]')
     def check_title_text(self, title: str):
         """
-        ✔ Check [Title] text
+        ✔ Check text of [Title]
 
         :param title: Title
         """
@@ -98,11 +98,11 @@ class DashboardWidgetComponent(BaseComponent):
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_chart_visible(self):
         """
-        ✔ Check [Chart] is visible
+        ✔ Check visible [Chart]
 
         .
         """
-        with allure.step(f'✔ Check [{self.chart_name}-chart] is visible'):
+        with allure.step(f'✔ Check visible [{self.chart_name}-chart]'):
             error = f'{self.chart_element} - invisible!'
             expect(self.chart, error).to_be_visible()
 

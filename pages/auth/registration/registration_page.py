@@ -111,20 +111,20 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] is visible')
+    @allure.step('✔ Check visible [Title]')
     def check_title_visible(self):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         .
         """
         error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
-    @allure.step('✔ Check [Title] text')
+    @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
         """
-        ✔ Check [Title] text
+        ✔ Check text of [Title]
 
         .
         """
@@ -152,20 +152,20 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
             self.check_registration_btn_disable()
         self.check_registration_btn_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Registration button] is visible')
+    @allure.step('✔ Check visible [Registration button]')
     def check_registration_btn_visible(self):
         """
-        ✔ Check [Registration button] is visible
+        ✔ Check visible [Registration button]
 
         .
         """
         error = f'{self.registration_btn_element} - invisible!'
         expect(self.registration_btn, error).to_be_visible()
 
-    @allure.step('✔ Check [Registration button] is enabled')
+    @allure.step('✔ Check enabled [Registration button]')
     def check_registration_btn_enable(self):
         """
-        ✔ Check [Registration button] is enabled
+        ✔ Check enabled [Registration button]
 
         (If the Registration form is completed successfully)
         """
@@ -175,17 +175,17 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     @allure.step('✔ Check [Registration button] is disable')
     def check_registration_btn_disable(self):
         """
-        ✔ Check [Registration button] is disabled
+        ✔ Check disabled [Registration button]
 
         (If the Registration form is NOT completed successfully)
         """
         error = f'{self.registration_btn_element} - enabled!'
         expect(self.registration_btn, error).to_be_disabled()
 
-    @allure.step('✔ Check [Registration button] text')
+    @allure.step('✔ Check text of [Registration button]')
     def check_registration_btn_text(self):
         """
-        ✔ Check [Registration button] text
+        ✔ Check text of [Registration button]
 
         .
         """
@@ -208,20 +208,20 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.check_login_link_text()
         self.check_login_link_url()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Login link] is visible')
+    @allure.step('✔ Check visible [Login link]')
     def check_login_link_visible(self):
         """
-        ✔ Check [Login link] is visible
+        ✔ Check visible [Login link]
 
         .
         """
         error = f'{self.login_link_element} - invisible!'
         expect(self.login_link, error).to_be_visible()
 
-    @allure.step('✔ Check [Login link] text')
+    @allure.step('✔ Check text of [Login link]')
     def check_login_link_text(self):
         """
-        ✔ Check [Login link] text
+        ✔ Check text of [Login link]
 
         .
         """

@@ -100,7 +100,7 @@ class CourseCardComponent(BaseComponent):
     @allure.step('✔ Check [Title]')
     def check_title(self, title: str, nth_index: int = 0):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         - ✔ Title - visible
         - ✔ Title - text
@@ -111,20 +111,20 @@ class CourseCardComponent(BaseComponent):
         self.check_title_visible(nth_index)
         self.check_title_text(title=title, nth_index=nth_index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] is visible')
+    @allure.step('✔ Check visible [Title]')
     def check_title_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
         error = f'{self.title_element(nth_index)} - invisible!'
         expect(self.title.nth(nth_index), error).to_be_visible()
 
-    @allure.step('✔ Check [Title] text')
+    @allure.step('✔ Check text of [Title]')
     def check_title_text(self, title: str, nth_index: int = 0):
         """
-        ✔ Check [Title] text
+        ✔ Check text of [Title]
 
         :param title: Course title
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
@@ -148,20 +148,20 @@ class CourseCardComponent(BaseComponent):
         self.check_menu_btn_visible(nth_index)
         self.check_menu_btn_enabled(nth_index)
     # ────────────────────────────────────────┘
-    @allure.step('✔ Check [Menu button] is visible')
+    @allure.step('✔ Check visible [Menu button]')
     def check_menu_btn_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Menu button] is visible
+        ✔ Check visible [Menu button]
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
         error = f'{self.menu_btn_element(nth_index)} - invisible!'
         expect(self.menu_btn.nth(nth_index), error).to_be_visible()
 
-    @allure.step('✔ Check [Menu button] is enabled')
+    @allure.step('✔ Check enabled [Menu button]')
     def check_menu_btn_enabled(self, nth_index: int = 0):
         """
-        ✔ Check [Menu button] is enabled
+        ✔ Check enabled [Menu button]
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
@@ -180,10 +180,10 @@ class CourseCardComponent(BaseComponent):
         """
         self.check_image_visible(nth_index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Image] is visible')
+    @allure.step('✔ Check visible [Image]')
     def check_image_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Image] is visible
+        ✔ Check visible [Image]
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
@@ -207,20 +207,20 @@ class CourseCardComponent(BaseComponent):
         self.check_max_score_visible(nth_index)
         self.check_max_score_text(nth_index=nth_index, max_score=max_score)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Max score] is visible')
+    @allure.step('✔ Check visible [Max score]')
     def check_max_score_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Max score] is visible
+        ✔ Check visible [Max score]
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
         error = f'{self.max_score_element(nth_index)} - invisible!'
         expect(self.max_score.nth(nth_index), error).to_be_visible()
 
-    @allure.step('✔ Check [Max score] text')
+    @allure.step('✔ Check text of [Max score]')
     def check_max_score_text(self, max_score: str, nth_index: int = 0):
         """
-        ✔ Check [Max score] text
+        ✔ Check text of [Max score]
 
         :param max_score: Max score
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
@@ -245,20 +245,20 @@ class CourseCardComponent(BaseComponent):
         self.check_min_score_visible(nth_index)
         self.check_min_score_text(nth_index=nth_index, min_score=min_score)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Min score] is visible')
+    @allure.step('✔ Check visible [Min score]')
     def check_min_score_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Min score] is visible
+        ✔ Check visible [Min score]
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
         error = f'{self.min_score_element(nth_index)} - invisible!'
         expect(self.min_score.nth(nth_index), error).to_be_visible()
 
-    @allure.step('✔ Check [Min score] text')
+    @allure.step('✔ Check text of [Min score]')
     def check_min_score_text(self, min_score: str, nth_index: int = 0):
         """
-        ✔ Check [Min score] text
+        ✔ Check text of [Min score]
 
         :param min_score: Min score
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
@@ -283,20 +283,20 @@ class CourseCardComponent(BaseComponent):
         self.check_estimated_time_visible(nth_index)
         self.check_estimated_time_text(nth_index=nth_index, estimated_time=estimated_time)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Estimated time] is visible')
+    @allure.step('✔ Check visible [Estimated time]')
     def check_estimated_time_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Estimated time] is visible
+        ✔ Check visible [Estimated time]
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
         error = f'{self.estimated_time_element(nth_index)} - invisible!'
         expect(self.estimated_time.nth(nth_index), error).to_be_visible()
 
-    @allure.step('✔ Check [Estimated time] text')
+    @allure.step('✔ Check text of [Estimated time]')
     def check_estimated_time_text(self, estimated_time: str, nth_index: int = 0):
         """
-        ✔ Check [Estimated time] text
+        ✔ Check text of [Estimated time]
 
         :param estimated_time: Estimated time
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)

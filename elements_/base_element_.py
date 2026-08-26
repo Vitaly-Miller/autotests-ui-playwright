@@ -50,6 +50,8 @@ class BaseElement:
         with allure.step(f'⚙ Getting locator with [data-testid] = {locator} (nth-index: {nth_index})'): # Allure-step (динамический)
             return locator_get_by_test_id
 
+
+
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # [Click]
     def click(self, nth_index: int = 0, **kwargs):                   # принимает именованные параметры для подстановки в шаблон
@@ -73,7 +75,7 @@ class BaseElement:
         :param kwargs: Additional named parameters for create locator
         """
         locator = self.get_locator(nth_index, **kwargs)           # инициализация локатора
-        with allure.step(f'✔ Check [{self.name} {self.type_of}] is visible'): # Allure-step (динамический)
+        with allure.step(f'✔ Check visible [{self.name} {self.type_of}]'): # Allure-step (динамический)
             error = f'❌ [{self.name}] {self.type_of} (nth-index: {nth_index}) - invisible!'
             expect(locator, error).to_be_visible()                         # Playwright expect
 
@@ -87,7 +89,7 @@ class BaseElement:
         :param kwargs: Additional named parameters for create locator
         """
         locator = self.get_locator(nth_index, **kwargs)            # инициализация локатора
-        with allure.step(f'✔ Check [{self.name} {self.type_of}] text'):     # Allure-step (динамический)
+        with allure.step(f'✔ Check text of [{self.name} {self.type_of}]'):     # Allure-step (динамический)
             error = f'❌ [{self.name}] {self.type_of} (nth-index: {nth_index}) - incorrect text!'
             expect(locator, error).to_have_text(text)               # Playwright expect
 

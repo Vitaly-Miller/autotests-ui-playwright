@@ -113,20 +113,20 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] is visible')
+    @allure.step('✔ Check visible [Title]')
     def check_title_visible(self):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         .
         """
         error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
-    @allure.step('✔ Check [Title] text')
+    @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
         """
-        ✔ Check [Title] text
+        ✔ Check text of [Title]
 
         .
         """
@@ -135,7 +135,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
 
     # [Login button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴-╴╴╴╴╴╴┐
     @allure.step('✔ Check [Login button]')
     def check_login_btn(self, enable: bool = False):
         """
@@ -153,41 +153,41 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         else:
             self.check_login_btn_disabled()
         self.check_login_btn_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Login button] is visible')
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    @allure.step('✔ Check visible [Login button]')
     def check_login_btn_visible(self):
         """
-        ✔ Check [Login button] is visible
+        ✔ Check visible [Login button]
 
         .
         """
         error = f'{self.login_btn_element} - invisible!'
         expect(self.login_btn, error).to_be_visible()
 
-    @allure.step('✔ Check [Login button] is enabled')
+    @allure.step('✔ Check enabled [Login button]')
     def check_login_btn_enable(self):
         """
-        ✔ Check [Login button] is enabled
+        ✔ Check enabled [Login button]
 
         (If the Login form is completed successfully)
         """
         error = f'{self.login_btn_element} - disabled!'
         expect(self.login_btn, error).to_be_enabled()
 
-    @allure.step('✔ Check [Login button] is disable')
+    @allure.step('✔ Check disabled [Login button]')
     def check_login_btn_disabled(self):
         """
-        ✔ Check [Login button] is disabled
+        ✔ Check disabled [Login button]
 
         (If the Login form is NOT completed successfully)
         """
         error = f'{self.login_btn_element} - enabled!'
         expect(self.login_btn, error).to_be_disabled()
 
-    @allure.step('✔ Check [Login button] text')
+    @allure.step('✔ Check text of [Login button]')
     def check_login_btn_text(self):
         """
-        ✔ Check [Login button] text
+        ✔ Check text of [Login button]
 
         .
         """
@@ -210,20 +210,20 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_registration_link_text()
         self.check_registration_link_url()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Registration link] is visible')
+    @allure.step('✔ Check visible [Registration link]')
     def check_registration_link_visible(self):
         """
-        ✔ Check [Registration link] is visible
+        ✔ Check visible [Registration link]
 
         .
         """
         error = f'{self.registration_link_element} - invisible!'
         expect(self.registration_link, error).to_be_visible()
 
-    @allure.step('✔ Check [Registration link] text')
+    @allure.step('✔ Check text of [Registration link]')
     def check_registration_link_text(self):
         """
-        ✔ Check [Registration link] text
+        ✔ Check text of [Registration link]
 
         .
         """
@@ -264,20 +264,20 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.check_wrong_email_or_password_alert_visible()
         self.check_wrong_email_or_password_alert_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Wrong Email or Password alert] is visible')
+    @allure.step('✔ Check visible [Wrong Email or Password alert]')
     def check_wrong_email_or_password_alert_visible(self):
         """
-        ✔ Check [Wrong Email or Password alert] is visible
+        ✔ Check visible [Wrong Email or Password alert]
 
         .
         """
         error = f'{self.wrong_email_or_password_alert_element} - invisible!'
         expect(self.wrong_email_or_password_alert, error).to_be_visible()
 
-    @allure.step('✔ Check [Wrong Email or Password alert] text')
+    @allure.step('✔ Check text of [Wrong Email or Password alert]')
     def check_wrong_email_or_password_alert_text(self):
         """
-        ✔ Check [Wrong Email or Password alert] text
+        ✔ Check text of [Wrong Email or Password alert]
 
         .
         """

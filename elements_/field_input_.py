@@ -53,7 +53,7 @@ class FieldInput(BaseElement):
         :param kwargs: Additional named parameters for create locator
         """
         locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
-        with allure.step(f'✔ Check [{self.name} {self.type_of}] name is "{name}"'):       # Allure-step (динамический)
+        with allure.step(f'✔ Check name of [{self.name} {self.type_of}] is "{name}"'):       # Allure-step (динамический)
             error = f'❌ [{self.name} {self.type_of}] (nth-index: {nth_index}) - incorrect name!'
             expect(locator, error).to_have_accessible_name(name)                          # Playwright expect
 
@@ -81,7 +81,7 @@ class FieldInput(BaseElement):
         :param kwargs: Additional named parameters for create locator
         """
         locator = self.get_locator(nth_index=nth_index, **kwargs)                         # инициализация локатора
-        with allure.step(f'✔ Check [{self.name} {self.type_of}] has a value "{value}"'):  # Allure-step (динамический)
+        with allure.step(f'✔ Check value of [{self.name} {self.type_of}] is "{value}"'):  # Allure-step (динамический)
             error = f'❌ Field - incorrect value!'
             expect(locator, error).to_have_value(value)                                   # Playwright expect
 

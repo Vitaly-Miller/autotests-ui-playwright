@@ -66,10 +66,10 @@ class EmptyViewComponent(BaseComponent):
         """
         self.check_icon_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Icon] is visible')
+    @allure.step('✔ Check visible [Icon]')
     def check_icon_visible(self):
         """
-        ✔ Check [Icon] is visible
+        ✔ Check visible [Icon]
 
         .
         """
@@ -92,20 +92,20 @@ class EmptyViewComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] is visible')
+    @allure.step('✔ Check visible [Title]')
     def check_title_visible(self):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         .
         """
         error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
-    @allure.step('✔ Check [Title] text')
+    @allure.step('✔ Check text of [Title]')
     def check_title_text(self, title: str):
         """
-        ✔ Check [Title] text
+        ✔ Check text of [Title]
 
         :param title: Title text
         """
@@ -128,20 +128,20 @@ class EmptyViewComponent(BaseComponent):
         self.check_description_visible()
         self.check_description_text(description)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Description] is visible')
+    @allure.step('✔ Check visible [Description]')
     def check_description_visible(self):
         """
-        ✔ Check [Description] is visible
+        ✔ Check visible [Description]
 
         .
         """
         error = f'{self.description_element} - invisible!'
         expect(self.description, error).to_be_visible()
 
-    @allure.step('✔ Check [Description] text')
+    @allure.step('✔ Check text of [Description]')
     def check_description_text(self, description: str):
         """
-        ✔ Check [Description] text
+        ✔ Check text of [Description]
 
         :param description: Description
         """

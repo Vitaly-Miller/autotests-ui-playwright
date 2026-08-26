@@ -57,20 +57,20 @@ class NavbarComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] is visible')
+    @allure.step('✔ Check visible [Title]')
     def check_title_visible(self):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         .
         """
         error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
-    @allure.step('✔ Check [Title] text')
+    @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
         """
-        ✔ Check [Title] text
+        ✔ Check text of [Title]
 
         .
         """
@@ -93,20 +93,20 @@ class NavbarComponent(BaseComponent):
         self.check_welcome_title_visible()
         self.check_welcome_title_text(username)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Welcome title] is visible')
+    @allure.step('✔ Check visible [Welcome title]')
     def check_welcome_title_visible(self):
         """
-        ✔ Check [Welcome title] is visible
+        ✔ Check visible [Welcome title]
 
         .
         """
         error = f'{self.welcome_title_element} - invisible!'
         expect(self.welcome_title, error).to_be_visible()
 
-    @allure.step('✔ Check [Welcome title] text')
+    @allure.step('✔ Check text of [Welcome title]')
     def check_welcome_title_text(self, username):
         """
-        ✔ Check [Welcome title] text
+        ✔ Check text of [Welcome title]
 
         :param username: Username
         """

@@ -101,7 +101,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_title_visible(self):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         .
         """
@@ -110,7 +110,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_title_text(self):
         """
-        ✔ Check [Title] text
+        ✔ Check text of [Title]
 
         .
         """
@@ -137,7 +137,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_login_btn_enable(self):
         """
-        ✔ Check [Login button] is enabled
+        ✔ Check enabled [Login button]
 
         (If the Login form is completed successfully)
         """
@@ -146,7 +146,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_login_btn_disabled(self):
         """
-        ✔ Check [Login button] is disabled
+        ✔ Check disabled [Login button]
 
         (If the Login form is NOT completed successfully)
         """
@@ -155,7 +155,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_login_btn_text(self):
         """
-        ✔ Check [Login button] text
+        ✔ Check text of [Login button]
 
         .
         """
@@ -179,7 +179,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     def check_registration_link_visible(self):
         """
-        ✔ Check [Registration link] is visible
+        ✔ Check visible [Registration link]
 
         .
         """
@@ -188,7 +188,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     def check_registration_link_text(self):
         """
-        ✔ Check [Registration link] text
+        ✔ Check text of [Registration link]
 
         .
         """

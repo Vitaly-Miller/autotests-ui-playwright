@@ -148,7 +148,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         :param title: Title
         """
         if title is not None:
-            with allure.step('✔ Check [Title field] value'):
+            with allure.step('✔ Check value of [Title field]'):
                 self.check_title_field_value(index=index, title=title)
         else:
             with allure.step('✔ Check [Title field] UI'):
@@ -156,30 +156,30 @@ class CreateCourseExerciseFormComponent(BaseComponent):
                 self.check_title_field_name(index)
                 self.check_title_field_value(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title field] is visible')
+    @allure.step('✔ Check visible [Title field]')
     def check_title_field_visible(self, index: int = 0):
         """
-        ✔ Check [Title field] is visible
+        ✔ Check visible [Title field]
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         error = f'{self.title_field_element(index)} - invisible!'
         expect(self.title_field(index), error).to_be_visible()
 
-    @allure.step('✔ Check [Title field] name')
+    @allure.step('✔ Check name of [Title field]')
     def check_title_field_name(self, index: int = 0):
         """
-        ✔ Check [Title field] name
+        ✔ Check name of [Title field]
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         error = f'{self.title_field_element(index)} - incorrect name!'
         expect(self.title_field(index), error).to_have_accessible_name(self.TITLE_FIELD_NAME)
 
-    @allure.step('✔ Check [Title field] value')
+    @allure.step('✔ Check value of [Title field]')
     def check_title_field_value(self, index: int = 0, title: str = 'Exercise title'):
         """
-        ✔ Check [Title field] value
+        ✔ Check value of [Title field]
 
         If is passed:
         -------------
@@ -216,7 +216,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         :param description: Description
         """
         if description is not None:
-            with allure.step('✔ Check [Description field] value'):
+            with allure.step('✔ Check value of [Description field]'):
                 self.check_description_field_value(index=index, description=description)
         else:
             with allure.step('✔ Check [Description field] UI'):
@@ -224,30 +224,30 @@ class CreateCourseExerciseFormComponent(BaseComponent):
                 self.check_description_field_name(index)
                 self.check_description_field_value(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Description field] is visible')
+    @allure.step('✔ Check visible [Description field]')
     def check_description_field_visible(self, index: int = 0):
         """
-        ✔ Check [Description field] is visible
+        ✔ Check visible [Description field]
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         error = f'{self.description_field_element(index)} - invisible!'
         expect(self.description_field(index), error).to_be_visible()
 
-    @allure.step('✔ Check [Description field] name')
+    @allure.step('✔ Check name of [Description field]')
     def check_description_field_name(self, index: int = 0):
         """
-        ✔ Check [Description field] name
+        ✔ Check name of [Description field]
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         error = f'{self.description_field_element(index)} - incorrect name!'
         expect(self.description_field(index), error).to_have_accessible_name(self.DESCRIPTION_FIELD_NAME)
 
-    @allure.step('✔ Check [Description field] value')
+    @allure.step('✔ Check value of [Description field]')
     def check_description_field_value(self, index: int = 0, description: str = 'Exercise description'):
         """
-        ✔ Check [Description field] value
+        ✔ Check value of [Description field]
 
         If is passed:
         -------------

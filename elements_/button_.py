@@ -23,9 +23,10 @@ class Button(BaseElement):
         :param kwargs: Additional named parameters for create locator
         """
         locator = self.get_locator(nth_index, **kwargs)                # инициализация локатора
-        with allure.step(f'✔ Check [{self.name} {self.type_of}] is enabled'):   # Allure-step (динамический)
+        with allure.step(f'✔ Check enabled [{self.name} {self.type_of}]'):   # Allure-step (динамический)
             error = f'❌ [{self.name} {self.type_of} (nth-index: {nth_index})] - disabled!'
             expect(locator, error).to_be_enabled()                              # Playwright expect
+
 
     # [Disabled]
     def check_disabled(self, nth_index: int = 0, **kwargs):                     # принимает именованные параметры для подстановки в шаблон
@@ -36,7 +37,7 @@ class Button(BaseElement):
         :param kwargs: Additional named parameters for create locator
         """
         locator = self.get_locator(nth_index, **kwargs)                # инициализация локатора
-        with allure.step(f'✔ Check [{self.name} {self.type_of}] is disabled'):   # Allure-step (динамический)
+        with allure.step(f'✔ Check disabled [{self.name} {self.type_of}]'):   # Allure-step (динамический)
             error = f'❌ [{self.name} {self.type_of} (nth-index: {nth_index})] - enabled!'
             expect(locator, error).to_be_disabled()                             # Playwright expect
 

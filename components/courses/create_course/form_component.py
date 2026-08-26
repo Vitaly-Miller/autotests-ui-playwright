@@ -204,7 +204,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param title: Title (optional)
         """
         if title is not None:
-            with allure.step('✔ Check [Title field] value'):
+            with allure.step('✔ Check value of [Title field]'):
                 self.check_title_field_value(title)
         else:
             with allure.step('✔ Check [Title field] UI'):
@@ -212,20 +212,20 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_title_field_name()
                 self.check_title_field_placeholder()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title field] is visible')
+    @allure.step('✔ Check visible [Title field]')
     def check_title_field_visible(self):
         """
-        ✔ Check [Title field] is visible
+        ✔ Check visible [Title field]
 
         .
         """
         error = f'{self.title_field_element} - invisible!'
         expect(self.title_field, error).to_be_visible()
 
-    @allure.step('✔ Check [Title field] name')
+    @allure.step('✔ Check name of [Title field]')
     def check_title_field_name(self):
         """
-        ✔ Check [Title field] name
+        ✔ Check name of [Title field]
 
         .
         """
@@ -242,10 +242,10 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'{self.title_field_element} - incorrect placeholder!'
         expect(self.title_field, error).to_have_attribute('placeholder', self.TITLE_FIELD_PLACEHOLDER)
 
-    @allure.step('✔ Check [Title field] value')
+    @allure.step('✔ Check value of [Title field]')
     def check_title_field_value(self, title: str):
         """
-        ✔ Check [Title field] value
+        ✔ Check value of [Title field]
 
         - ✔ Field - value
 
@@ -274,7 +274,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param estimated_time: Estimated time (optional)
         """
         if estimated_time is not None:
-            with allure.step('✔ Check [Estimated time field] value'):
+            with allure.step('✔ Check value of [Estimated time field]'):
                 self.check_estimated_time_field_value(estimated_time)
         else:
             with allure.step('✔ Check [Estimated time field] UI'):
@@ -282,20 +282,20 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_estimated_time_field_name()
                 self.check_estimated_time_field_placeholder()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Estimated time field] is visible')
+    @allure.step('✔ Check visible [Estimated time field]')
     def check_estimated_time_field_visible(self):
         """
-        ✔ Check [Estimated time field] is visible
+        ✔ Check visible [Estimated time field]
 
         .
         """
         error = f'{self.estimated_time_field_element} - invisible!'
         expect(self.estimated_time_field, error).to_be_visible()
 
-    @allure.step('✔ Check [Estimated time field] name')
+    @allure.step('✔ Check name of [Estimated time field]')
     def check_estimated_time_field_name(self):
         """
-        ✔ Check [Estimated time field] name
+        ✔ Check name of [Estimated time field]
 
         .
         """
@@ -312,10 +312,10 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'{self.estimated_time_field_element} - incorrect placeholder!'
         expect(self.estimated_time_field, error).to_have_attribute('placeholder', self.ESTIMATED_TIME_FIELD_PLACEHOLDER)
 
-    @allure.step('✔ Check [Estimated time field] value')
+    @allure.step('✔ Check value of [Estimated time field]')
     def check_estimated_time_field_value(self, estimated_time: str):
         """
-        ✔ Check [Estimated time field] value
+        ✔ Check value of [Estimated time field]
 
         :param estimated_time: Estimated time
         """
@@ -342,7 +342,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param description: Description (optional)
         """
         if description is not None:
-            with allure.step('✔ Check [Description field] value'):
+            with allure.step('✔ Check value of [Description field]'):
                 self.check_description_field_value(description)
         else:
             with allure.step('✔ Check [Description field] UI'):
@@ -350,20 +350,20 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_description_field_name()
                 self.check_description_field_placeholder()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Description field] is visible')
+    @allure.step('✔ Check visible [Description field]')
     def check_description_field_visible(self):
         """
-        ✔ Check [Description field] is visible
+        ✔ Check visible [Description field]
 
         .
         """
         error = f'{self.description_field_element} - invisible!'
         expect(self.description_field, error).to_be_visible()
 
-    @allure.step('✔ Check [Description field] name')
+    @allure.step('✔ Check name of [Description field]')
     def check_description_field_name(self):
         """
-        ✔ Check [Description field] name
+        ✔ Check name of [Description field]
 
         .
         """
@@ -380,10 +380,10 @@ class CreateCourseFormComponent(BaseComponent):
         error = f'{self.description_field_element} - incorrect placeholder!'
         expect(self.description_field, error).to_have_attribute('placeholder', self.DESCRIPTION_FIELD_PLACEHOLDER)
 
-    @allure.step('✔ Check [Description field] value')
+    @allure.step('✔ Check value of [Description field]')
     def check_description_field_value(self, description: str):
         """
-        ✔ Check [Description field] value
+        ✔ Check value of [Description field]
 
         :param description: Description
         """
@@ -410,7 +410,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param max_score: Max score (optional)
         """
         if max_score is not None:
-            with allure.step('✔ Check [Max score field] value'):
+            with allure.step('✔ Check value of [Max score field]'):
                 self.check_max_score_field_value(max_score)
         else:
             with allure.step('✔ Check [Max score field] UI'):
@@ -418,30 +418,30 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_max_score_field_name()
                 self.check_max_score_field_value()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Max score field] is visible')
+    @allure.step('✔ Check visible [Max score field]')
     def check_max_score_field_visible(self):
         """
-        ✔ Check [Max score field] is visible
+        ✔ Check visible [Max score field]
 
         .
         """
         error = f'{self.max_score_field_element} - invisible!'
         expect(self.max_score_field, error).to_be_visible()
 
-    @allure.step('✔ Check [Max score field] name')
+    @allure.step('✔ Check name of [Max score field]')
     def check_max_score_field_name(self):
         """
-        ✔ Check [Max score field] name
+        ✔ Check name of [Max score field]
 
         .
         """
         error = f'{self.max_score_field_element} - incorrect name!'
         expect(self.max_score_field, error).to_have_accessible_name(self.MAX_SCORE_FIELD_NAME)
 
-    @allure.step('✔ Check [Max score field] value')
+    @allure.step('✔ Check value of [Max score field]')
     def check_max_score_field_value(self, max_score: str = '0'):
         """
-        ✔ Check [Max score field] value
+        ✔ Check value of [Max score field]
 
         :param max_score: Max score
         """
@@ -468,7 +468,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param min_score: Min score (optional)
         """
         if min_score is not None:
-            with allure.step('✔ Check [Min score field] value'):
+            with allure.step('✔ Check value of [Min score field]'):
                 self.check_min_score_field_value(min_score)
         else:
             with allure.step('✔ Check [Min score field] UI'):
@@ -476,30 +476,30 @@ class CreateCourseFormComponent(BaseComponent):
                 self.check_min_score_field_name()
                 self.check_min_score_field_value()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Min score field] is visible')
+    @allure.step('✔ Check visible [Min score field]')
     def check_min_score_field_visible(self):
         """
-        ✔ Check [Min score field] is visible
+        ✔ Check visible [Min score field]
 
         .
         """
         error = f'{self.min_score_field_element} - invisible!'
         expect(self.min_score_field, error).to_be_visible()
 
-    @allure.step('✔ Check [Min score field] name')
+    @allure.step('✔ Check name of [Min score field]')
     def check_min_score_field_name(self):
         """
-        ✔ Check [Min score field] name
+        ✔ Check name of [Min score field]
 
         .
         """
         error = f'{self.min_score_field_element} - incorrect name!'
         expect(self.min_score_field, error).to_have_accessible_name(self.MIN_SCORE_FIELD_NAME)
 
-    @allure.step('✔ Check [Min score field] value')
+    @allure.step('✔ Check value of [Min score field]')
     def check_min_score_field_value(self, min_score: str = '0'):
         """
-        ✔ Check [Min score field] value
+        ✔ Check value of [Min score field]
 
         :param min_score: Min score
         """

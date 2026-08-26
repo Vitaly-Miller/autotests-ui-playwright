@@ -68,20 +68,20 @@ class CreateCourseToolbarComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Title] is visible')
+    @allure.step('✔ Check visible [Title]')
     def check_title_visible(self):
         """
-        ✔ Check [Title] is visible
+        ✔ Check visible [Title]
 
         - ✔ Title - visible
         """
         error = f'{self.title_element} - invisible!'
         expect(self.title, error).to_be_visible()
 
-    @allure.step('✔ Check [Title] text')
+    @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
         """
-        ✔ Check [Title] text
+        ✔ Check text of [Title]
 
         .
         """
@@ -105,30 +105,30 @@ class CreateCourseToolbarComponent(BaseComponent):
         else:
             self.check_create_course_btn_disabled()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Create course button] is visible')
+    @allure.step('✔ Check visible [Create course button]')
     def check_create_course_btn_visible(self):
         """
-        ✔ Check [Create course button] is visible
+        ✔ Check visible [Create course button]
 
         .
         """
         error = f'{self.create_course_btn_element} - invisible!'
         expect(self.create_course_btn, error).to_be_visible()
 
-    @allure.step('✔ Check [Create course button] is enabled')
+    @allure.step('✔ Check enabled [Create course button]')
     def check_create_course_btn_enabled(self):
         """
-        ✔ Check [Create course button] is enabled
+        ✔ Check enabled [Create course button]
 
         (If create course Form filled & Image uploaded)
         """
         error = f'{self.create_course_btn_element} - disabled!'
         expect(self.create_course_btn, error).to_be_enabled()
 
-    @allure.step('✔ Check [Create course button] is disabled')
+    @allure.step('✔ Check disabled [Create course button]')
     def check_create_course_btn_disabled(self):
         """
-        ✔ Check [Create course button] is disabled
+        ✔ Check disabled [Create course button]
 
         (If create course Form did NOT filled & Image did NOT upload)
         """

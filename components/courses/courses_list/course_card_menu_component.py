@@ -75,20 +75,20 @@ class CourseCardMenuComponent(BaseComponent):
         self.check_edit_btn_visible(nth_index)
         self.check_edit_btn_text(nth_index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Edit button] is visible')
+    @allure.step('✔ Check visible [Edit button]')
     def check_edit_btn_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Edit button] is visible
+        ✔ Check visible [Edit button]
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
         error = f'{self.edit_btn_element(nth_index)} - invisible!'
         expect(self.edit_btn.nth(nth_index), error).to_be_visible()
 
-    @allure.step('✔ Check [Edit button] text')
+    @allure.step('✔ Check text of [Edit button]')
     def check_edit_btn_text(self, nth_index: int = 0):
         """
-        ✔ Check [Edit button] text
+        ✔ Check text of [Edit button]
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
@@ -111,20 +111,20 @@ class CourseCardMenuComponent(BaseComponent):
         self.check_delete_btn_visible(nth_index)
         self.check_delete_btn_text(nth_index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check [Delete button] is visible')
+    @allure.step('✔ Check visible [Delete button]')
     def check_delete_btn_visible(self, nth_index: int = 0):
         """
-        ✔ Check [Delete button] is visible
+        ✔ Check visible [Delete button]
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
         error = f'{self.delete_btn_element(nth_index)}  - invisible!'
         expect(self.delete_btn.nth(nth_index), error).to_be_visible()
 
-    @allure.step('✔ Check [Delete button] text')
+    @allure.step('✔ Check text of [Delete button]')
     def check_delete_btn_text(self, nth_index: int = 0):
         """
-        ✔ Check [Delete button] text
+        ✔ Check text of [Delete button]
 
         :param nth_index: nth_index —> for use in: locator.nth(nth_index)
         """
