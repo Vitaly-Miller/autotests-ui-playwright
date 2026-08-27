@@ -14,7 +14,6 @@ from components.auth.login.form_component import LoginFormComponent
 - Login form (component)
 - Registration link
 - Wrong email or password alert
-
 """
 class LoginPage(BasePage):              # Дочерний класс (наследует класс BasePage)
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
@@ -45,8 +44,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.registration_link = page.get_by_test_id('login-page-registration-link')
         self.wrong_email_or_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
-
-    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Click [Login button]
     @allure.step('▶ Click [Login button]')
     def click_login_btn(self):

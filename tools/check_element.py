@@ -9,7 +9,7 @@ from playwright.sync_api import Locator, expect
 class Check:
     #------------------------------------------------------- [Element] -------------------------------------------------
     @staticmethod
-    def all(
+    def element(
             locator: Locator,
             element_path: str,
             element: str,

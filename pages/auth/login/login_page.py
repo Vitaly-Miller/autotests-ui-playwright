@@ -15,7 +15,6 @@ from tools.check_element import Check
 - Login form (component)
 - Registration link
 - Wrong email or password alert
-
 """
 class LoginPage(BasePage):              # Дочерний класс (наследует класс BasePage)
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
@@ -47,7 +46,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.wrong_email_or_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
 
-    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Click [Login button]
     @allure.step('▶ Click [Login button]')
     def click_login_btn(self):
@@ -102,7 +101,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     # [Title]
     def check_title(self):
-        Check.all(
+        Check.element(
             locator=self.title,
             element_path=self.element_path,
             element=self.title_element,
@@ -110,10 +109,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
             text=self.TITLE_TEXT
         )
 
-
     # [Login button]
     def check_login_btn(self, enabled: bool = False):
-        Check.all(
+        Check.element(
             locator=self.login_btn,
             element_path=self.element_path,
             element=self.login_btn_element,
@@ -122,10 +120,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
             text=self.LOGIN_BTN_TEXT
         )
 
-
     # [Registration link]
     def check_registration_link(self):
-        Check.all(
+        Check.element(
             locator=self.registration_link,
             element_path=self.element_path,
             element=self.registration_link_element,
@@ -135,10 +132,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
             attribute_value=self.REGISTRATION_LINK_URL
         )
 
-
     # [Alert]
     def check_wrong_email_or_password_alert(self):
-        Check.all(
+        Check.element(
             locator=self.wrong_email_or_password_alert,
             element_path=self.element_path,
             element=self.wrong_email_or_password_alert_element,
