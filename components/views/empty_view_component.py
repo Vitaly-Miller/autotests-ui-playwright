@@ -31,9 +31,9 @@ class EmptyViewComponent(BaseComponent):
         self.description_element = f'{self.empty_view_component} > [Description]'
 
         # ---------------------------------------------- ㉧ LOCATORS ---------------------------------------------------
-        self.icon = page.get_by_test_id(f'{identifier}-empty-view-icon')
-        self.title = page.get_by_test_id(f'{identifier}-empty-view-title-text')
-        self.description = page.get_by_test_id(f'{identifier}-empty-view-description-text')
+        self.icon_locator = page.get_by_test_id(f'{identifier}-empty-view-icon')
+        self.title_locator = page.get_by_test_id(f'{identifier}-empty-view-title-text')
+        self.description_locator = page.get_by_test_id(f'{identifier}-empty-view-description-text')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Empty view]
@@ -74,7 +74,7 @@ class EmptyViewComponent(BaseComponent):
         .
         """
         error = f'{self.icon_element} - invisible!'
-        expect(self.icon, error).to_be_visible()
+        expect(self.icon_locator, error).to_be_visible()
 
 
     # [Title]
@@ -100,7 +100,7 @@ class EmptyViewComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_title_text(self, title: str):
@@ -110,7 +110,7 @@ class EmptyViewComponent(BaseComponent):
         :param title: Title text
         """
         error = f'{self.title_element} - incorrect text!'
-        expect(self.title, error).to_have_text(title)
+        expect(self.title_locator, error).to_have_text(title)
 
 
     # [Description]
@@ -136,7 +136,7 @@ class EmptyViewComponent(BaseComponent):
         .
         """
         error = f'{self.description_element} - invisible!'
-        expect(self.description, error).to_be_visible()
+        expect(self.description_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Description]')
     def check_description_text(self, description: str):
@@ -146,6 +146,6 @@ class EmptyViewComponent(BaseComponent):
         :param description: Description
         """
         error = f'{self.description_element} - incorrect text!'
-        expect(self.description, error).to_have_text(description)
+        expect(self.description_locator, error).to_have_text(description)
 
 #=======================================================================================================================

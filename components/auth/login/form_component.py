@@ -28,8 +28,8 @@ class LoginFormComponent(BaseComponent):
         self.password_field_element = f'{self.form_component} > [Password field]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.email_field = page.get_by_test_id('login-form-email-input').locator('input')
-        self.password_field = page.get_by_test_id('login-form-password-input').locator('input')
+        self.email_field_locator = page.get_by_test_id('login-form-email-input').locator('input')
+        self.password_field_locator = page.get_by_test_id('login-form-password-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Login form]
@@ -63,7 +63,7 @@ class LoginFormComponent(BaseComponent):
 
         :param email: Email
         """
-        self.email_field.fill(email)
+        self.email_field_locator.fill(email)
         self.check_email_field_value(email)
 
     # Fill [Password field]
@@ -77,7 +77,7 @@ class LoginFormComponent(BaseComponent):
 
         :param password: Password
         """
-        self.password_field.fill(password)
+        self.password_field_locator.fill(password)
         self.check_password_field_value(password)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
@@ -146,7 +146,7 @@ class LoginFormComponent(BaseComponent):
         .
         """
         error = f'{self.email_field_element} - invisible!'
-        expect(self.email_field, error).to_be_visible()
+        expect(self.email_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Email field]')
     def check_email_field_name(self):
@@ -156,7 +156,7 @@ class LoginFormComponent(BaseComponent):
         .
         """
         error = f'{self.email_field_element} - incorrect name!'
-        expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
+        expect(self.email_field_locator, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
     @allure.step('✔ Check value of [Email field]')
     def check_email_field_value(self, email: str):
@@ -166,7 +166,7 @@ class LoginFormComponent(BaseComponent):
         :param email: Email
         """
         error = f'{self.email_field_element} - incorrect value!'
-        expect(self.email_field, error).to_have_value(email)
+        expect(self.email_field_locator, error).to_have_value(email)
 
 
     # [Password field]
@@ -202,7 +202,7 @@ class LoginFormComponent(BaseComponent):
         .
         """
         error = f'{self.password_field_element} - invisible!'
-        expect(self.password_field, error).to_be_visible()
+        expect(self.password_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Password field]')
     def check_password_field_name(self):
@@ -212,7 +212,7 @@ class LoginFormComponent(BaseComponent):
         .
         """
         error = f'{self.password_field_element} - incorrect name!'
-        expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
+        expect(self.password_field_locator, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
     @allure.step('✔ Check value of [Password field]')
     def check_password_field_value(self, password: str):
@@ -222,7 +222,7 @@ class LoginFormComponent(BaseComponent):
         :param password: Password
         """
         error = f'{self.password_field_element} - incorrect value!'
-        expect(self.password_field, error).to_have_value(password)
+        expect(self.password_field_locator, error).to_have_value(password)
 
 
 #=======================================================================================================================

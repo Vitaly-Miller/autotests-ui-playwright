@@ -29,16 +29,16 @@ def test_courses_page_is_not_opening_without_auth():
         page.goto(registration_url)
 
         # ㉧ LOCATORS
-        email_field = page.get_by_role(role='textbox', name='Email')
-        username_field = page.get_by_role(role='textbox', name='Username')
-        password_field = page.get_by_role(role='textbox', name='Password')
-        registration_btn = page.get_by_role(role='button', name='Registration')
+        email_field_locator = page.get_by_role(role='textbox', name='Email')
+        username_field_locator = page.get_by_role(role='textbox', name='Username')
+        password_field_locator = page.get_by_role(role='textbox', name='Password')
+        registration_btn_locator = page.get_by_role(role='button', name='Registration')
 
         # ▶ ACTIONS
-        email_field.fill('user.name@gmail.com')
-        username_field.fill('username')
-        password_field.fill('password')
-        registration_btn.click()
+        email_field_locator.fill('user.name@gmail.com')
+        username_field_locator.fill('username')
+        password_field_locator.fill('password')
+        registration_btn_locator.click()
 
         # НЕ Сохраняем Storage state после регистрации
 

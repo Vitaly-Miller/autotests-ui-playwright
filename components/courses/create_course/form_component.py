@@ -38,11 +38,11 @@ class CreateCourseFormComponent(BaseComponent):
         self.min_score_field_element = f'{self.form_component} > [Min score field]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title_field = page.get_by_test_id('create-course-form-title-input').locator('input')
-        self.estimated_time_field = page.get_by_test_id('create-course-form-estimated-time-input').locator('input')
-        self.description_field = page.get_by_test_id('create-course-form-description-input').locator('textarea:visible') # ⚠
-        self.max_score_field = page.get_by_test_id('create-course-form-max-score-input').locator('input')
-        self.min_score_field = page.get_by_test_id('create-course-form-min-score-input').locator('input')
+        self.title_field_locator = page.get_by_test_id('create-course-form-title-input').locator('input')
+        self.estimated_time_field_locator = page.get_by_test_id('create-course-form-estimated-time-input').locator('input')
+        self.description_field_locator = page.get_by_test_id('create-course-form-description-input').locator('textarea:visible') # ⚠
+        self.max_score_field_locator = page.get_by_test_id('create-course-form-max-score-input').locator('input')
+        self.min_score_field_locator = page.get_by_test_id('create-course-form-min-score-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Course form]
@@ -84,7 +84,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param title: Title
         """
-        self.title_field.fill(title)
+        self.title_field_locator.fill(title)
         self.check_title_field_value(title)
 
     # [Estimated time field]
@@ -98,7 +98,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param estimated_time: Estimated time
         """
-        self.estimated_time_field.fill(estimated_time)
+        self.estimated_time_field_locator.fill(estimated_time)
         self.check_estimated_time_field_value(estimated_time)
 
     # [Description field]
@@ -112,7 +112,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param description: Description
         """
-        self.description_field.fill(description)
+        self.description_field_locator.fill(description)
         self.check_description_field_value(description)
 
     # [Max score field]
@@ -126,7 +126,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param max_score: Max score
         """
-        self.max_score_field.fill(max_score)
+        self.max_score_field_locator.fill(max_score)
         self.check_max_score_field_value(max_score)
 
     # [Min score field]
@@ -140,7 +140,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param min_score: Min score
         """
-        self.min_score_field.fill(min_score)
+        self.min_score_field_locator.fill(min_score)
         self.check_min_score_field_value(min_score)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
@@ -220,7 +220,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.title_field_element} - invisible!'
-        expect(self.title_field, error).to_be_visible()
+        expect(self.title_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Title field]')
     def check_title_field_name(self):
@@ -230,7 +230,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.title_field_element} - incorrect name!'
-        expect(self.title_field, error).to_have_accessible_name(self.TITLE_FIELD_NAME)
+        expect(self.title_field_locator, error).to_have_accessible_name(self.TITLE_FIELD_NAME)
 
     @allure.step('✔ Check [Title field] placeholder')
     def check_title_field_placeholder(self):
@@ -240,7 +240,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.title_field_element} - incorrect placeholder!'
-        expect(self.title_field, error).to_have_attribute('placeholder', self.TITLE_FIELD_PLACEHOLDER)
+        expect(self.title_field_locator, error).to_have_attribute('placeholder', self.TITLE_FIELD_PLACEHOLDER)
 
     @allure.step('✔ Check value of [Title field]')
     def check_title_field_value(self, title: str):
@@ -252,7 +252,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param title: Title
         """
         error = f'{self.title_field_element} - incorrect value!'
-        expect(self.title_field, error).to_have_value(title)
+        expect(self.title_field_locator, error).to_have_value(title)
 
 
     # [Estimated time field]
@@ -290,7 +290,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.estimated_time_field_element} - invisible!'
-        expect(self.estimated_time_field, error).to_be_visible()
+        expect(self.estimated_time_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Estimated time field]')
     def check_estimated_time_field_name(self):
@@ -300,7 +300,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.estimated_time_field_element} - incorrect name!'
-        expect(self.estimated_time_field, error).to_have_accessible_name(self.ESTIMATED_TIME_FIELD_NAME)
+        expect(self.estimated_time_field_locator, error).to_have_accessible_name(self.ESTIMATED_TIME_FIELD_NAME)
 
     @allure.step('✔ Check [Estimated time field] placeholder')
     def check_estimated_time_field_placeholder(self):
@@ -310,7 +310,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.estimated_time_field_element} - incorrect placeholder!'
-        expect(self.estimated_time_field, error).to_have_attribute('placeholder', self.ESTIMATED_TIME_FIELD_PLACEHOLDER)
+        expect(self.estimated_time_field_locator, error).to_have_attribute('placeholder', self.ESTIMATED_TIME_FIELD_PLACEHOLDER)
 
     @allure.step('✔ Check value of [Estimated time field]')
     def check_estimated_time_field_value(self, estimated_time: str):
@@ -320,7 +320,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param estimated_time: Estimated time
         """
         error = f'{self.estimated_time_field_element} - incorrect value!'
-        expect(self.estimated_time_field, error).to_have_value(estimated_time)
+        expect(self.estimated_time_field_locator, error).to_have_value(estimated_time)
 
 
     # [Description field]
@@ -358,7 +358,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.description_field_element} - invisible!'
-        expect(self.description_field, error).to_be_visible()
+        expect(self.description_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Description field]')
     def check_description_field_name(self):
@@ -368,7 +368,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.description_field_element} - incorrect name!'
-        expect(self.description_field, error).to_have_accessible_name(self.DESCRIPTION_FIELD_NAME)
+        expect(self.description_field_locator, error).to_have_accessible_name(self.DESCRIPTION_FIELD_NAME)
 
     @allure.step('✔ Check [Description field] placeholder')
     def check_description_field_placeholder(self):
@@ -378,7 +378,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.description_field_element} - incorrect placeholder!'
-        expect(self.description_field, error).to_have_attribute('placeholder', self.DESCRIPTION_FIELD_PLACEHOLDER)
+        expect(self.description_field_locator, error).to_have_attribute('placeholder', self.DESCRIPTION_FIELD_PLACEHOLDER)
 
     @allure.step('✔ Check value of [Description field]')
     def check_description_field_value(self, description: str):
@@ -388,7 +388,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param description: Description
         """
         error = f'{self.description_field_element} - incorrect value!'
-        expect(self.description_field, error).to_have_value(description)
+        expect(self.description_field_locator, error).to_have_value(description)
 
 
     # [Max score field]
@@ -426,7 +426,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.max_score_field_element} - invisible!'
-        expect(self.max_score_field, error).to_be_visible()
+        expect(self.max_score_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Max score field]')
     def check_max_score_field_name(self):
@@ -436,7 +436,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.max_score_field_element} - incorrect name!'
-        expect(self.max_score_field, error).to_have_accessible_name(self.MAX_SCORE_FIELD_NAME)
+        expect(self.max_score_field_locator, error).to_have_accessible_name(self.MAX_SCORE_FIELD_NAME)
 
     @allure.step('✔ Check value of [Max score field]')
     def check_max_score_field_value(self, max_score: str = '0'):
@@ -446,7 +446,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param max_score: Max score
         """
         error = f'{self.max_score_field_element} - incorrect value!'
-        expect(self.max_score_field, error).to_have_value(max_score)
+        expect(self.max_score_field_locator, error).to_have_value(max_score)
 
 
     # [Min score field]
@@ -484,7 +484,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.min_score_field_element} - invisible!'
-        expect(self.min_score_field, error).to_be_visible()
+        expect(self.min_score_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Min score field]')
     def check_min_score_field_name(self):
@@ -494,7 +494,7 @@ class CreateCourseFormComponent(BaseComponent):
         .
         """
         error = f'{self.min_score_field_element} - incorrect name!'
-        expect(self.min_score_field, error).to_have_accessible_name(self.MIN_SCORE_FIELD_NAME)
+        expect(self.min_score_field_locator, error).to_have_accessible_name(self.MIN_SCORE_FIELD_NAME)
 
     @allure.step('✔ Check value of [Min score field]')
     def check_min_score_field_value(self, min_score: str = '0'):
@@ -504,7 +504,7 @@ class CreateCourseFormComponent(BaseComponent):
         :param min_score: Min score
         """
         error = f'{self.min_score_field_element} - incorrect value!'
-        expect(self.min_score_field, error).to_have_value(min_score)
+        expect(self.min_score_field_locator, error).to_have_value(min_score)
 
 
 #=======================================================================================================================

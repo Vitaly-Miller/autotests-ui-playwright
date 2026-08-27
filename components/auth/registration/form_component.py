@@ -30,9 +30,9 @@ class RegistrationFormComponent(BaseComponent):
         self.password_field_element = f'{self.form_component} > [Password field]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.email_field = page.get_by_test_id('registration-form-email-input').locator('input')
-        self.username_field = page.get_by_test_id('registration-form-username-input').locator('input')
-        self.password_field = page.get_by_test_id('registration-form-password-input').locator('input')
+        self.email_field_locator = page.get_by_test_id('registration-form-email-input').locator('input')
+        self.username_field_locator = page.get_by_test_id('registration-form-username-input').locator('input')
+        self.password_field_locator = page.get_by_test_id('registration-form-password-input').locator('input')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Registration form]
@@ -70,7 +70,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param email: Email
         """
-        self.email_field.fill(email)
+        self.email_field_locator.fill(email)
         self.check_email_field_value(email)
 
     # Fill [Username field]
@@ -84,7 +84,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param username: Username
         """
-        self.username_field.fill(username)
+        self.username_field_locator.fill(username)
         self.check_username_field_value(username)
 
     # Fill [Password field]
@@ -98,7 +98,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param password: Password
         """
-        self.password_field.fill(password)
+        self.password_field_locator.fill(password)
         self.check_password_field_value(password)
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Form]
@@ -171,7 +171,7 @@ class RegistrationFormComponent(BaseComponent):
         .
         """
         error = f'{self.email_field_element} - invisible!'
-        expect(self.email_field, error).to_be_visible()
+        expect(self.email_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Email field]')
     def check_email_field_name(self):
@@ -181,7 +181,7 @@ class RegistrationFormComponent(BaseComponent):
         .
         """
         error = f'{self.email_field_element} - incorrect name!'
-        expect(self.email_field, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
+        expect(self.email_field_locator, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
 
     @allure.step('✔ Check value of [Email field]')
     def check_email_field_value(self, email: str):
@@ -191,7 +191,7 @@ class RegistrationFormComponent(BaseComponent):
         :param email: Email
         """
         error = f'{self.email_field_element} - incorrect value!'
-        expect(self.email_field, error).to_have_value(email)
+        expect(self.email_field_locator, error).to_have_value(email)
 
 
     #  [Username field]
@@ -227,7 +227,7 @@ class RegistrationFormComponent(BaseComponent):
         .
         """
         error = f'{self.username_field_element} - invisible!'
-        expect(self.username_field, error).to_be_visible()
+        expect(self.username_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Username field]')
     def check_username_field_name(self):
@@ -237,7 +237,7 @@ class RegistrationFormComponent(BaseComponent):
         .
         """
         error = f'{self.username_field_element} - incorrect name!'
-        expect(self.username_field, error).to_have_accessible_name(self.USERNAME_FIELD_NAME)
+        expect(self.username_field_locator, error).to_have_accessible_name(self.USERNAME_FIELD_NAME)
 
     @allure.step('✔ Check value of [Username field]')
     def check_username_field_value(self, username: str):
@@ -247,7 +247,7 @@ class RegistrationFormComponent(BaseComponent):
         :param username: Username
         """
         error = f'{self.username_field_element} - incorrect value!'
-        expect(self.username_field, error).to_have_value(username)
+        expect(self.username_field_locator, error).to_have_value(username)
 
 
     #  [Password field]
@@ -283,7 +283,7 @@ class RegistrationFormComponent(BaseComponent):
         .
         """
         error = f'{self.password_field_element} - invisible!'
-        expect(self.password_field, error).to_be_visible()
+        expect(self.password_field_locator, error).to_be_visible()
 
     @allure.step('✔ Check name of [Password field]')
     def check_password_field_name(self):
@@ -293,7 +293,7 @@ class RegistrationFormComponent(BaseComponent):
         .
         """
         error = f'{self.password_field_element} - incorrect name!'
-        expect(self.password_field, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
+        expect(self.password_field_locator, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
 
     @allure.step('✔ Check value of [Password field]')
     def check_password_field_value(self, password: str):
@@ -303,7 +303,7 @@ class RegistrationFormComponent(BaseComponent):
         :param password: Password
         """
         error = f'{self.password_field_element} - incorrect value!'
-        expect(self.password_field, error).to_have_value(password)
+        expect(self.password_field_locator, error).to_have_value(password)
 
 
 #=======================================================================================================================

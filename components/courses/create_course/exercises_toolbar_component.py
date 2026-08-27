@@ -25,8 +25,8 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         self.create_exercise_btn_element = f'{self.toolbar_component} > [Create exercise button]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
-        self.create_exercise_btn = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
+        self.title_locator = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
+        self.create_exercise_btn_locator = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Create exercise button]
@@ -39,7 +39,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         - ▶ Button - click
         """
         self.check_create_exercise_btn_visible()
-        self.create_exercise_btn.click()
+        self.create_exercise_btn_locator.click()
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Toolbar]
@@ -78,7 +78,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
@@ -88,7 +88,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - incorrect text!'
-        expect(self.title, error).to_have_text(self.TITLE_TEXT)
+        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
 
 
     # [Create exercise button]
@@ -110,7 +110,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         .
         """
         error = f'{self.create_exercise_btn_element} - invisible!'
-        expect(self.create_exercise_btn, error).to_be_visible()
+        expect(self.create_exercise_btn_locator, error).to_be_visible()
 
 
 #=======================================================================================================================

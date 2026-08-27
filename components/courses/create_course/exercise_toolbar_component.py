@@ -24,8 +24,8 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         self.delete_exercise_btn_element = lambda index: f'{self.toolbar_component} > [Delete exercise button] (index: {index})'
 
         # --------------------------------------- ㉧ LOCATORS {dynamic} (lambda) ----------------------------------------
-        self.title = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
-        self.delete_exercise_btn = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
+        self.title_locator = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
+        self.delete_exercise_btn_locator = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
 
     # -------------------------------------------- ㉧ LOCATORS {dynamic} (def) ------------------------------------------
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ⚠️ NOT USING! ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╮
@@ -51,7 +51,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         self.check_delete_exercise_btn_visible(index)
-        self.delete_exercise_btn(index).click()
+        self.delete_exercise_btn_locator(index).click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -93,7 +93,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         :param index: Locator DOM-index (ex: ...-exercise-{index}-box-toolbar-...)
         """
         error = f'{self.title_element(index)} - invisible!'
-        expect(self.title(index), error).to_be_visible()
+        expect(self.title_locator(index), error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_toolbar_title_text(self, index: int):
@@ -105,7 +105,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         error = f'{self.title_element(index)} - incorrect text!'
-        expect(self.title(index), error).to_have_text(self.TITLE_TEXT(index))
+        expect(self.title_locator(index), error).to_have_text(self.TITLE_TEXT(index))
 
 
     # [Delete exercise button]
@@ -129,7 +129,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         error = f'{self.delete_exercise_btn_element(index)} - invisible!'
-        expect(self.delete_exercise_btn(index), error).to_be_visible()
+        expect(self.delete_exercise_btn_locator(index), error).to_be_visible()
 
 
 #=======================================================================================================================

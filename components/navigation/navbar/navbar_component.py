@@ -25,8 +25,8 @@ class NavbarComponent(BaseComponent):
         self.welcome_title_element = f'{self.navbar_component} > [Welcome title]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title = page.get_by_test_id('navigation-navbar-app-title-text')
-        self.welcome_title = page.get_by_test_id('navigation-navbar-welcome-title-text')
+        self.title_locator = page.get_by_test_id('navigation-navbar-app-title-text')
+        self.welcome_title_locator = page.get_by_test_id('navigation-navbar-welcome-title-text')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Navbar]
@@ -65,7 +65,7 @@ class NavbarComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
@@ -75,7 +75,7 @@ class NavbarComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - incorrect text!'
-        expect(self.title, error).to_have_text(self.TITLE_TEXT)
+        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
 
 
     # [Welcome title]
@@ -101,7 +101,7 @@ class NavbarComponent(BaseComponent):
         .
         """
         error = f'{self.welcome_title_element} - invisible!'
-        expect(self.welcome_title, error).to_be_visible()
+        expect(self.welcome_title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Welcome title]')
     def check_welcome_title_text(self, username):
@@ -111,6 +111,6 @@ class NavbarComponent(BaseComponent):
         :param username: Username
         """
         error = f'{self.welcome_title_element} - incorrect text!'
-        expect(self.welcome_title, error).to_have_text(self.WELCOME_TITLE_TEXT(username))
+        expect(self.welcome_title_locator, error).to_have_text(self.WELCOME_TITLE_TEXT(username))
 
 #=======================================================================================================================

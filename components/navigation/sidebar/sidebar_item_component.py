@@ -31,9 +31,9 @@ class SidebarItemComponent(BaseComponent):
         self.title_element = f'{self.sidebar_component} > {self.identifier}-item > [Title]'
 
         # ----------------------------------------- ㉧ LOCATORS (dynamic) -----------------------------------------------
-        self.btn = page.get_by_test_id(f'{identifier}-drawer-list-item-button')
-        self.icon = page.get_by_test_id(f'{identifier}-drawer-list-item-icon')
-        self.title = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
+        self.btn_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-button')
+        self.icon_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-icon')
+        self.title_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
 
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     # Click [Button]
@@ -46,7 +46,7 @@ class SidebarItemComponent(BaseComponent):
         - ▶ Button - click
         """
         self.check_btn_visible()
-        self.btn.click()
+        self.btn_locator.click()
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Item]
@@ -86,7 +86,7 @@ class SidebarItemComponent(BaseComponent):
         .
         """
         error = f'{self.btn_element} - invisible!'
-        expect(self.btn, error).to_be_visible()
+        expect(self.btn_locator, error).to_be_visible()
 
     # [Icon]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
@@ -107,7 +107,7 @@ class SidebarItemComponent(BaseComponent):
         .
         """
         error = f'{self.icon_element} - invisible!'
-        expect(self.icon, error).to_be_visible()
+        expect(self.icon_locator, error).to_be_visible()
 
     # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
@@ -132,7 +132,7 @@ class SidebarItemComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_title_text(self, title: str):
@@ -142,7 +142,7 @@ class SidebarItemComponent(BaseComponent):
         :param title: Title
         """
         error = f'{self.title_element} - incorrect text!'
-        expect(self.title, error).to_have_text(title)
+        expect(self.title_locator, error).to_have_text(title)
 
 
 #=======================================================================================================================

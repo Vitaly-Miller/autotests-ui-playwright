@@ -18,7 +18,7 @@ class DashboardToolbarComponent(BaseComponent):
         self.TITLE_TEXT = 'Dashboard'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title = page.get_by_test_id('dashboard-toolbar-title-text')
+        self.title_locator = page.get_by_test_id('dashboard-toolbar-title-text')
 
         # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
         self.toolbar_component = '❌ Dashboard page > Toolbar'
@@ -58,7 +58,7 @@ class DashboardToolbarComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
@@ -68,6 +68,6 @@ class DashboardToolbarComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - incorrect text!'
-        expect(self.title, error).to_have_text(self.TITLE_TEXT)
+        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
 
 #=======================================================================================================================

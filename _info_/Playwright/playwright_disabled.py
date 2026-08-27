@@ -15,10 +15,10 @@ with sync_playwright() as playwright:                        # Создаем о
     page.goto(login_url)                                        # ▶ ACTION - Переход на страницу по URL
 
     # ㉧ LOCATORS
-    login_btn = page.get_by_test_id('login-page-login-button')  # ㉧ LOCATOR кнопки Login
+    login_btn_locator = page.get_by_test_id('login-page-login-button')  # ㉧ LOCATOR кнопки Login
 
     # ✔︎ EXPECTATIONS
-    expect(login_btn).to_be_disabled()                          # Login button is disabled
+    expect(login_btn_locator).to_be_disabled()                          # Login button is disabled
 
     page.wait_for_timeout(1000)                                 # ⏳
 

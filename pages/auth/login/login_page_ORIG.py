@@ -39,10 +39,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.wrong_email_or_password_alert_element = f'{self.login_page_component} > [Wrong email or password alert]'
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
-        self.title = page.get_by_test_id('authentication-ui-course-title-text')
-        self.login_btn = page.get_by_test_id('login-page-login-button')
-        self.registration_link = page.get_by_test_id('login-page-registration-link')
-        self.wrong_email_or_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
+        self.title_locator = page.get_by_test_id('authentication-ui-course-title-text')
+        self.login_btn_locator = page.get_by_test_id('login-page-login-button')
+        self.registration_link_locator = page.get_by_test_id('login-page-registration-link')
+        self.wrong_email_or_password_alert_locator = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Click [Login button]
@@ -55,7 +55,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ▶ Button - click
         """
         self.check_login_btn(enabled=True)
-        self.login_btn.click()
+        self.login_btn_locator.click()
 
     # Click [Registration link]
     @allure.step('▶ Click [Registration link]')
@@ -67,7 +67,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ▶ Link - click
         """
         self.check_registration_link()
-        self.registration_link.click()
+        self.registration_link_locator.click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Login page]
@@ -118,7 +118,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'{self.title_element} - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
@@ -128,7 +128,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'{self.title_element} - incorrect text!'
-        expect(self.title, error).to_have_text(self.TITLE_TEXT)
+        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
 
 
     # [Login button]
@@ -159,7 +159,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'{self.login_btn_element} - invisible!'
-        expect(self.login_btn, error).to_be_visible()
+        expect(self.login_btn_locator, error).to_be_visible()
 
     @allure.step('✔ Check enabled [Login button]')
     def check_login_btn_enabled(self):
@@ -169,7 +169,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         (If the Login form is completed successfully)
         """
         error = f'{self.login_btn_element} - disabled!'
-        expect(self.login_btn, error).to_be_enabled()
+        expect(self.login_btn_locator, error).to_be_enabled()
 
     @allure.step('✔ Check disabled [Login button]')
     def check_login_btn_disabled(self):
@@ -179,7 +179,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         (If the Login form is NOT completed successfully)
         """
         error = f'{self.login_btn_element} - enabled!'
-        expect(self.login_btn, error).to_be_disabled()
+        expect(self.login_btn_locator, error).to_be_disabled()
 
     @allure.step('✔ Check text of [Login button]')
     def check_login_btn_text(self):
@@ -189,7 +189,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'{self.login_btn_element} - incorrect text!'
-        expect(self.login_btn, error).to_have_text(self.LOGIN_BTN_TEXT)
+        expect(self.login_btn_locator, error).to_have_text(self.LOGIN_BTN_TEXT)
 
 
     # [Registration link]
@@ -215,7 +215,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'{self.registration_link_element} - invisible!'
-        expect(self.registration_link, error).to_be_visible()
+        expect(self.registration_link_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Registration link]')
     def check_registration_link_text(self):
@@ -225,7 +225,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'{self.registration_link_element} - incorrect text!'
-        expect(self.registration_link, error).to_have_text(self.REGISTRATION_LINK_TEXT)
+        expect(self.registration_link_locator, error).to_have_text(self.REGISTRATION_LINK_TEXT)
 
     @allure.step('✔ Check [Registration link] URL')
     def check_registration_link_url(self):
@@ -235,7 +235,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'{self.registration_link_element} - incorrect URL!'
-        expect(self.registration_link, error).to_have_attribute('href', self.REGISTRATION_LINK_URL)
+        expect(self.registration_link_locator, error).to_have_attribute('href', self.REGISTRATION_LINK_URL)
 
     @allure.step('✔ Check [Registration link] redirect to Registration page')
     def check_registration_link_redirect(self):
@@ -269,7 +269,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'{self.wrong_email_or_password_alert_element} - invisible!'
-        expect(self.wrong_email_or_password_alert, error).to_be_visible()
+        expect(self.wrong_email_or_password_alert_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Wrong Email or Password alert]')
     def check_wrong_email_or_password_alert_text(self):
@@ -279,7 +279,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'{self.wrong_email_or_password_alert_element} - incorrect text!'
-        expect(self.wrong_email_or_password_alert, error).to_have_text(self.ALERT_TEXT)
+        expect(self.wrong_email_or_password_alert_locator, error).to_have_text(self.ALERT_TEXT)
 
 
 

@@ -33,8 +33,8 @@ class DashboardWidgetComponent(BaseComponent):
         self.chart_element = f'{self.widget_component} > [{self.chart_name}-chart]'
 
         # ------------------------------------------------ ㉧ LOCATORS -------------------------------------------------
-        self.title = page.get_by_test_id(f'{identifier}-widget-title-text')
-        self.chart = page.get_by_test_id(f'{identifier}-{chart_type}-chart')
+        self.title_locator = page.get_by_test_id(f'{identifier}-widget-title-text')
+        self.chart_locator = page.get_by_test_id(f'{identifier}-{chart_type}-chart')
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Widget]
@@ -72,7 +72,7 @@ class DashboardWidgetComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_title_text(self, title: str):
@@ -82,7 +82,7 @@ class DashboardWidgetComponent(BaseComponent):
         :param title: Title
         """
         error = f'{self.title_element} - incorrect text!'
-        expect(self.title, error).to_have_text(title)
+        expect(self.title_locator, error).to_have_text(title)
 
 
     # [Chart]
@@ -104,7 +104,7 @@ class DashboardWidgetComponent(BaseComponent):
         """
         with allure.step(f'✔ Check visible [{self.chart_name}-chart]'):
             error = f'{self.chart_element} - invisible!'
-            expect(self.chart, error).to_be_visible()
+            expect(self.chart_locator, error).to_be_visible()
 
 
 #=======================================================================================================================

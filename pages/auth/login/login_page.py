@@ -40,10 +40,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.wrong_email_or_password_alert_element = 'Wrong email or password alert'
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
-        self.title = page.get_by_test_id('authentication-ui-course-title-text')
-        self.login_btn = page.get_by_test_id('login-page-login-button')
-        self.registration_link = page.get_by_test_id('login-page-registration-link')
-        self.wrong_email_or_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
+        self.title_locator = page.get_by_test_id('authentication-ui-course-title-text')
+        self.login_btn_locator = page.get_by_test_id('login-page-login-button')
+        self.registration_link_locator = page.get_by_test_id('login-page-registration-link')
+        self.wrong_email_or_password_alert_locator = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
@@ -57,7 +57,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ▶ Button - click
         """
         self.check_login_btn(enabled=True)
-        self.login_btn.click()
+        self.login_btn_locator.click()
 
     # Click [Registration link]
     @allure.step('▶ Click [Registration link]')
@@ -69,7 +69,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ▶ Link - click
         """
         self.check_registration_link()
-        self.registration_link.click()
+        self.registration_link_locator.click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Login page]
@@ -102,19 +102,19 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # [Title]
     def check_title(self):
         Check.element(
-            locator=self.title,
+            locator=self.title_locator,
             element_path=self.element_path,
-            element=self.title_element,
+            element_name=self.title_element,
             visible=True,
             text=self.TITLE_TEXT
         )
 
     # [Login button]
-    def check_login_btn(self, enabled: bool = False):
+    def check_login_btn(self, enabled: bool):
         Check.element(
-            locator=self.login_btn,
+            locator=self.login_btn_locator,
             element_path=self.element_path,
-            element=self.login_btn_element,
+            element_name=self.login_btn_element,
             visible=True,
             enabled=enabled,
             text=self.LOGIN_BTN_TEXT
@@ -123,9 +123,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # [Registration link]
     def check_registration_link(self):
         Check.element(
-            locator=self.registration_link,
+            locator=self.registration_link_locator,
             element_path=self.element_path,
-            element=self.registration_link_element,
+            element_name=self.registration_link_element,
             visible=True,
             text=self.REGISTRATION_LINK_TEXT,
             attribute_type='href',
@@ -135,9 +135,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     # [Alert]
     def check_wrong_email_or_password_alert(self):
         Check.element(
-            locator=self.wrong_email_or_password_alert,
+            locator=self.wrong_email_or_password_alert_locator,
             element_path=self.element_path,
-            element=self.wrong_email_or_password_alert_element,
+            element_name=self.wrong_email_or_password_alert_element,
             visible=True,
             text=self.ALERT_TEXT
         )

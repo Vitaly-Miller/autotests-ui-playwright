@@ -37,13 +37,13 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         # ----------------------------------------- ㉧ LOCATORS (⚠️Page factory) ---------------------------------------
         # [Title]
-        self.title = Text(page, 'authentication-ui-course-title-text', 'Title')
+        self.title_locator = Text(page, 'authentication-ui-course-title-text', 'Title')
         # [Login button]
-        self.login_btn = Button(page, 'login-page-login-button', 'Login')
+        self.login_btn_locator = Button(page, 'login-page-login-button', 'Login')
         # [Registration link]
-        self.registration_link = Link(page, 'login-page-registration-link', 'Registration')
+        self.registration_link_locator = Link(page, 'login-page-registration-link', 'Registration')
         # [Alert]
-        self.wrong_email_or_password_alert = Text(page,'login-page-wrong-email-or-password-alert', 'Wrong email or password')
+        self.wrong_email_or_password_alert_locator = Text(page,'login-page-wrong-email-or-password-alert', 'Wrong email or password')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
@@ -56,7 +56,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ▶ Button - click
         """
         self.check_login_btn(enabled=True)
-        self.login_btn.click()
+        self.login_btn_locator.click()
 
     # [Registration link]
     def click_registration_link(self):
@@ -67,7 +67,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ▶ Link - click
         """
         self.check_registration_link()
-        self.registration_link.click()
+        self.registration_link_locator.click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Page]
@@ -106,7 +106,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'❌ Login page > [Title] - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     def check_title_text(self):
         """
@@ -115,7 +115,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'❌ Login page > [Title] - incorrect text!'
-        expect(self.title, error).to_have_text(self.TITLE_TEXT)
+        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
 
 
     # [Login button]
@@ -142,7 +142,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         (If the Login form is completed successfully)
         """
         error = f'❌ Login page > [Login button] - disabled!'
-        expect(self.login_btn, error).to_be_enabled()
+        expect(self.login_btn_locator, error).to_be_enabled()
 
     def check_login_btn_disabled(self):
         """
@@ -151,7 +151,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         (If the Login form is NOT completed successfully)
         """
         error = f'❌ Login page > [Login button] - enabled!'
-        expect(self.login_btn, error).to_be_disabled()
+        expect(self.login_btn_locator, error).to_be_disabled()
 
     def check_login_btn_text(self):
         """
@@ -160,7 +160,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'❌ Login page > [Login button] - incorrect text!'
-        expect(self.login_btn, error).to_have_text(self.LOGIN_BTN_TEXT)
+        expect(self.login_btn_locator, error).to_have_text(self.LOGIN_BTN_TEXT)
 
 
     # [Registration link]
@@ -184,7 +184,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'❌ Login page > [Registration link] - invisible!'
-        expect(self.registration_link, error).to_be_visible()
+        expect(self.registration_link_locator, error).to_be_visible()
 
     def check_registration_link_text(self):
         """
@@ -193,7 +193,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'❌ Login page > [Registration link] - incorrect text!'
-        expect(self.registration_link, error).to_have_text(self.REGISTRATION_LINK_TEXT)
+        expect(self.registration_link_locator, error).to_have_text(self.REGISTRATION_LINK_TEXT)
 
     def check_registration_link_url(self):
         """
@@ -202,14 +202,14 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         error = f'❌ Login page > [Registration link] - incorrect URL!'
-        expect(self.registration_link, error).to_have_attribute('href', self.REGISTRATION_LINK_URL)
+        expect(self.registration_link_locator, error).to_have_attribute('href', self.REGISTRATION_LINK_URL)
 
 
     # [Alert]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_wrong_email_or_password_alert(self):
-        self.wrong_email_or_password_alert.check_visible()
-        self.wrong_email_or_password_alert.check_text(self.ALERT_TEXT)
+        self.wrong_email_or_password_alert_locator.check_visible()
+        self.wrong_email_or_password_alert_locator.check_text(self.ALERT_TEXT)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
 

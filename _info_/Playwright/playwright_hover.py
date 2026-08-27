@@ -13,10 +13,10 @@ with sync_playwright() as playwright:                       # Создаем о�
 
 
     page.goto(login_url)                  # ▶ ACTION - Переход на страницу по URL
-    registration_link = page.locator('#login-page-registration-link') # ㉧ LOCATOR
+    registration_link_locator = page.locator('#login-page-registration-link') # ㉧ LOCATOR
 
     page.wait_for_timeout(1000)           # ⏳
-    registration_link.hover()             # ▶ ACTION - Наведение курсора мыши на элемент
+    registration_link_locator.hover()             # ▶ ACTION - Наведение курсора мыши на элемент
     page.wait_for_timeout(2000)           # ⏳
 
 

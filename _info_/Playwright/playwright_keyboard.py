@@ -15,9 +15,9 @@ with sync_playwright() as playwright:                       # Создаем о�
     page.goto(login_url)                                    # ▶ ACTION - Переход на страницу по URL
 
     # Email field
-    email_field = page.get_by_label('Email')                # ㉧ LOCATOR
-    email_field.click()                                     # v.1 ▶ ACTION - click по объекту
-    email_field.focus()                                     # v.2 ▶ ACTION - Фокус на объекте
+    email_field_locator = page.get_by_label('Email')                # ㉧ LOCATOR
+    email_field_locator.click()                                     # v.1 ▶ ACTION - click по объекту
+    email_field_locator.focus()                                     # v.2 ▶ ACTION - Фокус на объекте
 
     # Fill out
     page.keyboard.type('keyboard.type', delay=50)      # ▶ ACTION - Печатает текст. Задержка 50 ms между символами

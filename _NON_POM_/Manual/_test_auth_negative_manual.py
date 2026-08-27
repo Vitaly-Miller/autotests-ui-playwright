@@ -27,24 +27,24 @@ def test_auth_unregistered_user():
         page.goto(login_url)                          # ▶ ACTION - Переход на страницу по URL
 
         # ㉧ LOCATORS
-        email_field = page.get_by_label('Email')                                             # by label
-        email_field_ = page.locator('label:has-text("Email")')                               # by label has text
-        email_field__ = page.locator('//div[@data-testid="login-form-email-input"]//input')  # by XPath
-        email_field___ = page.get_by_test_id('login-form-email-input').locator('input')      # by test id + locator
-        password_field = page.get_by_label('Password')                                       # by label
-        login_btn = page.get_by_test_id('login-page-login-button')                           # by test id
-        login_btn_ = page.get_by_role(role='button', name='Login')                           # by role
-        error_message = page.get_by_test_id('login-page-wrong-email-or-password-alert')      # by test id
-        error_message_ = page.get_by_text('Wrong email or password')                         # by text
+        email_field_locator = page.get_by_label('Email')                                             # by label
+        email_field_locator_ = page.locator('label:has-text("Email")')                               # by label has text
+        email_field_locator__ = page.locator('//div[@data-testid="login-form-email-input"]//input')  # by XPath
+        email_field_locator___ = page.get_by_test_id('login-form-email-input').locator('input')      # by test id + locator
+        password_field_locator = page.get_by_label('Password')                                       # by label
+        login_btn_locator = page.get_by_test_id('login-page-login-button')                           # by test id
+        login_btn_locator_ = page.get_by_role(role='button', name='Login')                           # by role
+        error_message_locator = page.get_by_test_id('login-page-wrong-email-or-password-alert')      # by test id
+        error_message_locator_ = page.get_by_text('Wrong email or password')                         # by text
 
         # ▶ ACTIONS
-        email_field.fill('user.name@gmail.com')       # Fill field
-        password_field.fill('password')               # Fill field
-        login_btn.click()                             # Click button
+        email_field_locator.fill('user.name@gmail.com')       # Fill field
+        password_field_locator.fill('password')               # Fill field
+        login_btn_locator.click()                             # Click button
 
         # ✔️EXPECTATIONS
-        expect(error_message, '❌ Error message did not appear!').to_be_visible()                         # Проверка видимости сообщения об ошибке
-        expect(error_message, '❌ Wrong Error message text!').to_have_text('Wrong email or password')     # Проверка текста сообщения об ошибке
+        expect(error_message_locator, '❌ Error message did not appear!').to_be_visible()                         # Проверка видимости сообщения об ошибке
+        expect(error_message_locator, '❌ Wrong Error message text!').to_have_text('Wrong email or password')     # Проверка текста сообщения об ошибке
 
         # ⏳(optional)
         page.wait_for_timeout(1000)

@@ -4,7 +4,6 @@ Check element
 import allure
 from playwright.sync_api import Locator, expect
 
-
 #=======================================================================================================================
 class Check:
     #------------------------------------------------------- [Element] -------------------------------------------------
@@ -12,7 +11,7 @@ class Check:
     def element(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             visible: bool = True,
             enabled: bool | None = None,
             text: str | None = None,
@@ -35,7 +34,7 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name      (for logging)  (Ex: 'Description field']
+        :param element_name: Element name (for logging)  (Ex: 'Description field']
         :param visible: True/False
         :param enabled: True/False                       (Active for action)
         :param name: Element has name     (accessible)   (Ex: 'Description')
@@ -45,32 +44,32 @@ class Check:
         :param attribute_value: Value of attribute       (Ex: '#/auth/registration', 'Enter description here', etc.)
         :param index: DOM/nth - index     (for logging)
         """
-        with allure.step(f'✔ Check [{element}]'):
+        with allure.step(f'✔ Check [{element_name}]'):
             if visible:
-                Check.visible(locator=locator, element_path=element_path, element=element, index=index)
+                Check.visible(locator=locator, element_path=element_path, element_name=element_name, index=index)
             else:
-                Check.invisible(locator=locator, element_path=element_path, element=element, index=index)
+                Check.invisible(locator=locator, element_path=element_path, element_name=element_name, index=index)
 
             if enabled is not None:
                 if enabled:
-                    Check.enabled(locator=locator, element_path=element_path, element=element, index=index)
+                    Check.enabled(locator=locator, element_path=element_path, element_name=element_name, index=index)
                 else:
-                    Check.disabled(locator=locator, element_path=element_path, element=element, index=index)
+                    Check.disabled(locator=locator, element_path=element_path, element_name=element_name, index=index)
 
             if name is not None:
-                Check.name(locator=locator, element_path=element_path, element=element, name=name, index=index)
+                Check.name(locator=locator, element_path=element_path, element_name=element_name, name=name, index=index)
 
             if text is not None:
-                Check.text(locator=locator, element_path=element_path, element=element, text=text, index=index)
+                Check.text(locator=locator, element_path=element_path, element_name=element_name, text=text, index=index)
 
             if value is not None:
-                Check.value(locator=locator, element_path=element_path, element=element, value=value, index=index)
+                Check.value(locator=locator, element_path=element_path, element_name=element_name, value=value, index=index)
 
             if attribute_type is not None and attribute_value is not None:
                 Check.attribute(
                     locator=locator,
                     element_path=element_path,
-                    element=element,
+                    element_name=element_name,
                     attribute_type=attribute_type,
                     attribute_value=attribute_value,
                     index=index
@@ -79,10 +78,11 @@ class Check:
     #------------------------------------------------- Visible / Invisible -------------------------------------------------
     # Visible
     @staticmethod
+    @allure.step('✔ Check visible of {element_name}')
     def visible(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             index: int = 0
     ):
         """
@@ -90,22 +90,22 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name  (for logging)  (Ex: 'Description field']
+        :param element_name: Element name  (for logging)  (Ex: 'Description field']
         :param index: DOM/nth - index    (for logging)
         """
-        with allure.step(f'✔ Check visible [{element}]'):
-            if index == 0:
-                error = f'❌ {element_path} > [{element}] - invisible!'
-            else:
-                error = f'❌ {element_path} > [{element}] (index: {index}) - invisible!'
-            expect(locator, error).to_be_visible()
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}] - invisible!'
+        else:
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) - invisible!'
+        expect(locator, error).to_be_visible()
 
     # Invisible
     @staticmethod
+    @allure.step('✔ Check invisible of {element_name}')
     def invisible(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             index: int = 0
     ):
         """
@@ -113,23 +113,23 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name      (for logging)  (Ex: 'Description field']
+        :param element_name: Element name      (for logging)  (Ex: 'Description field']
         :param index: DOM/nth - index     (for logging)
         """
-        with allure.step(f'✔ Check invisible [{element}]'):
-            if index == 0:
-                error = f'❌ {element_path} > [{element}] - invisible!'
-            else:
-                error = f'❌ {element_path} > [{element}] (index: {index}) - invisible!'
-            expect(locator, error).not_to_be_visible()
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}] - invisible!'
+        else:
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) - invisible!'
+        expect(locator, error).not_to_be_visible()
 
     #-------------------------------------------------- Enabled / Disabled -------------------------------------------------
     # Enabled
     @staticmethod
+    @allure.step('✔ Check enabled of {element_name}')
     def enabled(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             index: int = 0
     ):
         """
@@ -137,22 +137,22 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name      (for logging)  (Ex: 'Description field']
+        :param element_name: Element name      (for logging)  (Ex: 'Description field']
         :param index: DOM/nth - index     (for logging)
         """
-        with allure.step(f'✔ Check enabled [{element}]'):
-            if index == 0:
-                error = f'❌ {element_path} > [{element}] - disabled!'
-            else:
-                error = f'❌ {element_path} > [{element}] (index: {index}) - disabled!'
-            expect(locator, error).to_be_enabled()
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}] - disabled!'
+        else:
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) - disabled!'
+        expect(locator, error).to_be_enabled()
 
     # Disabled
     @staticmethod
+    @allure.step('✔ Check disabled of {element_name}')
     def disabled(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             index: int = 0
     ):
         """
@@ -160,23 +160,23 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name      (for logging)  (Ex: 'Description field']
+        :param element_name: Element name      (for logging)  (Ex: 'Description field']
         :param index: DOM/nth - index     (for logging)
         """
-        with allure.step(f'✔ Check disabled [{element}]'):
-            if index == 0:
-                error = f'❌ {element_path} > [{element}] - enabled!'
-            else:
-                error = f'❌ {element_path} > [{element}] (index: {index}) - enabled!'
-            expect(locator, error).to_be_disabled()
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}] - enabled!'
+        else:
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) - enabled!'
+        expect(locator, error).to_be_disabled()
 
     #-------------------------------------------------------- Name ---------------------------------------------------------
     # Name
     @staticmethod
+    @allure.step('✔ Check name of {element_name}')
     def name(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             name: str,
             index: int = 0
     ):
@@ -185,24 +185,24 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name      (for logging)  (Ex: 'Description field']
+        :param element_name: Element name      (for logging)  (Ex: 'Description field']
         :param name: Element has name     (accessible)   (Ex: 'Description']
         :param index: DOM/nth - index     (for logging)
         """
-        with allure.step(f'✔ Check name of [{element}]'):
-            if index == 0:
-                error = f'❌ {element_path} > [{element}] - incorrect name!'
-            else:
-                error = f'❌ {element_path} > [{element}] (index: {index}) - incorrect name!'
-            expect(locator, error).to_have_accessible_name(name)
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}] - incorrect name!'
+        else:
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) - incorrect name!'
+        expect(locator, error).to_have_accessible_name(name)
 
     #-------------------------------------------------------- Text ---------------------------------------------------------
     # Text
     @staticmethod
+    @allure.step('✔ Check text of {element_name}')
     def text(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             text: str,
             index: int = 0
     ):
@@ -211,23 +211,23 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name  (for logging)      (Ex: 'Description field']
+        :param element_name: Element name  (for logging)      (Ex: 'Description field']
         :param text: Text of element                     (Ex: 'Create course')
         :param index: DOM/nth - index    (for logging)
         """
-        with allure.step(f'✔ Check text of [{element}]'):
-            if index == 0:
-                error = f'❌ {element_path} > [{element}] - incorrect text!'
-            else:
-                error = f'❌ {element_path} > [{element}] (index: {index}) - incorrect text!'
-            expect(locator, error).to_have_text(text)
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}] - incorrect text!'
+        else:
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) - incorrect text!'
+        expect(locator, error).to_have_text(text)
 
     # Contain text
     @staticmethod
+    @allure.step('✔ Check contain text of {element_name}')
     def contain_text(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             text: str,
             index: int = 0
     ):
@@ -236,24 +236,24 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name      (for logging)  (Ex: 'Description field']
+        :param element_name: Element name      (for logging)  (Ex: 'Description field']
         :param text: Part of the text                    (Ex: ...'ate cour'...)
         :param index: DOM/nth - index     (for logging)
         """
-        with allure.step(f'✔ Check contain text of [{element}]'):
-            if index == 0:
-                error = f'❌ {element_path} > [{element}] - does not contain text!'
-            else:
-                error = f'❌ {element_path} > [{element}] (index: {index}) - does not contain text!'
-            expect(locator, error).to_contain_text(text)
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}] - does not contain text!'
+        else:
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) - does not contain text!'
+        expect(locator, error).to_contain_text(text)
 
     #-------------------------------------------------------- Value --------------------------------------------------------
     # Text
     @staticmethod
+    @allure.step('✔ Check value of {element_name}]')
     def value(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             value: str,
             index: int = 0
     ):
@@ -262,24 +262,24 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name      (for logging)  (Ex: 'Description field']
+        :param element_name: Element name      (for logging)  (Ex: 'Description field']
         :param value: Value of element                   (Ex: 'This is my description in the field')
         :param index: DOM/nth - index     (for logging)
         """
-        with allure.step(f'✔ Check value of [{element}]'):
-            if index == 0:
-                error = f'❌ {element_path} > [{element}] - incorrect value!'
-            else:
-                error = f'❌ {element_path} > [{element}] (index: {index}) - incorrect value!'
-            expect(locator, error).to_have_value(value)
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}] - incorrect value!'
+        else:
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) - incorrect value!'
+        expect(locator, error).to_have_value(value)
 
     #------------------------------------------------------ Attribute ------------------------------------------------------
     # Attribute
     @staticmethod
+    @allure.step('✔ Check {attribute_type}-attribute value of {element_name}')
     def attribute(
             locator: Locator,
             element_path: str,
-            element: str,
+            element_name: str,
             attribute_type: str,
             attribute_value: str,
             index: int = 0):
@@ -288,16 +288,15 @@ class Check:
 
         :param locator: Locator
         :param element_path: Element path (for logging)  (Ex: 'Create course page > Exercises > Exercise > Form')
-        :param element: Element name  (for logging)      (Ex: 'Description field']
+        :param element_name: Element name  (for logging)      (Ex: 'Description field']
         :param attribute_type: Attribute type            (Ex: 'href', 'placeholder', etc.)
         :param attribute_value: Attribute value          (Ex: '#/auth/registration', 'Enter description here', etc.)
         :param index: DOM/nth - index    (for logging)
         """
-        with allure.step(f'✔ Check "{attribute_type}"-attribute value of [{element}]'):
-            if index == 0:
-                error = f'❌ {element_path} > [{element}] - incorrect "{attribute_type}"-attribute value!'
-            else:
-                error = f'❌ {element_path} > [{element}] (index: {index}) incorrect "{attribute_type}"-attribute value!'
-            expect(locator, error).to_have_attribute(attribute_type, attribute_value)
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}] - incorrect "{attribute_type}"-attribute value!'
+        else:
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) incorrect "{attribute_type}"-attribute value!'
+        expect(locator, error).to_have_attribute(attribute_type, attribute_value)
 
 #=======================================================================================================================

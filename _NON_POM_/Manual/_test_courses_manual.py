@@ -27,16 +27,16 @@ def test_courses_page_is_opening():
         page.goto(registration_url)
 
         # ㉧ LOCATORS
-        email_field = page.get_by_role(role='textbox', name='Email')
-        username_field = page.get_by_role(role='textbox', name='Username')
-        password_field = page.get_by_role(role='textbox', name='Password')
-        registration_btn = page.get_by_role(role='button', name='Registration')
+        email_field_locator = page.get_by_role(role='textbox', name='Email')
+        username_field_locator = page.get_by_role(role='textbox', name='Username')
+        password_field_locator = page.get_by_role(role='textbox', name='Password')
+        registration_btn_locator = page.get_by_role(role='button', name='Registration')
 
         # ▶ ACTIONS
-        email_field.fill('user.name@gmail.com')
-        username_field.fill('username')
-        password_field.fill('password')
-        registration_btn.click()
+        email_field_locator.fill('user.name@gmail.com')
+        username_field_locator.fill('username')
+        password_field_locator.fill('password')
+        registration_btn_locator.click()
 
         # 💾 Сохраняем Storage state (cookies + localStorage) в файл после регистрации
         context.storage_state(path="storage_state.json")   # 👈
@@ -58,17 +58,17 @@ def test_courses_page_is_opening():
         page.goto(courses_url)                   # Courses page - открывается ✔️
 
         # ㉧ LOCATORS
-        courses_header = page.get_by_role(role='heading', name='Courses')
-        folder_icon = page.get_by_test_id('courses-list-empty-view-icon')
-        no_result = page.get_by_role(role='heading', name='There is no results')
-        description = page.get_by_test_id('courses-list-empty-view-description-text')
+        courses_header_locator = page.get_by_role(role='heading', name='Courses')
+        folder_icon_locator = page.get_by_test_id('courses-list-empty-view-icon')
+        no_result_locator = page.get_by_role(role='heading', name='There is no results')
+        description_locator = page.get_by_test_id('courses-list-empty-view-description-text')
 
         # ✔︎ EXPECTATIONS
         expect(page, '❌ Wrong page URL!').to_have_url(courses_url)
-        expect(courses_header, '❌ Wrong page header text!').to_have_text('Courses')
-        expect(folder_icon,'❌ Folder icon - invisible!').to_be_visible()
-        expect(no_result, '❌ Wrong text!').to_have_text('There is no results')
-        expect(description, '❌ Wrong description').to_have_text('Results from the load test pipeline will be displayed here')
+        expect(courses_header_locator, '❌ Wrong page header text!').to_have_text('Courses')
+        expect(folder_icon_locator,'❌ Folder icon - invisible!').to_be_visible()
+        expect(no_result_locator, '❌ Wrong text!').to_have_text('There is no results')
+        expect(description_locator, '❌ Wrong description').to_have_text('Results from the load test pipeline will be displayed here')
 
 
         # ⏳

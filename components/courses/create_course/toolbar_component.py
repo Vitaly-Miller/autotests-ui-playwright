@@ -24,8 +24,8 @@ class CreateCourseToolbarComponent(BaseComponent):
         self.create_course_btn_element = f'{self.toolbar_component} > [Create course button]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title = page.get_by_test_id('create-course-toolbar-title-text')
-        self.create_course_btn = page.get_by_test_id('create-course-toolbar-create-course-button')
+        self.title_locator = page.get_by_test_id('create-course-toolbar-title-text')
+        self.create_course_btn_locator = page.get_by_test_id('create-course-toolbar-create-course-button')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Create course button]
@@ -38,7 +38,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         - ▶ Button - click
         """
         self.check_create_course_btn(enabled=True)
-        self.create_course_btn.click()
+        self.create_course_btn_locator.click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -76,7 +76,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         - ✔ Title - visible
         """
         error = f'{self.title_element} - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
@@ -86,7 +86,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         .
         """
         error = f'{self.title_element} - incorrect text!'
-        expect(self.title, error).to_have_text(self.TITLE_TEXT)
+        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
 
 
     # [Create course button]
@@ -113,7 +113,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         .
         """
         error = f'{self.create_course_btn_element} - invisible!'
-        expect(self.create_course_btn, error).to_be_visible()
+        expect(self.create_course_btn_locator, error).to_be_visible()
 
     @allure.step('✔ Check enabled [Create course button]')
     def check_create_course_btn_enabled(self):
@@ -123,7 +123,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         (If create course Form filled & Image uploaded)
         """
         error = f'{self.create_course_btn_element} - disabled!'
-        expect(self.create_course_btn, error).to_be_enabled()
+        expect(self.create_course_btn_locator, error).to_be_enabled()
 
     @allure.step('✔ Check disabled [Create course button]')
     def check_create_course_btn_disabled(self):
@@ -133,7 +133,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         (If create course Form did NOT filled & Image did NOT upload)
         """
         error = f'{self.create_course_btn_element} - enabled!'
-        expect(self.create_course_btn, error).to_be_disabled()
+        expect(self.create_course_btn_locator, error).to_be_disabled()
 
 
 #=======================================================================================================================

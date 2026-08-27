@@ -38,9 +38,9 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.login_link_element = f'{self.registration_page_component} > [Login link]'
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
-        self.title = page.get_by_test_id('authentication-ui-course-title-text')
-        self.registration_btn = page.get_by_test_id('registration-page-registration-button')
-        self.login_link = page.get_by_test_id('registration-page-login-link')
+        self.title_locator = page.get_by_test_id('authentication-ui-course-title-text')
+        self.registration_btn_locator = page.get_by_test_id('registration-page-registration-button')
+        self.login_link_locator = page.get_by_test_id('registration-page-login-link')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
@@ -54,7 +54,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ▶ Button - click
         """
         self.check_registration_btn(enabled=True)
-        self.registration_btn.click()
+        self.registration_btn_locator.click()
 
     # Click [Login link]
     @allure.step('▶ Click [Login link]')
@@ -66,7 +66,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ▶ Link - click
         """
         self.check_login_link()
-        self.login_link.click()
+        self.login_link_locator.click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Registration page]
@@ -119,7 +119,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         .
         """
         error = f'{self.title_element} - invisible!'
-        expect(self.title, error).to_be_visible()
+        expect(self.title_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Title]')
     def check_title_text(self):
@@ -129,7 +129,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         .
         """
         error = f'{self.title_element} - incorrect text!'
-        expect(self.title, error).to_have_text(self.TITLE_TEXT)
+        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
 
 
     # [Registration button]
@@ -160,7 +160,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         .
         """
         error = f'{self.registration_btn_element} - invisible!'
-        expect(self.registration_btn, error).to_be_visible()
+        expect(self.registration_btn_locator, error).to_be_visible()
 
     @allure.step('✔ Check enabled [Registration button]')
     def check_registration_btn_enabled(self):
@@ -170,7 +170,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         (If the Registration form is completed successfully)
         """
         error = f'{self.registration_btn_element} - disabled!'
-        expect(self.registration_btn, error).to_be_enabled()
+        expect(self.registration_btn_locator, error).to_be_enabled()
 
     @allure.step('✔ Check [Registration button] is disable')
     def check_registration_btn_disabled(self):
@@ -180,7 +180,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         (If the Registration form is NOT completed successfully)
         """
         error = f'{self.registration_btn_element} - enabled!'
-        expect(self.registration_btn, error).to_be_disabled()
+        expect(self.registration_btn_locator, error).to_be_disabled()
 
     @allure.step('✔ Check text of [Registration button]')
     def check_registration_btn_text(self):
@@ -190,7 +190,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         .
         """
         error = f'{self.registration_btn_element} - incorrect text!'
-        expect(self.registration_btn, error).to_have_text(self.REGISTRATION_BTN_TEXT)
+        expect(self.registration_btn_locator, error).to_have_text(self.REGISTRATION_BTN_TEXT)
 
 
     # [Login link]
@@ -216,7 +216,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         .
         """
         error = f'{self.login_link_element} - invisible!'
-        expect(self.login_link, error).to_be_visible()
+        expect(self.login_link_locator, error).to_be_visible()
 
     @allure.step('✔ Check text of [Login link]')
     def check_login_link_text(self):
@@ -226,7 +226,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         .
         """
         error = f'{self.login_link_element} - incorrect text!'
-        expect(self.login_link, error).to_have_text(self.LOGIN_LINK_TEXT)
+        expect(self.login_link_locator, error).to_have_text(self.LOGIN_LINK_TEXT)
 
     @allure.step('✔ Check [Login link] URL')
     def check_login_link_url(self):
@@ -236,7 +236,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         .
         """
         error = f'{self.login_link_element} - incorrect URL!'
-        expect(self.login_link, error).to_have_attribute('href', self.LOGIN_LINK_URL)
+        expect(self.login_link_locator, error).to_have_attribute('href', self.LOGIN_LINK_URL)
 
     @allure.step('✔ Check [Login link] redirect to Login page')
     def check_login_link_redirect(self):
