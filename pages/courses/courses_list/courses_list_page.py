@@ -1,7 +1,7 @@
 """
 Courses list page
 """
-import allure
+
 from playwright.sync_api import Page
 from components.courses.courses_list.course_card_component import CourseCardComponent
 from pages.base_page import BasePage
@@ -42,7 +42,6 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # Courses list page [Empty view]:
-    @allure.step('✔ Check Courses list page [Empty view]')
     def check_empty_view(self):
         """
         ✔ Check  Courses list page [Empty view]

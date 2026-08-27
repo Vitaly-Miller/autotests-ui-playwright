@@ -65,6 +65,6 @@ class TestLogin:
         login_page.click_registration_link()
 
         # ✔️EXPECTATIONS
-        login_page.check_registration_link_redirect()
+        login_page.check_current_url('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
 
 #=======================================================================================================================

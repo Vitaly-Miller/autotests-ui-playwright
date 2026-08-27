@@ -53,7 +53,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Button - enabled
         - ▶ Button - click
         """
-        self.check_registration_btn(enable=True)
+        self.check_registration_btn(enabled=True)
         self.registration_btn.click()
 
     # Click [Login link]
@@ -77,7 +77,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
             email: str | None = None,
             username: str | None = None,
             password: str | None = None,
-            is_registration_button_enable: bool = False
+            is_registration_button_enabled: bool = False
     ):
         """
         ✔ Check [Registration page]
@@ -90,11 +90,11 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         :param email: Email (optional)
         :param username: Username (optional)
         :param password: Password (optional)
-        :param is_registration_button_enable: False/True
+        :param is_registration_button_enabled: False/True
         """
         self.check_title()
         self.form.check_registration_form(email=email, username=username, password=password)
-        self.check_registration_btn(enable=is_registration_button_enable)
+        self.check_registration_btn(enabled=is_registration_button_enabled)
         self.check_login_link()
     # ──────────────────────────────────┘
 
@@ -135,7 +135,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     # [Registration button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Registration button]')
-    def check_registration_btn(self, enable: bool = False):
+    def check_registration_btn(self, enabled: bool = False):
         """
         ✔ Check [Registration button]
 
@@ -143,13 +143,13 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         - ✔ Button - enabled / disabled
         - ✔ Button - text
 
-        :param enable: True/False
+        :param enabled: True/False
         """
         self.check_registration_btn_visible()
-        if enable:
-            self.check_registration_btn_enable()
+        if enabled:
+            self.check_registration_btn_enabled()
         else:
-            self.check_registration_btn_disable()
+            self.check_registration_btn_disabled()
         self.check_registration_btn_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     @allure.step('✔ Check visible [Registration button]')
@@ -163,7 +163,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         expect(self.registration_btn, error).to_be_visible()
 
     @allure.step('✔ Check enabled [Registration button]')
-    def check_registration_btn_enable(self):
+    def check_registration_btn_enabled(self):
         """
         ✔ Check enabled [Registration button]
 
@@ -173,7 +173,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         expect(self.registration_btn, error).to_be_enabled()
 
     @allure.step('✔ Check [Registration button] is disable')
-    def check_registration_btn_disable(self):
+    def check_registration_btn_disabled(self):
         """
         ✔ Check disabled [Registration button]
 

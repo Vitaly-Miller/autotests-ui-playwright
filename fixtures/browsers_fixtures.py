@@ -2,6 +2,7 @@
 Browsers fixtures
 """
 import pytest
+import allure
 from playwright.sync_api import Playwright, StorageState, ViewportSize
 from pages.auth.registration.registration_page import RegistrationPage
 from _pytest.fixtures import SubRequest
@@ -13,7 +14,7 @@ def page(request: SubRequest, storage_state: StorageState, playwright: Playwrigh
     """
     Fixture for authorized user (registered)
 
-    :param request: SubRequest.request (for tracing test naming)
+    :param request: SubRequest.request (for tracing)
     :param storage_state: Фикстура с сохраненными авторизационными данными
     :param playwright: Playwright
     :return: yield page: Page
@@ -32,15 +33,20 @@ def page(request: SubRequest, storage_state: StorageState, playwright: Playwrigh
         snapshots=True,                                   # - Snapshots
         sources=True                                      # - Sources
     )
-    page = context.new_page()   # Создаем объект страницы page на базе context
+    page = context.new_page()                             # Создаем объект страницы page на базе context
 
     try:
-        yield page              # Передаем page (на базе движка chromium)
+        yield page                                        # Передаем page (на базе движка chromium)
 
-    finally:                    # Гарантия закрытия, если упадет.
+    finally:                                              # Гарантия закрытия, если упадет.
         context.tracing.stop(path=f'./tracing/{request.node.name}.zip')  # Сохраняем трейсинг в zip-файл (c именем текущего теста)
         context.close()         # Закрываем context!
         browser.close()         # Закрываем browser!
+        allure.attach.file(                               # 💾Прикрепляем трейсинг к Allure-отчету
+            f'./tracing/{request.node.name}.zip',         # - File path
+            name=f'{request.node.name}_trace',            # - Name in Allure-report (Tear down)
+            attachment_type=allure.attachment_type.ZIP    # - File type - ZIP
+        )
 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -73,11 +79,11 @@ def storage_state(playwright: Playwright):      # Используем встр�
     # storage_state = context.storage_state(path='storage_state.json')  # v.3 - Storage state в переменную + 💾JSON-файл  (optional)
 
     try:
-        yield storage_state          # Передаем Storage state
+        yield storage_state                     # Передаем Storage state
 
-    finally:                         # Гарантия закрытия, если упадет.
-        context.close()              # Закрываем context!
-        browser.close()              # Закрываем browser!
+    finally:                                    # Гарантия закрытия, если упадет.
+        context.close()                         # Закрываем context!
+        browser.close()                         # Закрываем browser!
 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -87,7 +93,7 @@ def page_guest(request: SubRequest, playwright: Playwright):   # Чистый (�
     """
     Fixture for GUEST user (unregister)
 
-    :param request: SubRequest.request (for tracing test naming)
+    :param request: SubRequest.request (for tracing)
     :param playwright: Playwright
     :return: yield page: Page
     """
@@ -103,14 +109,19 @@ def page_guest(request: SubRequest, playwright: Playwright):   # Чистый (�
         snapshots=True,                                   # - Snapshots
         sources=True                                      # - Sources
     )
-    page = context.new_page()        # Создаем объект page на базе context
+    page = context.new_page()                             # Создаем объект page на базе context
 
     try:
-        yield page                   # Передаем page (на базе context)
+        yield page                                        # Передаем page (на базе context)
 
-    finally:                         # Гарантия закрытия, если упадет.
+    finally:                                              # Гарантия закрытия, если упадет
         context.tracing.stop(path=f'./tracing/{request.node.name}.zip')  # Сохраняем трейсинг в zip-файл (c именем текущего теста)
-        context.close()              # Закрываем context!
-        browser.close()              # Закрываем browser!
+        context.close()                                   # Закрываем context!
+        browser.close()                                   # Закрываем browser!
+        allure.attach.file(                               # 💾Прикрепляем трейсинг к Allure-report
+            f'./tracing/{request.node.name}.zip',         # - File path
+            name=f'{request.node.name}_trace',            # - Name in Allure-report (Tear down)
+            attachment_type=allure.attachment_type.ZIP    # - File type - ZIP
+        )
 
 #=======================================================================================================================

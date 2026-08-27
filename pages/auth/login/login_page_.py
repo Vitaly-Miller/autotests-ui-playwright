@@ -55,7 +55,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         - ✔ Button - enabled
         - ▶ Button - click
         """
-        self.check_login_btn(enable=True)
+        self.check_login_btn(enabled=True)
         self.login_btn.click()
 
     # [Registration link]
@@ -120,22 +120,22 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     # [Login button]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    def check_login_btn(self, enable: bool = False):
+    def check_login_btn(self, enabled: bool = False):
         """
         ✔ Check [Login button]
 
         - ✔ Button - enabled / disabled
         - ✔ Button - text
 
-        :param enable: True/False
+        :param enabled: True/False
         """
-        if enable:
-            self.check_login_btn_enable()
+        if enabled:
+            self.check_login_btn_enabled()
         else:
             self.check_login_btn_disabled()
         self.check_login_btn_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    def check_login_btn_enable(self):
+    def check_login_btn_enabled(self):
         """
         ✔ Check enabled [Login button]
 

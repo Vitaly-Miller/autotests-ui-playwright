@@ -86,7 +86,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         - ✔ Button - enabled
         - ▶ Button - click
         """
-        self.check_remove_image_btn_enable()
+        self.check_remove_image_btn_enabled()
         self.remove_image_btn.click()
 
 
@@ -132,7 +132,6 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
     # Preview view [Empty view] (component)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    @allure.step('✔ Check Preview view [Empty view]')
     def check_preview_view_empty_view(self):
         """
         ✔ Check Preview view [Empty view]
@@ -289,7 +288,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         - ✔ Button - text
         """
         self.check_upload_image_btn_visible()
-        self.check_upload_image_btn_enable()
+        self.check_upload_image_btn_enabled()
         self.check_upload_image_btn_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     @allure.step('✔ Check visible [Upload image button]')
@@ -303,7 +302,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         expect(self.upload_image_btn, error).to_be_visible()
 
     @allure.step('✔ Check [Upload image button] is enable')
-    def check_upload_image_btn_enable(self):
+    def check_upload_image_btn_enabled(self):
         """
         ✔ Check enabled [Upload image button]
 
@@ -344,7 +343,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         if is_image_uploaded:
             with allure.step('✔ Check UI of [Remove image button]'):
                 self.check_remove_image_btn_visible()
-                self.check_remove_image_btn_enable()
+                self.check_remove_image_btn_enabled()
                 self.check_remove_image_btn_text()
         else:
             self.check_remove_image_btn_invisible()
@@ -372,7 +371,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         expect(self.remove_image_btn, error).not_to_be_visible()
 
     @allure.step('✔ Check [Remove image button] is enable')
-    def check_remove_image_btn_enable(self):
+    def check_remove_image_btn_enabled(self):
         """
         ✔ Check enabled [Remove image button]
 

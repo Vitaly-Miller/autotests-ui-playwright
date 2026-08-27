@@ -1,8 +1,6 @@
 """
 Create Course page
 """
-import allure
-
 from pages.base_page import BasePage
 from playwright.sync_api import Page
 from components.navigation.navbar.navbar_component import NavbarComponent
@@ -48,7 +46,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Exercises [Empty view]
     # ────────────────────────────────────────────────────────┐
-    @allure.step('✔ Check Exercises [Empty view]')
     def check_exercises_empty_view(self):
         """
         ✔ Check Exercises [Empty view]
