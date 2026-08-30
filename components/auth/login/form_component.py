@@ -11,16 +11,16 @@ from elements.input_field import InputField
 #=======================================================================================================================
 """
 [Form]:
-- Email field
-- Password field
+- Email input field
+- Password input field
 """
 class LoginFormComponent(BaseComponent):
+    # 𝌆 DATA
+    EMAIL_FIELD_NAME = 'Email'
+    PASSWORD_FIELD_NAME = 'Password'
+
     def __init__(self, page: Page):
         super().__init__(page)
-
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        self.EMAIL_FIELD_NAME = 'Email'
-        self.PASSWORD_FIELD_NAME = 'Password'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.email_field_locator = page.get_by_test_id('login-form-email-input').locator('input')
@@ -28,16 +28,14 @@ class LoginFormComponent(BaseComponent):
 
         # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
         self.path = 'Login page > Form'
-
         self.email_field = InputField(self.email_field_locator, self.path, 'Email field')
         self.password_field = InputField(self.password_field_locator, self.path, 'Password field')
-
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Login form]
     # ────────────────────────────────────┐
     @allure.step('▶ Fill [Login form]')
-    def fill_login_form(self, email: str, password: str):
+    def fill(self, email: str, password: str):
         """
         ▶ Fill [Login form]
 
@@ -51,67 +49,48 @@ class LoginFormComponent(BaseComponent):
         self.fill_password_field(password)
     # ────────────────────────────────────┘
     # Fill [Email field]
-    @allure.step('▶ Fill [Email field]')
     def fill_email_field(self, email: str):
         """
         ▶ Fill [Email field]
 
-        - ▶ Field - fill
-        - ✔ Field - value
-
         :param email: Email
         """
         self.email_field.fill(email)
-        self.check_email_field_value(email)
 
     # Fill [Password field]
     def fill_password_field(self, password: str):
         """
         ▶ Fill [Password field]
 
-        - ▶ Field - fill
-        - ✔ Field - value
-
         :param password: Password
         """
         self.password_field.fill(password)
-        self.check_password_field_value(password)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Login Form]
-    # ─────────────────────────────────────────┐
-    def check_login_form(
-            self,
-            email: str | None = None,
-            password: str | None = None
+    # ─────────────────────────────────────┐
+    @allure.step('✔ Check [Login form]')
+    def check(
+        self,
+        email: str | None = None,
+        password: str | None = None
     ):
         """
         ✔ Check [Login form]
 
-        If is passed:
-        -------------
-        - ✔ Email field - value
-        - ✔ Password field - value
-
-        If is NOT passed:
-        ----------------
-        - ✔ Email field - visible | - name
-        - ✔ Password field - visible | - name
+        - ✔ Email field - value / UI
+        - ✔ Password field - value / UI
 
         :param email: Email (optional)
         :param password: Password (optional)
         """
-        with allure.step(
-                '✔ Check [Login form] fields values'
-                if all(param is not None for param in (email, password))
-                else '✔ Check [Login form] UI'
-        ):
-            self.check_email_field(email)
-            self.check_password_field(password)
-    # ─────────────────────────────────────────┘
+        self.check_email_field(email)
+        self.check_password_field(password)
+    # ─────────────────────────────────────┘
 
     # [Email field]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Email field]')
     def check_email_field(self, email: str | None = None):
         """
         ✔ Check [Email field]
@@ -130,9 +109,8 @@ class LoginFormComponent(BaseComponent):
         if email is not None:
             self.check_email_field_value(email)
         else:
-            with allure.step('✔ Check [Email field] UI'):
-                self.check_email_field_visible()
-                self.check_email_field_name()
+            self.check_email_field_visible()
+            self.check_email_field_name()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     # Visible
     def check_email_field_visible(self):
@@ -164,6 +142,7 @@ class LoginFormComponent(BaseComponent):
 
     # [Password field]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Password field]')
     def check_password_field(self, password: str | None = None):
         """
         ✔ Check [Password field]
@@ -182,9 +161,8 @@ class LoginFormComponent(BaseComponent):
         if password is not None:
             self.check_password_field_value(password)
         else:
-            with allure.step('✔ Check [Password field] UI'):
-                self.check_password_field_visible()
-                self.check_password_field_name()
+            self.check_password_field_visible()
+            self.check_password_field_name()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     # Visible
     def check_password_field_visible(self):

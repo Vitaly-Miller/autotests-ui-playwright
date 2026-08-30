@@ -1,9 +1,13 @@
 """
-Create course page > Exercises > Exercise > [Toolbar] (component)
+Create course page > Exercises > Exercise > [Toolbar]
+(Page component)
 """
+
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Locator, Page, expect
+from playwright.sync_api import Locator, Page
+from elements.button import Button
+from elements.text import Text
 
 #=======================================================================================================================
 """
@@ -15,17 +19,17 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        # 𝌆 DATA (dynamic)
         self.TITLE_TEXT = lambda index: f'#{index + 1} Exercise'
-
-        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
-        self.toolbar_component = '❌ Create course page > Exercises > Exercise > Toolbar'
-        self.title_element = lambda index: f'{self.toolbar_component} > [Title] (index: {index})'
-        self.delete_exercise_btn_element = lambda index: f'{self.toolbar_component} > [Delete exercise button] (index: {index})'
 
         # --------------------------------------- ㉧ LOCATORS {dynamic} (lambda) ----------------------------------------
         self.title_locator = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
         self.delete_exercise_btn_locator = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
+
+        # ---------------------------------------- ◈ ELEMENTS {dynamic} (lambda) ---------------------------------------
+        self.path = 'Create course page > Exercises > Exercise > Toolbar'
+        self.title = lambda index: Text(self.title_locator(index), self.path, f'Title (index: {index})')
+        self.delete_exercise_btn = lambda index: Button(self.delete_exercise_btn_locator(index), self.path, f'Delete exercise button (index: {index})')
 
     # -------------------------------------------- ㉧ LOCATORS {dynamic} (def) ------------------------------------------
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ⚠️ NOT USING! ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╮
@@ -45,13 +49,9 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         """
         ▶ Click [Delete exercise button]
 
-        - ✔ Button - visible
-        - ▶ Button - click
-
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        self.check_delete_exercise_btn_visible(index)
-        self.delete_exercise_btn_locator(index).click()
+        self.delete_exercise_btn(index).click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -80,32 +80,30 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         - ✔ Title - visible
         - ✔ Title - text
 
-        :param index: Locator DOM-index (ex: ...-exercise-{index}-box-toolbar-...)
+        :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         self.check_toolbar_title_visible(index)
         self.check_toolbar_title_text(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Title]')
+    # Visible
     def check_toolbar_title_visible(self, index: int):
         """
-        ✔ Check visible [Title]
+        ✔ Check [Title] is visible
 
-        :param index: Locator DOM-index (ex: ...-exercise-{index}-box-toolbar-...)
+        :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'{self.title_element(index)} - invisible!'
-        expect(self.title_locator(index), error).to_be_visible()
+        self.title(index).check_visible()
 
-    @allure.step('✔ Check text of [Title]')
+    # Text
     def check_toolbar_title_text(self, index: int):
         """
-        ✔ Check text of [Title]
+        ✔ Check [Title] text
 
         (Ex: "#1 Exercise", "#2 Exercise", ...)
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'{self.title_element(index)} - incorrect text!'
-        expect(self.title_locator(index), error).to_have_text(self.TITLE_TEXT(index))
+        self.title(index).check_text(self.TITLE_TEXT(index))
 
 
     # [Delete exercise button]
@@ -121,15 +119,13 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         """
         self.check_delete_exercise_btn_visible(index)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Delete exercise button]')
+    # Visible
     def check_delete_exercise_btn_visible(self, index: int):
         """
-        ✔ Check visible [Delete exercise button]
+        ✔ Check [Delete exercise button] is visible
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        error = f'{self.delete_exercise_btn_element(index)} - invisible!'
-        expect(self.delete_exercise_btn_locator(index), error).to_be_visible()
-
+        self.delete_exercise_btn(index).check_visible()
 
 #=======================================================================================================================

@@ -1,10 +1,13 @@
 """
-Dashboard page > [Widget] (component)
+Dashboard page > [Widget]
+(Page component)
 """
-import allure
 
+import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
+from elements.image import Image
+from elements.text import Text
 
 #=======================================================================================================================
 """
@@ -12,7 +15,6 @@ from playwright.sync_api import Page, expect
 - Title  (students | activities | courses | scores )
 - Chart  (   bar   |    line    |   pie   | scatter)
 """
-
 class DashboardWidgetComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str, chart_type: str):
         """
@@ -22,33 +24,34 @@ class DashboardWidgetComponent(BaseComponent):
         """
         super().__init__(page)
 
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # Element names (for logging)
-        self.widget_name = identifier.capitalize()
-        self.chart_name = chart_type.capitalize()
-
-        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
-        self.widget_component = f'❌ Dashboard page > {self.widget_name}-widget'
-        self.title_element = f'{self.widget_component} > [Title]'
-        self.chart_element = f'{self.widget_component} > [{self.chart_name}-chart]'
+        # 𝌆 DATA (dynamic)
+        self.widget_name = identifier.capitalize()   # for logging
+        self.chart_name = chart_type.capitalize()    # for logging
 
         # ------------------------------------------------ ㉧ LOCATORS -------------------------------------------------
         self.title_locator = page.get_by_test_id(f'{identifier}-widget-title-text')
         self.chart_locator = page.get_by_test_id(f'{identifier}-{chart_type}-chart')
 
+        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
+        self.path = f'Dashboard page > {self.widget_name}-widget'
+        self.title = Text(self.title_locator, self.path, 'Title')
+        self.chart = Image(self.chart_locator, self.path, f'{self.chart_name}-chart')
+
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Widget]
     # ─────────────────────────────────┐
-    def check_widget(self, title: str):
+    @allure.step('✔ Check [Widget]')
+    def check(self, title: str):
         """
         ✔ Check [Widget]
 
         - ✔ Title - visible | - text
         - ✔ Chart - visible
+
+        :param title: Title
         """
-        with allure.step(f'✔ Check [{self.widget_name}-widget]'):
-            self.check_title(title)
-            self.check_chart()
+        self.check_title(title)
+        self.check_chart()
     # ─────────────────────────────────┘
 
     # [Title]
@@ -60,51 +63,49 @@ class DashboardWidgetComponent(BaseComponent):
 
         - ✔ Title - visible
         - ✔ Title - text
+
+        :param title: Title
         """
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Title]')
+    # Visible
     def check_title_visible(self):
         """
-        ✔ Check visible [Title]
+        ✔ Check [Title] is visible
 
         .
         """
-        error = f'{self.title_element} - invisible!'
-        expect(self.title_locator, error).to_be_visible()
+        self.title.check_visible()
 
-    @allure.step('✔ Check text of [Title]')
+    # Text
     def check_title_text(self, title: str):
         """
-        ✔ Check text of [Title]
+        ✔ Check [Title] text
 
         :param title: Title
         """
-        error = f'{self.title_element} - incorrect text!'
-        expect(self.title_locator, error).to_have_text(title)
+        self.title.check_text(title)
 
 
     # [Chart]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Chart]')
     def check_chart(self):
         """
         ✔ Check [Chart]
 
         - ✔ Chart - visible
         """
-        with allure.step(f'✔ Check [{self.chart_name}-chart]'):
-            self.check_chart_visible()
+        self.check_chart_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # Visible
     def check_chart_visible(self):
         """
-        ✔ Check visible [Chart]
+        ✔ Check [Chart] is visible
 
         .
         """
-        with allure.step(f'✔ Check visible [{self.chart_name}-chart]'):
-            error = f'{self.chart_element} - invisible!'
-            expect(self.chart_locator, error).to_be_visible()
-
+        self.chart.check_visible()
 
 #=======================================================================================================================

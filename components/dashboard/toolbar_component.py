@@ -1,9 +1,12 @@
 """
-Dashboard page > [Toolbar] (component)
+Dashboard page > [Toolbar]
+(Page component)
 """
+
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
+from elements.text import Text
 
 #=======================================================================================================================
 """
@@ -11,18 +14,18 @@ from playwright.sync_api import Page, expect
 - Title
 """
 class DashboardToolbarComponent(BaseComponent):
+    # 𝌆 DATA
+    TITLE_TEXT = 'Dashboard'
+
     def __init__(self, page: Page):
         super().__init__(page)
-
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        self.TITLE_TEXT = 'Dashboard'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title_locator = page.get_by_test_id('dashboard-toolbar-title-text')
 
-        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
-        self.toolbar_component = '❌ Dashboard page > Toolbar'
-        self.title_element = f'{self.toolbar_component} > [Title]'
+        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
+        self.path = 'Dashboard page > Toolbar'
+        self.title = Text(self.title_locator, self.path, 'Title')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -50,24 +53,22 @@ class DashboardToolbarComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Title]')
+    # Visible
     def check_title_visible(self):
         """
-        ✔ Check visible [Title]
+        ✔ Check [Title] is visible
 
         .
         """
-        error = f'{self.title_element} - invisible!'
-        expect(self.title_locator, error).to_be_visible()
+        self.title.check_visible()
 
-    @allure.step('✔ Check text of [Title]')
+    # Text
     def check_title_text(self):
         """
-        ✔ Check text of [Title]
+        ✔ Check [Title] text
 
         .
         """
-        error = f'{self.title_element} - incorrect text!'
-        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
+        self.title.check_text(self.TITLE_TEXT)
 
 #=======================================================================================================================

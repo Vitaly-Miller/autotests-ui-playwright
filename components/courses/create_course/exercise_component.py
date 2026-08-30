@@ -1,6 +1,8 @@
 """
-Create course page > Exercises > [Exercise] (component)
+Create course page > Exercises > [Exercise]
+(Page component)
 """
+
 import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Page
@@ -22,7 +24,7 @@ class CreateCourseExerciseComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        # ---------------------------------------------- ⿳ COMPONENTS -------------------------------------------------
+        # --------------------------------------------- ⿳ COMPONENTS -------------------------------------------------
         self.toolbar = CreateCourseExerciseToolbarComponent(page)
         self.form = CreateCourseExerciseFormComponent(page)
 
@@ -31,10 +33,10 @@ class CreateCourseExerciseComponent(BaseComponent):
     # ────────────────────────────────┐
     @allure.step('✔ Check [Exercise]')
     def check(
-            self,
-            index: int,
-            title: str | None = None,
-            description: str | None = None
+        self,
+        index: int,
+        title: str | None = None,
+        description: str | None = None
     ):
         """
         ✔ Check [Exercise]
@@ -42,10 +44,9 @@ class CreateCourseExerciseComponent(BaseComponent):
         - ✔ Toolbar - Title | Delete exercise button
         - ✔ Form - Title | Description
 
-        :param index: index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
-        :param title: Title
-        :param description: Description
-        :return:
+        :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
+        :param title: Title (optional)
+        :param description: Description (optional)
         """
         self.toolbar.check(index)
         self.form.check(
@@ -53,6 +54,5 @@ class CreateCourseExerciseComponent(BaseComponent):
             title=title,
             description=description)
     # ────────────────────────────────┘
-
 
 #=======================================================================================================================

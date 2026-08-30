@@ -36,7 +36,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = CoursesListToolbarComponent(page)
-        self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, component=self.COMPONENT)
+        self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, path=self.COMPONENT)
         self.course_card = CourseCardComponent(page)
 
 

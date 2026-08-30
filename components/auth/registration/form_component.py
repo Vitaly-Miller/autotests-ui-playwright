@@ -1,49 +1,45 @@
 """
-Registration page > [Form] (component)
+Registration page > [Form]
+(Page component)
 """
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
+from elements.input_field import InputField
 
 #=======================================================================================================================
 """
-Fields:
-- Email
-- Username
-- Password
+[Form]:
+- Email input field
+- Username input field
+- Password input field
 """
 class RegistrationFormComponent(BaseComponent):
+    # 𝌆 DATA
+    EMAIL_FIELD_NAME = 'Email'
+    USERNAME_FIELD_NAME = 'Username'
+    PASSWORD_FIELD_NAME = 'Password'
+
     def __init__(self, page: Page):
         super().__init__(page)
-
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # Fields names
-        self.EMAIL_FIELD_NAME = 'Email'
-        self.USERNAME_FIELD_NAME = 'Username'
-        self.PASSWORD_FIELD_NAME = 'Password'
-
-        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
-        self.form_component = '❌ Registration page > Form'
-        self.email_field_element = f'{self.form_component} > [Email field]'
-        self.username_field_element = f'{self.form_component} > [Username field]'
-        self.password_field_element = f'{self.form_component} > [Password field]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.email_field_locator = page.get_by_test_id('registration-form-email-input').locator('input')
         self.username_field_locator = page.get_by_test_id('registration-form-username-input').locator('input')
         self.password_field_locator = page.get_by_test_id('registration-form-password-input').locator('input')
 
+        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
+        self.path = 'Registration page > Form'
+        self.email_field = InputField(self.email_field_locator, self.path, 'Email field')
+        self.username_field = InputField(self.username_field_locator, self.path, 'Username field')
+        self.password_field = InputField(self.password_field_locator, self.path, 'Password field')
+
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Registration form]
-    # ────────────────────────────────────────┐
+    # ────────────────────────────────────┐
     @allure.step('▶ Fill [Registration form]')
-    def fill(
-            self,
-            email: str,
-            username: str,
-            password: str
-    ):
+    def fill(self, email: str, username: str, password: str):
         """
         ▶ Fill [Registration form]
 
@@ -58,88 +54,63 @@ class RegistrationFormComponent(BaseComponent):
         self.fill_email_field(email)
         self.fill_username_field(username)
         self.fill_password_field(password)
-    # ────────────────────────────────────────┘
+    # ────────────────────────────────────┘
     # Fill [Email field]
-    @allure.step('▶ Fill [Email field]')
     def fill_email_field(self, email: str):
         """
         ▶ Fill [Email field]
 
-        - ▶ Field - fill
-        - ✔ Field - value
-
         :param email: Email
         """
-        self.email_field_locator.fill(email)
-        self.check_email_field_value(email)
+        self.email_field.fill(email)
 
     # Fill [Username field]
-    @allure.step('▶ Fill [Username field]')
     def fill_username_field(self, username: str):
         """
         ▶ Fill [Username field]
 
-        - ▶ Field - fill
-        - ✔ Field - value
-
         :param username: Username
         """
-        self.username_field_locator.fill(username)
-        self.check_username_field_value(username)
+        self.username_field.fill(username)
 
     # Fill [Password field]
-    @allure.step('▶ Fill [Password field]')
     def fill_password_field(self, password: str):
         """
         ▶ Fill [Password field]
 
-        - ▶ Field - fill
-        - ✔ Field - value
-
         :param password: Password
         """
-        self.password_field_locator.fill(password)
-        self.check_password_field_value(password)
+        self.password_field.fill(password)
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # [Form]
-    # ─────────────────────────────────────────┐
-    def check_registration_form(
-            self,
-            email: str | None = None,
-            username: str | None = None,
-            password: str | None = None
+    # [Registration Form]
+    # ─────────────────────────────────────┐
+    @allure.step('✔ Check [Registration form]')
+    def check(
+        self,
+        email: str | None = None,
+        username: str | None = None,
+        password: str | None = None
     ):
         """
         ✔ Check [Registration form]
 
-        If is passed:
-        -------------
-        - ✔ Email field - value
-        - ✔ Username field - value
-        - ✔ Password field - value
-
-        If is NOT passed:
-        ----------------
-        - ✔ Email field - visible | - name
-        - ✔ Username field - visible | - name
-        - ✔ Password field - visible | - name
+        - ✔ Email field - value / UI
+        - ✔ Username field - value / UI
+        - ✔ Password field - value / UI
 
         :param email: Email (optional)
         :param username: Username (optional)
         :param password: Password (optional)
         """
-        with allure.step(
-                '✔ Check values of [Registration form] fields'
-                if all(param is not None for param in (email, username, password))
-                else '✔ Check UI of [Registration form]'
-        ):
-            self.check_email_field(email)
-            self.check_username_field(username)
-            self.check_password_field(password)
-    # ─────────────────────────────────────────┘
+        self.check_email_field(email)
+        self.check_username_field(username)
+        self.check_password_field(password)
+    # ─────────────────────────────────────┘
 
     # [Email field]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Email field]')
     def check_email_field(self, email: str | None = None):
         """
         ✔ Check [Email field]
@@ -156,46 +127,42 @@ class RegistrationFormComponent(BaseComponent):
         :param email: Email (optional)
         """
         if email is not None:
-            with allure.step('✔ Check value of [Email field]'):
-                self.check_email_field_value(email)
+            self.check_email_field_value(email)
         else:
-            with allure.step('✔ Check UI of [Email field]'):
-                self.check_email_field_visible()
-                self.check_email_field_name()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Email field]')
+            self.check_email_field_visible()
+            self.check_email_field_name()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # Visible
     def check_email_field_visible(self):
         """
-        ✔ Check visible [Email field]
+        ✔ Check [Email field] is visible
 
         .
         """
-        error = f'{self.email_field_element} - invisible!'
-        expect(self.email_field_locator, error).to_be_visible()
+        self.email_field.check_visible()
 
-    @allure.step('✔ Check name of [Email field]')
+    # Name
     def check_email_field_name(self):
         """
-        ✔ Check name of [Email field]
+        ✔ Check [Email field] name
 
         .
         """
-        error = f'{self.email_field_element} - incorrect name!'
-        expect(self.email_field_locator, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
+        self.email_field.check_name(name=self.EMAIL_FIELD_NAME)
 
-    @allure.step('✔ Check value of [Email field]')
+    # Value
     def check_email_field_value(self, email: str):
         """
-        ✔ Check value of [Email field]
+        ✔ Check [Email field] value
 
         :param email: Email
         """
-        error = f'{self.email_field_element} - incorrect value!'
-        expect(self.email_field_locator, error).to_have_value(email)
+        self.email_field.check_value(value=email)
 
 
-    #  [Username field]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # [Username field]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Username field]')
     def check_username_field(self, username: str | None = None):
         """
         ✔ Check [Username field]
@@ -212,46 +179,42 @@ class RegistrationFormComponent(BaseComponent):
         :param username: Username (optional)
         """
         if username is not None:
-            with allure.step('✔ Check value of [Username field]'):
-                self.check_username_field_value(username)
+            self.check_username_field_value(username)
         else:
-            with allure.step('✔ Check UI of [Username field]'):
-                self.check_username_field_visible()
-                self.check_username_field_name()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Username field]')
+            self.check_username_field_visible()
+            self.check_username_field_name()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # Visible
     def check_username_field_visible(self):
         """
-        ✔ Check visible [Username field]
+        ✔ Check [Username field] is visible
 
         .
         """
-        error = f'{self.username_field_element} - invisible!'
-        expect(self.username_field_locator, error).to_be_visible()
+        self.username_field.check_visible()
 
-    @allure.step('✔ Check name of [Username field]')
+    # Name
     def check_username_field_name(self):
         """
-        ✔ Check name of [Username field]
+        ✔ Check [Username field] name
 
         .
         """
-        error = f'{self.username_field_element} - incorrect name!'
-        expect(self.username_field_locator, error).to_have_accessible_name(self.USERNAME_FIELD_NAME)
+        self.username_field.check_name(name=self.USERNAME_FIELD_NAME)
 
-    @allure.step('✔ Check value of [Username field]')
+    # Value
     def check_username_field_value(self, username: str):
         """
-        ✔ Check value of [Username field]
+        ✔ Check [Username field] value
 
         :param username: Username
         """
-        error = f'{self.username_field_element} - incorrect value!'
-        expect(self.username_field_locator, error).to_have_value(username)
+        self.username_field.check_value(value=username)
 
 
-    #  [Password field]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # [Password field]
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    @allure.step('✔ Check [Password field]')
     def check_password_field(self, password: str | None = None):
         """
         ✔ Check [Password field]
@@ -268,42 +231,37 @@ class RegistrationFormComponent(BaseComponent):
         :param password: Password (optional)
         """
         if password is not None:
-            with allure.step('✔ Check value of [Password field]'):
-                self.check_password_field_value(password)
+            self.check_password_field_value(password)
         else:
-            with allure.step('✔ Check UI of [Password field]'):
-                self.check_password_field_visible()
-                self.check_password_field_name()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Password field]')
+            self.check_password_field_visible()
+            self.check_password_field_name()
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # Visible
     def check_password_field_visible(self):
         """
-        ✔ Check visible [Password field]
+        ✔ Check [Password field] is visible
 
         .
         """
-        error = f'{self.password_field_element} - invisible!'
-        expect(self.password_field_locator, error).to_be_visible()
+        self.password_field.check_visible()
 
-    @allure.step('✔ Check name of [Password field]')
+    # Name
     def check_password_field_name(self):
         """
-        ✔ Check name of [Password field]
+        ✔ Check [Password field] name
 
         .
         """
-        error = f'{self.password_field_element} - incorrect name!'
-        expect(self.password_field_locator, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
+        self.password_field.check_name(name=self.PASSWORD_FIELD_NAME)
 
-    @allure.step('✔ Check value of [Password field]')
+    # Value
     def check_password_field_value(self, password: str):
         """
-        ✔ Check value of [Password field]
+        ✔ Check [Password field] value
 
         :param password: Password
         """
-        error = f'{self.password_field_element} - incorrect value!'
-        expect(self.password_field_locator, error).to_have_value(password)
+        self.password_field.check_value(value=password)
 
 
 #=======================================================================================================================

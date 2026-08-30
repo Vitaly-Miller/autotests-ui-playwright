@@ -61,10 +61,10 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         - ✔ Courses - visible | - text | Chart - visible
         - ✔ Scores - visible | - text | Chart - visible
         """
-        self.student_widget.check_widget('Students')
-        self.activities_widget.check_widget('Activities')
-        self.courses_widget.check_widget('Courses')
-        self.scores_widget.check_widget('Scores')
+        self.student_widget.check('Students')
+        self.activities_widget.check('Activities')
+        self.courses_widget.check('Courses')
+        self.scores_widget.check('Scores')
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
 

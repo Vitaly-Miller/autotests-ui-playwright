@@ -1,36 +1,42 @@
 """
-Navbar (component)
+Navbar
+(Page component)
 """
+
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
+from elements.text import Text
 
 #=======================================================================================================================
 """
-Elements:
+[Navbar]:
 - Title
 - Welcome title
 """
 class NavbarComponent(BaseComponent):
+    # 𝌆 DATA
+    TITLE_TEXT = 'UI Course'
+
     def __init__(self, page: Page):
         super().__init__(page)
 
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        self.TITLE_TEXT = 'UI Course'
+        # 𝌆 DATA (dynamic)
         self.WELCOME_TITLE_TEXT = lambda username: f'Welcome, {username}!'
-
-        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
-        self.navbar_component = f'❌ Navbar'
-        self.title_element = f'{self.navbar_component} > [Title]'
-        self.welcome_title_element = f'{self.navbar_component} > [Welcome title]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title_locator = page.get_by_test_id('navigation-navbar-app-title-text')
         self.welcome_title_locator = page.get_by_test_id('navigation-navbar-welcome-title-text')
 
+        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
+        self.path = 'Navbar'
+        self.title = Text(self.title_locator, self.path, 'Title')
+        self.welcome_title = Text(self.welcome_title_locator, self.path, 'Welcome title')
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Navbar]
     # ────────────────────────────────────┐
+    @allure.step('✔ Check [Navbar]')
     def check(self, username: str):
         """
         ✔ Check [Navbar]
@@ -57,31 +63,29 @@ class NavbarComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Title]')
+    # Visible
     def check_title_visible(self):
         """
-        ✔ Check visible [Title]
+        ✔ Check [Title] is visible
 
         .
         """
-        error = f'{self.title_element} - invisible!'
-        expect(self.title_locator, error).to_be_visible()
+        self.title.check_visible()
 
-    @allure.step('✔ Check text of [Title]')
+    # Text
     def check_title_text(self):
         """
-        ✔ Check text of [Title]
+        ✔ Check [Title] text
 
         .
         """
-        error = f'{self.title_element} - incorrect text!'
-        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
+        self.title.check_text(self.TITLE_TEXT)
 
 
     # [Welcome title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Welcome title]')
-    def check_welcome_title(self, username):
+    def check_welcome_title(self, username: str):
         """
         ✔ Check [Welcome title]
 
@@ -93,24 +97,22 @@ class NavbarComponent(BaseComponent):
         self.check_welcome_title_visible()
         self.check_welcome_title_text(username)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Welcome title]')
+    # Visible
     def check_welcome_title_visible(self):
         """
-        ✔ Check visible [Welcome title]
+        ✔ Check [Welcome title] is visible
 
         .
         """
-        error = f'{self.welcome_title_element} - invisible!'
-        expect(self.welcome_title_locator, error).to_be_visible()
+        self.welcome_title.check_visible()
 
-    @allure.step('✔ Check text of [Welcome title]')
-    def check_welcome_title_text(self, username):
+    # Text
+    def check_welcome_title_text(self, username: str):
         """
-        ✔ Check text of [Welcome title]
+        ✔ Check [Welcome title] text
 
         :param username: Username
         """
-        error = f'{self.welcome_title_element} - incorrect text!'
-        expect(self.welcome_title_locator, error).to_have_text(self.WELCOME_TITLE_TEXT(username))
+        self.welcome_title.check_text(self.WELCOME_TITLE_TEXT(username))
 
 #=======================================================================================================================

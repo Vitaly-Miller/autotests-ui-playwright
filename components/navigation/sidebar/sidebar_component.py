@@ -1,6 +1,8 @@
 """
-Sidebar (component)
+Sidebar
+(Page component)
 """
+
 import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Page
@@ -14,19 +16,18 @@ from components.navigation.sidebar.sidebar_item_component import SidebarItemComp
 - Logout item
 """
 class SidebarComponent(BaseComponent):
+    # 𝌆 DATA
+    # Item [Identifiers]
+    DASHBOARD_IDENTIFIER = 'dashboard'
+    COURSES_IDENTIFIER = 'courses'
+    LOGOUT_IDENTIFIER = 'logout'
+    # Item [Titles]
+    DASHBOARD_TITLE = 'Dashboard'
+    COURSES_TITLE = 'Courses'
+    LOGOUT_TITLE = 'Logout'
+
     def __init__(self, page: Page):
         super().__init__(page)
-
-        # ----------------------------------------------- 𝌆 DATA -------------------------------------------------------
-        # Item [Identifiers]
-        self.DASHBOARD_IDENTIFIER = 'dashboard'
-        self.COURSES_IDENTIFIER = 'courses'
-        self.LOGOUT_IDENTIFIER = 'logout'
-
-        # Item [Titles]
-        self.DASHBOARD_TITLE = 'Dashboard'
-        self.COURSES_TITLE = 'Courses'
-        self.LOGOUT_TITLE = 'Logout'
 
         # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
         self.dashboard_item = SidebarItemComponent(page=page, identifier=self.DASHBOARD_IDENTIFIER)
@@ -39,7 +40,7 @@ class SidebarComponent(BaseComponent):
         """
         ▶ Click [Dashboard]
 
-        - Button - ✔ visible -> ▶ click
+        .
         """
         self.dashboard_item.click_btn()
 
@@ -48,7 +49,7 @@ class SidebarComponent(BaseComponent):
         """
         ▶ Click [Courses]
 
-        - Button - ✔ visible -> ▶ click
+        .
         """
         self.courses_item.click_btn()
 
@@ -57,7 +58,7 @@ class SidebarComponent(BaseComponent):
         """
         ▶ Click [Logout]
 
-        - Button - ✔ visible -> ▶ click
+        .
         """
         self.logout_item.click_btn()
 
@@ -77,6 +78,5 @@ class SidebarComponent(BaseComponent):
         self.courses_item.check(title=self.COURSES_TITLE)
         self.logout_item.check(title=self.LOGOUT_TITLE)
     # ────────────────────────────────────────────────────────────┘
-
 
 #=======================================================================================================================

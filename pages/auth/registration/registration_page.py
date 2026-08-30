@@ -92,7 +92,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         :param is_registration_button_enabled: False/True
         """
         self.check_title()
-        self.form.check_registration_form(email=email, username=username, password=password)
+        self.form.check(email=email, username=username, password=password)
         self.check_registration_btn(enabled=is_registration_button_enabled)
         self.check_login_link()
     # ──────────────────────────────────┘

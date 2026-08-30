@@ -28,7 +28,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         super().__init__(page)           # Передаёт page в конструктор BasePage
 
         # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
-        self.COMPONENT = 'Create Course page'
+        self.COMPONENT = 'Create course page'
         self.EXERCISES_IDENTIFIER = 'create-course-exercises'
         self.EXERCISES_EMPTY_VIEW_TITLE = 'There is no exercises'
         self.EXERCISES_EMPTY_VIEW_DESCRIPTION = 'Click on "Create exercise" button to create new exercise'
@@ -40,7 +40,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
         self.image_upload_widget = CreateCourseImageUploadWidgetComponent(page)
         self.form = CreateCourseFormComponent(page)
         self.exercises_toolbar = CreateCourseExercisesToolbarComponent(page)
-        self.exercises_empty_view = EmptyViewComponent(page=page, identifier=self.EXERCISES_IDENTIFIER, component=self.COMPONENT)
+        self.exercises_empty_view = EmptyViewComponent(page=page, identifier=self.EXERCISES_IDENTIFIER, path=self.COMPONENT)
         self.exercise = CreateCourseExerciseComponent(page)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------

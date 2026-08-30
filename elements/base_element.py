@@ -64,6 +64,19 @@ class BaseElement:
             expect(self.locator.nth(nth), error).to_be_visible()
 
 
+    # Hidden
+    def check_hidden(self, nth: int = 0):
+        """
+        ✔ Check [Element] is hidden
+
+        :param nth: nth-index of locator
+        """
+        nth_info = self._nth_info(nth)
+        with allure.step(f'✔ Check {self.name}{nth_info} is hidden'):
+            error = f'{self.error}{nth_info} - visible!'
+            expect(self.locator.nth(nth), error).to_be_hidden()
+
+
     # Text
     def check_text(self, text: str, nth: int = 0):
         """

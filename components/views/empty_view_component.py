@@ -1,9 +1,13 @@
 """
-Empty view (component)
+Empty view
+(Page component)
 """
+
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
+from elements.icon import Icon
+from elements.text import Text
 
 #=======================================================================================================================
 """
@@ -13,27 +17,27 @@ from playwright.sync_api import Page, expect
 - Description
 """
 class EmptyViewComponent(BaseComponent):
-    def __init__(self, page: Page, identifier: str, component: str):
+    def __init__(self, page: Page, identifier: str, path: str):
         """
         :param page: Page
         :param identifier: Unique part of locator (courses-list | create-course-preview | create-course-exercises)
-        :param component: Component navigate-path
+        :param path: Component navigate-path
         """
         super().__init__(page)
 
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        self.identifier = identifier.capitalize()     # for logging
+        # 𝌆 DATA (dynamic)
+        self.identifier = identifier.capitalize().replace('-', ' ')    # for logging
 
-        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
-        self.empty_view_component = f'❌ {component} > {self.identifier} > Empty view'
-        self.icon_element = f'{self.empty_view_component} > [Icon]'
-        self.title_element = f'{self.empty_view_component} > [Title]'
-        self.description_element = f'{self.empty_view_component} > [Description]'
-
-        # ---------------------------------------------- ㉧ LOCATORS ---------------------------------------------------
+        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.icon_locator = page.get_by_test_id(f'{identifier}-empty-view-icon')
         self.title_locator = page.get_by_test_id(f'{identifier}-empty-view-title-text')
         self.description_locator = page.get_by_test_id(f'{identifier}-empty-view-description-text')
+
+        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
+        self.path = f'{path} > {self.identifier} > Empty view'
+        self.icon = Icon(self.icon_locator, self.path, 'Icon')
+        self.title = Text(self.title_locator, self.path, 'Title')
+        self.description = Text(self.description_locator, self.path, 'Description')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Empty view]
@@ -50,7 +54,7 @@ class EmptyViewComponent(BaseComponent):
         :param title: Title text
         :param description: Description text
         """
-        self.check_icon_visible()
+        self.check_icon()
         self.check_title(title)
         self.check_description(description)
     # ─────────────────────────────────────┘
@@ -66,15 +70,14 @@ class EmptyViewComponent(BaseComponent):
         """
         self.check_icon_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Icon]')
+    # Visible
     def check_icon_visible(self):
         """
-        ✔ Check visible [Icon]
+        ✔ Check [Icon] is visible
 
         .
         """
-        error = f'{self.icon_element} - invisible!'
-        expect(self.icon_locator, error).to_be_visible()
+        self.icon.check_visible()
 
 
     # [Title]
@@ -87,30 +90,28 @@ class EmptyViewComponent(BaseComponent):
         - ✔ Title - visible
         - ✔ Title - text
 
-        :param title: Title
+        :param title: Title text
         """
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Title]')
+    # Visible
     def check_title_visible(self):
         """
-        ✔ Check visible [Title]
+        ✔ Check [Title] is visible
 
         .
         """
-        error = f'{self.title_element} - invisible!'
-        expect(self.title_locator, error).to_be_visible()
+        self.title.check_visible()
 
-    @allure.step('✔ Check text of [Title]')
+    # Text
     def check_title_text(self, title: str):
         """
-        ✔ Check text of [Title]
+        ✔ Check [Title] text
 
         :param title: Title text
         """
-        error = f'{self.title_element} - incorrect text!'
-        expect(self.title_locator, error).to_have_text(title)
+        self.title.check_text(title)
 
 
     # [Description]
@@ -128,24 +129,22 @@ class EmptyViewComponent(BaseComponent):
         self.check_description_visible()
         self.check_description_text(description)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Description]')
+    # Visible
     def check_description_visible(self):
         """
-        ✔ Check visible [Description]
+        ✔ Check [Description] is visible
 
         .
         """
-        error = f'{self.description_element} - invisible!'
-        expect(self.description_locator, error).to_be_visible()
+        self.description.check_visible()
 
-    @allure.step('✔ Check text of [Description]')
+    # Text
     def check_description_text(self, description: str):
         """
-        ✔ Check text of [Description]
+        ✔ Check [Description] text
 
-        :param description: Description
+        :param description: Description text
         """
-        error = f'{self.description_element} - incorrect text!'
-        expect(self.description_locator, error).to_have_text(description)
+        self.description.check_text(description)
 
 #=======================================================================================================================

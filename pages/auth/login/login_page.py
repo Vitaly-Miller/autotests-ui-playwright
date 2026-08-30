@@ -2,7 +2,6 @@
 Login page
 """
 import allure
-
 from elements.button import Button
 from elements.link import Link
 from pages.base_page import BasePage
@@ -94,7 +93,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         :param is_login_button_enabled: False/True
         """
         self.check_title()
-        self.form.check_login_form(email=email, password=password)
+        self.form.check(email=email, password=password)
         self.check_login_btn(enabled=is_login_button_enabled)
         self.check_registration_link()
     # ──────────────────────────────────┘

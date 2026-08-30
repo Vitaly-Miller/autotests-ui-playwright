@@ -1,10 +1,14 @@
 """
-Sidebar > [Item] (component)
+Sidebar > [Item]
+(Page component)
 """
-import allure
 
+import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
+from elements.button import Button
+from elements.icon import Icon
+from elements.text import Text
 
 #=======================================================================================================================
 """
@@ -21,50 +25,47 @@ class SidebarItemComponent(BaseComponent):
         """
         super().__init__(page)
 
-        # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        # 𝌆 DATA (dynamic)
         self.identifier = identifier.capitalize()   # for logging
-
-        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
-        self.sidebar_component = f'❌ Sidebar'
-        self.btn_element = f'{self.sidebar_component} > {self.identifier}-item > [Button]'
-        self.icon_element = f'{self.sidebar_component} > {self.identifier}-item > [Icon]'
-        self.title_element = f'{self.sidebar_component} > {self.identifier}-item > [Title]'
 
         # ----------------------------------------- ㉧ LOCATORS (dynamic) -----------------------------------------------
         self.btn_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-button')
         self.icon_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-icon')
         self.title_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
 
+        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
+        self.path = f'Sidebar > {self.identifier}-item'
+        self.btn = Button(self.btn_locator, self.path, 'Button')
+        self.icon = Icon(self.icon_locator, self.path, 'Icon')
+        self.title = Text(self.title_locator, self.path, 'Title')
+
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     # Click [Button]
-    @allure.step('▶ Click [Button]')
     def click_btn(self):
         """
         ▶ Click item [Button]
 
-        - ✔ Button - visible
-        - ▶ Button - click
+        .
         """
-        self.check_btn_visible()
-        self.btn_locator.click()
+        self.btn.click()
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Item]
     # ─────────────────────────────┐
+    @allure.step('✔ Check [Item]')
     def check(self, title: str):
         """
         ✔ Check [Item]
 
-        - ✔ Item - visible
+        - ✔ Button - visible
         - ✔ Icon - visible
         - ✔ Title - visible | - text
 
         :param title: Title
         """
-        with allure.step(f'✔ Check [{self.identifier}-item]'):
-            self.check_btn()
-            self.check_icon()
-            self.check_title(title)
+        self.check_btn()
+        self.check_icon()
+        self.check_title(title)
     # ─────────────────────────────┘
 
     # [Button]
@@ -78,15 +79,15 @@ class SidebarItemComponent(BaseComponent):
         """
         self.check_btn_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Button]')
+    # Visible
     def check_btn_visible(self):
         """
-        ✔ Check visible [Button]
+        ✔ Check [Button] is visible
 
         .
         """
-        error = f'{self.btn_element} - invisible!'
-        expect(self.btn_locator, error).to_be_visible()
+        self.btn.check_visible()
+
 
     # [Icon]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
@@ -99,20 +100,20 @@ class SidebarItemComponent(BaseComponent):
         """
         self.check_icon_visible()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Icon]')
+    # Visible
     def check_icon_visible(self):
         """
-        ✔ Check visible [Icon]
+        ✔ Check [Icon] is visible
 
         .
         """
-        error = f'{self.icon_element} - invisible!'
-        expect(self.icon_locator, error).to_be_visible()
+        self.icon.check_visible()
+
 
     # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
-    def check_title(self, title):
+    def check_title(self, title: str):
         """
         ✔ Check [Title]
 
@@ -124,25 +125,22 @@ class SidebarItemComponent(BaseComponent):
         self.check_title_visible()
         self.check_title_text(title)
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Title]')
+    # Visible
     def check_title_visible(self):
         """
-        ✔ Check visible [Title]
+        ✔ Check [Title] is visible
 
         .
         """
-        error = f'{self.title_element} - invisible!'
-        expect(self.title_locator, error).to_be_visible()
+        self.title.check_visible()
 
-    @allure.step('✔ Check text of [Title]')
+    # Text
     def check_title_text(self, title: str):
         """
-        ✔ Check text of [Title]
+        ✔ Check [Title] text
 
         :param title: Title
         """
-        error = f'{self.title_element} - incorrect text!'
-        expect(self.title_locator, error).to_have_text(title)
-
+        self.title.check_text(title)
 
 #=======================================================================================================================
