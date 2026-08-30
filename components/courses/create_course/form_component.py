@@ -29,7 +29,7 @@ class CreateCourseFormComponent(BaseComponent):
         self.MAX_SCORE_FIELD_NAME = 'Max score'
         self.MIN_SCORE_FIELD_NAME = 'Min score'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.form_component = '❌ Create course page > Form'
         self.title_field_element = f'{self.form_component} > [Title field]'
         self.estimated_time_field_element = f'{self.form_component} > [Estimated time field]'

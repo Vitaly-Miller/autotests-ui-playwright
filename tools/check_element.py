@@ -5,7 +5,7 @@ import allure
 from playwright.sync_api import Locator, expect
 
 #=======================================================================================================================
-class Check:
+class CheckElement:
     #------------------------------------------------------- [Element] -------------------------------------------------
     @staticmethod
     def element(
@@ -46,27 +46,27 @@ class Check:
         """
         with allure.step(f'✔ Check [{element_name}]'):
             if visible:
-                Check.visible(locator=locator, element_path=element_path, element_name=element_name, index=index)
+                CheckElement.visible(locator=locator, element_path=element_path, element_name=element_name, index=index)
             else:
-                Check.invisible(locator=locator, element_path=element_path, element_name=element_name, index=index)
+                CheckElement.invisible(locator=locator, element_path=element_path, element_name=element_name, index=index)
 
             if enabled is not None:
                 if enabled:
-                    Check.enabled(locator=locator, element_path=element_path, element_name=element_name, index=index)
+                    CheckElement.enabled(locator=locator, element_path=element_path, element_name=element_name, index=index)
                 else:
-                    Check.disabled(locator=locator, element_path=element_path, element_name=element_name, index=index)
+                    CheckElement.disabled(locator=locator, element_path=element_path, element_name=element_name, index=index)
 
             if name is not None:
-                Check.name(locator=locator, element_path=element_path, element_name=element_name, name=name, index=index)
+                CheckElement.name(locator=locator, element_path=element_path, element_name=element_name, name=name, index=index)
 
             if text is not None:
-                Check.text(locator=locator, element_path=element_path, element_name=element_name, text=text, index=index)
+                CheckElement.text(locator=locator, element_path=element_path, element_name=element_name, text=text, index=index)
 
             if value is not None:
-                Check.value(locator=locator, element_path=element_path, element_name=element_name, value=value, index=index)
+                CheckElement.value(locator=locator, element_path=element_path, element_name=element_name, value=value, index=index)
 
             if attribute_type is not None and attribute_value is not None:
-                Check.attribute(
+                CheckElement.attribute(
                     locator=locator,
                     element_path=element_path,
                     element_name=element_name,
@@ -117,9 +117,9 @@ class Check:
         :param index: DOM/nth - index     (for logging)
         """
         if index == 0:
-            error = f'❌ {element_path} > [{element_name}] - invisible!'
+            error = f'❌ {element_path} > [{element_name}] - visible!'
         else:
-            error = f'❌ {element_path} > [{element_name}] (index: {index}) - invisible!'
+            error = f'❌ {element_path} > [{element_name}] (index: {index}) - visible!'
         expect(locator, error).not_to_be_visible()
 
     #-------------------------------------------------- Enabled / Disabled -------------------------------------------------
@@ -300,3 +300,14 @@ class Check:
         expect(locator, error).to_have_attribute(attribute_type, attribute_value)
 
 #=======================================================================================================================
+    @staticmethod
+    def element_(
+        element_path: str,
+        element_name: str,
+        index: int = 0
+    ):
+        if index == 0:
+            error = f'❌ {element_path} > [{element_name}]'
+        else:
+            error = f'❌ {element_path} > [{element_name} (index: {index})'
+        return error

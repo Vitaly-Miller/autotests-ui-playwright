@@ -23,7 +23,7 @@ class RegistrationFormComponent(BaseComponent):
         self.USERNAME_FIELD_NAME = 'Username'
         self.PASSWORD_FIELD_NAME = 'Password'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.form_component = '❌ Registration page > Form'
         self.email_field_element = f'{self.form_component} > [Email field]'
         self.username_field_element = f'{self.form_component} > [Username field]'

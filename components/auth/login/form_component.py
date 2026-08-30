@@ -1,11 +1,12 @@
 """
-Login page > [Form] (component)
+Login page > [Form]
+(Page component)
 """
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
-
+from playwright.sync_api import Page
+from elements.input_field import InputField
 
 #=======================================================================================================================
 """
@@ -18,28 +19,25 @@ class LoginFormComponent(BaseComponent):
         super().__init__(page)
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
-        # Fields names
         self.EMAIL_FIELD_NAME = 'Email'
         self.PASSWORD_FIELD_NAME = 'Password'
-
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
-        self.form_component = '❌ Login page > Form'
-        self.email_field_element = f'{self.form_component} > [Email field]'
-        self.password_field_element = f'{self.form_component} > [Password field]'
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.email_field_locator = page.get_by_test_id('login-form-email-input').locator('input')
         self.password_field_locator = page.get_by_test_id('login-form-password-input').locator('input')
 
+        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
+        self.path = 'Login page > Form'
+
+        self.email_field = InputField(self.email_field_locator, self.path, 'Email field')
+        self.password_field = InputField(self.password_field_locator, self.path, 'Password field')
+
+
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Login form]
     # ────────────────────────────────────┐
     @allure.step('▶ Fill [Login form]')
-    def fill(
-            self,
-            email: str,
-            password: str
-    ):
+    def fill_login_form(self, email: str, password: str):
         """
         ▶ Fill [Login form]
 
@@ -63,11 +61,10 @@ class LoginFormComponent(BaseComponent):
 
         :param email: Email
         """
-        self.email_field_locator.fill(email)
+        self.email_field.fill(email)
         self.check_email_field_value(email)
 
     # Fill [Password field]
-    @allure.step('▶ Fill [Password field]')
     def fill_password_field(self, password: str):
         """
         ▶ Fill [Password field]
@@ -77,11 +74,11 @@ class LoginFormComponent(BaseComponent):
 
         :param password: Password
         """
-        self.password_field_locator.fill(password)
+        self.password_field.fill(password)
         self.check_password_field_value(password)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # [Form]
+    # [Login Form]
     # ─────────────────────────────────────────┐
     def check_login_form(
             self,
@@ -105,9 +102,9 @@ class LoginFormComponent(BaseComponent):
         :param password: Password (optional)
         """
         with allure.step(
-                '✔ Check values of [Login form] fields'
+                '✔ Check [Login form] fields values'
                 if all(param is not None for param in (email, password))
-                else '✔ Check UI of [Login form]'
+                else '✔ Check [Login form] UI'
         ):
             self.check_email_field(email)
             self.check_password_field(password)
@@ -131,42 +128,38 @@ class LoginFormComponent(BaseComponent):
         :param email: Email (optional)
         """
         if email is not None:
-            with allure.step('✔ Check value of [Email field]'):
-                self.check_email_field_value(email)
+            self.check_email_field_value(email)
         else:
-            with allure.step('✔ Check UI of [Email field]'):
+            with allure.step('✔ Check [Email field] UI'):
                 self.check_email_field_visible()
                 self.check_email_field_name()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Email field]')
+    # Visible
     def check_email_field_visible(self):
         """
-        ✔ Check visible [Email field]
+        ✔ Check [Email field] is visible
 
         .
         """
-        error = f'{self.email_field_element} - invisible!'
-        expect(self.email_field_locator, error).to_be_visible()
+        self.email_field.check_visible()
 
-    @allure.step('✔ Check name of [Email field]')
+    # Name
     def check_email_field_name(self):
         """
-        ✔ Check name of [Email field]
+        ✔ Check [Email field] name
 
         .
         """
-        error = f'{self.email_field_element} - incorrect name!'
-        expect(self.email_field_locator, error).to_have_accessible_name(self.EMAIL_FIELD_NAME)
+        self.email_field.check_name(name=self.EMAIL_FIELD_NAME)
 
-    @allure.step('✔ Check value of [Email field]')
+    # Value
     def check_email_field_value(self, email: str):
         """
-        ✔ Check value of [Email field]
+        ✔ Check [Email field] value
 
         :param email: Email
         """
-        error = f'{self.email_field_element} - incorrect value!'
-        expect(self.email_field_locator, error).to_have_value(email)
+        self.email_field.check_value(value=email)
 
 
     # [Password field]
@@ -187,42 +180,38 @@ class LoginFormComponent(BaseComponent):
         :param password: Password (optional)
         """
         if password is not None:
-            with allure.step('✔ Check value of [Password field]'):
-                self.check_password_field_value(password)
+            self.check_password_field_value(password)
         else:
-            with allure.step('✔ Check UI of [Password field]'):
+            with allure.step('✔ Check [Password field] UI'):
                 self.check_password_field_visible()
                 self.check_password_field_name()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Password field]')
+    # Visible
     def check_password_field_visible(self):
         """
-        ✔ Check visible [Password field]
+        ✔ Check [Password field] is visible
 
         .
         """
-        error = f'{self.password_field_element} - invisible!'
-        expect(self.password_field_locator, error).to_be_visible()
+        self.password_field.check_visible()
 
-    @allure.step('✔ Check name of [Password field]')
+    # Name
     def check_password_field_name(self):
         """
-        ✔ Check name of [Password field]
+        ✔ Check [Password field] name
 
         .
         """
-        error = f'{self.password_field_element} - incorrect name!'
-        expect(self.password_field_locator, error).to_have_accessible_name(self.PASSWORD_FIELD_NAME)
+        self.password_field.check_name(name=self.PASSWORD_FIELD_NAME)
 
-    @allure.step('✔ Check value of [Password field]')
+    # Value
     def check_password_field_value(self, password: str):
         """
-        ✔ Check value of [Password field]
+        ✔ Check [Password field] value
 
         :param password: Password
         """
-        error = f'{self.password_field_element} - incorrect value!'
-        expect(self.password_field_locator, error).to_have_value(password)
+        self.password_field.check_value(value=password)
 
 
 #=======================================================================================================================

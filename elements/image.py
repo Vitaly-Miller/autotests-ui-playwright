@@ -1,18 +1,14 @@
 """
-Icon element
-(⚠️Page factory)
+Image element
 """
-from elements_.base_element_ import BaseElement
+from elements.base_element import BaseElement
 
 #=======================================================================================================================
-class Icon(BaseElement):
+class Image(BaseElement):
     """
     - ❌ НЕ ВЫЗЫВАТЬ НАПРЯМУЮ базовые методы из Родительского класса - BaseElement()!
     - ✅ Вызывать ТОЛЬКО ЧЕРЕЗ ЭТОТ Дочерний класс элемента!
     """
-    # Переопределенный метод
-    @property
-    def type_of(self) -> str:
-        return 'icon'
+    pass
 
 #=======================================================================================================================

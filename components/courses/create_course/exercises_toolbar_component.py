@@ -19,7 +19,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.TITLE_TEXT = 'Exercises'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.toolbar_component = '❌ Create course page > Exercises > Toolbar'
         self.title_element = f'{self.toolbar_component} > [Title]'
         self.create_exercise_btn_element = f'{self.toolbar_component} > [Create exercise button]'

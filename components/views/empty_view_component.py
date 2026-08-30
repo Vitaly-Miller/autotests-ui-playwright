@@ -24,7 +24,7 @@ class EmptyViewComponent(BaseComponent):
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.identifier = identifier.capitalize()     # for logging
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.empty_view_component = f'❌ {component} > {self.identifier} > Empty view'
         self.icon_element = f'{self.empty_view_component} > [Icon]'
         self.title_element = f'{self.empty_view_component} > [Title]'

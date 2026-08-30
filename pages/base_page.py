@@ -4,14 +4,18 @@ Base page
 """
 
 from playwright.sync_api import Page, expect
+from tools.check_element import CheckElement
 from re import Pattern
 import allure
+
 
 
 #=======================================================================================================================
 class BasePage:                                 # Родительский класс
     def __init__(self, page: Page):             # Конструктор класса, принимающий page
         self.page = page
+
+        self.check_element = CheckElement()     # Base checks of element
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Open page
@@ -57,7 +61,6 @@ class BasePage:                                 # Родительский кл�
         """
         error = f'❌ Current page URL - incorrect!'
         expect(self.page, error).to_have_url(expected_url)
-
 
 
 #=======================================================================================================================

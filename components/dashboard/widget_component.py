@@ -27,7 +27,7 @@ class DashboardWidgetComponent(BaseComponent):
         self.widget_name = identifier.capitalize()
         self.chart_name = chart_type.capitalize()
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.widget_component = f'❌ Dashboard page > {self.widget_name}-widget'
         self.title_element = f'{self.widget_component} > [Title]'
         self.chart_element = f'{self.widget_component} > [{self.chart_name}-chart]'

@@ -25,7 +25,7 @@ class CourseCardComponent(BaseComponent):
         self.MIN_SCORE_TEXT = lambda min_score: f'Min score: {min_score}'
         self.ESTIMATED_TIME_TEXT = lambda estimated_time: f'Estimated time: {estimated_time}'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.course_card_component = '❌ Courses list page > Course card'
         self.title_element = lambda nth_index: f'{self.course_card_component} > [Title] (nth-index: {nth_index})'
         self.menu_btn_element = lambda nth_index: f'{self.course_card_component} > [Menu button] (nth-index: {nth_index})'

@@ -19,7 +19,7 @@ class CourseCardMenuComponent(BaseComponent):
         self.EDIT_BTN_TEXT = 'Edit'
         self.DELETE_BTN_TEXT = 'Delete'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.menu_component = '❌ Courses list page > Course card > Menu'
         self.edit_btn_element = lambda nth_index: f'{self.menu_component} > [Edit button] (nth_index: {nth_index})'
         self.delete_btn_element = lambda nth_index: f'{self.menu_component} > [Delete button] (nth_index: {nth_index})'

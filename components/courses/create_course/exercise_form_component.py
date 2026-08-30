@@ -21,7 +21,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         self.TITLE_FIELD_NAME = 'Title'
         self.DESCRIPTION_FIELD_NAME = 'Description'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.form_component = '❌ Create course page > Exercises > Exercise > Form'
         self.title_field_element = lambda index: f'{self.form_component} > [Title] (index: {index})'
         self.description_field_element = lambda index: f'{self.form_component} > [Description field] (index: {index})'

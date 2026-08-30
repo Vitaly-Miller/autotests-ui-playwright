@@ -20,7 +20,7 @@ class DashboardToolbarComponent(BaseComponent):
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.title_locator = page.get_by_test_id('dashboard-toolbar-title-text')
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.toolbar_component = '❌ Dashboard page > Toolbar'
         self.title_element = f'{self.toolbar_component} > [Title]'
 

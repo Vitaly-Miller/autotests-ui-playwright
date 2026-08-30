@@ -18,7 +18,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.TITLE_TEXT = lambda index: f'#{index + 1} Exercise'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.toolbar_component = '❌ Create course page > Exercises > Exercise > Toolbar'
         self.title_element = lambda index: f'{self.toolbar_component} > [Title] (index: {index})'
         self.delete_exercise_btn_element = lambda index: f'{self.toolbar_component} > [Delete exercise button] (index: {index})'

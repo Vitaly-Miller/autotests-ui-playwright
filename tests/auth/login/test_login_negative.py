@@ -36,13 +36,13 @@ class TestLoginNegative:
         login_page.open(login_page.URL)
 
         # ✔️EXPECTATIONS (Before fill Login form)
-        login_page.check()
+        login_page.check_page()
 
         # ▶ ACTIONS
-        login_page.form.fill(email=email, password=password)
+        login_page.form.fill_login_form(email=email, password=password)
         login_page.click_login_btn()
 
         # ✔️EXPECTATIONS
-        login_page.check_wrong_email_or_password_alert()
+        login_page.check_alert()
 
 #=======================================================================================================================

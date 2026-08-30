@@ -19,7 +19,7 @@ class NavbarComponent(BaseComponent):
         self.TITLE_TEXT = 'UI Course'
         self.WELCOME_TITLE_TEXT = lambda username: f'Welcome, {username}!'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.navbar_component = f'❌ Navbar'
         self.title_element = f'{self.navbar_component} > [Title]'
         self.welcome_title_element = f'{self.navbar_component} > [Welcome title]'

@@ -24,7 +24,7 @@ class SidebarItemComponent(BaseComponent):
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.identifier = identifier.capitalize()   # for logging
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.sidebar_component = f'❌ Sidebar'
         self.btn_element = f'{self.sidebar_component} > {self.identifier}-item > [Button]'
         self.icon_element = f'{self.sidebar_component} > {self.identifier}-item > [Icon]'

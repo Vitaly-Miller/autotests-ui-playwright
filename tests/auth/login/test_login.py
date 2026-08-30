@@ -28,7 +28,7 @@ class TestLogin:
         username = 'username'
         password = 'password'
 
-        # ⿰ PAGES OBJECTS
+        # ⿰ PAGE OBJECTS
         registration_page = RegistrationPage(login_page.page)
         dashboard_page = DashboardPage(login_page.page)
 
@@ -43,7 +43,7 @@ class TestLogin:
         # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
         # ▶ ACTIONS
-        login_page.form.fill(email=email, password=password)
+        login_page.form.fill_login_form(email=email, password=password)
         login_page.click_login_btn()
 
         # ✔ Expectations

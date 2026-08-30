@@ -14,7 +14,6 @@ from components.auth.registration.form_component import RegistrationFormComponen
 - Registration form (component)
 - Registration button
 - Login link
-
 """
 class RegistrationPage(BasePage):       # Дочерний класс (наследует класс BasePage)
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
@@ -31,7 +30,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
         self.form = RegistrationFormComponent(page)
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.registration_page_component = '❌ Registration page'
         self.title_element = f'{self.registration_page_component} > [Title]'
         self.registration_btn_element = f'{self.registration_page_component} > [Registration button]'
@@ -172,7 +171,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         error = f'{self.registration_btn_element} - disabled!'
         expect(self.registration_btn_locator, error).to_be_enabled()
 
-    @allure.step('✔ Check [Registration button] is disable')
+    @allure.step('✔ Check [Registration button] is disabled')
     def check_registration_btn_disabled(self):
         """
         ✔ Check disabled [Registration button]

@@ -19,7 +19,7 @@ class CoursesListToolbarComponent(BaseComponent):
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
         self.TITLE_TEXT = 'Courses'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.toolbar_component = '❌ Courses list page > Toolbar'
         self.title_element = f'{self.toolbar_component} > [Title]'
         self.create_course_btn_element = f'{self.toolbar_component} > [Create course button]'

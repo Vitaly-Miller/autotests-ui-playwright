@@ -33,7 +33,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         self.PREVIEW_EMPTY_VIEW_TITLE_TEXT = 'Tap on "Upload image" button to select file'
         self.PREVIEW_EMPTY_VIEW_DESCRIPTION_TEXT = 'Recommended file size 540X300'
 
-        # ------------------------------------- >>> [Element] path (for debug) -----------------------------------------
+        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
         self.image_upload_widget_component = '❌ Create course page > Image upload widget'
         self.preview_view_image_view_element = f'{self.image_upload_widget_component} > Preview view > [Image view]'
         self.upload_view_icon_element = f'{self.image_upload_widget_component} > Upload view > [Icon]'
