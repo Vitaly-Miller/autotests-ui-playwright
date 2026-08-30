@@ -8,6 +8,7 @@ from components.base_component import BaseComponent
 from playwright.sync_api import Page
 from elements.image import Image
 from elements.text import Text
+from typing import Literal
 
 #=======================================================================================================================
 """
@@ -16,7 +17,10 @@ from elements.text import Text
 - Chart  (   bar   |    line    |   pie   | scatter)
 """
 class DashboardWidgetComponent(BaseComponent):
-    def __init__(self, page: Page, identifier: str, chart_type: str):
+    Identifier = Literal['students', 'activities', 'courses', 'scores'] # Type of accepted identifiers
+    ChartType = Literal['bar', 'line', 'pie', 'scatter']                # Type of accepted chart types
+
+    def __init__(self, page: Page, identifier: Identifier, chart_type: ChartType):
         """
         :param page: Page
         :param identifier: Unique part of locator (students | activities | courses | scores )

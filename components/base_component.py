@@ -21,13 +21,13 @@ class BaseComponent:
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Current URL]
     @allure.step('✔ Check current page URL')
-    def check_current_url_(self, expected_url: str | Pattern[str]):
+    def check_current_url(self, url: str | Pattern[str]):
         """
         ✔ Check [Current page URL]
 
-        :param expected_url: Expected Page URL
+        :param url: Expected page URL
         """
         error = f'❌ Current page URL - incorrect!'
-        expect(self.page, error).to_have_url(expected_url)
+        expect(self.page, error).to_have_url(url)
 
 #=======================================================================================================================

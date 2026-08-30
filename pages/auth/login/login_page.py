@@ -50,15 +50,12 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Click [Login button]
-    @allure.step('▶ Click [Login button]')
     def click_login_btn(self):
         """
         ▶ Click [Login button]
 
-        - ✔ Button - enabled
-        - ▶ Button - click
+        .
         """
-        self.check_login_btn_enabled()
         self.login_btn.click()
 
     # Click [Registration link]

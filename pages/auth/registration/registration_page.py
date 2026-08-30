@@ -2,9 +2,11 @@
 Registration page
 """
 import allure
-
+from elements.button import Button
+from elements.link import Link
+from elements.text import Text
 from pages.base_page import BasePage
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 from components.auth.registration.form_component import RegistrationFormComponent
 
 #=======================================================================================================================
@@ -25,53 +27,47 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.TITLE_TEXT = 'UI Course'
         self.REGISTRATION_BTN_TEXT = 'Registration'
         self.LOGIN_LINK_TEXT = 'Login'
-        self.LOGIN_LINK_URL = '#/auth/login'
-
-        # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
-        self.form = RegistrationFormComponent(page)
-
-        # ------------------------------------ Elements (path & name) (for debug) --------------------------------------
-        self.registration_page_component = '❌ Registration page'
-        self.title_element = f'{self.registration_page_component} > [Title]'
-        self.registration_btn_element = f'{self.registration_page_component} > [Registration button]'
-        self.login_link_element = f'{self.registration_page_component} > [Login link]'
+        self.LOGIN_LINK_HREF = '#/auth/login'
 
         # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
         self.title_locator = page.get_by_test_id('authentication-ui-course-title-text')
         self.registration_btn_locator = page.get_by_test_id('registration-page-registration-button')
         self.login_link_locator = page.get_by_test_id('registration-page-login-link')
 
+        # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
+        self.form = RegistrationFormComponent(page)
+
+        # ------------------------------------------------- ◈ ELEMENTS -------------------------------------------------
+        self.path = 'Registration page'
+
+        self.title = Text(self.title_locator, self.path, 'Title')
+        self.registration_btn = Button(self.registration_btn_locator, self.path, 'Registration button')
+        self.login_link = Link(self.login_link_locator, self.path, 'Login link')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Registration button]
-    @allure.step('▶ Click [Registration button]')
     def click_registration_btn(self):
         """
         ▶ Click [Registration button]
 
-        - ✔ Button - enabled
-        - ▶ Button - click
+        .
         """
-        self.check_registration_btn(enabled=True)
-        self.registration_btn_locator.click()
+        self.registration_btn.click()
 
     # Click [Login link]
-    @allure.step('▶ Click [Login link]')
     def click_login_link(self):
         """
         ▶ Click [Login link]
 
-        - ✔ Link - visible | - text | - URL
-        - ▶ Link - click
+        .
         """
-        self.check_login_link()
-        self.login_link_locator.click()
+        self.login_link.click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Registration page]
     # ──────────────────────────────────┐
     @allure.step('✔ Check [Registration page]')
-    def check(
+    def check_page(
             self,
             email: str | None = None,
             username: str | None = None,
@@ -110,25 +106,23 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.check_title_visible()
         self.check_title_text()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Title]')
+    # Visible
     def check_title_visible(self):
         """
-        ✔ Check visible [Title]
+        ✔ Check [Title] is visible
 
         .
         """
-        error = f'{self.title_element} - invisible!'
-        expect(self.title_locator, error).to_be_visible()
+        self.title.check_visible()
 
-    @allure.step('✔ Check text of [Title]')
+    # Text
     def check_title_text(self):
         """
-        ✔ Check text of [Title]
+        ✔ Check [Title] text
 
         .
         """
-        error = f'{self.title_element} - incorrect text!'
-        expect(self.title_locator, error).to_have_text(self.TITLE_TEXT)
+        self.title.check_text(text=self.TITLE_TEXT)
 
 
     # [Registration button]
@@ -150,46 +144,42 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         else:
             self.check_registration_btn_disabled()
         self.check_registration_btn_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Registration button]')
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # Visible
     def check_registration_btn_visible(self):
         """
-        ✔ Check visible [Registration button]
+        ✔ Check [Registration button] is visible
 
         .
         """
-        error = f'{self.registration_btn_element} - invisible!'
-        expect(self.registration_btn_locator, error).to_be_visible()
+        self.registration_btn.check_visible()
 
-    @allure.step('✔ Check enabled [Registration button]')
+    # Enabled
     def check_registration_btn_enabled(self):
         """
-        ✔ Check enabled [Registration button]
+        ✔ Check [Registration button] is enabled
 
         (If the Registration form is completed successfully)
         """
-        error = f'{self.registration_btn_element} - disabled!'
-        expect(self.registration_btn_locator, error).to_be_enabled()
+        self.registration_btn.check_enabled()
 
-    @allure.step('✔ Check [Registration button] is disabled')
+    # Disabled
     def check_registration_btn_disabled(self):
         """
-        ✔ Check disabled [Registration button]
+        ✔ Check [Registration button] disabled
 
         (If the Registration form is NOT completed successfully)
         """
-        error = f'{self.registration_btn_element} - enabled!'
-        expect(self.registration_btn_locator, error).to_be_disabled()
+        self.registration_btn.check_disabled()
 
-    @allure.step('✔ Check text of [Registration button]')
+    # Text
     def check_registration_btn_text(self):
         """
-        ✔ Check text of [Registration button]
+        ✔ Check [Registration button] text
 
         .
         """
-        error = f'{self.registration_btn_element} - incorrect text!'
-        expect(self.registration_btn_locator, error).to_have_text(self.REGISTRATION_BTN_TEXT)
+        self.registration_btn.check_text(text=self.REGISTRATION_BTN_TEXT)
 
 
     # [Login link]
@@ -205,38 +195,36 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         self.check_login_link_visible()
         self.check_login_link_text()
-        self.check_login_link_url()
+        self.check_login_link_href()
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    @allure.step('✔ Check visible [Login link]')
+    # Visible
     def check_login_link_visible(self):
         """
-        ✔ Check visible [Login link]
+        ✔ Check [Login link] is visible
 
         .
         """
-        error = f'{self.login_link_element} - invisible!'
-        expect(self.login_link_locator, error).to_be_visible()
+        self.login_link.check_visible()
 
-    @allure.step('✔ Check text of [Login link]')
+    # Text
     def check_login_link_text(self):
         """
-        ✔ Check text of [Login link]
+        ✔ Check [Login link] text
 
         .
         """
-        error = f'{self.login_link_element} - incorrect text!'
-        expect(self.login_link_locator, error).to_have_text(self.LOGIN_LINK_TEXT)
+        self.login_link.check_text(text=self.LOGIN_LINK_TEXT)
 
-    @allure.step('✔ Check [Login link] URL')
-    def check_login_link_url(self):
+    # href
+    def check_login_link_href(self):
         """
-        ✔ Check [Login link] URL
+        ✔ Check [Login link] "href" url-attribute
 
         .
         """
-        error = f'{self.login_link_element} - incorrect URL!'
-        expect(self.login_link_locator, error).to_have_attribute('href', self.LOGIN_LINK_URL)
+        self.login_link.check_href(href=self.LOGIN_LINK_HREF)
 
+    # Redirect
     @allure.step('✔ Check [Login link] redirect to Login page')
     def check_login_link_redirect(self):
         """
@@ -246,7 +234,5 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         """
         login_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
         self.check_current_url(login_page_url)
-
-
 
 #=======================================================================================================================

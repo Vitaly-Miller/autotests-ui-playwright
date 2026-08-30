@@ -34,10 +34,10 @@ class SidebarItemComponent(BaseComponent):
         self.title_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
 
         # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = f'Sidebar > {self.identifier}-item'
-        self.btn = Button(self.btn_locator, self.path, 'Button')
-        self.icon = Icon(self.icon_locator, self.path, 'Icon')
-        self.title = Text(self.title_locator, self.path, 'Title')
+        self.path = f'Sidebar > {self.identifier}'
+        self.btn = Button(self.btn_locator, self.path, f'{self.identifier}-button')
+        self.icon = Icon(self.icon_locator, self.path, f'{self.identifier}-icon')
+        self.title = Text(self.title_locator, self.path, f'{self.identifier}-title')
 
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     # Click [Button]

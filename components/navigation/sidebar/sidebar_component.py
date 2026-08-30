@@ -35,7 +35,7 @@ class SidebarComponent(BaseComponent):
         self.logout_item = SidebarItemComponent(page=page, identifier=self.LOGOUT_IDENTIFIER)
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    @allure.step('▶ Click [Dashboard]')
+    # Click [Dashboard]
     def click_dashboard(self):
         """
         ▶ Click [Dashboard]
@@ -44,7 +44,7 @@ class SidebarComponent(BaseComponent):
         """
         self.dashboard_item.click_btn()
 
-    @allure.step('▶ Click [Courses]')
+    # Click [Courses]
     def click_courses(self):
         """
         ▶ Click [Courses]
@@ -53,7 +53,7 @@ class SidebarComponent(BaseComponent):
         """
         self.courses_item.click_btn()
 
-    @allure.step('▶ Click [Logout]')
+    # Click [Logout]
     def click_logout(self):
         """
         ▶ Click [Logout]

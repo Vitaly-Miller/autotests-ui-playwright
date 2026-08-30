@@ -8,7 +8,7 @@ from components.base_component import BaseComponent
 from playwright.sync_api import Page
 from elements.icon import Icon
 from elements.text import Text
-
+from typing import Literal
 #=======================================================================================================================
 """
 [Empty view]:
@@ -17,16 +17,18 @@ from elements.text import Text
 - Description
 """
 class EmptyViewComponent(BaseComponent):
-    def __init__(self, page: Page, identifier: str, path: str):
+    Identifier = Literal['courses-list', 'create-course-preview', 'create-course-exercises']  # Type of accepted identifiers
+
+    def __init__(self, page: Page, path: str, identifier: Identifier):
         """
         :param page: Page
-        :param identifier: Unique part of locator (courses-list | create-course-preview | create-course-exercises)
+        :param identifier: Unique part of locator
         :param path: Component navigate-path
         """
         super().__init__(page)
 
         # 𝌆 DATA (dynamic)
-        self.identifier = identifier.capitalize().replace('-', ' ')    # for logging
+        self.identifier = identifier.capitalize().replace('-', ' ')    # formating for logging
 
         # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
         self.icon_locator = page.get_by_test_id(f'{identifier}-empty-view-icon')

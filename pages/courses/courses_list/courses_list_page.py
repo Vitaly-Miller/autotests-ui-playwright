@@ -26,8 +26,8 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
         # ------------------------------------------------ 𝌆 DATA ------------------------------------------------------
+        self.PATH = 'Courses list page'
         self.IDENTIFIER = 'courses-list'
-        self.COMPONENT = 'Courses list page'
 
         self.EMPTY_VIEW_TITLE = 'There is no results'
         self.EMPTY_VIEW_DESCRIPTION = 'Results from the load test pipeline will be displayed here'
@@ -36,7 +36,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = CoursesListToolbarComponent(page)
-        self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, path=self.COMPONENT)
+        self.empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, path=self.PATH)
         self.course_card = CourseCardComponent(page)
 
 
