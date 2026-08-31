@@ -2,61 +2,38 @@
 Browsers fixtures
 """
 import pytest
-import allure
-from playwright.sync_api import Playwright, StorageState, ViewportSize
+from playwright.sync_api import Playwright, StorageState
 from pages.auth.registration.registration_page import RegistrationPage
 from _pytest.fixtures import SubRequest
+from tools.playwright.pages import init_playwright_page
 
 #=======================================================================================================================
-# Chromium Page + Storage state 📦
+# GUEST page (NO Storage state)
 @pytest.fixture
-def page(request: SubRequest, storage_state: StorageState, playwright: Playwright): # Используем фикстуру storage_state с авторизацией + встроенную фикстуру playwright из pytest_playwright plugin
+def page_guest(playwright: Playwright, request: SubRequest):
     """
-    Fixture for authorized user (registered)
+    Fixture GUEST-Page for authentication (NO Storage state)
 
-    :param request: SubRequest.request (for tracing)
-    :param storage_state: Фикстура с сохраненными авторизационными данными
     :param playwright: Playwright
+    :param request: SubRequest.request (for tracing)
     :return: yield page: Page
     """
-    browser = playwright.chromium.launch(                 # Создаем объект браузера на движке chromium c параметрами:
-        channel='chromium',                               # - UI оболочка: 'chromium', 'chrome', 'msedge'
-        headless=True,                                    # - True/False — НЕ/Показывать браузер
-        slow_mo=None                                      # - Action delay (ms)
-    )
-    context = browser.new_context(                        # Создание браузерного окружения с Storage state:
-        storage_state=storage_state,               # ┐    # - Storage state из фикстуры
-        # storage_state='storage_state.json',      # ┘    # - Storage state из JSON-файла (optional)
-        locale='en-US',                                   # - Website language (locale)
-        viewport=ViewportSize(width=1100, height=1200),   # - Window size
-        record_video_dir=f'tracing/videos/{request.node.name}'  # - Record video directory
-    )
-    context.tracing.start(                                # Tracing для Playwright Trace Viewer
-        screenshots=True,                                 # - Screenshots
-        snapshots=True,                                   # - Snapshots
-        sources=True                                      # - Sources
-    )
-    page = context.new_page()                             # Создаем объект страницы page на базе context
+    yield from init_playwright_page(playwright=playwright, test_name=request.node.name)
 
-    try:
-        yield page                                        # Передаем page (на базе движка chromium)
 
-    finally:                                              # Гарантия закрытия, если упадет.
-        context.tracing.stop(path=f'tracing/{request.node.name}.zip')  # Сохраняем трейсинг в zip-файл (c именем текущего теста)
-        allure.attach.file(                               # 💾 Прикрепляем трейсинг к Allure-отчету
-            source=f'tracing/{request.node.name}.zip',           # - File path
-            name=f'{request.node.name}_trace',            # - Name in Allure-report (Tear down)
-            attachment_type=allure.attachment_type.ZIP    # - File type - ZIP
-        )
+# Page + Storage state 📦
+@pytest.fixture
+def page(playwright: Playwright, request: SubRequest, storage_state: StorageState):
+    """
+    Fixture Page + Storage state for authorized user (registered)
 
-        context.close()                  # Закрываем context! (Playwright дописывает видео на диск)
-        browser.close()                  # Закрываем browser!
+    :param playwright: Playwright
+    :param storage_state: Фикстура с сохраненными авторизационными данными
+    :param request: SubRequest.request (naming for tracing)
 
-        allure.attach.file(                              # 💾 Прикрепляем video к Allure-отчету (файл уже финализирован)
-            source=page.video.path(),    # NOQA          # - File path (через Page)
-            name=f'{request.node.name}_video',           # - Name in Allure-report (Tear down)
-            attachment_type=allure.attachment_type.WEBM  # - File type - WEBM
-        )
+    :return: yield page: Page
+    """
+    yield from init_playwright_page(playwright=playwright, test_name=request.node.name, storage_state=storage_state)
 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -96,52 +73,4 @@ def storage_state(playwright: Playwright):      # Используем встр�
         browser.close()                         # Закрываем browser!
 
 
-#-----------------------------------------------------------------------------------------------------------------------
-# GUEST Page (NO Storage state)
-@pytest.fixture
-def page_guest(request: SubRequest, playwright: Playwright):   # Чистый (без доп. фикстур)
-    """
-    Fixture for GUEST user (unregister)
-
-    :param request: SubRequest.request (for tracing)
-    :param playwright: Playwright
-    :return: yield page: Page
-    """
-    browser = playwright.chromium.launch(                 # Создаем объект браузера на движке chromium c параметрами:
-        channel='chromium',                               # - UI оболочка: 'chromium', 'chrome', 'msedge'
-        headless=True,                                    # - True/False — НЕ/Показывать браузер
-        slow_mo=None                                      # - Action delay (ms)
-    )
-    context = browser.new_context(                        # Создание браузерного окружения (NO Storage state):
-        locale='en-US',                                   # - Website language (locale)
-        viewport=ViewportSize(width=1100, height=1200),   # - Window size
-        record_video_dir=f'tracing/videos/{request.node.name}' # - Record video directory
-    )
-    context.tracing.start(                                # Включаем Tracing для Playwright Trace Viewer
-        screenshots=True,                                 # - Screenshots
-        snapshots=True,                                   # - Snapshots
-        sources=True                                      # - Sources
-    )
-    page = context.new_page()                             # Создаем объект page на базе context
-
-    try:
-        yield page                                        # Передаем page (на базе context)
-
-    finally:                                              # Гарантия закрытия, если упадет
-        context.tracing.stop(path=f'tracing/{request.node.name}.zip')  # Сохраняем трейсинг в zip-файл (c именем текущего теста)
-        allure.attach.file(                               # 💾Прикрепляем трейсинг к Allure-report
-            source=f'tracing/{request.node.name}.zip',           # - File path
-            name=f'{request.node.name}_trace',            # - Name in Allure-report (Tear down)
-            attachment_type=allure.attachment_type.ZIP    # - File type - ZIP
-        )
-
-        context.close()                  # Закрываем context! (Playwright дописывает видео на диск)
-        browser.close()                  # Закрываем browser!
-
-        allure.attach.file(                              # 💾 Прикрепляем video к Allure-отчету (файл уже финализирован)
-            source=page.video.path(),    # NOQA          # - File path (через Page) NOQA
-            name=f'{request.node.name}_video',           # - Name in Allure-report (Tear down)
-            attachment_type=allure.attachment_type.WEBM  # - File type - WEBM
-
-        )
 #=======================================================================================================================
