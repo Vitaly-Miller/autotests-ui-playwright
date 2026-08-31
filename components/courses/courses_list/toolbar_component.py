@@ -10,16 +10,14 @@ from elements.button import Button
 from elements.text import Text
 
 #=======================================================================================================================
-"""
-[Toolbar]:
-- Title
-- Create course button
-"""
 class CoursesListToolbarComponent(BaseComponent):
-    path = 'Courses list page > Toolbar'
+    """
+    [Toolbar] component
 
-    # 𝌆 DATA
-    TITLE_TEXT = 'Courses'
+    - Title
+    - Create course button
+    """
+    path = 'Courses list page > Toolbar'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_locator(self) -> Locator:
@@ -89,7 +87,7 @@ class CoursesListToolbarComponent(BaseComponent):
 
         .
         """
-        self.title().check_text(self.TITLE_TEXT)
+        self.title().check_text('Courses')
 
 
     # [Create course button]

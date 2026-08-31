@@ -12,35 +12,23 @@ from elements.image import Image
 from elements.text import Text
 
 #=======================================================================================================================
-"""
-[Course card]:
-- Menu button (component)
-- Title
-- Image
-- Max score
-- Min score
-- Estimated time
-"""
 class CourseCardComponent(BaseComponent):
+    """
+    [Course card] component
+
+    - Menu button (component)
+    - Title
+    - Image
+    - Max score
+    - Min score
+    - Estimated time
+    """
     path = 'Courses list page > Course card'
-
-    # 𝌆 DATA
-    @staticmethod
-    def max_score_text(max_score: str) -> str:
-        return f'Max score: {max_score}'
-
-    @staticmethod
-    def min_score_text(min_score: str) -> str:
-        return f'Min score: {min_score}'
-
-    @staticmethod
-    def estimated_time_text(estimated_time: str) -> str:
-        return f'Estimated time: {estimated_time}'
 
     def __init__(self, page: Page):
         super().__init__(page)
 
-        # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
+        # ⿳ COMPONENTS
         self.menu = CourseCardMenuComponent(page)
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
@@ -254,7 +242,7 @@ class CourseCardComponent(BaseComponent):
         :param max_score: Max score
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.max_score().check_text(self.max_score_text(max_score), nth=nth_index)
+        self.max_score().check_text(text=f'Max score: {max_score}', nth=nth_index)
 
 
     # [Min score]
@@ -290,7 +278,7 @@ class CourseCardComponent(BaseComponent):
         :param min_score: Min score
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.min_score().check_text(self.min_score_text(min_score), nth=nth_index)
+        self.min_score().check_text(text=f'Min score: {min_score}', nth=nth_index)
 
 
     # [Estimated time]
@@ -326,6 +314,6 @@ class CourseCardComponent(BaseComponent):
         :param estimated_time: Estimated time
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.estimated_time().check_text(self.estimated_time_text(estimated_time), nth=nth_index)
+        self.estimated_time().check_text(text=f'Estimated time: {estimated_time}', nth=nth_index)
 
 #=======================================================================================================================

@@ -10,32 +10,28 @@ from components.auth.login.form_component import LoginFormComponent
 from elements.text import Text
 
 #=======================================================================================================================
-"""
-[Login page]:
-- Title
-- Login button
-- Login form (component)
-- Registration link
-- Wrong email or password alert
-"""
 class LoginPage(BasePage):              # Дочерний класс (наследует класс BasePage)
+    """
+    [Login page]
+
+    - Title
+    - Login button
+    - Login form (component)
+    - Registration link
+    - Wrong email or password alert
+    """
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
     path = 'Login page'
-
-    # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
-    TITLE_TEXT = 'UI Course'
-    LOGIN_BTN_TEXT = 'Login'
-    REG_LINK_TEXT = 'Registration'
-    REG_LINK_HREF = '#/auth/registration'
-    ALERT_TEXT = 'Wrong email or password'
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
+        # ⿳ COMPONENTS
         self.form = LoginFormComponent(page)
 
-    # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
+
+
+    # ---------------------------------------------------- ㉧ LOCATORS --------------------------------------------------
     def title_locator(self) -> Locator:
         return self.page.get_by_test_id('authentication-ui-course-title-text')
 
@@ -137,7 +133,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.title().check_text(text=self.TITLE_TEXT)
+        self.title().check_text(text='UI Course')
 
 
     # [Login button]
@@ -194,7 +190,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.login_btn().check_text(text=self.LOGIN_BTN_TEXT)
+        self.login_btn().check_text(text='Login')
 
 
     # [Registration link]
@@ -228,7 +224,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.reg_link().check_text(text=self.REG_LINK_TEXT)
+        self.reg_link().check_text(text='Registration')
 
     # href
     def check_reg_link_href(self):
@@ -237,7 +233,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.reg_link().check_href(href=self.REG_LINK_HREF)
+        self.reg_link().check_href(href='#/auth/registration')
 
 
     # [Alert]
@@ -269,6 +265,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.alert().check_text(text=self.ALERT_TEXT)
+        self.alert().check_text(text='Wrong email or password')
 
 #=======================================================================================================================

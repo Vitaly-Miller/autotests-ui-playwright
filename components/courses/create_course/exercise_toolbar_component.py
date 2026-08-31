@@ -10,32 +10,30 @@ from elements.button import Button
 from elements.text import Text
 
 #=======================================================================================================================
-"""
-[Toolbar]:
-- Title
-- Delete exercise button
-"""
 class CreateCourseExerciseToolbarComponent(BaseComponent):
+    """
+    [Toolbar] component
+
+    - Title
+    - Delete exercise button
+    """
     path = 'Create course page > Exercises > Exercise > Toolbar'
 
-    # 𝌆 DATA
-    @staticmethod
-    def title_text(index: int) -> str:
-        return f'#{index + 1} Exercise'
-
-    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    # --------------------------------------------------- ㉧ LOCATORS ---------------------------------------------------
     def title_locator(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
 
     def delete_exercise_btn_locator(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
 
-    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+
+    # --------------------------------------------------- ◈ ELEMENTS ---------------------------------------------------
     def title(self, index: int) -> Text:
         return Text(self.title_locator(index), self.path, 'Title')
 
     def delete_exercise_btn(self, index: int) -> Button:
         return Button(self.delete_exercise_btn_locator(index), self.path, 'Delete exercise button')
+
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Delete exercise button]
@@ -47,6 +45,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
         self.delete_exercise_btn(index).click()
+
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -98,7 +97,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        self.title(index).check_text(self.title_text(index))
+        self.title(index).check_text(f'#{index + 1} Exercise')
 
 
     # [Delete exercise button]

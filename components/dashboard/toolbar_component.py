@@ -9,15 +9,13 @@ from playwright.sync_api import Locator
 from elements.text import Text
 
 #=======================================================================================================================
-"""
-[Toolbar]:
-- Title
-"""
 class DashboardToolbarComponent(BaseComponent):
-    path = 'Dashboard page > Toolbar'
+    """
+    [Toolbar] component
 
-    # 𝌆 DATA
-    TITLE_TEXT = 'Dashboard'
+    - Title
+    """
+    path = 'Dashboard page > Toolbar'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_locator(self) -> Locator:
@@ -69,6 +67,6 @@ class DashboardToolbarComponent(BaseComponent):
 
         .
         """
-        self.title().check_text(self.TITLE_TEXT)
+        self.title().check_text('Dashboard')
 
 #=======================================================================================================================

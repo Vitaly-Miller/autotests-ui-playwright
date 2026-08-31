@@ -9,28 +9,17 @@ from playwright.sync_api import Locator
 from elements.input_field import InputField
 
 #=======================================================================================================================
-"""
-[Form]:
-- Title input field
-- Estimated time input field
-- Description input field
-- Max score input field
-- Min score input field
-"""
 class CreateCourseFormComponent(BaseComponent):
-    path = 'Create course page > Form'
+    """
+    [Form] component
 
-    # 𝌆 DATA
-    TITLE_FIELD_NAME = 'Title'
-    TITLE_FIELD_PLACEHOLDER = 'New course'
-    ESTIMATED_TIME_FIELD_NAME = 'Estimated time'
-    ESTIMATED_TIME_FIELD_PLACEHOLDER = '1h 20m'
-    DESCRIPTION_FIELD_NAME = 'Description'
-    DESCRIPTION_FIELD_PLACEHOLDER = 'Add description for course'
-    MAX_SCORE_FIELD_NAME = 'Max score'
-    MAX_SCORE_FIELD_DEFAULT_VALUE = '0'
-    MIN_SCORE_FIELD_NAME = 'Min score'
-    MIN_SCORE_FIELD_DEFAULT_VALUE = '0'
+    - Title input field
+    - Estimated time input field
+    - Description input field
+    - Max score input field
+    - Min score input field
+    """
+    path = 'Create course page > Form'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_field_locator(self) -> Locator:
@@ -48,6 +37,7 @@ class CreateCourseFormComponent(BaseComponent):
     def min_score_field_locator(self) -> Locator:
         return self.page.get_by_test_id('create-course-form-min-score-input').locator('input')
 
+
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title_field(self) -> InputField:
         return InputField(self.title_field_locator(), self.path, 'Title field')
@@ -63,6 +53,7 @@ class CreateCourseFormComponent(BaseComponent):
 
     def min_score_field(self) -> InputField:
         return InputField(self.min_score_field_locator(), self.path, 'Min score field')
+
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Course form]
@@ -218,7 +209,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.title_field().check_name(name=self.TITLE_FIELD_NAME)
+        self.title_field().check_name(name='Title')
 
     # Placeholder
     def check_title_field_placeholder(self):
@@ -227,7 +218,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.title_field().check_placeholder(placeholder=self.TITLE_FIELD_PLACEHOLDER)
+        self.title_field().check_placeholder(placeholder='New course')
 
     # Value
     def check_title_field_value(self, title: str):
@@ -281,7 +272,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.estimated_time_field().check_name(name=self.ESTIMATED_TIME_FIELD_NAME)
+        self.estimated_time_field().check_name(name='Estimated time')
 
     # Placeholder
     def check_estimated_time_field_placeholder(self):
@@ -290,7 +281,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.estimated_time_field().check_placeholder(placeholder=self.ESTIMATED_TIME_FIELD_PLACEHOLDER)
+        self.estimated_time_field().check_placeholder(placeholder='1h 20m')
 
     # Value
     def check_estimated_time_field_value(self, estimated_time: str):
@@ -344,7 +335,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.description_field().check_name(name=self.DESCRIPTION_FIELD_NAME)
+        self.description_field().check_name(name='Description')
 
     # Placeholder
     def check_description_field_placeholder(self):
@@ -353,7 +344,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.description_field().check_placeholder(placeholder=self.DESCRIPTION_FIELD_PLACEHOLDER)
+        self.description_field().check_placeholder(placeholder='Add description for course')
 
     # Value
     def check_description_field_value(self, description: str):
@@ -407,10 +398,10 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.max_score_field().check_name(name=self.MAX_SCORE_FIELD_NAME)
+        self.max_score_field().check_name(name='Max score')
 
     # Value
-    def check_max_score_field_value(self, max_score: str = MAX_SCORE_FIELD_DEFAULT_VALUE):
+    def check_max_score_field_value(self, max_score: str = '0'):
         """
         ✔ Check [Max score field] value
 
@@ -461,10 +452,10 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.min_score_field().check_name(name=self.MIN_SCORE_FIELD_NAME)
+        self.min_score_field().check_name(name='Min score')
 
     # Value
-    def check_min_score_field_value(self, min_score: str = MAX_SCORE_FIELD_DEFAULT_VALUE):
+    def check_min_score_field_value(self, min_score: str = '0'):
         """
         ✔ Check [Min score field] value
 

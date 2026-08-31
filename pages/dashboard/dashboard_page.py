@@ -2,7 +2,6 @@
 Dashboard page
 """
 import allure
-
 from pages.base_page import BasePage
 from playwright.sync_api import Page
 from components.navigation.navbar.navbar_component import NavbarComponent
@@ -12,12 +11,20 @@ from components.dashboard.widget_component import DashboardWidgetComponent
 
 #=======================================================================================================================
 class DashboardPage(BasePage):          # Дочерний класс (наследует класс BasePage)
+    """
+    [Dashboard page]
+
+    - Navbar (component)
+    - Sidebar (component)
+    - Toolbar (component)
+    - Widgets (component)
+    """
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
+        # ⿳ COMPONENTS
         # Bars
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
@@ -28,11 +35,10 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         self.courses_widget = DashboardWidgetComponent(page=page, identifier='courses', chart_type='pie')
         self.scores_widget = DashboardWidgetComponent(page=page, identifier='scores', chart_type='scatter')
 
-        # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Page]
-    # ─────────────────────────────┐
+    # ──────────────────────────────────────┐
     @allure.step('✔ Check [Dashboard page]')
     def check(self, username: str):
         """
@@ -47,7 +53,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         self.sidebar.check()
         self.toolbar.check()
         self.check_widgets()
-    # ─────────────────────────────┘
+    # ──────────────────────────────────────┘
 
     # [Widgets]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐

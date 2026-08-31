@@ -9,20 +9,14 @@ from playwright.sync_api import Locator
 from elements.text import Text
 
 #=======================================================================================================================
-"""
-[Navbar]:
-- Title
-- Welcome title
-"""
 class NavbarComponent(BaseComponent):
+    """
+    [Navbar] component
+
+    - Title
+    - Welcome title
+    """
     path = 'Navbar'
-
-    # 𝌆 DATA
-    TITLE_TEXT = 'UI Course'
-
-    @staticmethod
-    def welcome_title_text(username: str) -> str:
-        return f'Welcome, {username}!'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_locator(self) -> Locator:
@@ -84,7 +78,7 @@ class NavbarComponent(BaseComponent):
 
         .
         """
-        self.title().check_text(self.TITLE_TEXT)
+        self.title().check_text('UI Course')
 
 
     # [Welcome title]
@@ -118,6 +112,6 @@ class NavbarComponent(BaseComponent):
 
         :param username: Username
         """
-        self.welcome_title().check_text(self.welcome_title_text(username))
+        self.welcome_title().check_text(f'Welcome, {username}!')
 
 #=======================================================================================================================

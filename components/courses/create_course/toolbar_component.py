@@ -10,16 +10,14 @@ from elements.button import Button
 from elements.text import Text
 
 #=======================================================================================================================
-"""
-[Toolbar]:
-- Title
-- Create course button
-"""
 class CreateCourseToolbarComponent(BaseComponent):
-    path = 'Create course page > Toolbar'
+    """
+    [Toolbar] component
 
-    # 𝌆 DATA
-    TITLE_TEXT = 'Create course'
+    - Title
+    - Create course button
+    """
+    path = 'Create course page > Toolbar'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_locator(self) -> Locator:
@@ -28,12 +26,14 @@ class CreateCourseToolbarComponent(BaseComponent):
     def create_course_btn_locator(self) -> Locator:
         return self.page.get_by_test_id('create-course-toolbar-create-course-button')
 
+
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title(self) -> Text:
         return Text(self.title_locator(), self.path, 'Title')
 
     def create_course_btn(self) -> Button:
         return Button(self.create_course_btn_locator(), self.path, 'Create course button')
+
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Create course button]
@@ -44,6 +44,7 @@ class CreateCourseToolbarComponent(BaseComponent):
         .
         """
         self.create_course_btn().click()
+
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -91,7 +92,7 @@ class CreateCourseToolbarComponent(BaseComponent):
 
         .
         """
-        self.title().check_text(self.TITLE_TEXT)
+        self.title().check_text('Create course')
 
 
     # [Create course button]

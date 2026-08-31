@@ -11,43 +11,45 @@ from elements.icon import Icon
 from elements.text import Text
 
 #=======================================================================================================================
-"""
-[Item]:
-- Button
-- Icon
-- Title
-"""
 class SidebarItemComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str):
         """
+        [Sidebar item] component
+
+        - Button
+        - Icon
+        - Title
+
         :param page: Page
-        :param identifier: Unique part of locator (dashboard | courses | logout)
+        :param identifier: Unique part of locator [dashboard, courses, logout]
         """
         super().__init__(page)
 
-        self._identifier = identifier                # raw - for locators
-        self.identifier = identifier.capitalize()    # for logging
-        self.path = f'Sidebar > {self.identifier}'
+        self.identifier = identifier
+        self.path = f'Sidebar > {self.identifier.capitalize()}'
+
 
     # ----------------------------------------- ㉧ LOCATORS (dynamic) -----------------------------------------------
     def btn_locator(self) -> Locator:
-        return self.page.get_by_test_id(f'{self._identifier}-drawer-list-item-button')
+        return self.page.get_by_test_id(f'{self.identifier}-drawer-list-item-button')
 
     def icon_locator(self) -> Locator:
-        return self.page.get_by_test_id(f'{self._identifier}-drawer-list-item-icon')
+        return self.page.get_by_test_id(f'{self.identifier}-drawer-list-item-icon')
 
     def title_locator(self) -> Locator:
-        return self.page.get_by_test_id(f'{self._identifier}-drawer-list-item-title-text')
+        return self.page.get_by_test_id(f'{self.identifier}-drawer-list-item-title-text')
+
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def btn(self) -> Button:
-        return Button(self.btn_locator(), self.path, f'{self.identifier}-button')
+        return Button(self.btn_locator(), self.path, f'{self.identifier.capitalize()}-button')
 
     def icon(self) -> Icon:
-        return Icon(self.icon_locator(), self.path, f'{self.identifier}-icon')
+        return Icon(self.icon_locator(), self.path, f'{self.identifier.capitalize()}-icon')
 
     def title(self) -> Text:
-        return Text(self.title_locator(), self.path, f'{self.identifier}-title')
+        return Text(self.title_locator(), self.path, f'{self.identifier.capitalize()}-title')
+
 
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     # Click [Button]
@@ -58,6 +60,7 @@ class SidebarItemComponent(BaseComponent):
         .
         """
         self.btn().click()
+
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Item]

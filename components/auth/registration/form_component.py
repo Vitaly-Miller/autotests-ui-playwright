@@ -9,19 +9,15 @@ from playwright.sync_api import Locator
 from elements.input_field import InputField
 
 #=======================================================================================================================
-"""
-[Form]:
-- Email input field
-- Username input field
-- Password input field
-"""
 class RegistrationFormComponent(BaseComponent):
-    path = 'Registration page > Form'
+    """
+    [Form] component
 
-    # 𝌆 DATA
-    EMAIL_FIELD_NAME = 'Email'
-    USERNAME_FIELD_NAME = 'Username'
-    PASSWORD_FIELD_NAME = 'Password'
+    - Email input field
+    - Username input field
+    - Password input field
+    """
+    path = 'Registration page > Form'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def email_field_locator(self) -> Locator:
@@ -156,7 +152,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        self.email_field().check_name(name=self.EMAIL_FIELD_NAME)
+        self.email_field().check_name(name='Email')
 
     # Value
     def check_email_field_value(self, email: str):
@@ -208,7 +204,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        self.username_field().check_name(name=self.USERNAME_FIELD_NAME)
+        self.username_field().check_name(name='Username')
 
     # Value
     def check_username_field_value(self, username: str):
@@ -260,7 +256,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        self.password_field().check_name(name=self.PASSWORD_FIELD_NAME)
+        self.password_field().check_name(name='Password')
 
     # Value
     def check_password_field_value(self, password: str):

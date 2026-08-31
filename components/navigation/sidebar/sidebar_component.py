@@ -9,30 +9,21 @@ from playwright.sync_api import Page
 from components.navigation.sidebar.sidebar_item_component import SidebarItemComponent
 
 #=======================================================================================================================
-"""
-[Sidebar]:
-- Dashboard item
-- Courses item
-- Logout item
-"""
 class SidebarComponent(BaseComponent):
-    # 𝌆 DATA
-    # Item [Identifiers]
-    DASHBOARD_IDENTIFIER = 'dashboard'
-    COURSES_IDENTIFIER = 'courses'
-    LOGOUT_IDENTIFIER = 'logout'
-    # Item [Titles]
-    DASHBOARD_TITLE = 'Dashboard'
-    COURSES_TITLE = 'Courses'
-    LOGOUT_TITLE = 'Logout'
+    """
+    [Sidebar] component
 
+    - Dashboard item
+    - Courses item
+    - Logout item
+    """
     def __init__(self, page: Page):
         super().__init__(page)
+        # ⿳ COMPONENTS
+        self.dashboard_item = SidebarItemComponent(page=page, identifier='dashboard')
+        self.courses_item = SidebarItemComponent(page=page, identifier='courses')
+        self.logout_item = SidebarItemComponent(page=page, identifier='logout')
 
-        # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
-        self.dashboard_item = SidebarItemComponent(page=page, identifier=self.DASHBOARD_IDENTIFIER)
-        self.courses_item = SidebarItemComponent(page=page, identifier=self.COURSES_IDENTIFIER)
-        self.logout_item = SidebarItemComponent(page=page, identifier=self.LOGOUT_IDENTIFIER)
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Dashboard]
@@ -62,6 +53,7 @@ class SidebarComponent(BaseComponent):
         """
         self.logout_item.click_btn()
 
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Sidebar]
     # ────────────────────────────────────────────────────────────┐
@@ -74,9 +66,9 @@ class SidebarComponent(BaseComponent):
         - ✔ Courses item - visible | Icon - visible | Title - visible | - text
         - ✔ Logout item - visible | Icon - visible | Title - visible | - text
         """
-        self.dashboard_item.check(title=self.DASHBOARD_TITLE)
-        self.courses_item.check(title=self.COURSES_TITLE)
-        self.logout_item.check(title=self.LOGOUT_TITLE)
+        self.dashboard_item.check(title='Dashboard')
+        self.courses_item.check(title='Courses')
+        self.logout_item.check(title='Logout')
     # ────────────────────────────────────────────────────────────┘
 
 #=======================================================================================================================

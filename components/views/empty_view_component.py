@@ -8,38 +8,37 @@ from components.base_component import BaseComponent
 from playwright.sync_api import Locator, Page
 from elements.icon import Icon
 from elements.text import Text
-from typing import Literal
-#=======================================================================================================================
-"""
-[Empty view]:
-- Icon
-- Title
-- Description
-"""
-class EmptyViewComponent(BaseComponent):
-    Identifier = Literal['courses-list', 'create-course-preview', 'create-course-exercises']  # Type of accepted identifiers
 
-    def __init__(self, page: Page, path: str, identifier: Identifier):
+#=======================================================================================================================
+class EmptyViewComponent(BaseComponent):
+    def __init__(self, page: Page, path: str, identifier: str):
         """
+        [Empty view] component
+
+        - Icon
+        - Title
+        - Description
+
         :param page: Page
-        :param identifier: Unique part of locator
+        :param identifier: Unique part of locator ['courses-list', 'create-course-preview', 'create-course-exercises']
         :param path: Component navigate-path
         """
         super().__init__(page)
 
-        self._identifier = identifier                                           # raw - for locators
-        self.identifier = identifier.capitalize().replace('-', ' ')             # formating for logging
-        self.path = f'{path} > {self.identifier} > Empty view'
+        self.identifier = identifier
+        self.path = f'{path} > {self.identifier.capitalize().replace('-', ' ')} > Empty view'
+
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def icon_locator(self) -> Locator:
-        return self.page.get_by_test_id(f'{self._identifier}-empty-view-icon')
+        return self.page.get_by_test_id(f'{self.identifier}-empty-view-icon')
 
     def title_locator(self) -> Locator:
-        return self.page.get_by_test_id(f'{self._identifier}-empty-view-title-text')
+        return self.page.get_by_test_id(f'{self.identifier}-empty-view-title-text')
 
     def description_locator(self) -> Locator:
-        return self.page.get_by_test_id(f'{self._identifier}-empty-view-description-text')
+        return self.page.get_by_test_id(f'{self.identifier}-empty-view-description-text')
+
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def icon(self) -> Icon:
@@ -50,6 +49,7 @@ class EmptyViewComponent(BaseComponent):
 
     def description(self) -> Text:
         return Text(self.description_locator(), self.path, 'Description')
+
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Empty view]

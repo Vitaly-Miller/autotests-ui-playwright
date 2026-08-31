@@ -9,15 +9,14 @@ from playwright.sync_api import Locator
 from elements.input_field import InputField
 
 #=======================================================================================================================
-"""
-[Form]:
-- Email input field
-- Password input field
-"""
 class LoginFormComponent(BaseComponent):
+    """
+    [Form]:
+    - Email input field
+    - Password input field
+    """
+    # ----------------------------------------------------- 𝌆 DATA -----------------------------------------------------
     path = 'Login page > Form'
-
-    # 𝌆 DATA
     EMAIL_FIELD_NAME = 'Email'
     PASSWORD_FIELD_NAME = 'Password'
 

@@ -10,21 +10,23 @@ from components.courses.create_course.exercise_toolbar_component import CreateCo
 from components.courses.create_course.exercise_form_component import CreateCourseExerciseFormComponent
 
 #=======================================================================================================================
-"""
-[Exercise]:
-- Toolbar (component)
-  - Title
-  - Delete exercise button
 
-- Form (component)
-  - Title field
-  - Description field
-"""
 class CreateCourseExerciseComponent(BaseComponent):
+    """
+    [Exercise] component
+
+    - Toolbar (component)
+      - Title
+      - Delete exercise button
+
+    - Form (component)
+      - Title field
+      - Description field
+    """
     def __init__(self, page: Page):
         super().__init__(page)
 
-        # --------------------------------------------- ⿳ COMPONENTS -------------------------------------------------
+        # ⿳ COMPONENTS
         self.toolbar = CreateCourseExerciseToolbarComponent(page)
         self.form = CreateCourseExerciseFormComponent(page)
 

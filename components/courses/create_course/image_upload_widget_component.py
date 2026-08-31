@@ -14,37 +14,28 @@ from elements.input_file import InputFile
 from elements.text import Text
 
 #=======================================================================================================================
-"""
-[Image upload widget]:
-- Upload view:
-    - Icon
-    - Title
-    - Description
-    - Upload image button
-    - Remove image button
-- Preview view:
-    - Empty view (component)
-    - Image view
-"""
 class CreateCourseImageUploadWidgetComponent(BaseComponent):
+    """
+    [Image upload widget] component
+    
+    - Upload view:
+        - Icon
+        - Title
+        - Description
+        - Upload image button
+        - Remove image button
+    - Preview view:
+        - Empty view (component)
+        - Image view
+    """
     path = 'Create course page > Image upload widget'
-
-    # 𝌆 DATA
-    # [Upload view]
     IDENTIFIER = 'create-course-preview'
-    UPLOAD_VIEW_TITLE_TEXT = 'Tap on "Upload image" button to select file'
-    UPLOAD_VIEW_DESCRIPTION_TEXT = 'Recommended file size 540X300'
-    UPLOAD_IMAGE_BTN_TEXT = 'Upload image'
-    REMOVE_IMAGE_BTN_TEXT = 'Remove image'  # visible after upload image only
-    # Preview view [Empty view]
-    PREVIEW_EMPTY_VIEW_TITLE_TEXT = 'Tap on "Upload image" button to select file'
-    PREVIEW_EMPTY_VIEW_DESCRIPTION_TEXT = 'Recommended file size 540X300'
 
     def __init__(self, page: Page):
         super().__init__(page)
-
-        # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
+        # ⿳ COMPONENTS
         self.preview_view_empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, path=self.path)
+
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     # [Upload view]
@@ -60,15 +51,16 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
     def upload_image_btn_locator(self) -> Locator:
         return self.page.get_by_test_id('create-course-preview-image-upload-widget-upload-button')
 
-    def upload_image_input_locator(self) -> Locator:  # hidden input for upload file
+    def upload_image_input_locator(self) -> Locator:       # hidden input for upload file
         return self.page.get_by_test_id('create-course-preview-image-upload-widget-input')
 
-    def remove_image_btn_locator(self) -> Locator:  # visible after upload image only
+    def remove_image_btn_locator(self) -> Locator:         # visible after upload image only
         return self.page.get_by_test_id('create-course-preview-image-upload-widget-remove-button')
 
     # Preview view [Image view]
     def preview_view_image_view_locator(self) -> Locator:
         return self.page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
+
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     # [Upload view]
@@ -93,6 +85,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
     # Preview view [Image view]
     def preview_view_image_view(self) -> Image:
         return Image(self.preview_view_image_view_locator(), self.path, 'Preview view - Image view')
+
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Upload image file
@@ -172,8 +165,8 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         - ✔ Description - visible | - text
         """
         self.preview_view_empty_view.check(
-            title=self.PREVIEW_EMPTY_VIEW_TITLE_TEXT,
-            description=self.PREVIEW_EMPTY_VIEW_DESCRIPTION_TEXT
+            title='Tap on "Upload image" button to select file',
+            description='Recommended file size 540X300'
         )
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
@@ -270,7 +263,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_view_title().check_text(self.UPLOAD_VIEW_TITLE_TEXT)
+        self.upload_view_title().check_text('Tap on "Upload image" button to select file')
 
 
     # Upload view [Description]
@@ -302,7 +295,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_view_description().check_text(self.UPLOAD_VIEW_DESCRIPTION_TEXT)
+        self.upload_view_description().check_text('Recommended file size 540X300')
 
 
     # Upload view [Upload image button]
@@ -345,7 +338,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_image_btn().check_text(self.UPLOAD_IMAGE_BTN_TEXT)
+        self.upload_image_btn().check_text('Upload image')
 
 
     # Upload view [Remove image button]
@@ -408,7 +401,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.remove_image_btn().check_text(self.REMOVE_IMAGE_BTN_TEXT)
+        self.remove_image_btn().check_text('Remove image')
 
 
 #=======================================================================================================================

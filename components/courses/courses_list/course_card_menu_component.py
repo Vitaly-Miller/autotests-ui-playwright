@@ -9,17 +9,14 @@ from playwright.sync_api import Locator
 from elements.button import Button
 
 #=======================================================================================================================
-"""
-[Menu]:
-- Edit button
-- Delete button
-"""
 class CourseCardMenuComponent(BaseComponent):
-    path = 'Courses list page > Course card > Menu'
+    """
+    [Menu] component
 
-    # 𝌆 DATA
-    EDIT_BTN_TEXT = 'Edit'
-    DELETE_BTN_TEXT = 'Delete'
+    - Edit button
+    - Delete button
+    """
+    path = 'Courses list page > Course card > Menu'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def edit_btn_locator(self) -> Locator:
@@ -88,7 +85,7 @@ class CourseCardMenuComponent(BaseComponent):
 
         :param nth_index: nth-index —> for use in: locator.nth(nth_index)
         """
-        self.edit_btn().check_text(self.EDIT_BTN_TEXT, nth=nth_index)
+        self.edit_btn().check_text(text='Edit', nth=nth_index)
 
 
     # [Delete button]
@@ -122,6 +119,6 @@ class CourseCardMenuComponent(BaseComponent):
 
         :param nth_index: nth-index —> for use in: locator.nth(nth_index)
         """
-        self.delete_btn().check_text(self.DELETE_BTN_TEXT, nth=nth_index)
+        self.delete_btn().check_text(text='Delete', nth=nth_index)
 
 #=======================================================================================================================

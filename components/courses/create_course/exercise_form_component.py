@@ -9,19 +9,14 @@ from playwright.sync_api import Locator
 from elements.input_field import InputField
 
 #=======================================================================================================================
-"""
-[Form]:
-- Title field
-- Description field
-"""
 class CreateCourseExerciseFormComponent(BaseComponent):
-    path = 'Create course page > Exercises > Exercise > Form'
+    """
+    [Form] component
 
-    # 𝌆 DATA
-    TITLE_FIELD_NAME = 'Title'
-    TITLE_FIELD_DEFAULT_VALUE = 'Exercise title'
-    DESCRIPTION_FIELD_NAME = 'Description'
-    DESCRIPTION_FIELD_DEFAULT_VALUE = 'Exercise description'
+    - Title field
+    - Description field
+    """
+    path = 'Create course page > Exercises > Exercise > Form'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_field_locator(self, index: int = 0) -> Locator:
@@ -32,10 +27,10 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title_field(self, index: int = 0) -> InputField:
-        return InputField(self.title_field_locator(index), self.path, f'Title field (index: {index})')
+        return InputField(self.title_field_locator(index), self.path, f'Title field)')
 
     def description_field(self, index: int = 0) -> InputField:
-        return InputField(self.description_field_locator(index), self.path, f'Description field (index: {index})')
+        return InputField(self.description_field_locator(index), self.path, f'Description field')
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Fill [Exercise form]
@@ -142,10 +137,10 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        self.title_field(index).check_name(name=self.TITLE_FIELD_NAME)
+        self.title_field(index).check_name(name='Title')
 
     # Value
-    def check_title_field_value(self, index: int = 0, title: str = DESCRIPTION_FIELD_DEFAULT_VALUE):
+    def check_title_field_value(self, index: int = 0, title: str = 'Exercise description'):
         """
         ✔ Check [Title field] value
 
@@ -198,10 +193,10 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        self.description_field(index).check_name(name=self.DESCRIPTION_FIELD_NAME)
+        self.description_field(index).check_name(name='Description')
 
     # Value
-    def check_description_field_value(self, index: int = 0, description: str = TITLE_FIELD_DEFAULT_VALUE):
+    def check_description_field_value(self, index: int = 0, description: str = 'Exercise title'):
         """
         ✔ Check [Description field] value
 

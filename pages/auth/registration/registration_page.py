@@ -10,27 +10,22 @@ from playwright.sync_api import Locator, Page
 from components.auth.registration.form_component import RegistrationFormComponent
 
 #=======================================================================================================================
-"""
-[Registration page]:
-- Title
-- Registration form (component)
-- Registration button
-- Login link
-"""
 class RegistrationPage(BasePage):       # Дочерний класс (наследует класс BasePage)
+    """
+    [Registration page]
+
+    - Title
+    - Registration form (component)
+    - Registration button
+    - Login link
+    """
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
     path = 'Registration page'
-
-    # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
-    TITLE_TEXT = 'UI Course'
-    REGISTRATION_BTN_TEXT = 'Registration'
-    LOGIN_LINK_TEXT = 'Login'
-    LOGIN_LINK_HREF = '#/auth/login'
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
+        # ⿳ COMPONENTS
         self.form = RegistrationFormComponent(page)
 
     # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
@@ -131,7 +126,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.title().check_text(text=self.TITLE_TEXT)
+        self.title().check_text(text='UI Course')
 
 
     # [Registration button]
@@ -188,7 +183,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.registration_btn().check_text(text=self.REGISTRATION_BTN_TEXT)
+        self.registration_btn().check_text(text='Registration')
 
 
     # [Login link]
@@ -222,7 +217,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.login_link().check_text(text=self.LOGIN_LINK_TEXT)
+        self.login_link().check_text(text='Login')
 
     # href
     def check_login_link_href(self):
@@ -231,7 +226,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.login_link().check_href(href=self.LOGIN_LINK_HREF)
+        self.login_link().check_href(href='#/auth/login')
 
     # Redirect
     @allure.step('✔ Check [Login link] redirect to Login page')

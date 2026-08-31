@@ -8,49 +8,44 @@ from components.base_component import BaseComponent
 from playwright.sync_api import Locator, Page
 from elements.image import Image
 from elements.text import Text
-from typing import Literal
 
 #=======================================================================================================================
-"""
-[Widget]:
-- Title  (students | activities | courses | scores )
-- Chart  (   bar   |    line    |   pie   | scatter)
-"""
 class DashboardWidgetComponent(BaseComponent):
-    Identifier = Literal['students', 'activities', 'courses', 'scores'] # Type of accepted identifiers
-    ChartType = Literal['bar', 'line', 'pie', 'scatter']                # Type of accepted chart types
-
-    def __init__(self, page: Page, identifier: Identifier, chart_type: ChartType):
+    def __init__(self, page: Page, identifier: str, chart_type: str):
         """
+        [Widget] component
+
+        - Title  [students | activities | courses | scores ]
+        - Chart  [   bar   |    line    |   pie   | scatter]
         :param page: Page
-        :param identifier: Unique part of locator (students | activities | courses | scores )
-        :param chart_type: Unique part of locator (   bar   |     line   |   pie   | scatter)
+        :param identifier: Unique part of locator [students | activities | courses | scores ]
+        :param chart_type: Unique part of locator [   bar   |     line   |   pie   | scatter]
         """
         super().__init__(page)
+        self.identifier = identifier
+        self.chart_type = chart_type
+        self.path = f'Dashboard page > {self.identifier.capitalize()}-widget'
 
-        self._identifier = identifier                # raw - for locators
-        self._chart_type = chart_type                # raw - for locators
-        self.widget_name = identifier.capitalize()   # for logging
-        self.chart_name = chart_type.capitalize()    # for logging
-        self.path = f'Dashboard page > {self.widget_name}-widget'
 
     # ------------------------------------------------ ㉧ LOCATORS -------------------------------------------------
     def title_locator(self) -> Locator:
-        return self.page.get_by_test_id(f'{self._identifier}-widget-title-text')
+        return self.page.get_by_test_id(f'{self.identifier}-widget-title-text')
 
     def chart_locator(self) -> Locator:
-        return self.page.get_by_test_id(f'{self._identifier}-{self._chart_type}-chart')
+        return self.page.get_by_test_id(f'{self.identifier}-{self.chart_type}-chart')
+
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title(self) -> Text:
         return Text(self.title_locator(), self.path, 'Title')
 
     def chart(self) -> Image:
-        return Image(self.chart_locator(), self.path, f'{self.chart_name}-chart')
+        return Image(self.chart_locator(), self.path, f'{self.chart_type.capitalize()}-chart')
+
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Widget]
-    # ─────────────────────────────────┐
+    # ────────────────────────────────────────┐
     @allure.step('✔ Check [Widget]')
     def check(self, title: str):
         """
@@ -63,7 +58,7 @@ class DashboardWidgetComponent(BaseComponent):
         """
         self.check_title(title)
         self.check_chart()
-    # ─────────────────────────────────┘
+    # ────────────────────────────────────────┘
 
     # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
@@ -100,7 +95,7 @@ class DashboardWidgetComponent(BaseComponent):
 
 
     # [Chart]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Chart]')
     def check_chart(self):
         """
@@ -109,7 +104,7 @@ class DashboardWidgetComponent(BaseComponent):
         - ✔ Chart - visible
         """
         self.check_chart_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     # Visible
     def check_chart_visible(self):
         """
