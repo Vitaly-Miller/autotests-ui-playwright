@@ -5,7 +5,7 @@ import allure
 from elements.button import Button
 from elements.link import Link
 from pages.base_page import BasePage
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 from components.auth.login.form_component import LoginFormComponent
 from elements.text import Text
 
@@ -20,33 +20,46 @@ from elements.text import Text
 """
 class LoginPage(BasePage):              # Дочерний класс (наследует класс BasePage)
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
+    path = 'Login page'
+
+    # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
+    TITLE_TEXT = 'UI Course'
+    LOGIN_BTN_TEXT = 'Login'
+    REG_LINK_TEXT = 'Registration'
+    REG_LINK_HREF = '#/auth/registration'
+    ALERT_TEXT = 'Wrong email or password'
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
-        self.TITLE_TEXT = 'UI Course'
-        self.LOGIN_BTN_TEXT = 'Login'
-        self.REG_LINK_TEXT = 'Registration'
-        self.REG_LINK_HREF = '#/auth/registration'
-        self.ALERT_TEXT = 'Wrong email or password'
-
-        # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
-        self.title_locator = page.get_by_test_id('authentication-ui-course-title-text')
-        self.login_btn_locator = page.get_by_test_id('login-page-login-button')
-        self.reg_link_locator = page.get_by_test_id('login-page-registration-link')
-        self.alert_locator = page.get_by_test_id('login-page-wrong-email-or-password-alert')
-
         # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
         self.form = LoginFormComponent(page)
 
-        # ------------------------------------------------- ◈ ELEMENTS -------------------------------------------------
-        self.path = 'Login page'
+    # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id('authentication-ui-course-title-text')
 
-        self.title = Text(self.title_locator, self.path, 'Title')
-        self.login_btn = Button(self.login_btn_locator, self.path, 'Login button')
-        self.reg_link = Link(self.reg_link_locator, self.path, 'Registration link')
-        self.alert = Text(self.alert_locator, self.path, 'Alert')
+    def login_btn_locator(self) -> Locator:
+        return self.page.get_by_test_id('login-page-login-button')
+
+    def reg_link_locator(self) -> Locator:
+        return self.page.get_by_test_id('login-page-registration-link')
+
+    def alert_locator(self) -> Locator:
+        return self.page.get_by_test_id('login-page-wrong-email-or-password-alert')
+
+    # ------------------------------------------------- ◈ ELEMENTS -------------------------------------------------
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, 'Title')
+
+    def login_btn(self) -> Button:
+        return Button(self.login_btn_locator(), self.path, 'Login button')
+
+    def reg_link(self) -> Link:
+        return Link(self.reg_link_locator(), self.path, 'Registration link')
+
+    def alert(self) -> Text:
+        return Text(self.alert_locator(), self.path, 'Alert')
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Click [Login button]
@@ -56,7 +69,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.login_btn.click()
+        self.login_btn().click()
 
     # Click [Registration link]
     def click_registration_link(self):
@@ -65,13 +78,13 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.reg_link.click()
+        self.reg_link().click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Login page]
     # ──────────────────────────────────┐
     @allure.step('✔ Check [Login page]')
-    def check_page(
+    def check(
             self,
             email: str | None = None,
             password: str | None = None,
@@ -81,7 +94,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         ✔ Check [Login page]
 
         - ✔ Title - visible | - text
-        - ✔ Login form - UI / values
+        - ✔ Login form - UI / values (if is passed)
         - ✔ Login button - disabled / enabled
         - ✔ Registration link - visible | - text | - URL
 
@@ -115,7 +128,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.title.check_visible()
+        self.title().check_visible()
 
     # Text
     def check_title_text(self):
@@ -124,7 +137,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.title.check_text(text=self.TITLE_TEXT)
+        self.title().check_text(text=self.TITLE_TEXT)
 
 
     # [Login button]
@@ -154,7 +167,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.login_btn.check_visible()
+        self.login_btn().check_visible()
 
     # Enabled
     def check_login_btn_enabled(self):
@@ -163,7 +176,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         (If the Login form is completed successfully)
         """
-        self.login_btn.check_enabled()
+        self.login_btn().check_enabled()
 
     # Disabled
     def check_login_btn_disabled(self):
@@ -172,7 +185,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         (If the Login form is NOT completed successfully)
         """
-        self.login_btn.check_disabled()
+        self.login_btn().check_disabled()
 
     # Text
     def check_login_btn_text(self):
@@ -181,7 +194,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.login_btn.check_text(text=self.LOGIN_BTN_TEXT)
+        self.login_btn().check_text(text=self.LOGIN_BTN_TEXT)
 
 
     # [Registration link]
@@ -206,7 +219,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.reg_link.check_visible()
+        self.reg_link().check_visible()
 
     # Text
     def check_reg_link_text(self):
@@ -215,7 +228,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.reg_link.check_text(text=self.REG_LINK_TEXT)
+        self.reg_link().check_text(text=self.REG_LINK_TEXT)
 
     # href
     def check_reg_link_href(self):
@@ -224,7 +237,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.reg_link.check_href(href=self.REG_LINK_HREF)
+        self.reg_link().check_href(href=self.REG_LINK_HREF)
 
 
     # [Alert]
@@ -247,7 +260,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.alert.check_visible()
+        self.alert().check_visible()
 
     # Text
     def check_alert_text(self):
@@ -256,6 +269,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.alert.check_text(text=self.ALERT_TEXT)
+        self.alert().check_text(text=self.ALERT_TEXT)
 
 #=======================================================================================================================

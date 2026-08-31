@@ -86,7 +86,7 @@ class BaseElement:
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} text is: {text}'):
+        with allure.step(f'✔ Check {self.name}{nth_info} text: "{text}"'):
             error = f'{self.error}{nth_info} - incorrect text!'
             expect(self.locator.nth(nth), error).to_have_text(text)
 

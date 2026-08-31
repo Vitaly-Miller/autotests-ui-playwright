@@ -5,7 +5,7 @@ Create course page > Exercises > [Toolbar]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator
 from elements.button import Button
 from elements.text import Text
 
@@ -16,20 +16,24 @@ from elements.text import Text
 - Create exercise button
 """
 class CreateCourseExercisesToolbarComponent(BaseComponent):
+    path = 'Create course page > Exercises > Toolbar'
+
     # 𝌆 DATA
     TITLE_TEXT = 'Exercises'
 
-    def __init__(self, page: Page):
-        super().__init__(page)
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
 
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title_locator = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
-        self.create_exercise_btn_locator = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
+    def create_exercise_btn_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = 'Create course page > Exercises > Toolbar'
-        self.title = Text(self.title_locator, self.path, 'Title')
-        self.create_exercise_btn = Button(self.create_exercise_btn_locator, self.path, 'Create exercise button')
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, 'Title')
+
+    def create_exercise_btn(self) -> Button:
+        return Button(self.create_exercise_btn_locator(), self.path, 'Create exercise button')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Create exercise button]
@@ -39,7 +43,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
 
         .
         """
-        self.create_exercise_btn.click()
+        self.create_exercise_btn().click()
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Toolbar]
@@ -76,7 +80,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
 
         .
         """
-        self.title.check_visible()
+        self.title().check_visible()
 
     # Text
     def check_title_text(self):
@@ -85,7 +89,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
 
         .
         """
-        self.title.check_text(self.TITLE_TEXT)
+        self.title().check_text(self.TITLE_TEXT)
 
 
     # [Create exercise button]
@@ -106,6 +110,6 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
 
         .
         """
-        self.create_exercise_btn.check_visible()
+        self.create_exercise_btn().check_visible()
 
 #=======================================================================================================================

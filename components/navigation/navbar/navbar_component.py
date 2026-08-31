@@ -5,7 +5,7 @@ Navbar
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator
 from elements.text import Text
 
 #=======================================================================================================================
@@ -15,23 +15,28 @@ from elements.text import Text
 - Welcome title
 """
 class NavbarComponent(BaseComponent):
+    path = 'Navbar'
+
     # 𝌆 DATA
     TITLE_TEXT = 'UI Course'
 
-    def __init__(self, page: Page):
-        super().__init__(page)
+    @staticmethod
+    def welcome_title_text(username: str) -> str:
+        return f'Welcome, {username}!'
 
-        # 𝌆 DATA (dynamic)
-        self.WELCOME_TITLE_TEXT = lambda username: f'Welcome, {username}!'
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id('navigation-navbar-app-title-text')
 
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title_locator = page.get_by_test_id('navigation-navbar-app-title-text')
-        self.welcome_title_locator = page.get_by_test_id('navigation-navbar-welcome-title-text')
+    def welcome_title_locator(self) -> Locator:
+        return self.page.get_by_test_id('navigation-navbar-welcome-title-text')
 
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = 'Navbar'
-        self.title = Text(self.title_locator, self.path, 'Title')
-        self.welcome_title = Text(self.welcome_title_locator, self.path, 'Welcome title')
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, 'Title')
+
+    def welcome_title(self) -> Text:
+        return Text(self.welcome_title_locator(), self.path, 'Welcome title')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Navbar]
@@ -70,7 +75,7 @@ class NavbarComponent(BaseComponent):
 
         .
         """
-        self.title.check_visible()
+        self.title().check_visible()
 
     # Text
     def check_title_text(self):
@@ -79,7 +84,7 @@ class NavbarComponent(BaseComponent):
 
         .
         """
-        self.title.check_text(self.TITLE_TEXT)
+        self.title().check_text(self.TITLE_TEXT)
 
 
     # [Welcome title]
@@ -104,7 +109,7 @@ class NavbarComponent(BaseComponent):
 
         .
         """
-        self.welcome_title.check_visible()
+        self.welcome_title().check_visible()
 
     # Text
     def check_welcome_title_text(self, username: str):
@@ -113,6 +118,6 @@ class NavbarComponent(BaseComponent):
 
         :param username: Username
         """
-        self.welcome_title.check_text(self.WELCOME_TITLE_TEXT(username))
+        self.welcome_title().check_text(self.welcome_title_text(username))
 
 #=======================================================================================================================

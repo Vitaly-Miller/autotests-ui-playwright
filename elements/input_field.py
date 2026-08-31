@@ -30,7 +30,7 @@ class InputField(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} name is "{name}"'):
+        with allure.step(f'✔ Check {self.name}{nth_info} name: "{name}"'):
             error = f'{self.error}{nth_info} - incorrect name!'
             expect(self.locator.nth(nth), error).to_have_accessible_name(name)
 
@@ -43,7 +43,7 @@ class InputField(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} placeholder is "{placeholder}"'):
+        with allure.step(f'✔ Check {self.name}{nth_info} placeholder: "{placeholder}"'):
             error = f'{self.error}{nth_info} - incorrect placeholder!'
             expect(self.locator.nth(nth), error).to_have_attribute('placeholder', placeholder)
 
@@ -56,7 +56,7 @@ class InputField(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} value is "{value}"'):
+        with allure.step(f'✔ Check {self.name}{nth_info} value: "{value}"'):
             error = f'{self.error}{nth_info} - incorrect value!'
             expect(self.locator.nth(nth), error).to_have_value(value)
 

@@ -6,7 +6,7 @@ Create course page > [Image upload widget]
 import allure
 from components.base_component import BaseComponent
 from components.views.empty_view_component import EmptyViewComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 from elements.button import Button
 from elements.icon import Icon
 from elements.image import Image
@@ -27,6 +27,8 @@ from elements.text import Text
     - Image view
 """
 class CreateCourseImageUploadWidgetComponent(BaseComponent):
+    path = 'Create course page > Image upload widget'
+
     # 𝌆 DATA
     # [Upload view]
     IDENTIFIER = 'create-course-preview'
@@ -40,31 +42,57 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
     def __init__(self, page: Page):
         super().__init__(page)
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        # [Upload view]
-        self.upload_view_icon_locator = page.get_by_test_id('create-course-preview-image-upload-widget-info-icon')
-        self.upload_view_title_locator = page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
-        self.upload_view_description_locator = page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
-        self.upload_image_btn_locator = page.get_by_test_id('create-course-preview-image-upload-widget-upload-button')
-        self.upload_image_input_locator = page.get_by_test_id('create-course-preview-image-upload-widget-input')        # hidden input for upload file
-        self.remove_image_btn_locator = page.get_by_test_id('create-course-preview-image-upload-widget-remove-button')  # visible after upload image only
-        # Preview view [Image view]
-        self.preview_view_image_view_locator = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
-
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = 'Create course page > Image upload widget'
-        # [Upload view]
-        self.upload_view_icon = Icon(self.upload_view_icon_locator, self.path, 'Upload view - Icon')
-        self.upload_view_title = Text(self.upload_view_title_locator, self.path, 'Upload view - Title')
-        self.upload_view_description = Text(self.upload_view_description_locator, self.path, 'Upload view - Description')
-        self.upload_image_btn = Button(self.upload_image_btn_locator, self.path, 'Upload image button')
-        self.upload_image_input = InputFile(self.upload_image_input_locator, self.path, 'Upload image input')
-        self.remove_image_btn = Button(self.remove_image_btn_locator, self.path, 'Remove image button')
-        # Preview view [Image view]
-        self.preview_view_image_view = Image(self.preview_view_image_view_locator, self.path, 'Preview view - Image view')
 
         # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
         self.preview_view_empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, path=self.path)
+
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    # [Upload view]
+    def upload_view_icon_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-preview-image-upload-widget-info-icon')
+
+    def upload_view_title_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-preview-image-upload-widget-info-title-text')
+
+    def upload_view_description_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-preview-image-upload-widget-info-description-text')
+
+    def upload_image_btn_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-preview-image-upload-widget-upload-button')
+
+    def upload_image_input_locator(self) -> Locator:  # hidden input for upload file
+        return self.page.get_by_test_id('create-course-preview-image-upload-widget-input')
+
+    def remove_image_btn_locator(self) -> Locator:  # visible after upload image only
+        return self.page.get_by_test_id('create-course-preview-image-upload-widget-remove-button')
+
+    # Preview view [Image view]
+    def preview_view_image_view_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
+
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    # [Upload view]
+    def upload_view_icon(self) -> Icon:
+        return Icon(self.upload_view_icon_locator(), self.path, 'Upload view - Icon')
+
+    def upload_view_title(self) -> Text:
+        return Text(self.upload_view_title_locator(), self.path, 'Upload view - Title')
+
+    def upload_view_description(self) -> Text:
+        return Text(self.upload_view_description_locator(), self.path, 'Upload view - Description')
+
+    def upload_image_btn(self) -> Button:
+        return Button(self.upload_image_btn_locator(), self.path, 'Upload image button')
+
+    def upload_image_input(self) -> InputFile:
+        return InputFile(self.upload_image_input_locator(), self.path, 'Upload image input')
+
+    def remove_image_btn(self) -> Button:
+        return Button(self.remove_image_btn_locator(), self.path, 'Remove image button')
+
+    # Preview view [Image view]
+    def preview_view_image_view(self) -> Image:
+        return Image(self.preview_view_image_view_locator(), self.path, 'Preview view - Image view')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Upload image file
@@ -79,7 +107,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         :param file: Image file name
         """
-        self.upload_image_input.upload(file)
+        self.upload_image_input().upload(file)
         self.check_preview_view_image_view_visible()
         self.check_remove_image_btn_visible()
 
@@ -90,7 +118,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.remove_image_btn.click()
+        self.remove_image_btn().click()
 
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
@@ -167,7 +195,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.preview_view_image_view.check_visible()
+        self.preview_view_image_view().check_visible()
 
 
     # [Upload view]
@@ -210,7 +238,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_view_icon.check_visible()
+        self.upload_view_icon().check_visible()
 
 
     # Upload view [Title]
@@ -233,7 +261,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_view_title.check_visible()
+        self.upload_view_title().check_visible()
 
     # Text
     def check_upload_view_title_text(self):
@@ -242,7 +270,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_view_title.check_text(self.UPLOAD_VIEW_TITLE_TEXT)
+        self.upload_view_title().check_text(self.UPLOAD_VIEW_TITLE_TEXT)
 
 
     # Upload view [Description]
@@ -265,7 +293,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_view_description.check_visible()
+        self.upload_view_description().check_visible()
 
     # Text
     def check_upload_view_description_text(self):
@@ -274,7 +302,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_view_description.check_text(self.UPLOAD_VIEW_DESCRIPTION_TEXT)
+        self.upload_view_description().check_text(self.UPLOAD_VIEW_DESCRIPTION_TEXT)
 
 
     # Upload view [Upload image button]
@@ -299,7 +327,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_image_btn.check_visible()
+        self.upload_image_btn().check_visible()
 
     # Enabled
     def check_upload_image_btn_enabled(self):
@@ -308,7 +336,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_image_btn.check_enabled()
+        self.upload_image_btn().check_enabled()
 
     # Text
     def check_upload_image_btn_text(self):
@@ -317,7 +345,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.upload_image_btn.check_text(self.UPLOAD_IMAGE_BTN_TEXT)
+        self.upload_image_btn().check_text(self.UPLOAD_IMAGE_BTN_TEXT)
 
 
     # Upload view [Remove image button]
@@ -353,7 +381,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         (For case - if image UPLOADED)
         """
-        self.remove_image_btn.check_visible()
+        self.remove_image_btn().check_visible()
 
     # Hidden
     def check_remove_image_btn_hidden(self):
@@ -362,7 +390,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         (For case - if image did NOT upload)
         """
-        self.remove_image_btn.check_hidden()
+        self.remove_image_btn().check_hidden()
 
     # Enabled
     def check_remove_image_btn_enabled(self):
@@ -371,7 +399,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.remove_image_btn.check_enabled()
+        self.remove_image_btn().check_enabled()
 
     # Text
     def check_remove_image_btn_text(self):
@@ -380,7 +408,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         .
         """
-        self.remove_image_btn.check_text(self.REMOVE_IMAGE_BTN_TEXT)
+        self.remove_image_btn().check_text(self.REMOVE_IMAGE_BTN_TEXT)
 
 
 #=======================================================================================================================

@@ -5,7 +5,7 @@ Empty view
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 from elements.icon import Icon
 from elements.text import Text
 from typing import Literal
@@ -27,19 +27,29 @@ class EmptyViewComponent(BaseComponent):
         """
         super().__init__(page)
 
-        # 𝌆 DATA (dynamic)
-        self.identifier = identifier.capitalize().replace('-', ' ')    # formating for logging
-
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.icon_locator = page.get_by_test_id(f'{identifier}-empty-view-icon')
-        self.title_locator = page.get_by_test_id(f'{identifier}-empty-view-title-text')
-        self.description_locator = page.get_by_test_id(f'{identifier}-empty-view-description-text')
-
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
+        self._identifier = identifier                                           # raw - for locators
+        self.identifier = identifier.capitalize().replace('-', ' ')             # formating for logging
         self.path = f'{path} > {self.identifier} > Empty view'
-        self.icon = Icon(self.icon_locator, self.path, 'Icon')
-        self.title = Text(self.title_locator, self.path, 'Title')
-        self.description = Text(self.description_locator, self.path, 'Description')
+
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def icon_locator(self) -> Locator:
+        return self.page.get_by_test_id(f'{self._identifier}-empty-view-icon')
+
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id(f'{self._identifier}-empty-view-title-text')
+
+    def description_locator(self) -> Locator:
+        return self.page.get_by_test_id(f'{self._identifier}-empty-view-description-text')
+
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def icon(self) -> Icon:
+        return Icon(self.icon_locator(), self.path, 'Icon')
+
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, 'Title')
+
+    def description(self) -> Text:
+        return Text(self.description_locator(), self.path, 'Description')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Empty view]
@@ -79,7 +89,7 @@ class EmptyViewComponent(BaseComponent):
 
         .
         """
-        self.icon.check_visible()
+        self.icon().check_visible()
 
 
     # [Title]
@@ -104,7 +114,7 @@ class EmptyViewComponent(BaseComponent):
 
         .
         """
-        self.title.check_visible()
+        self.title().check_visible()
 
     # Text
     def check_title_text(self, title: str):
@@ -113,7 +123,7 @@ class EmptyViewComponent(BaseComponent):
 
         :param title: Title text
         """
-        self.title.check_text(title)
+        self.title().check_text(title)
 
 
     # [Description]
@@ -138,7 +148,7 @@ class EmptyViewComponent(BaseComponent):
 
         .
         """
-        self.description.check_visible()
+        self.description().check_visible()
 
     # Text
     def check_description_text(self, description: str):
@@ -147,6 +157,6 @@ class EmptyViewComponent(BaseComponent):
 
         :param description: Description text
         """
-        self.description.check_text(description)
+        self.description().check_text(description)
 
 #=======================================================================================================================

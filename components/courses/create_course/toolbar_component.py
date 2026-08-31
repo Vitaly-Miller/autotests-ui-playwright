@@ -5,7 +5,7 @@ Create course page > [Toolbar]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator
 from elements.button import Button
 from elements.text import Text
 
@@ -16,20 +16,24 @@ from elements.text import Text
 - Create course button
 """
 class CreateCourseToolbarComponent(BaseComponent):
+    path = 'Create course page > Toolbar'
+
     # 𝌆 DATA
     TITLE_TEXT = 'Create course'
 
-    def __init__(self, page: Page):
-        super().__init__(page)
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-toolbar-title-text')
 
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title_locator = page.get_by_test_id('create-course-toolbar-title-text')
-        self.create_course_btn_locator = page.get_by_test_id('create-course-toolbar-create-course-button')
+    def create_course_btn_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-toolbar-create-course-button')
 
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = 'Create course page > Toolbar'
-        self.title = Text(self.title_locator, self.path, 'Title')
-        self.create_course_btn = Button(self.create_course_btn_locator, self.path, 'Create course button')
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, 'Title')
+
+    def create_course_btn(self) -> Button:
+        return Button(self.create_course_btn_locator(), self.path, 'Create course button')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Create course button]
@@ -39,7 +43,7 @@ class CreateCourseToolbarComponent(BaseComponent):
 
         .
         """
-        self.create_course_btn.click()
+        self.create_course_btn().click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -78,7 +82,7 @@ class CreateCourseToolbarComponent(BaseComponent):
 
         .
         """
-        self.title.check_visible()
+        self.title().check_visible()
 
     # Text
     def check_title_text(self):
@@ -87,7 +91,7 @@ class CreateCourseToolbarComponent(BaseComponent):
 
         .
         """
-        self.title.check_text(self.TITLE_TEXT)
+        self.title().check_text(self.TITLE_TEXT)
 
 
     # [Create course button]
@@ -113,7 +117,7 @@ class CreateCourseToolbarComponent(BaseComponent):
 
         .
         """
-        self.create_course_btn.check_visible()
+        self.create_course_btn().check_visible()
 
     # Enabled
     def check_create_course_btn_enabled(self):
@@ -122,7 +126,7 @@ class CreateCourseToolbarComponent(BaseComponent):
 
         (If create course Form filled & Image uploaded)
         """
-        self.create_course_btn.check_enabled()
+        self.create_course_btn().check_enabled()
 
     # Disabled
     def check_create_course_btn_disabled(self):
@@ -131,7 +135,7 @@ class CreateCourseToolbarComponent(BaseComponent):
 
         (If create course Form did NOT filled & Image did NOT upload)
         """
-        self.create_course_btn.check_disabled()
+        self.create_course_btn().check_disabled()
 
 
 #=======================================================================================================================

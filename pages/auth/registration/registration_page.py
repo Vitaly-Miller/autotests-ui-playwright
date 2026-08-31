@@ -6,7 +6,7 @@ from elements.button import Button
 from elements.link import Link
 from elements.text import Text
 from pages.base_page import BasePage
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 from components.auth.registration.form_component import RegistrationFormComponent
 
 #=======================================================================================================================
@@ -19,30 +19,39 @@ from components.auth.registration.form_component import RegistrationFormComponen
 """
 class RegistrationPage(BasePage):       # Дочерний класс (наследует класс BasePage)
     URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
+    path = 'Registration page'
+
+    # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
+    TITLE_TEXT = 'UI Course'
+    REGISTRATION_BTN_TEXT = 'Registration'
+    LOGIN_LINK_TEXT = 'Login'
+    LOGIN_LINK_HREF = '#/auth/login'
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
-        # -------------------------------------------------- 𝌆 DATA ---------------------------------------------------
-        self.TITLE_TEXT = 'UI Course'
-        self.REGISTRATION_BTN_TEXT = 'Registration'
-        self.LOGIN_LINK_TEXT = 'Login'
-        self.LOGIN_LINK_HREF = '#/auth/login'
-
-        # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
-        self.title_locator = page.get_by_test_id('authentication-ui-course-title-text')
-        self.registration_btn_locator = page.get_by_test_id('registration-page-registration-button')
-        self.login_link_locator = page.get_by_test_id('registration-page-login-link')
-
         # ----------------------------------------------- ⿳ COMPONENTS ------------------------------------------------
         self.form = RegistrationFormComponent(page)
 
-        # ------------------------------------------------- ◈ ELEMENTS -------------------------------------------------
-        self.path = 'Registration page'
+    # ------------------------------------------------ ㉧ LOCATORS --------------------------------------------------
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id('authentication-ui-course-title-text')
 
-        self.title = Text(self.title_locator, self.path, 'Title')
-        self.registration_btn = Button(self.registration_btn_locator, self.path, 'Registration button')
-        self.login_link = Link(self.login_link_locator, self.path, 'Login link')
+    def registration_btn_locator(self) -> Locator:
+        return self.page.get_by_test_id('registration-page-registration-button')
+
+    def login_link_locator(self) -> Locator:
+        return self.page.get_by_test_id('registration-page-login-link')
+
+    # ------------------------------------------------- ◈ ELEMENTS -------------------------------------------------
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, 'Title')
+
+    def registration_btn(self) -> Button:
+        return Button(self.registration_btn_locator(), self.path, 'Registration button')
+
+    def login_link(self) -> Link:
+        return Link(self.login_link_locator(), self.path, 'Login link')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Registration button]
@@ -52,7 +61,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.registration_btn.click()
+        self.registration_btn().click()
 
     # Click [Login link]
     def click_login_link(self):
@@ -61,13 +70,13 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.login_link.click()
+        self.login_link().click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Registration page]
     # ──────────────────────────────────┐
     @allure.step('✔ Check [Registration page]')
-    def check_page(
+    def check(
             self,
             email: str | None = None,
             username: str | None = None,
@@ -113,7 +122,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.title.check_visible()
+        self.title().check_visible()
 
     # Text
     def check_title_text(self):
@@ -122,7 +131,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.title.check_text(text=self.TITLE_TEXT)
+        self.title().check_text(text=self.TITLE_TEXT)
 
 
     # [Registration button]
@@ -152,7 +161,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.registration_btn.check_visible()
+        self.registration_btn().check_visible()
 
     # Enabled
     def check_registration_btn_enabled(self):
@@ -161,7 +170,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         (If the Registration form is completed successfully)
         """
-        self.registration_btn.check_enabled()
+        self.registration_btn().check_enabled()
 
     # Disabled
     def check_registration_btn_disabled(self):
@@ -170,7 +179,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         (If the Registration form is NOT completed successfully)
         """
-        self.registration_btn.check_disabled()
+        self.registration_btn().check_disabled()
 
     # Text
     def check_registration_btn_text(self):
@@ -179,7 +188,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.registration_btn.check_text(text=self.REGISTRATION_BTN_TEXT)
+        self.registration_btn().check_text(text=self.REGISTRATION_BTN_TEXT)
 
 
     # [Login link]
@@ -204,7 +213,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.login_link.check_visible()
+        self.login_link().check_visible()
 
     # Text
     def check_login_link_text(self):
@@ -213,7 +222,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.login_link.check_text(text=self.LOGIN_LINK_TEXT)
+        self.login_link().check_text(text=self.LOGIN_LINK_TEXT)
 
     # href
     def check_login_link_href(self):
@@ -222,7 +231,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.login_link.check_href(href=self.LOGIN_LINK_HREF)
+        self.login_link().check_href(href=self.LOGIN_LINK_HREF)
 
     # Redirect
     @allure.step('✔ Check [Login link] redirect to Login page')

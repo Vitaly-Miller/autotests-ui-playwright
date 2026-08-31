@@ -14,7 +14,7 @@ class InputFile(BaseElement):
 
         :param file: File name
         """
-        with allure.step(f'▶ Upload {file} via {self.name}'):
+        with allure.step(f'▶ Upload "{file}" via {self.name}'):
             self.locator.set_input_files(self.FILES/file)
 
 

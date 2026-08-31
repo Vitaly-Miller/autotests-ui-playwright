@@ -5,7 +5,7 @@ Create course page > Exercises > Exercise > [Form]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Locator, Page
+from playwright.sync_api import Locator
 from elements.input_field import InputField
 
 #=======================================================================================================================
@@ -15,41 +15,33 @@ from elements.input_field import InputField
 - Description field
 """
 class CreateCourseExerciseFormComponent(BaseComponent):
+    path = 'Create course page > Exercises > Exercise > Form'
+
     # 𝌆 DATA
     TITLE_FIELD_NAME = 'Title'
+    TITLE_FIELD_DEFAULT_VALUE = 'Exercise title'
     DESCRIPTION_FIELD_NAME = 'Description'
+    DESCRIPTION_FIELD_DEFAULT_VALUE = 'Exercise description'
 
-    def __init__(self, page: Page):
-        super().__init__(page)
-
-        # --------------------------------------- ㉧ LOCATORS {dynamic} (lambda) ----------------------------------------
-        self.title_field_locator = lambda index: page.get_by_test_id(f'create-course-exercise-form-title-{index}-input')
-        self.description_field_locator = lambda index: page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
-
-        # ---------------------------------------- ◈ ELEMENTS {dynamic} (lambda) ---------------------------------------
-        self.path = 'Create course page > Exercises > Exercise > Form'
-        self.title_field = lambda index: InputField(self.title_field_locator(index), self.path, f'Title field (index: {index})')
-        self.description_field = lambda index: InputField(self.description_field_locator(index), self.path, f'Description field (index: {index})')
-
-    # -------------------------------------------- ㉧ LOCATORS {dynamic} (def)-------------------------------------------
-    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ⚠️ NOT USING ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╮
-    def _title_field(self, index: int = 0) -> Locator:
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def title_field_locator(self, index: int = 0) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-form-title-{index}-input')
 
-    def _description_field(self, index: int = 0) -> Locator:
+    def description_field_locator(self, index: int = 0) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-form-description-{index}-input')
-    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ FOR EXAMPLE ONLY ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╯
 
-    # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def title_field(self, index: int = 0) -> InputField:
+        return InputField(self.title_field_locator(index), self.path, f'Title field (index: {index})')
+
+    def description_field(self, index: int = 0) -> InputField:
+        return InputField(self.description_field_locator(index), self.path, f'Description field (index: {index})')
+
+    # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Fill [Exercise form]
     # ───────────────────────────────────────────────────────────────────┐
     @allure.step('▶ Fill [Exercise form]')
-    def fill(
-        self,
-        title: str,
-        description: str,
-        index: int = 0
-    ):
+    def fill(self, title: str, description: str, index: int = 0):
         """
         ▶ Fill [Exercise form]
 
@@ -153,7 +145,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         self.title_field(index).check_name(name=self.TITLE_FIELD_NAME)
 
     # Value
-    def check_title_field_value(self, index: int = 0, title: str = 'Exercise title'):
+    def check_title_field_value(self, index: int = 0, title: str = DESCRIPTION_FIELD_DEFAULT_VALUE):
         """
         ✔ Check [Title field] value
 
@@ -209,7 +201,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         self.description_field(index).check_name(name=self.DESCRIPTION_FIELD_NAME)
 
     # Value
-    def check_description_field_value(self, index: int = 0, description: str = 'Exercise description'):
+    def check_description_field_value(self, index: int = 0, description: str = TITLE_FIELD_DEFAULT_VALUE):
         """
         ✔ Check [Description field] value
 

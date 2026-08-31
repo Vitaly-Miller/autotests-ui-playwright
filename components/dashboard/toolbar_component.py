@@ -5,7 +5,7 @@ Dashboard page > [Toolbar]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator
 from elements.text import Text
 
 #=======================================================================================================================
@@ -14,18 +14,18 @@ from elements.text import Text
 - Title
 """
 class DashboardToolbarComponent(BaseComponent):
+    path = 'Dashboard page > Toolbar'
+
     # 𝌆 DATA
     TITLE_TEXT = 'Dashboard'
 
-    def __init__(self, page: Page):
-        super().__init__(page)
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id('dashboard-toolbar-title-text')
 
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title_locator = page.get_by_test_id('dashboard-toolbar-title-text')
-
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = 'Dashboard page > Toolbar'
-        self.title = Text(self.title_locator, self.path, 'Title')
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, 'Title')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -60,7 +60,7 @@ class DashboardToolbarComponent(BaseComponent):
 
         .
         """
-        self.title.check_visible()
+        self.title().check_visible()
 
     # Text
     def check_title_text(self):
@@ -69,6 +69,6 @@ class DashboardToolbarComponent(BaseComponent):
 
         .
         """
-        self.title.check_text(self.TITLE_TEXT)
+        self.title().check_text(self.TITLE_TEXT)
 
 #=======================================================================================================================

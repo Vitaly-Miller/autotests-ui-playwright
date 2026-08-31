@@ -5,7 +5,7 @@ Dashboard page > [Widget]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 from elements.image import Image
 from elements.text import Text
 from typing import Literal
@@ -28,18 +28,25 @@ class DashboardWidgetComponent(BaseComponent):
         """
         super().__init__(page)
 
-        # 𝌆 DATA (dynamic)
+        self._identifier = identifier                # raw - for locators
+        self._chart_type = chart_type                # raw - for locators
         self.widget_name = identifier.capitalize()   # for logging
         self.chart_name = chart_type.capitalize()    # for logging
-
-        # ------------------------------------------------ ㉧ LOCATORS -------------------------------------------------
-        self.title_locator = page.get_by_test_id(f'{identifier}-widget-title-text')
-        self.chart_locator = page.get_by_test_id(f'{identifier}-{chart_type}-chart')
-
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
         self.path = f'Dashboard page > {self.widget_name}-widget'
-        self.title = Text(self.title_locator, self.path, 'Title')
-        self.chart = Image(self.chart_locator, self.path, f'{self.chart_name}-chart')
+
+    # ------------------------------------------------ ㉧ LOCATORS -------------------------------------------------
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id(f'{self._identifier}-widget-title-text')
+
+    def chart_locator(self) -> Locator:
+        return self.page.get_by_test_id(f'{self._identifier}-{self._chart_type}-chart')
+
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, 'Title')
+
+    def chart(self) -> Image:
+        return Image(self.chart_locator(), self.path, f'{self.chart_name}-chart')
 
     # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
     # [Widget]
@@ -80,7 +87,7 @@ class DashboardWidgetComponent(BaseComponent):
 
         .
         """
-        self.title.check_visible()
+        self.title().check_visible()
 
     # Text
     def check_title_text(self, title: str):
@@ -89,7 +96,7 @@ class DashboardWidgetComponent(BaseComponent):
 
         :param title: Title
         """
-        self.title.check_text(title)
+        self.title().check_text(title)
 
 
     # [Chart]
@@ -110,6 +117,6 @@ class DashboardWidgetComponent(BaseComponent):
 
         .
         """
-        self.chart.check_visible()
+        self.chart().check_visible()
 
 #=======================================================================================================================

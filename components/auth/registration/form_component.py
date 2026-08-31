@@ -5,7 +5,7 @@ Registration page > [Form]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator
 from elements.input_field import InputField
 
 #=======================================================================================================================
@@ -16,24 +16,32 @@ from elements.input_field import InputField
 - Password input field
 """
 class RegistrationFormComponent(BaseComponent):
+    path = 'Registration page > Form'
+
     # 𝌆 DATA
     EMAIL_FIELD_NAME = 'Email'
     USERNAME_FIELD_NAME = 'Username'
     PASSWORD_FIELD_NAME = 'Password'
 
-    def __init__(self, page: Page):
-        super().__init__(page)
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def email_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('registration-form-email-input').locator('input')
 
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.email_field_locator = page.get_by_test_id('registration-form-email-input').locator('input')
-        self.username_field_locator = page.get_by_test_id('registration-form-username-input').locator('input')
-        self.password_field_locator = page.get_by_test_id('registration-form-password-input').locator('input')
+    def username_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('registration-form-username-input').locator('input')
 
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = 'Registration page > Form'
-        self.email_field = InputField(self.email_field_locator, self.path, 'Email field')
-        self.username_field = InputField(self.username_field_locator, self.path, 'Username field')
-        self.password_field = InputField(self.password_field_locator, self.path, 'Password field')
+    def password_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('registration-form-password-input').locator('input')
+
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def email_field(self) -> InputField:
+        return InputField(self.email_field_locator(), self.path, 'Email field')
+
+    def username_field(self) -> InputField:
+        return InputField(self.username_field_locator(), self.path, 'Username field')
+
+    def password_field(self) -> InputField:
+        return InputField(self.password_field_locator(), self.path, 'Password field')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Registration form]
@@ -62,7 +70,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param email: Email
         """
-        self.email_field.fill(email)
+        self.email_field().fill(email)
 
     # Fill [Username field]
     def fill_username_field(self, username: str):
@@ -71,7 +79,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param username: Username
         """
-        self.username_field.fill(username)
+        self.username_field().fill(username)
 
     # Fill [Password field]
     def fill_password_field(self, password: str):
@@ -80,7 +88,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param password: Password
         """
-        self.password_field.fill(password)
+        self.password_field().fill(password)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Registration Form]
@@ -139,7 +147,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        self.email_field.check_visible()
+        self.email_field().check_visible()
 
     # Name
     def check_email_field_name(self):
@@ -148,7 +156,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        self.email_field.check_name(name=self.EMAIL_FIELD_NAME)
+        self.email_field().check_name(name=self.EMAIL_FIELD_NAME)
 
     # Value
     def check_email_field_value(self, email: str):
@@ -157,7 +165,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param email: Email
         """
-        self.email_field.check_value(value=email)
+        self.email_field().check_value(value=email)
 
 
     # [Username field]
@@ -191,7 +199,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        self.username_field.check_visible()
+        self.username_field().check_visible()
 
     # Name
     def check_username_field_name(self):
@@ -200,7 +208,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        self.username_field.check_name(name=self.USERNAME_FIELD_NAME)
+        self.username_field().check_name(name=self.USERNAME_FIELD_NAME)
 
     # Value
     def check_username_field_value(self, username: str):
@@ -209,7 +217,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param username: Username
         """
-        self.username_field.check_value(value=username)
+        self.username_field().check_value(value=username)
 
 
     # [Password field]
@@ -243,7 +251,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        self.password_field.check_visible()
+        self.password_field().check_visible()
 
     # Name
     def check_password_field_name(self):
@@ -252,7 +260,7 @@ class RegistrationFormComponent(BaseComponent):
 
         .
         """
-        self.password_field.check_name(name=self.PASSWORD_FIELD_NAME)
+        self.password_field().check_name(name=self.PASSWORD_FIELD_NAME)
 
     # Value
     def check_password_field_value(self, password: str):
@@ -261,7 +269,7 @@ class RegistrationFormComponent(BaseComponent):
 
         :param password: Password
         """
-        self.password_field.check_value(value=password)
+        self.password_field().check_value(value=password)
 
 
 #=======================================================================================================================

@@ -5,7 +5,7 @@ Create course page > Exercises > Exercise > [Toolbar]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Locator, Page
+from playwright.sync_api import Locator
 from elements.button import Button
 from elements.text import Text
 
@@ -16,31 +16,26 @@ from elements.text import Text
 - Delete exercise button
 """
 class CreateCourseExerciseToolbarComponent(BaseComponent):
-    def __init__(self, page: Page):
-        super().__init__(page)
+    path = 'Create course page > Exercises > Exercise > Toolbar'
 
-        # 𝌆 DATA (dynamic)
-        self.TITLE_TEXT = lambda index: f'#{index + 1} Exercise'
+    # 𝌆 DATA
+    @staticmethod
+    def title_text(index: int) -> str:
+        return f'#{index + 1} Exercise'
 
-        # --------------------------------------- ㉧ LOCATORS {dynamic} (lambda) ----------------------------------------
-        self.title_locator = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
-        self.delete_exercise_btn_locator = lambda index: page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
-
-        # ---------------------------------------- ◈ ELEMENTS {dynamic} (lambda) ---------------------------------------
-        self.path = 'Create course page > Exercises > Exercise > Toolbar'
-        self.title = lambda index: Text(self.title_locator(index), self.path, f'Title (index: {index})')
-        self.delete_exercise_btn = lambda index: Button(self.delete_exercise_btn_locator(index), self.path, f'Delete exercise button (index: {index})')
-
-    # -------------------------------------------- ㉧ LOCATORS {dynamic} (def) ------------------------------------------
-    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ⚠️ NOT USING! ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╮
-    # [Title]
-    def _toolbar_title(self, index: int) -> Locator:
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def title_locator(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-subtitle-text')
 
-    # [Delete exercise button]
-    def _delete_exercise_btn(self, index: int) -> Locator:
+    def delete_exercise_btn_locator(self, index: int) -> Locator:
         return self.page.get_by_test_id(f'create-course-exercise-{index}-box-toolbar-delete-exercise-button')
-    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ FOR EXAMPLE ONLY┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╯
+
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def title(self, index: int) -> Text:
+        return Text(self.title_locator(index), self.path, 'Title')
+
+    def delete_exercise_btn(self, index: int) -> Button:
+        return Button(self.delete_exercise_btn_locator(index), self.path, 'Delete exercise button')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Delete exercise button]
@@ -103,7 +98,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        self.title(index).check_text(self.TITLE_TEXT(index))
+        self.title(index).check_text(self.title_text(index))
 
 
     # [Delete exercise button]

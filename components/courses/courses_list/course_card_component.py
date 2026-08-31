@@ -5,7 +5,7 @@ Courses list page > [Course card]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 from components.courses.courses_list.course_card_menu_component import CourseCardMenuComponent
 from elements.button import Button
 from elements.image import Image
@@ -22,33 +22,64 @@ from elements.text import Text
 - Estimated time
 """
 class CourseCardComponent(BaseComponent):
+    path = 'Courses list page > Course card'
+
+    # 𝌆 DATA
+    @staticmethod
+    def max_score_text(max_score: str) -> str:
+        return f'Max score: {max_score}'
+
+    @staticmethod
+    def min_score_text(min_score: str) -> str:
+        return f'Min score: {min_score}'
+
+    @staticmethod
+    def estimated_time_text(estimated_time: str) -> str:
+        return f'Estimated time: {estimated_time}'
+
     def __init__(self, page: Page):
         super().__init__(page)
-
-        # 𝌆 DATA (dynamic)
-        self.MAX_SCORE_TEXT = lambda max_score: f'Max score: {max_score}'
-        self.MIN_SCORE_TEXT = lambda min_score: f'Min score: {min_score}'
-        self.ESTIMATED_TIME_TEXT = lambda estimated_time: f'Estimated time: {estimated_time}'
 
         # --------------------------------------------- ⿳ COMPONENTS --------------------------------------------------
         self.menu = CourseCardMenuComponent(page)
 
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title_locator = page.get_by_test_id('course-widget-title-text')
-        self.menu_btn_locator = page.get_by_test_id('course-view-menu-button')
-        self.image_locator = page.get_by_test_id('course-preview-image')
-        self.max_score_locator = page.get_by_test_id('course-max-score-info-row-view-text')
-        self.min_score_locator = page.get_by_test_id('course-min-score-info-row-view-text')
-        self.estimated_time_locator = page.get_by_test_id('course-estimated-time-info-row-view-text')
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id('course-widget-title-text')
 
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = 'Courses list page > Course card'
-        self.title = Text(self.title_locator, self.path, 'Title')
-        self.menu_btn = Button(self.menu_btn_locator, self.path, 'Menu button')
-        self.image = Image(self.image_locator, self.path, 'Image')
-        self.max_score = Text(self.max_score_locator, self.path, 'Max score')
-        self.min_score = Text(self.min_score_locator, self.path, 'Min score')
-        self.estimated_time = Text(self.estimated_time_locator, self.path, 'Estimated time')
+    def menu_btn_locator(self) -> Locator:
+        return self.page.get_by_test_id('course-view-menu-button')
+
+    def image_locator(self) -> Locator:
+        return self.page.get_by_test_id('course-preview-image')
+
+    def max_score_locator(self) -> Locator:
+        return self.page.get_by_test_id('course-max-score-info-row-view-text')
+
+    def min_score_locator(self) -> Locator:
+        return self.page.get_by_test_id('course-min-score-info-row-view-text')
+
+    def estimated_time_locator(self) -> Locator:
+        return self.page.get_by_test_id('course-estimated-time-info-row-view-text')
+
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, 'Title')
+
+    def menu_btn(self) -> Button:
+        return Button(self.menu_btn_locator(), self.path, 'Menu button')
+
+    def image(self) -> Image:
+        return Image(self.image_locator(), self.path, 'Image')
+
+    def max_score(self) -> Text:
+        return Text(self.max_score_locator(), self.path, 'Max score')
+
+    def min_score(self) -> Text:
+        return Text(self.min_score_locator(), self.path, 'Min score')
+
+    def estimated_time(self) -> Text:
+        return Text(self.estimated_time_locator(), self.path, 'Estimated time')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Menu button]
@@ -59,7 +90,7 @@ class CourseCardComponent(BaseComponent):
 
         :param nth_index: nth-index —> for use in: locator.nth(nth_index)
         """
-        self.menu_btn.click(nth=nth_index)
+        self.menu_btn().click(nth=nth_index)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Course card]
@@ -120,7 +151,7 @@ class CourseCardComponent(BaseComponent):
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.title.check_visible(nth=nth_index)
+        self.title().check_visible(nth=nth_index)
 
     # Text
     def check_title_text(self, title: str, nth_index: int = 0):
@@ -130,7 +161,7 @@ class CourseCardComponent(BaseComponent):
         :param title: Course title
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.title.check_text(title, nth=nth_index)
+        self.title().check_text(title, nth=nth_index)
 
 
     # [Menu button]
@@ -155,7 +186,7 @@ class CourseCardComponent(BaseComponent):
 
         :param nth_index: nth-index —> for use in: locator.nth(nth_index)
         """
-        self.menu_btn.check_visible(nth=nth_index)
+        self.menu_btn().check_visible(nth=nth_index)
 
     # Enabled
     def check_menu_btn_enabled(self, nth_index: int = 0):
@@ -164,7 +195,7 @@ class CourseCardComponent(BaseComponent):
 
         :param nth_index: nth-index —> for use in: locator.nth(nth_index)
         """
-        self.menu_btn.check_enabled(nth=nth_index)
+        self.menu_btn().check_enabled(nth=nth_index)
 
 
     # [Image]
@@ -187,7 +218,7 @@ class CourseCardComponent(BaseComponent):
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.image.check_visible(nth=nth_index)
+        self.image().check_visible(nth=nth_index)
 
 
     # [Max score]
@@ -213,7 +244,7 @@ class CourseCardComponent(BaseComponent):
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.max_score.check_visible(nth=nth_index)
+        self.max_score().check_visible(nth=nth_index)
 
     # Text
     def check_max_score_text(self, max_score: str, nth_index: int = 0):
@@ -223,7 +254,7 @@ class CourseCardComponent(BaseComponent):
         :param max_score: Max score
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.max_score.check_text(self.MAX_SCORE_TEXT(max_score), nth=nth_index)
+        self.max_score().check_text(self.max_score_text(max_score), nth=nth_index)
 
 
     # [Min score]
@@ -249,7 +280,7 @@ class CourseCardComponent(BaseComponent):
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.min_score.check_visible(nth=nth_index)
+        self.min_score().check_visible(nth=nth_index)
 
     # Text
     def check_min_score_text(self, min_score: str, nth_index: int = 0):
@@ -259,7 +290,7 @@ class CourseCardComponent(BaseComponent):
         :param min_score: Min score
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.min_score.check_text(self.MIN_SCORE_TEXT(min_score), nth=nth_index)
+        self.min_score().check_text(self.min_score_text(min_score), nth=nth_index)
 
 
     # [Estimated time]
@@ -285,7 +316,7 @@ class CourseCardComponent(BaseComponent):
 
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.estimated_time.check_visible(nth=nth_index)
+        self.estimated_time().check_visible(nth=nth_index)
 
     # Text
     def check_estimated_time_text(self, estimated_time: str, nth_index: int = 0):
@@ -295,6 +326,6 @@ class CourseCardComponent(BaseComponent):
         :param estimated_time: Estimated time
         :param nth_index: For use: locator.nth(nth_index) - (default: 0)
         """
-        self.estimated_time.check_text(self.ESTIMATED_TIME_TEXT(estimated_time), nth=nth_index)
+        self.estimated_time().check_text(self.estimated_time_text(estimated_time), nth=nth_index)
 
 #=======================================================================================================================

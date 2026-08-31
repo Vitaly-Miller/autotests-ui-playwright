@@ -5,7 +5,7 @@ Sidebar > [Item]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 from elements.button import Button
 from elements.icon import Icon
 from elements.text import Text
@@ -25,19 +25,29 @@ class SidebarItemComponent(BaseComponent):
         """
         super().__init__(page)
 
-        # 𝌆 DATA (dynamic)
-        self.identifier = identifier.capitalize()   # for logging
-
-        # ----------------------------------------- ㉧ LOCATORS (dynamic) -----------------------------------------------
-        self.btn_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-button')
-        self.icon_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-icon')
-        self.title_locator = page.get_by_test_id(f'{identifier}-drawer-list-item-title-text')
-
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
+        self._identifier = identifier                # raw - for locators
+        self.identifier = identifier.capitalize()    # for logging
         self.path = f'Sidebar > {self.identifier}'
-        self.btn = Button(self.btn_locator, self.path, f'{self.identifier}-button')
-        self.icon = Icon(self.icon_locator, self.path, f'{self.identifier}-icon')
-        self.title = Text(self.title_locator, self.path, f'{self.identifier}-title')
+
+    # ----------------------------------------- ㉧ LOCATORS (dynamic) -----------------------------------------------
+    def btn_locator(self) -> Locator:
+        return self.page.get_by_test_id(f'{self._identifier}-drawer-list-item-button')
+
+    def icon_locator(self) -> Locator:
+        return self.page.get_by_test_id(f'{self._identifier}-drawer-list-item-icon')
+
+    def title_locator(self) -> Locator:
+        return self.page.get_by_test_id(f'{self._identifier}-drawer-list-item-title-text')
+
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def btn(self) -> Button:
+        return Button(self.btn_locator(), self.path, f'{self.identifier}-button')
+
+    def icon(self) -> Icon:
+        return Icon(self.icon_locator(), self.path, f'{self.identifier}-icon')
+
+    def title(self) -> Text:
+        return Text(self.title_locator(), self.path, f'{self.identifier}-title')
 
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     # Click [Button]
@@ -47,7 +57,7 @@ class SidebarItemComponent(BaseComponent):
 
         .
         """
-        self.btn.click()
+        self.btn().click()
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Item]
@@ -86,7 +96,7 @@ class SidebarItemComponent(BaseComponent):
 
         .
         """
-        self.btn.check_visible()
+        self.btn().check_visible()
 
 
     # [Icon]
@@ -107,7 +117,7 @@ class SidebarItemComponent(BaseComponent):
 
         .
         """
-        self.icon.check_visible()
+        self.icon().check_visible()
 
 
     # [Title]
@@ -132,7 +142,7 @@ class SidebarItemComponent(BaseComponent):
 
         .
         """
-        self.title.check_visible()
+        self.title().check_visible()
 
     # Text
     def check_title_text(self, title: str):
@@ -141,6 +151,6 @@ class SidebarItemComponent(BaseComponent):
 
         :param title: Title
         """
-        self.title.check_text(title)
+        self.title().check_text(title)
 
 #=======================================================================================================================

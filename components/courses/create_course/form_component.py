@@ -5,7 +5,7 @@ Create course page > [Form]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator
 from elements.input_field import InputField
 
 #=======================================================================================================================
@@ -18,6 +18,8 @@ from elements.input_field import InputField
 - Min score input field
 """
 class CreateCourseFormComponent(BaseComponent):
+    path = 'Create course page > Form'
+
     # 𝌆 DATA
     TITLE_FIELD_NAME = 'Title'
     TITLE_FIELD_PLACEHOLDER = 'New course'
@@ -26,25 +28,41 @@ class CreateCourseFormComponent(BaseComponent):
     DESCRIPTION_FIELD_NAME = 'Description'
     DESCRIPTION_FIELD_PLACEHOLDER = 'Add description for course'
     MAX_SCORE_FIELD_NAME = 'Max score'
+    MAX_SCORE_FIELD_DEFAULT_VALUE = '0'
     MIN_SCORE_FIELD_NAME = 'Min score'
+    MIN_SCORE_FIELD_DEFAULT_VALUE = '0'
 
-    def __init__(self, page: Page):
-        super().__init__(page)
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def title_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-form-title-input').locator('input')
 
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.title_field_locator = page.get_by_test_id('create-course-form-title-input').locator('input')
-        self.estimated_time_field_locator = page.get_by_test_id('create-course-form-estimated-time-input').locator('input')
-        self.description_field_locator = page.get_by_test_id('create-course-form-description-input').locator('textarea:visible')  # ⚠
-        self.max_score_field_locator = page.get_by_test_id('create-course-form-max-score-input').locator('input')
-        self.min_score_field_locator = page.get_by_test_id('create-course-form-min-score-input').locator('input')
+    def estimated_time_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-form-estimated-time-input').locator('input')
 
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = 'Create course page > Form'
-        self.title_field = InputField(self.title_field_locator, self.path, 'Title field')
-        self.estimated_time_field = InputField(self.estimated_time_field_locator, self.path, 'Estimated time field')
-        self.description_field = InputField(self.description_field_locator, self.path, 'Description field')
-        self.max_score_field = InputField(self.max_score_field_locator, self.path, 'Max score field')
-        self.min_score_field = InputField(self.min_score_field_locator, self.path, 'Min score field')
+    def description_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-form-description-input').locator('textarea:visible')  # ⚠
+
+    def max_score_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-form-max-score-input').locator('input')
+
+    def min_score_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('create-course-form-min-score-input').locator('input')
+
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def title_field(self) -> InputField:
+        return InputField(self.title_field_locator(), self.path, 'Title field')
+
+    def estimated_time_field(self) -> InputField:
+        return InputField(self.estimated_time_field_locator(), self.path, 'Estimated time field')
+
+    def description_field(self) -> InputField:
+        return InputField(self.description_field_locator(), self.path, 'Description field')
+
+    def max_score_field(self) -> InputField:
+        return InputField(self.max_score_field_locator(), self.path, 'Max score field')
+
+    def min_score_field(self) -> InputField:
+        return InputField(self.min_score_field_locator(), self.path, 'Min score field')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Course form]
@@ -86,7 +104,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param title: Title
         """
-        self.title_field.fill(title)
+        self.title_field().fill(title)
 
     # Fill [Estimated time field]
     def fill_estimated_time_field(self, estimated_time: str):
@@ -95,7 +113,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param estimated_time: Estimated time
         """
-        self.estimated_time_field.fill(estimated_time)
+        self.estimated_time_field().fill(estimated_time)
 
     # Fill [Description field]
     def fill_description_field(self, description: str):
@@ -104,7 +122,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param description: Description
         """
-        self.description_field.fill(description)
+        self.description_field().fill(description)
 
     # Fill [Max score field]
     def fill_max_score_field(self, max_score: str):
@@ -113,7 +131,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param max_score: Max score
         """
-        self.max_score_field.fill(max_score)
+        self.max_score_field().fill(max_score)
 
     # Fill [Min score field]
     def fill_min_score_field(self, min_score: str):
@@ -122,7 +140,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param min_score: Min score
         """
-        self.min_score_field.fill(min_score)
+        self.min_score_field().fill(min_score)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Course Form]
@@ -191,7 +209,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.title_field.check_visible()
+        self.title_field().check_visible()
 
     # Name
     def check_title_field_name(self):
@@ -200,7 +218,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.title_field.check_name(name=self.TITLE_FIELD_NAME)
+        self.title_field().check_name(name=self.TITLE_FIELD_NAME)
 
     # Placeholder
     def check_title_field_placeholder(self):
@@ -209,7 +227,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.title_field.check_placeholder(placeholder=self.TITLE_FIELD_PLACEHOLDER)
+        self.title_field().check_placeholder(placeholder=self.TITLE_FIELD_PLACEHOLDER)
 
     # Value
     def check_title_field_value(self, title: str):
@@ -218,7 +236,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param title: Title
         """
-        self.title_field.check_value(value=title)
+        self.title_field().check_value(value=title)
 
 
     # [Estimated time field]
@@ -254,7 +272,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.estimated_time_field.check_visible()
+        self.estimated_time_field().check_visible()
 
     # Name
     def check_estimated_time_field_name(self):
@@ -263,7 +281,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.estimated_time_field.check_name(name=self.ESTIMATED_TIME_FIELD_NAME)
+        self.estimated_time_field().check_name(name=self.ESTIMATED_TIME_FIELD_NAME)
 
     # Placeholder
     def check_estimated_time_field_placeholder(self):
@@ -272,7 +290,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.estimated_time_field.check_placeholder(placeholder=self.ESTIMATED_TIME_FIELD_PLACEHOLDER)
+        self.estimated_time_field().check_placeholder(placeholder=self.ESTIMATED_TIME_FIELD_PLACEHOLDER)
 
     # Value
     def check_estimated_time_field_value(self, estimated_time: str):
@@ -281,7 +299,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param estimated_time: Estimated time
         """
-        self.estimated_time_field.check_value(value=estimated_time)
+        self.estimated_time_field().check_value(value=estimated_time)
 
 
     # [Description field]
@@ -317,7 +335,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.description_field.check_visible()
+        self.description_field().check_visible()
 
     # Name
     def check_description_field_name(self):
@@ -326,7 +344,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.description_field.check_name(name=self.DESCRIPTION_FIELD_NAME)
+        self.description_field().check_name(name=self.DESCRIPTION_FIELD_NAME)
 
     # Placeholder
     def check_description_field_placeholder(self):
@@ -335,7 +353,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.description_field.check_placeholder(placeholder=self.DESCRIPTION_FIELD_PLACEHOLDER)
+        self.description_field().check_placeholder(placeholder=self.DESCRIPTION_FIELD_PLACEHOLDER)
 
     # Value
     def check_description_field_value(self, description: str):
@@ -344,7 +362,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         :param description: Description
         """
-        self.description_field.check_value(value=description)
+        self.description_field().check_value(value=description)
 
 
     # [Max score field]
@@ -380,7 +398,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.max_score_field.check_visible()
+        self.max_score_field().check_visible()
 
     # Name
     def check_max_score_field_name(self):
@@ -389,16 +407,16 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.max_score_field.check_name(name=self.MAX_SCORE_FIELD_NAME)
+        self.max_score_field().check_name(name=self.MAX_SCORE_FIELD_NAME)
 
     # Value
-    def check_max_score_field_value(self, max_score: str = '0'):
+    def check_max_score_field_value(self, max_score: str = MAX_SCORE_FIELD_DEFAULT_VALUE):
         """
         ✔ Check [Max score field] value
 
         :param max_score: Max score (default: '0')
         """
-        self.max_score_field.check_value(value=max_score)
+        self.max_score_field().check_value(value=max_score)
 
 
     # [Min score field]
@@ -434,7 +452,7 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.min_score_field.check_visible()
+        self.min_score_field().check_visible()
 
     # Name
     def check_min_score_field_name(self):
@@ -443,16 +461,16 @@ class CreateCourseFormComponent(BaseComponent):
 
         .
         """
-        self.min_score_field.check_name(name=self.MIN_SCORE_FIELD_NAME)
+        self.min_score_field().check_name(name=self.MIN_SCORE_FIELD_NAME)
 
     # Value
-    def check_min_score_field_value(self, min_score: str = '0'):
+    def check_min_score_field_value(self, min_score: str = MAX_SCORE_FIELD_DEFAULT_VALUE):
         """
         ✔ Check [Min score field] value
 
         :param min_score: Min score (default: '0')
         """
-        self.min_score_field.check_value(value=min_score)
+        self.min_score_field().check_value(value=min_score)
 
 
 #=======================================================================================================================

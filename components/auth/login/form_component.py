@@ -5,7 +5,7 @@ Login page > [Form]
 
 import allure
 from components.base_component import BaseComponent
-from playwright.sync_api import Page
+from playwright.sync_api import Locator
 from elements.input_field import InputField
 
 #=======================================================================================================================
@@ -15,21 +15,25 @@ from elements.input_field import InputField
 - Password input field
 """
 class LoginFormComponent(BaseComponent):
+    path = 'Login page > Form'
+
     # 𝌆 DATA
     EMAIL_FIELD_NAME = 'Email'
     PASSWORD_FIELD_NAME = 'Password'
 
-    def __init__(self, page: Page):
-        super().__init__(page)
+    # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
+    def email_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('login-form-email-input').locator('input')
 
-        # ---------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
-        self.email_field_locator = page.get_by_test_id('login-form-email-input').locator('input')
-        self.password_field_locator = page.get_by_test_id('login-form-password-input').locator('input')
+    def password_field_locator(self) -> Locator:
+        return self.page.get_by_test_id('login-form-password-input').locator('input')
 
-        # ---------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
-        self.path = 'Login page > Form'
-        self.email_field = InputField(self.email_field_locator, self.path, 'Email field')
-        self.password_field = InputField(self.password_field_locator, self.path, 'Password field')
+    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    def email_field(self) -> InputField:
+        return InputField(self.email_field_locator(), self.path, 'Email field')
+
+    def password_field(self) -> InputField:
+        return InputField(self.password_field_locator(), self.path, 'Password field')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Login form]
@@ -55,7 +59,7 @@ class LoginFormComponent(BaseComponent):
 
         :param email: Email
         """
-        self.email_field.fill(email)
+        self.email_field().fill(email)
 
     # Fill [Password field]
     def fill_password_field(self, password: str):
@@ -64,7 +68,7 @@ class LoginFormComponent(BaseComponent):
 
         :param password: Password
         """
-        self.password_field.fill(password)
+        self.password_field().fill(password)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Login Form]
@@ -119,7 +123,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        self.email_field.check_visible()
+        self.email_field().check_visible()
 
     # Name
     def check_email_field_name(self):
@@ -128,7 +132,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        self.email_field.check_name(name=self.EMAIL_FIELD_NAME)
+        self.email_field().check_name(name=self.EMAIL_FIELD_NAME)
 
     # Value
     def check_email_field_value(self, email: str):
@@ -137,7 +141,7 @@ class LoginFormComponent(BaseComponent):
 
         :param email: Email
         """
-        self.email_field.check_value(value=email)
+        self.email_field().check_value(value=email)
 
 
     # [Password field]
@@ -171,7 +175,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        self.password_field.check_visible()
+        self.password_field().check_visible()
 
     # Name
     def check_password_field_name(self):
@@ -180,7 +184,7 @@ class LoginFormComponent(BaseComponent):
 
         .
         """
-        self.password_field.check_name(name=self.PASSWORD_FIELD_NAME)
+        self.password_field().check_name(name=self.PASSWORD_FIELD_NAME)
 
     # Value
     def check_password_field_value(self, password: str):
@@ -189,7 +193,7 @@ class LoginFormComponent(BaseComponent):
 
         :param password: Password
         """
-        self.password_field.check_value(value=password)
+        self.password_field().check_value(value=password)
 
 
 #=======================================================================================================================
