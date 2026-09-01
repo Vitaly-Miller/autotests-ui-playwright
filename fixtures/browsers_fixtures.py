@@ -3,12 +3,12 @@ Browsers fixtures
 """
 import pytest
 from playwright.sync_api import Playwright, StorageState
-from pages.auth.registration.registration_page import RegistrationPage
-from _pytest.fixtures import SubRequest
-from tools.playwright.pages import init_playwright_page
+from _pytest.fixtures import SubRequest                         # naming for tracing
+from tools.playwright.init_page import init_playwright_page     # helper
+from tools.playwright.registration import registration_new_user # helper
 
 #=======================================================================================================================
-# GUEST page (NO Storage state)
+# GUEST page
 @pytest.fixture
 def page_guest(playwright: Playwright, request: SubRequest):
     """
@@ -19,7 +19,6 @@ def page_guest(playwright: Playwright, request: SubRequest):
     :return: yield from - Page from init_playwright_page() without Storage state
     """
     yield from init_playwright_page(playwright=playwright, test_name=request.node.name)
-
 
 # Page + Storage state 📦
 @pytest.fixture
@@ -48,22 +47,10 @@ def storage_state(playwright: Playwright):      # Используем встр�
     browser = playwright.chromium.launch()      # Создаем объект браузера на движке chromium c параметрами:
     context = browser.new_context()             # Создание браузерного окружения
     page = context.new_page()                   # Создаем объект страницы page на базе context
-
-    # ─────────── User Registration ──────────┐
-    registration_page = RegistrationPage(page)  # Инициализация страницы в переменную
-    registration_page.open('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
-    registration_page.form.fill(
-        email='user.name@gmail.com',
-        username='username',
-        password='password')
-    registration_page.click_registration_btn()
-    page.wait_for_url('**/dashboard')           # ❗️Дождаться открытие страницы, что бы гарантировано сформировался Storage state
-    # ────────────────────────────────────────┘
-
+    registration_new_user(page)                 # Registration new user (helper)
     storage_state = context.storage_state()                             # v.1 - Storage state в переменную
     # context.storage_state(path='storage_state.json')                  # v.2 - Storage state в 💾 JSON-файл  (optional)
     # storage_state = context.storage_state(path='storage_state.json')  # v.3 - Storage state в переменную + 💾 JSON-файл  (optional)
-
     try:
         yield storage_state                     # Передаем Storage state
 

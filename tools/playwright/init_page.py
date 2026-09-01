@@ -5,9 +5,11 @@ import allure
 from playwright.sync_api import Playwright, StorageState, ViewportSize
 
 #=======================================================================================================================
+# Page for pytest fixture (helper)
 def init_playwright_page(playwright: Playwright, test_name: str, storage_state: StorageState | None = None):
     """
-    Генератор-хелпер для pytest-фикстур
+    Page for pytest fixture (helper)
+
     Поднимает браузер Chromium, создаёт context (со Storage state или без),
     включает Tracing, отдаёт Page тесту, а в teardown останавливает Tracing,
     прикрепляет trace + video к Allure и закрывает context/browser.
