@@ -16,7 +16,7 @@ def page_guest(playwright: Playwright, request: SubRequest):
 
     :param playwright: Playwright
     :param request: SubRequest.request (for tracing)
-    :return: yield page: Page
+    :return: yield from - Page from init_playwright_page() without Storage state
     """
     yield from init_playwright_page(playwright=playwright, test_name=request.node.name)
 
@@ -30,8 +30,7 @@ def page(playwright: Playwright, request: SubRequest, storage_state: StorageStat
     :param playwright: Playwright
     :param storage_state: Фикстура с сохраненными авторизационными данными
     :param request: SubRequest.request (naming for tracing)
-
-    :return: yield page: Page
+    :return: yield from - Page from init_playwright_page() with Storage state
     """
     yield from init_playwright_page(playwright=playwright, test_name=request.node.name, storage_state=storage_state)
 
