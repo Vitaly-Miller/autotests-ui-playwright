@@ -1,6 +1,7 @@
 """
-Config (via Pydantic-settings)
+Project config (via Pydantic-settings)
 """
+
 from pathlib import Path
 from pydantic import BaseModel, EmailStr, HttpUrl, FilePath     # validators
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -59,11 +60,11 @@ class TestData(BaseModel):
 #---------------------------------------------- MAIN Class + .env-config -----------------------------------------------
 class Settings(BaseSettings):
     """
-    Base project settings
+    Base project settings with .env-config
 
     .
     """
-    # Config .env
+    # .env-config
     model_config = SettingsConfigDict(        # CONFIG файла с переменными окружения (.env)
         extra='allow',                        # Разрешаем дополнительные переменные (например для CI) (optional)
         env_file='.env',                      # - Название файла с переменными окружения (.env)
@@ -71,7 +72,7 @@ class Settings(BaseSettings):
         env_nested_delimiter='.'              # - Разделитель вложенных моделей в .env (ex. HTTPX_CLIENT.BASE_URL='...')
     )
 
-    # Атрибуты
+    # Атрибуты c валидацией
     base_url: HttpUrl
     browser: Browser
     chromium_channel: ChromiumChannel | None = None
@@ -99,5 +100,6 @@ class Settings(BaseSettings):
 
 #------------------------------------------------------ Helper ---------------------------------------------------------
 settings = Settings()
+
 
 #=======================================================================================================================
