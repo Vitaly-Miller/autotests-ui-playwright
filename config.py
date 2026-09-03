@@ -3,11 +3,14 @@ Project config (via Pydantic-settings)
 """
 
 from pathlib import Path
-from pydantic import BaseModel, EmailStr, HttpUrl, FilePath     # validators
+from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from enum import StrEnum
 
-#================================================== Settings Classes ===================================================
+#=======================================================================================================================
+BASE_DIR = Path(__file__).parent                   # Base directory
+
+#-------------------------------------------------- Settings Classes ---------------------------------------------------
 class Browser(StrEnum):
     """
     Browser (Engine)
@@ -39,22 +42,22 @@ class ChromiumChannel(StrEnum):
 
 class TestUser(BaseModel):
     """
-    Test User
+    Test user credentials (from .env)
 
     .
     """
-    email: EmailStr
+    email: str
     username: str
     password: str
 
 class TestData(BaseModel):
     """
-    Test Data
+    Static test data
 
     .
     """
-    image_file_1: FilePath
-    image_file_2: FilePath
+    image_file_1: Path = BASE_DIR / 'testdata/files/image_1.jpg'
+    image_file_2: Path = BASE_DIR / 'testdata/files/image_2.jpg'
 
 
 #---------------------------------------------- MAIN Class + .env-config -----------------------------------------------
@@ -64,42 +67,29 @@ class Settings(BaseSettings):
 
     .
     """
-    # .env-config
     model_config = SettingsConfigDict(        # CONFIG файла с переменными окружения (.env)
         extra='allow',                        # Разрешаем дополнительные переменные (например для CI) (optional)
-        env_file='.env',                      # - Название файла с переменными окружения (.env)
+        env_file=BASE_DIR / '.env',           # - Название файла с переменными окружения (.env)
         env_file_encoding='utf-8',            # - Кодировка файла с переменными окружения (.env)
         env_nested_delimiter='.'              # - Разделитель вложенных моделей в .env (ex. HTTPX_CLIENT.BASE_URL='...')
     )
 
-    # Атрибуты c валидацией
-    base_url: HttpUrl
+    # Из .env (обязательные)
+    base_url: str
     browser: Browser
-    chromium_channel: ChromiumChannel | None = None
     headless: bool
-    slow_mo: int  # mc
-    storage_state_file: FilePath
+    slow_mo: int  # ms
     test_user: TestUser
-    test_data: TestData
-    tracing_dir: Path
-    video_dir: Path
 
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-    # Использовать, если base_url: HttpUrl
-    @property
-    def base_url_str(self) -> str:
-        """
-        HttpUrl —> 'str'
+    # Опциональные / с дефолтами
+    chromium_channel: ChromiumChannel | None = None
+    storage_state_file: Path = BASE_DIR / 'storage_state.json'
+    test_data: TestData = TestData()
+    tracing_dir: Path = BASE_DIR / 'tracing'
+    video_dir: Path = BASE_DIR / 'videos'
 
-        Использовать, если base_url: HttpUrl (Pydantic-аннотация)
-
-        :return: Base URL (string)
-        """
-        return str(self.base_url)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
 #------------------------------------------------------ Helper ---------------------------------------------------------
 settings = Settings()
-
 
 #=======================================================================================================================
