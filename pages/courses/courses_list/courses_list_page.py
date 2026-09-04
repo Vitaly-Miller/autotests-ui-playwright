@@ -1,7 +1,7 @@
 """
 Courses list page
 """
-
+from config import Endpoint
 from playwright.sync_api import Page
 from components.courses.courses_list.course_card_component import CourseCardComponent
 from pages.base_page import BasePage
@@ -11,20 +11,20 @@ from components.courses.courses_list.toolbar_component import CoursesListToolbar
 from components.views.empty_view_component import EmptyViewComponent
 
 #=======================================================================================================================
-class CoursesListPage(BasePage):       # Дочерний класс (наследует класс BasePage)
+class CoursesListPage(BasePage):        # Дочерний класс (наследует класс BasePage)
     """
     [Courses list page]
-    
+
     - Navbar (component)
     - Sidebar (component)
     - Toolbar (component)
     - Empty view (component)
     - Course card (component)
     """
-    URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses'
-    path = 'Courses list page'
+    URL = Endpoint.COURSES
     IDENTIFIER = 'courses-list'
-    
+    PATH = 'Courses list page'          # for logging
+
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
 
@@ -32,7 +32,7 @@ class CoursesListPage(BasePage):       # Дочерний класс (насле
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = CoursesListToolbarComponent(page)
-        self.empty_view = EmptyViewComponent(page=page, path=self.path, identifier=self.IDENTIFIER)
+        self.empty_view = EmptyViewComponent(page=page, path=self.PATH, identifier=self.IDENTIFIER)
         self.course_card = CourseCardComponent(page)
 
 

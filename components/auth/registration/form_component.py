@@ -17,7 +17,7 @@ class RegistrationFormComponent(BaseComponent):
     - Username input field
     - Password input field
     """
-    path = 'Registration page > Form'
+    PATH = 'Registration page > Form'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def email_field_locator(self) -> Locator:
@@ -31,13 +31,13 @@ class RegistrationFormComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def email_field(self) -> InputField:
-        return InputField(self.email_field_locator(), self.path, 'Email field')
+        return InputField(self.email_field_locator(), self.PATH, 'Email field')
 
     def username_field(self) -> InputField:
-        return InputField(self.username_field_locator(), self.path, 'Username field')
+        return InputField(self.username_field_locator(), self.PATH, 'Username field')
 
     def password_field(self) -> InputField:
-        return InputField(self.password_field_locator(), self.path, 'Password field')
+        return InputField(self.password_field_locator(), self.PATH, 'Password field')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Registration form]

@@ -17,7 +17,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
     - Title
     - Delete exercise button
     """
-    path = 'Create course page > Exercises > Exercise > Toolbar'
+    PATH = 'Create course page > Exercises > Exercise > Toolbar'
 
     # --------------------------------------------------- ㉧ LOCATORS ---------------------------------------------------
     def title_locator(self, index: int) -> Locator:
@@ -29,10 +29,10 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
 
     # --------------------------------------------------- ◈ ELEMENTS ---------------------------------------------------
     def title(self, index: int) -> Text:
-        return Text(self.title_locator(index), self.path, 'Title')
+        return Text(self.title_locator(index), self.PATH, 'Title')
 
     def delete_exercise_btn(self, index: int) -> Button:
-        return Button(self.delete_exercise_btn_locator(index), self.path, 'Delete exercise button')
+        return Button(self.delete_exercise_btn_locator(index), self.PATH, 'Delete exercise button')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------

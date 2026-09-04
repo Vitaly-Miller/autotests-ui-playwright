@@ -2,6 +2,7 @@
 Registration page
 """
 import allure
+from config import Endpoint
 from elements.button import Button
 from elements.link import Link
 from elements.text import Text
@@ -19,8 +20,8 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     - Registration button
     - Login link
     """
-    URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
-    path = 'Registration page'
+    URL = Endpoint.REGISTRATION
+    PATH = 'Registration page'          # for logging
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
@@ -40,13 +41,13 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     # ------------------------------------------------- ◈ ELEMENTS -------------------------------------------------
     def title(self) -> Text:
-        return Text(self.title_locator(), self.path, 'Title')
+        return Text(self.title_locator(), self.PATH, 'Title')
 
     def registration_btn(self) -> Button:
-        return Button(self.registration_btn_locator(), self.path, 'Registration button')
+        return Button(self.registration_btn_locator(), self.PATH, 'Registration button')
 
     def login_link(self) -> Link:
-        return Link(self.login_link_locator(), self.path, 'Login link')
+        return Link(self.login_link_locator(), self.PATH, 'Login link')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Registration button]

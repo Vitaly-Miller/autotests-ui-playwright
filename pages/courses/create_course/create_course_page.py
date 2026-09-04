@@ -1,6 +1,7 @@
 """
 Create Course page
 """
+from config import Endpoint
 from pages.base_page import BasePage
 from playwright.sync_api import Page
 from components.navigation.navbar.navbar_component import NavbarComponent
@@ -23,7 +24,7 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     - Exercises toolbar (component)
     - Exercise (component)
     """
-    URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create'
+    URL = Endpoint.CREATE_COURSE
     EXERCISES_IDENTIFIER = 'create-course-exercises'
 
     def __init__(self, page: Page):      # Конструктор класса, принимающий Page

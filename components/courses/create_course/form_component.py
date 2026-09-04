@@ -19,7 +19,7 @@ class CreateCourseFormComponent(BaseComponent):
     - Max score input field
     - Min score input field
     """
-    path = 'Create course page > Form'
+    PATH = 'Create course page > Form'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_field_locator(self) -> Locator:
@@ -40,19 +40,19 @@ class CreateCourseFormComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title_field(self) -> InputField:
-        return InputField(self.title_field_locator(), self.path, 'Title field')
+        return InputField(self.title_field_locator(), self.PATH, 'Title field')
 
     def estimated_time_field(self) -> InputField:
-        return InputField(self.estimated_time_field_locator(), self.path, 'Estimated time field')
+        return InputField(self.estimated_time_field_locator(), self.PATH, 'Estimated time field')
 
     def description_field(self) -> InputField:
-        return InputField(self.description_field_locator(), self.path, 'Description field')
+        return InputField(self.description_field_locator(), self.PATH, 'Description field')
 
     def max_score_field(self) -> InputField:
-        return InputField(self.max_score_field_locator(), self.path, 'Max score field')
+        return InputField(self.max_score_field_locator(), self.PATH, 'Max score field')
 
     def min_score_field(self) -> InputField:
-        return InputField(self.min_score_field_locator(), self.path, 'Min score field')
+        return InputField(self.min_score_field_locator(), self.PATH, 'Min score field')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------

@@ -16,7 +16,7 @@ class LoginFormComponent(BaseComponent):
     - Password input field
     """
     # ----------------------------------------------------- 𝌆 DATA -----------------------------------------------------
-    path = 'Login page > Form'
+    PATH = 'Login page > Form'
     EMAIL_FIELD_NAME = 'Email'
     PASSWORD_FIELD_NAME = 'Password'
 
@@ -29,10 +29,10 @@ class LoginFormComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def email_field(self) -> InputField:
-        return InputField(self.email_field_locator(), self.path, 'Email field')
+        return InputField(self.email_field_locator(), self.PATH, 'Email field')
 
     def password_field(self) -> InputField:
-        return InputField(self.password_field_locator(), self.path, 'Password field')
+        return InputField(self.password_field_locator(), self.PATH, 'Password field')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Fill [Login form]

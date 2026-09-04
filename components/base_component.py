@@ -13,11 +13,6 @@ class BaseComponent:
     def __init__(self, page: Page):
         self.page = page
 
-    # -------------------------------------------------- Directories ---------------------------------------------------
-    PROJECT = Path(__file__).parent.parent      # 🗂️Project ROOT/
-    TESTDATA = PROJECT/'testdata'               # └─ 📁testdata/
-    FILES = TESTDATA/'files'                    #    └─ 📁files/
-
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Current URL]
     @allure.step('✔ Check current page URL')

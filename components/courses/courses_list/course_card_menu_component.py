@@ -16,7 +16,7 @@ class CourseCardMenuComponent(BaseComponent):
     - Edit button
     - Delete button
     """
-    path = 'Courses list page > Course card > Menu'
+    PATH = 'Courses list page > Course card > Menu'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def edit_btn_locator(self) -> Locator:
@@ -27,10 +27,10 @@ class CourseCardMenuComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def edit_btn(self) -> Button:
-        return Button(self.edit_btn_locator(), self.path, 'Edit button')
+        return Button(self.edit_btn_locator(), self.PATH, 'Edit button')
 
     def delete_btn(self) -> Button:
-        return Button(self.delete_btn_locator(), self.path, 'Delete button')
+        return Button(self.delete_btn_locator(), self.PATH, 'Delete button')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Edit button]

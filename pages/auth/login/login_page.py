@@ -2,6 +2,8 @@
 Login page
 """
 import allure
+
+from config import Endpoint
 from elements.button import Button
 from elements.link import Link
 from pages.base_page import BasePage
@@ -20,8 +22,8 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     - Registration link
     - Wrong email or password alert
     """
-    URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
-    path = 'Login page'
+    URL = Endpoint.LOGIN
+    PATH = 'Login page'                 # for logging
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage
@@ -46,16 +48,16 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
     # ------------------------------------------------- ◈ ELEMENTS -------------------------------------------------
     def title(self) -> Text:
-        return Text(self.title_locator(), self.path, 'Title')
+        return Text(self.title_locator(), self.PATH, 'Title')
 
     def login_btn(self) -> Button:
-        return Button(self.login_btn_locator(), self.path, 'Login button')
+        return Button(self.login_btn_locator(), self.PATH, 'Login button')
 
     def reg_link(self) -> Link:
-        return Link(self.reg_link_locator(), self.path, 'Registration link')
+        return Link(self.reg_link_locator(), self.PATH, 'Registration link')
 
     def alert(self) -> Text:
-        return Text(self.alert_locator(), self.path, 'Alert')
+        return Text(self.alert_locator(), self.PATH, 'Alert')
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Click [Login button]

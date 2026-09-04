@@ -16,7 +16,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
     - Title field
     - Description field
     """
-    path = 'Create course page > Exercises > Exercise > Form'
+    PATH = 'Create course page > Exercises > Exercise > Form'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_field_locator(self, index: int = 0) -> Locator:
@@ -27,10 +27,10 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title_field(self, index: int = 0) -> InputField:
-        return InputField(self.title_field_locator(index), self.path, f'Title field)')
+        return InputField(self.title_field_locator(index), self.PATH, f'Title field)')
 
     def description_field(self, index: int = 0) -> InputField:
-        return InputField(self.description_field_locator(index), self.path, f'Description field')
+        return InputField(self.description_field_locator(index), self.PATH, f'Description field')
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Fill [Exercise form]

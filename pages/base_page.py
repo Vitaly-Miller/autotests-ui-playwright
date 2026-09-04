@@ -6,9 +6,11 @@ Base page
 from playwright.sync_api import Page, expect
 from re import Pattern
 import allure
+from config import Endpoint
 
 #=======================================================================================================================
 class BasePage:                                 # Родительский класс
+    # Page URLs (endpoints from config)
     def __init__(self, page: Page):             # Конструктор класса, принимающий page
         self.page = page
 

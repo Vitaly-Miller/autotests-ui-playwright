@@ -1,16 +1,52 @@
 """
-Project config (via Pydantic-settings)
+Project config
 """
 
 from pathlib import Path
+from enum import StrEnum
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from enum import StrEnum
 
 #=======================================================================================================================
-BASE_DIR = Path(__file__).parent                   # Base directory
+class Dir:
+    """
+    Directories & files
 
-#-------------------------------------------------- Settings Classes ---------------------------------------------------
+    .
+    """
+    # Directories
+    BASE_DIR = Path(__file__).parent      # 🗂️Project ROOT (Base directory)
+    TESTDATA = BASE_DIR / 'testdata'      # ├─ 📁testdata/
+    FILES = TESTDATA / 'files'            # │  └─ 📁files/
+    TRACING = BASE_DIR / 'tracing'        # ├─ 📁tracing/
+    VIDEOS = BASE_DIR / 'videos'          # └─ 📁videos/
+    # Files
+    STORAGE_STATE_FILE = BASE_DIR / 'storage_state.json'
+
+class Endpoint(StrEnum):
+    """
+    Endpoints
+
+    .
+    """
+    REGISTRATION = '#/auth/registration'
+    LOGIN = '#/auth/login'
+    DASHBOARD = '#/dashboard'
+    COURSES = '#/courses'
+    CREATE_COURSE = f'{COURSES}/create'
+
+
+class TestUser(BaseModel):
+    """
+    Test user credentials — from .env
+
+    .
+    """
+    email: str
+    username: str
+    password: str
+
+
 class Browser(StrEnum):
     """
     Browser (Engine)
@@ -35,61 +71,32 @@ class ChromiumChannel(StrEnum):
     - chrome   - Google Chrome
     - msedge   - Microsoft Edge
     """
-    CHROMIUM = 'chromium' # Default
+    CHROMIUM = 'chromium'
     CHROME = 'chrome'
     MSEDGE = 'msedge'
 
 
-class TestUser(BaseModel):
-    """
-    Test user credentials (from .env)
-
-    .
-    """
-    email: str
-    username: str
-    password: str
-
-class TestData(BaseModel):
-    """
-    Static test data
-
-    .
-    """
-    image_file_1: Path = BASE_DIR / 'testdata/files/image_1.jpg'
-    image_file_2: Path = BASE_DIR / 'testdata/files/image_2.jpg'
-
-
-#---------------------------------------------- MAIN Class + .env-config -----------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 class Settings(BaseSettings):
     """
-    Base project settings with .env-config
+    Project settings - from .env
 
     .
     """
-    model_config = SettingsConfigDict(        # CONFIG файла с переменными окружения (.env)
-        extra='allow',                        # Разрешаем дополнительные переменные (например для CI) (optional)
-        env_file=BASE_DIR / '.env',           # - Название файла с переменными окружения (.env)
-        env_file_encoding='utf-8',            # - Кодировка файла с переменными окружения (.env)
-        env_nested_delimiter='.'              # - Разделитель вложенных моделей в .env (ex. HTTPX_CLIENT.BASE_URL='...')
+    model_config = SettingsConfigDict(
+        env_file=Dir.BASE_DIR / '.env',
+        env_file_encoding='utf-8',
+        env_nested_delimiter='.',
+        extra='ignore',
     )
 
-    # Из .env (обязательные)
     base_url: str
     browser: Browser
     headless: bool
     slow_mo: int  # ms
     test_user: TestUser
+    chromium_channel: ChromiumChannel | None = None    # ⚠ закомментировать в .env при webkit / firefox
 
-    # Опциональные / с дефолтами
-    chromium_channel: ChromiumChannel | None = None
-    storage_state_file: Path = BASE_DIR / 'storage_state.json'
-    test_data: TestData = TestData()
-    tracing_dir: Path = BASE_DIR / 'tracing'
-    video_dir: Path = BASE_DIR / 'videos'
-
-
-#------------------------------------------------------ Helper ---------------------------------------------------------
 settings = Settings()
 
 #=======================================================================================================================

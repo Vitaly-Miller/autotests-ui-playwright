@@ -23,7 +23,7 @@ class CourseCardComponent(BaseComponent):
     - Min score
     - Estimated time
     """
-    path = 'Courses list page > Course card'
+    PATH = 'Courses list page > Course card'
 
     def __init__(self, page: Page):
         super().__init__(page)
@@ -52,22 +52,22 @@ class CourseCardComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title(self) -> Text:
-        return Text(self.title_locator(), self.path, 'Title')
+        return Text(self.title_locator(), self.PATH, 'Title')
 
     def menu_btn(self) -> Button:
-        return Button(self.menu_btn_locator(), self.path, 'Menu button')
+        return Button(self.menu_btn_locator(), self.PATH, 'Menu button')
 
     def image(self) -> Image:
-        return Image(self.image_locator(), self.path, 'Image')
+        return Image(self.image_locator(), self.PATH, 'Image')
 
     def max_score(self) -> Text:
-        return Text(self.max_score_locator(), self.path, 'Max score')
+        return Text(self.max_score_locator(), self.PATH, 'Max score')
 
     def min_score(self) -> Text:
-        return Text(self.min_score_locator(), self.path, 'Min score')
+        return Text(self.min_score_locator(), self.PATH, 'Min score')
 
     def estimated_time(self) -> Text:
-        return Text(self.estimated_time_locator(), self.path, 'Estimated time')
+        return Text(self.estimated_time_locator(), self.PATH, 'Estimated time')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Menu button]

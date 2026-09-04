@@ -15,7 +15,7 @@ class DashboardToolbarComponent(BaseComponent):
 
     - Title
     """
-    path = 'Dashboard page > Toolbar'
+    PATH = 'Dashboard page > Toolbar'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_locator(self) -> Locator:
@@ -23,7 +23,7 @@ class DashboardToolbarComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title(self) -> Text:
-        return Text(self.title_locator(), self.path, 'Title')
+        return Text(self.title_locator(), self.PATH, 'Title')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]

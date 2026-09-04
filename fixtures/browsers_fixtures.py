@@ -6,7 +6,7 @@ from playwright.sync_api import Playwright, StorageState
 from _pytest.fixtures import SubRequest                         # naming for tracing
 from tools.playwright.init_page import init_playwright_page     # helper
 from tools.playwright.registration import registration_new_user # helper
-from config import settings
+from config import settings, Dir
 
 #=======================================================================================================================
 # GUEST page
@@ -50,8 +50,8 @@ def storage_state(playwright: Playwright):      # Используем встр�
     page = context.new_page()                   # Создаем объект страницы page на базе context
     registration_new_user(page)                 # Registration new user (helper)
     storage_state = context.storage_state()     # v.1 - Storage state в переменную
-    # context.storage_state(path=settings.storage_state_file)                  # v.2 - Storage state в 💾 JSON-файл  (optional)
-    # storage_state = context.storage_state(path=settings.storage_state_file)  # v.3 - Storage state в переменную + 💾 JSON-файл  (optional)
+    # context.storage_state(path=Dir.STORAGE_STATE_FILE)                  # v.2 - Storage state в 💾 JSON-файл  (optional)
+    # storage_state = context.storage_state(path=Dir.STORAGE_STATE_FILE)  # v.3 - Storage state в переменную + 💾 JSON-файл  (optional)
     try:
         yield storage_state                     # Передаем Storage state
 

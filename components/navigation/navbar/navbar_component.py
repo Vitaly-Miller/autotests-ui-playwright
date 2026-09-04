@@ -16,7 +16,7 @@ class NavbarComponent(BaseComponent):
     - Title
     - Welcome title
     """
-    path = 'Navbar'
+    PATH = 'Navbar'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_locator(self) -> Locator:
@@ -27,10 +27,10 @@ class NavbarComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title(self) -> Text:
-        return Text(self.title_locator(), self.path, 'Title')
+        return Text(self.title_locator(), self.PATH, 'Title')
 
     def welcome_title(self) -> Text:
-        return Text(self.welcome_title_locator(), self.path, 'Welcome title')
+        return Text(self.welcome_title_locator(), self.PATH, 'Welcome title')
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Navbar]

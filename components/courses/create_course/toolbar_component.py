@@ -17,7 +17,7 @@ class CreateCourseToolbarComponent(BaseComponent):
     - Title
     - Create course button
     """
-    path = 'Create course page > Toolbar'
+    PATH = 'Create course page > Toolbar'
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
     def title_locator(self) -> Locator:
@@ -29,10 +29,10 @@ class CreateCourseToolbarComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title(self) -> Text:
-        return Text(self.title_locator(), self.path, 'Title')
+        return Text(self.title_locator(), self.PATH, 'Title')
 
     def create_course_btn(self) -> Button:
-        return Button(self.create_course_btn_locator(), self.path, 'Create course button')
+        return Button(self.create_course_btn_locator(), self.PATH, 'Create course button')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------

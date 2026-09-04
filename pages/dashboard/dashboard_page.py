@@ -2,12 +2,14 @@
 Dashboard page
 """
 import allure
+from config import Endpoint
 from pages.base_page import BasePage
 from playwright.sync_api import Page
 from components.navigation.navbar.navbar_component import NavbarComponent
 from components.navigation.sidebar.sidebar_component import SidebarComponent
 from components.dashboard.toolbar_component import DashboardToolbarComponent
 from components.dashboard.widget_component import DashboardWidgetComponent
+
 
 #=======================================================================================================================
 class DashboardPage(BasePage):          # Дочерний класс (наследует класс BasePage)
@@ -19,7 +21,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     - Toolbar (component)
     - Widgets (component)
     """
-    URL = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
+    URL = Endpoint.DASHBOARD
 
     def __init__(self, page: Page):     # Конструктор класса, принимающий Page
         super().__init__(page)          # Передаёт page в конструктор BasePage

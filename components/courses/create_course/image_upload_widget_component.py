@@ -17,7 +17,7 @@ from elements.text import Text
 class CreateCourseImageUploadWidgetComponent(BaseComponent):
     """
     [Image upload widget] component
-    
+
     - Upload view:
         - Icon
         - Title
@@ -28,13 +28,13 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         - Empty view (component)
         - Image view
     """
-    path = 'Create course page > Image upload widget'
+    PATH = 'Create course page > Image upload widget'
     IDENTIFIER = 'create-course-preview'
 
     def __init__(self, page: Page):
         super().__init__(page)
         # ⿳ COMPONENTS
-        self.preview_view_empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, path=self.path)
+        self.preview_view_empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, path=self.PATH)
 
 
     # -------------------------------------------------- ㉧ LOCATORS ----------------------------------------------------
@@ -65,26 +65,26 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     # [Upload view]
     def upload_view_icon(self) -> Icon:
-        return Icon(self.upload_view_icon_locator(), self.path, 'Upload view - Icon')
+        return Icon(self.upload_view_icon_locator(), self.PATH, 'Upload view - Icon')
 
     def upload_view_title(self) -> Text:
-        return Text(self.upload_view_title_locator(), self.path, 'Upload view - Title')
+        return Text(self.upload_view_title_locator(), self.PATH, 'Upload view - Title')
 
     def upload_view_description(self) -> Text:
-        return Text(self.upload_view_description_locator(), self.path, 'Upload view - Description')
+        return Text(self.upload_view_description_locator(), self.PATH, 'Upload view - Description')
 
     def upload_image_btn(self) -> Button:
-        return Button(self.upload_image_btn_locator(), self.path, 'Upload image button')
+        return Button(self.upload_image_btn_locator(), self.PATH, 'Upload image button')
 
     def upload_image_input(self) -> InputFile:
-        return InputFile(self.upload_image_input_locator(), self.path, 'Upload image input')
+        return InputFile(self.upload_image_input_locator(), self.PATH, 'Upload image input')
 
     def remove_image_btn(self) -> Button:
-        return Button(self.remove_image_btn_locator(), self.path, 'Remove image button')
+        return Button(self.remove_image_btn_locator(), self.PATH, 'Remove image button')
 
     # Preview view [Image view]
     def preview_view_image_view(self) -> Image:
-        return Image(self.preview_view_image_view_locator(), self.path, 'Preview view - Image view')
+        return Image(self.preview_view_image_view_locator(), self.PATH, 'Preview view - Image view')
 
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------

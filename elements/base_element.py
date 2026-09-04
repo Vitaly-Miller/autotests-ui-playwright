@@ -20,11 +20,6 @@ class BaseElement:
         self.name = f'[{name}]'
         self.error = f'❌ {self.path} > {self.name}'
 
-    # --------------------------------------------------- Directories --------------------------------------------------
-    ROOT = Path(__file__).parent.parent      # 🗂️Project ROOT/
-    TESTDATA = ROOT/'testdata'               # └─ 📁testdata/
-    FILES = TESTDATA/'files'                 #    └─ 📁files/
-
     # ----------------------------------------------------- Helpers ----------------------------------------------------
     @staticmethod
     def _nth_info(nth: int) -> str:
