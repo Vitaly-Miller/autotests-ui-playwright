@@ -1,6 +1,7 @@
 """
 Create Course page
 """
+
 from config import Endpoint
 from pages.base_page import BasePage
 from playwright.sync_api import Page
@@ -14,7 +15,7 @@ from components.courses.create_course.exercises_toolbar_component import CreateC
 from components.courses.create_course.exercise_component import CreateCourseExerciseComponent
 
 #=======================================================================================================================
-class CreateCoursePage(BasePage):        # Дочерний класс (наследует класс BasePage)
+class CreateCoursePage(BasePage):
     """
     [Create Course page]
 
@@ -25,20 +26,23 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
     - Exercise (component)
     """
     URL = Endpoint.CREATE_COURSE
+    PATH = 'Create course page'
     EXERCISES_IDENTIFIER = 'create-course-exercises'
 
-    def __init__(self, page: Page):      # Конструктор класса, принимающий Page
-        super().__init__(page)           # Передаёт page в конструктор BasePage
+    def __init__(self, page: Page):
+        super().__init__(page)
 
         # ⿳ COMPONENTS
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
         self.toolbar = CreateCourseToolbarComponent(page)
+
         self.image_upload_widget = CreateCourseImageUploadWidgetComponent(page)
         self.form = CreateCourseFormComponent(page)
         self.exercises_toolbar = CreateCourseExercisesToolbarComponent(page)
-        self.exercises_empty_view = EmptyViewComponent(page=page, identifier=self.EXERCISES_IDENTIFIER, path='Create course page')
+        self.exercises_empty_view = EmptyViewComponent(page=page, path=self.PATH, identifier=self.EXERCISES_IDENTIFIER)
         self.exercise = CreateCourseExerciseComponent(page)
+
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Exercises [Empty view]
@@ -56,3 +60,6 @@ class CreateCoursePage(BasePage):        # Дочерний класс (насл
             description='Click on "Create exercise" button to create new exercise'
         )
     # ────────────────────────────────────┘
+
+
+#=======================================================================================================================

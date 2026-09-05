@@ -32,13 +32,13 @@ def init_playwright_page(playwright: Playwright, test_name: str, storage_state: 
         headless=settings.headless,                      # - True/False — НЕ/Показывать браузер
         slow_mo=settings.slow_mo                         # - Action delay (ms)
     )
-    context = browser.new_context(                             # Создание браузерного окружения с Storage state:
-        base_url=settings.base_url,                            # - Base URL
-        storage_state=storage_state,            # ┐            # - Storage state из фикстуры
-        # storage_state=Dir.STORAGE_STATE_FILE, # ┘            # - Storage state из JSON-файла  (optional)
-        locale='en-US',                                        # - Website language (locale)  - (можно вынести .env)
-        viewport=ViewportSize(width=1100, height=1200),        # - Window size                - (можно вынести .env)
-        record_video_dir=f'{Dir.VIDEOS}/{test_name}'           # - Record video directory
+    context = browser.new_context(                       # Создание браузерного окружения с Storage state:
+        base_url=settings.base_url,                      # - Base URL
+        storage_state=storage_state,            # ┐      # - Storage state из фикстуры
+        # storage_state=Dir.STORAGE_STATE_FILE, # ┘      # - Storage state из JSON-файла  (optional)
+        locale='en-US',                                  # - Website language (locale)  - (можно вынести .env)
+        viewport=ViewportSize(width=1100, height=1200),  # - Window size                - (можно вынести .env)
+        record_video_dir=f'{Dir.VIDEOS}/{test_name}'     # - Record video directory
     )
     context.tracing.start(                               # Tracing для Playwright Trace Viewer
         screenshots=True,                                # - Screenshots

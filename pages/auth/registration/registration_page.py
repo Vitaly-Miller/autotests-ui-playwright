@@ -1,17 +1,19 @@
 """
 Registration page
 """
+
 import allure
 from config import Endpoint
 from elements.button import Button
 from elements.link import Link
 from elements.text import Text
+from pages.auth.login.login_page import LoginPage
 from pages.base_page import BasePage
 from playwright.sync_api import Locator, Page
 from components.auth.registration.form_component import RegistrationFormComponent
 
 #=======================================================================================================================
-class RegistrationPage(BasePage):       # Дочерний класс (наследует класс BasePage)
+class RegistrationPage(BasePage):
     """
     [Registration page]
 
@@ -21,10 +23,10 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
     - Login link
     """
     URL = Endpoint.REGISTRATION
-    PATH = 'Registration page'          # for logging
+    PATH = 'Registration page'
 
-    def __init__(self, page: Page):     # Конструктор класса, принимающий Page
-        super().__init__(page)          # Передаёт page в конструктор BasePage
+    def __init__(self, page: Page):
+        super().__init__(page)
 
         # ⿳ COMPONENTS
         self.form = RegistrationFormComponent(page)
@@ -70,7 +72,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Registration page]
-    # ──────────────────────────────────┐
+    # ─────────────────────────────────────────┐
     @allure.step('✔ Check [Registration page]')
     def check(
             self,
@@ -96,7 +98,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
         self.form.check(email=email, username=username, password=password)
         self.check_registration_btn(enabled=is_registration_button_enabled)
         self.check_login_link()
-    # ──────────────────────────────────┘
+    # ─────────────────────────────────────────┘
 
     # [Title]
     # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
@@ -227,7 +229,7 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        self.login_link().check_href(href='#/auth/login')
+        self.login_link().check_href(href=LoginPage.URL)
 
     # Redirect
     @allure.step('✔ Check [Login link] redirect to Login page')
@@ -237,7 +239,6 @@ class RegistrationPage(BasePage):       # Дочерний класс (насл�
 
         .
         """
-        login_page_url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
-        self.check_current_url(login_page_url)
+        self.check_current_url(LoginPage.URL)
 
 #=======================================================================================================================

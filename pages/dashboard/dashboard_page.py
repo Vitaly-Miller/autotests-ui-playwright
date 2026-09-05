@@ -1,6 +1,7 @@
 """
 Dashboard page
 """
+
 import allure
 from config import Endpoint
 from pages.base_page import BasePage
@@ -10,9 +11,8 @@ from components.navigation.sidebar.sidebar_component import SidebarComponent
 from components.dashboard.toolbar_component import DashboardToolbarComponent
 from components.dashboard.widget_component import DashboardWidgetComponent
 
-
 #=======================================================================================================================
-class DashboardPage(BasePage):          # Дочерний класс (наследует класс BasePage)
+class DashboardPage(BasePage):
     """
     [Dashboard page]
 
@@ -23,8 +23,8 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     """
     URL = Endpoint.DASHBOARD
 
-    def __init__(self, page: Page):     # Конструктор класса, принимающий Page
-        super().__init__(page)          # Передаёт page в конструктор BasePage
+    def __init__(self, page: Page):
+        super().__init__(page)
 
         # ⿳ COMPONENTS
         # Bars
@@ -58,7 +58,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
     # ──────────────────────────────────────┘
 
     # [Widgets]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check all [Widgets]')
     def check_widgets(self):
         """
@@ -73,8 +73,7 @@ class DashboardPage(BasePage):          # Дочерний класс (насл�
         self.activities_widget.check('Activities')
         self.courses_widget.check('Courses')
         self.scores_widget.check('Scores')
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
 
 #=======================================================================================================================

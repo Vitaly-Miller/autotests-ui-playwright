@@ -32,7 +32,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         self.form = LoginFormComponent(page)
 
 
-
     # ---------------------------------------------------- ㉧ LOCATORS --------------------------------------------------
     def title_locator(self) -> Locator:
         return self.page.get_by_test_id('authentication-ui-course-title-text')
@@ -235,11 +234,12 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        self.reg_link().check_href(href='#/auth/registration')
+        from pages.auth.registration.registration_page import RegistrationPage   # import conflict
+        self.reg_link().check_href(href=RegistrationPage.URL)
 
 
     # [Alert]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Alert]')
     def check_alert(self):
         """
@@ -250,7 +250,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.check_alert_visible()
         self.check_alert_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
+    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
     # Visible
     def check_alert_visible(self):
         """
@@ -268,5 +268,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         .
         """
         self.alert().check_text(text='Wrong email or password')
+
 
 #=======================================================================================================================

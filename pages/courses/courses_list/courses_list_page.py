@@ -1,6 +1,7 @@
 """
 Courses list page
 """
+
 from config import Endpoint
 from playwright.sync_api import Page
 from components.courses.courses_list.course_card_component import CourseCardComponent
@@ -11,7 +12,7 @@ from components.courses.courses_list.toolbar_component import CoursesListToolbar
 from components.views.empty_view_component import EmptyViewComponent
 
 #=======================================================================================================================
-class CoursesListPage(BasePage):        # Дочерний класс (наследует класс BasePage)
+class CoursesListPage(BasePage):
     """
     [Courses list page]
 
@@ -25,8 +26,8 @@ class CoursesListPage(BasePage):        # Дочерний класс (насл�
     IDENTIFIER = 'courses-list'
     PATH = 'Courses list page'          # for logging
 
-    def __init__(self, page: Page):     # Конструктор класса, принимающий Page
-        super().__init__(page)          # Передаёт page в конструктор BasePage
+    def __init__(self, page: Page):
+        super().__init__(page)
 
         # ⿳ COMPONENTS
         self.navbar = NavbarComponent(page)

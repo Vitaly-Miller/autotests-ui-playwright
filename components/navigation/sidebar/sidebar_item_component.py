@@ -24,7 +24,6 @@ class SidebarItemComponent(BaseComponent):
         :param identifier: Unique part of locator [dashboard, courses, logout]
         """
         super().__init__(page)
-
         self.identifier = identifier
         self.path = f'Sidebar > {self.identifier.capitalize()}'
 
@@ -39,7 +38,6 @@ class SidebarItemComponent(BaseComponent):
     def title_locator(self) -> Locator:
         return self.page.get_by_test_id(f'{self.identifier}-drawer-list-item-title-text')
 
-
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def btn(self) -> Button:
         return Button(self.btn_locator(), self.path, f'{self.identifier.capitalize()}-button')
@@ -50,7 +48,6 @@ class SidebarItemComponent(BaseComponent):
     def title(self) -> Text:
         return Text(self.title_locator(), self.path, f'{self.identifier.capitalize()}-title')
 
-
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     # Click [Button]
     def click_btn(self):
@@ -60,7 +57,6 @@ class SidebarItemComponent(BaseComponent):
         .
         """
         self.btn().click()
-
 
     # ------------------------------------------------ ✔️EXPECTATIONS --------------------------------------------------
     # [Item]

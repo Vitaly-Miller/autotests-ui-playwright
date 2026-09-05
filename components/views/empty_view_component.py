@@ -24,7 +24,6 @@ class EmptyViewComponent(BaseComponent):
         :param path: Component navigate-path
         """
         super().__init__(page)
-
         self.identifier = identifier
         self.path = f'{path} > {self.identifier.capitalize().replace('-', ' ')} > Empty view'
 
