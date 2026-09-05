@@ -5,6 +5,7 @@ Test Courses
 import pytest
 import allure
 from allure_commons.types import Severity
+from config import settings
 from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.courses.courses_list.courses_list_page import CoursesListPage
 
@@ -21,7 +22,7 @@ class TestCourses:
     @allure.title('✔ Check empty courses list UI')
     def test_empty_courses_list(self, courses_list_page: CoursesListPage):
         # 𝌆 TEST DATA
-        username = 'username'
+        username = settings.test_user.username
 
         # ⿹ Open page
         courses_list_page.open(courses_list_page.URL)

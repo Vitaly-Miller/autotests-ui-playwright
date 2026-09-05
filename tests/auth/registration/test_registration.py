@@ -5,6 +5,7 @@ Test registration
 import pytest
 import allure
 from allure_commons.types import Severity
+from config import settings
 from pages.dashboard.dashboard_page import DashboardPage
 from pages.auth.registration.registration_page import RegistrationPage
 from tools.allure.annotations import Epic, Feature, Story, Tag
@@ -22,9 +23,9 @@ class TestRegistration:
     @allure.title('Registration successful')
     def test_registration_successful(self, registration_page: RegistrationPage):
         # 𝌮 User data
-        email = 'user.name@gmail.com'
-        username = 'username'
-        password = 'password'
+        email = settings.test_user.email
+        username = settings.test_user.username
+        password = settings.test_user.password
 
         # ⿹ Open page
         registration_page.open(registration_page.URL)
