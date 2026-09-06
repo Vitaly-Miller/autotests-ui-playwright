@@ -26,11 +26,11 @@ class TestLoginNegative:
             ('user.name@gmail.com', '  '),       # 2 - Invalid password
             ('  ', 'password')                   # 3 - Invalid email
         ])
-    def test_login_with_wrong_email_or_password(          # Принимает:
+    def test_login_with_wrong_email_or_password(               # Принимает:
             self,
-            login_page: LoginPage,                        # - Фикстура login_page
-            email: str,                                   # - email - from parameterize
-            password: str                                 # - password - from parameterize
+            login_page: LoginPage,                             # - Фикстура login_page
+            email: str,                                        # - email - from parameterize
+            password: str                                      # - password - from parameterize
     ):
         # ⿹ Open page
         login_page.open(login_page.URL)
