@@ -5,7 +5,7 @@ import pytest
 from playwright.sync_api import Playwright, StorageState
 from _pytest.fixtures import SubRequest                          # naming for tracing
 from tools.playwright.init_page import init_playwright_page      # helper
-from tools.registration import registration_new_user  # helper
+from tools.registration import registration_new_user             # helper
 from config import settings
 
 #=======================================================================================================================

@@ -31,7 +31,6 @@ class BaseElement:
         """
         return '' if nth == 0 else f' (nth: {nth})'
 
-
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Click
     def click(self, nth: int = 0):
@@ -43,7 +42,6 @@ class BaseElement:
         nth_info = self._nth_info(nth)
         with allure.step(f'▶ Click {self.name}{nth_info}'):
             self.locator.nth(nth).click()
-
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # Visible
@@ -58,7 +56,6 @@ class BaseElement:
             error = f'{self.error}{nth_info} - invisible!'
             expect(self.locator.nth(nth), error).to_be_visible()
 
-
     # Hidden
     def check_hidden(self, nth: int = 0):
         """
@@ -70,7 +67,6 @@ class BaseElement:
         with allure.step(f'✔ Check {self.name}{nth_info} is hidden'):
             error = f'{self.error}{nth_info} - visible!'
             expect(self.locator.nth(nth), error).to_be_hidden()
-
 
     # Text
     def check_text(self, text: str, nth: int = 0):

@@ -1,10 +1,10 @@
 """
 Pages (helper)
 """
+
 import allure
 from playwright.sync_api import Playwright, StorageState, ViewportSize
 from config import settings, Dir
-
 
 #=======================================================================================================================
 # Page for pytest fixture (helper)
