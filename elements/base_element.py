@@ -3,7 +3,6 @@ Base check of element
 """
 import allure
 from playwright.sync_api import Locator, expect
-from pathlib import Path
 
 #=======================================================================================================================
 class BaseElement:

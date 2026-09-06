@@ -5,6 +5,7 @@ Test Dashboard
 import pytest
 import allure
 from allure_commons.types import Severity
+from config import settings
 from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.dashboard.dashboard_page import DashboardPage
 
@@ -21,7 +22,7 @@ class TestDashboard:
     @allure.title('✔ Check Dashboard page UI')
     def test_dashboard(self, dashboard_page: DashboardPage):
         # 𝌆 TEST DATA
-        username = 'username'
+        username = settings.test_user.username
 
         # ⿹ Open page
         dashboard_page.open(dashboard_page.URL)

@@ -5,7 +5,6 @@ BASE component
 
 import allure
 from playwright.sync_api import Page, expect
-from pathlib import Path
 from re import Pattern
 
 #=======================================================================================================================

@@ -27,10 +27,10 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title_field(self, index: int = 0) -> InputField:
-        return InputField(self.title_field_locator(index), self.PATH, f'Title field)')
+        return InputField(self.title_field_locator(index), self.PATH, 'Title field')
 
     def description_field(self, index: int = 0) -> InputField:
-        return InputField(self.description_field_locator(index), self.PATH, f'Description field')
+        return InputField(self.description_field_locator(index), self.PATH, 'Description field')
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
     # Fill [Exercise form]
@@ -140,7 +140,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         self.title_field(index).check_name(name='Title')
 
     # Value
-    def check_title_field_value(self, index: int = 0, title: str = 'Exercise description'):
+    def check_title_field_value(self, index: int = 0, title: str = 'Exercise title'):
         """
         ✔ Check [Title field] value
 
@@ -196,7 +196,7 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         self.description_field(index).check_name(name='Description')
 
     # Value
-    def check_description_field_value(self, index: int = 0, description: str = 'Exercise title'):
+    def check_description_field_value(self, index: int = 0, description: str = 'Exercise description'):
         """
         ✔ Check [Description field] value
 

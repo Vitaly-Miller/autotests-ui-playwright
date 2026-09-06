@@ -17,7 +17,7 @@ class Button(BaseElement):
         """
         nth_info = self._nth_info(nth)
         with allure.step(f'✔ Check {self.name}{nth_info} is enabled'):
-            error = f'{self.error} (nth: {nth}) - disabled!'
+            error = f'{self.error}{nth_info} - disabled!'
             expect(self.locator.nth(nth), error).to_be_enabled()
 
 
