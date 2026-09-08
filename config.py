@@ -91,11 +91,12 @@ class Settings(BaseSettings):
     )
 
     base_url: str
-    browser: Browser
+    browser: list[Browser]
     headless: bool
     slow_mo: int  # ms
     test_user: TestUser
     chromium_channel: ChromiumChannel | None = None    # ⚠ закомментировать в .env при webkit / firefox
+
 
 settings = Settings()
 

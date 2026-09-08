@@ -10,29 +10,38 @@ from config import settings
 
 #=======================================================================================================================
 # Guest page
-@pytest.fixture
+@pytest.fixture(params=settings.browser)
 def page_guest(playwright: Playwright, request: SubRequest):
     """
     Fixture GUEST-Page for authentication (NO Storage state)
 
     :param playwright: Playwright
-    :param request: SubRequest.request (for tracing)
+    :param request: SubRequest.request (naming for tracing and browser parametrization)
     :return: yield from - Page from init_playwright_page() without Storage state
     """
-    yield from init_playwright_page(playwright=playwright, test_name=request.node.name)
+    yield from init_playwright_page(
+        playwright=playwright,
+        test_name=request.node.name,
+        browser_engine=request.param
+    )
 
 # Page with Storage state 📦
-@pytest.fixture
+@pytest.fixture(params=settings.browser)
 def page(playwright: Playwright, request: SubRequest, storage_state: StorageState):
     """
     Fixture Page + Storage state for authorized user (registered)
 
     :param playwright: Playwright
     :param storage_state: Фикстура с сохраненными авторизационными данными
-    :param request: SubRequest.request (naming for tracing)
+    :param request: SubRequest.request (naming for tracing and browser parametrization)
     :return: yield from - Page from init_playwright_page() with Storage state
     """
-    yield from init_playwright_page(playwright=playwright, test_name=request.node.name, storage_state=storage_state)
+    yield from init_playwright_page(
+        playwright=playwright,
+        test_name=request.node.name,
+        storage_state=storage_state,
+        browser_engine=request.param
+    )
 
 
 #-----------------------------------------------------------------------------------------------------------------------

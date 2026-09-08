@@ -4,11 +4,17 @@ Pages (helper)
 
 import allure
 from playwright.sync_api import Playwright, StorageState, ViewportSize
-from config import settings, Dir
+from config import settings, Dir, Browser, ChromiumChannel
 
 #=======================================================================================================================
 # Page for pytest fixture (helper)
-def init_playwright_page(playwright: Playwright, test_name: str, storage_state: StorageState | None = None):
+def init_playwright_page(
+        playwright: Playwright,
+        test_name: str,
+        browser_engine: Browser,
+        chromium_channel: ChromiumChannel | None = None,
+        storage_state: StorageState | None = None
+):
     """
     Page for pytest fixture (helper)
 
@@ -22,13 +28,15 @@ def init_playwright_page(playwright: Playwright, test_name: str, storage_state: 
             playwright=playwright, test_name=request.node.name, storage_state=storage_state
         )
 
+
+    :param chromium_channel:
     :param playwright: Playwright (встроенная фикстура из pytest_playwright)
     :param test_name: Имя текущего теста (request.node.name) — для путей video/trace и имён вложений в Allure
-    :param storage_state: Авторизационные данные; None → гостевой context без авторизации
+    :param browser_engine: Browser engine [chromium] / [webkit] / [firefox]
+    :param storage_state: Авторизационные данные / None → гостевой context без авторизации
     :return: yield page: Page (на движке chromium)
     """
-    browser = playwright.chromium.launch(                # Создаем объект браузера на движке chromium c параметрами:
-        channel=settings.chromium_channel,               # - UI оболочка: 'chromium', 'chrome', 'msedge'
+    browser = playwright[browser_engine].launch(         # Создаем объект браузера на движке [chromium], [webkit], [firefox] c параметрами:
         headless=settings.headless,                      # - True/False — НЕ/Показывать браузер
         slow_mo=settings.slow_mo                         # - Action delay (ms)
     )
