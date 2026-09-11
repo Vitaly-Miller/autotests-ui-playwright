@@ -1,6 +1,6 @@
 """
-pytest.fixture(scope='')       - область приминенния фикстуры
-pytest.fixture(autouse=True))  - автоматическое приминение фикстуры
+pytest.fixture(scope='')       - область применения фикстуры
+pytest.fixture(autouse=True))  - автоматическое применение фикстуры
 """
 import pytest
 
