@@ -1,8 +1,6 @@
 """
 Pytest info
-
 """
-import pytest
 
 #==================================================== >_Terminal =======================================================
 """
@@ -33,7 +31,7 @@ python -m pytest -k create and not user                    - запуск тес
 python -m pytest -m smoke
 python -m pytest -m "smoke and not regression"
 
--- По маркерам ▷ PyCharm --- 👍
+-- По маркерам через ▷ PyCharm --- 👍
 Добавить конфигурацию запуска -> + -> pytest -> Переименовать название -> Поле <Дополнительные аргументы>: -m smoke
 
 
@@ -63,9 +61,9 @@ python -m pytest -s -v --numprocesses=5     - количество процес�
 python -m pytest -s -v --numprocesses=auto  - количество процессов (workers) = auto (может падать из-за нагрузки)   
 python -m pytest -s -v -n 5                 - короткий вариант команды
 
-python -m pytest -s -v --numprocesses=5 --alluredir=allure-results --clean-alluredir   - запуск всех тестов (паралельно)+ формирование Allure Results + Очистка старого 
+python -m pytest -s -v --numprocesses=5 --alluredir=allure-results --clean-alluredir   - запуск всех тестов (параллельно)+ формирование Allure Results + Очистка старого 
 
-ℹ️Маркировка созависимых тестов одной группы, чтоб на них был нащначен общий worker
+ℹ️Маркировка созависимых тестов одной группы, чтоб на них был назначен общий worker
 @pytest.mark.xdist_group(name='users-group')
 def test_...():
     ...

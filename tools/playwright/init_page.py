@@ -5,6 +5,7 @@ Pages (helper)
 import allure
 from playwright.sync_api import Playwright, StorageState, ViewportSize
 from config import settings, Dir, Browser, ChromiumChannel
+from tools.playwright.mocks import mock_static_resources
 
 #=======================================================================================================================
 # Page for pytest fixture (helper)
@@ -54,6 +55,7 @@ def init_playwright_page(
         sources=True                                     # - Sources
     )
     page = context.new_page()                            # Создаем объект страницы page на базе context
+    mock_static_resources(page)                          # Mock - блокируем ненужные ресурсы при загрузке страницы (optional)
 
     try:
         yield page                                       # Передаем page (на базе движка chromium)

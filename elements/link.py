@@ -20,8 +20,10 @@ class Link(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} "href": "{href}"'):
-            error = f'{self.error}{nth_info} - incorrect "href" url-attribute!'
+        step = f'✔ Check {self.name}{nth_info} "href": "{href}"'
+        error = f'{self.error}{nth_info} - incorrect "href" url-attribute!'
+        with allure.step(step):
+            self.logger.info(step)
             expect(self.locator.nth(nth), error).to_have_attribute('href', href)
 
 

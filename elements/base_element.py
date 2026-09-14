@@ -4,8 +4,12 @@ Base check of element
 import allure
 from playwright.sync_api import Locator, expect
 
+from tools.logger import get_logger
+
 #=======================================================================================================================
 class BaseElement:
+    logger = get_logger('ELEMENT ', True)
+
     def __init__(self, locator: Locator, path: str, name: str):
         """
         Initialize base element
@@ -39,7 +43,9 @@ class BaseElement:
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'▶ Click {self.name}{nth_info}'):
+        step = f'▶ Click {self.name}{nth_info}'
+        with allure.step(step):
+            self.logger.info(step)
             self.locator.nth(nth).click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
@@ -51,8 +57,10 @@ class BaseElement:
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} is visible'):
-            error = f'{self.error}{nth_info} - invisible!'
+        step = f'✔ Check {self.name}{nth_info} is visible'
+        error = f'{self.error}{nth_info} - invisible!'
+        with allure.step(step):
+            self.logger.info(step)
             expect(self.locator.nth(nth), error).to_be_visible()
 
     # Hidden
@@ -63,8 +71,10 @@ class BaseElement:
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} is hidden'):
-            error = f'{self.error}{nth_info} - visible!'
+        step = f'✔ Check {self.name}{nth_info} is hidden'
+        error = f'{self.error}{nth_info} - visible!'
+        with allure.step(step):
+            self.logger.info(step)
             expect(self.locator.nth(nth), error).to_be_hidden()
 
     # Text
@@ -76,8 +86,10 @@ class BaseElement:
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} text: "{text}"'):
-            error = f'{self.error}{nth_info} - incorrect text!'
+        step = f'✔ Check {self.name}{nth_info} text: "{text}"'
+        error = f'{self.error}{nth_info} - incorrect text!'
+        with allure.step(step):
+            self.logger.info(step)
             expect(self.locator.nth(nth), error).to_have_text(text)
 
 #=======================================================================================================================

@@ -16,8 +16,10 @@ class Button(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} is enabled'):
-            error = f'{self.error}{nth_info} - disabled!'
+        step = f'✔ Check {self.name}{nth_info} is enabled'
+        error = f'{self.error}{nth_info} - disabled!'
+        with allure.step(step):
+            self.logger.info(step)
             expect(self.locator.nth(nth), error).to_be_enabled()
 
 
@@ -29,8 +31,10 @@ class Button(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} is disabled'):
-            error = f'{self.error}{nth_info} - enabled!'
+        step = f'✔ Check {self.name}{nth_info} is disabled'
+        error = f'{self.error}{nth_info} - enabled!'
+        with allure.step(step):
+            self.logger.info(step)
             expect(self.locator.nth(nth), error).to_be_disabled()
 
 

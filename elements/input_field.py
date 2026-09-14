@@ -17,7 +17,9 @@ class InputField(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'▶ Fill {self.name}{nth_info} with value: "{value}"'):
+        step = f'▶ Fill {self.name}{nth_info} with value: "{value}"'
+        with allure.step(step):
+            self.logger.info(step)
             self.locator.nth(nth).fill(value)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
@@ -30,8 +32,10 @@ class InputField(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} name: "{name}"'):
-            error = f'{self.error}{nth_info} - incorrect name!'
+        step = f'✔ Check {self.name}{nth_info} name: "{name}"'
+        error = f'{self.error}{nth_info} - incorrect name!'
+        with allure.step(step):
+            self.logger.info(step)
             expect(self.locator.nth(nth), error).to_have_accessible_name(name)
 
     # Placeholder
@@ -43,8 +47,10 @@ class InputField(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} placeholder: "{placeholder}"'):
-            error = f'{self.error}{nth_info} - incorrect placeholder!'
+        step = f'✔ Check {self.name}{nth_info} placeholder: "{placeholder}"'
+        error = f'{self.error}{nth_info} - incorrect placeholder!'
+        with allure.step(step):
+            self.logger.info(step)
             expect(self.locator.nth(nth), error).to_have_attribute('placeholder', placeholder)
 
     # Value
@@ -56,8 +62,10 @@ class InputField(BaseElement):
         :param nth: nth-index of locator
         """
         nth_info = self._nth_info(nth)
-        with allure.step(f'✔ Check {self.name}{nth_info} value: "{value}"'):
-            error = f'{self.error}{nth_info} - incorrect value!'
+        step = f'✔ Check {self.name}{nth_info} value: "{value}"'
+        error = f'{self.error}{nth_info} - incorrect value!'
+        with allure.step(step):
+            self.logger.info(step)
             expect(self.locator.nth(nth), error).to_have_value(value)
 
 #=======================================================================================================================

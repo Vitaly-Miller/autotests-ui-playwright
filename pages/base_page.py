@@ -6,17 +6,17 @@ Base page
 from playwright.sync_api import Page, expect
 from re import Pattern
 import allure
-from config import Endpoint
+from tools.logger import get_logger
 
 #=======================================================================================================================
-class BasePage:                                 # Родительский класс
-    # Page URLs (endpoints from config)
-    def __init__(self, page: Page):             # Конструктор класса, принимающий page
+class BasePage:                                          # Родительский класс
+    logger = get_logger('PAGE    ', True)  # Logger (название и отображение в консоли)
+
+    def __init__(self, page: Page):                      # Конструктор класса, принимающий page
         self.page = page
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Open page
-    @allure.step('⿹ Open page')
     def open(self, url: str):
         """
         ⿹ Open page
@@ -25,39 +25,47 @@ class BasePage:                                 # Родительский кл�
 
         :param url: Page URL
         """
-        self.page.goto(url=url)
+        step = f'⿹ Open page URL: {url}'
+        with allure.step(step):
+            self.logger.info(step)
+            self.page.goto(url=url)
 
     # Reload page
-    @allure.step('↺ Reload page {self.page.url}')
     def reload(self):
         """
         ↺ Reload current page
 
         .
         """
-        self.page.reload()
+        step = f'↻ Reload page URL: {self.page.url}'
+        with allure.step(step):
+            self.logger.info(step)
+            self.page.reload()
 
     # Wait (timeout)
-    @allure.step('...wait {timeout} sec')
     def wait(self, timeout: int = 2):
         """
         Wait (timeout) sec
 
         :param timeout: Timeout in sec (2 sec by default)
         """
-        self.page.wait_for_timeout(timeout * 1000)
+        step = f'... wait {timeout} sec'
+        with allure.step(step):
+            self.logger.info(step)
+            self.page.wait_for_timeout(timeout * 1000)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Current URL] - ⚠️Дублирование из BaseComponent
-    @allure.step('✔ Check current page URL')
     def check_current_url(self, url: str | Pattern[str]):
         """
         ✔ Check [Current page URL]
 
         :param url: Expected page URL
         """
-        error = f'❌ Current page URL - incorrect!'
-        expect(self.page, error).to_have_url(url)
-
+        step = f'✔ Check current page URL is "{url}"'
+        error = '❌ Current page URL - incorrect!'
+        with allure.step(step):
+            self.logger.info(step)
+            expect(self.page, error).to_have_url(url)
 
 #=======================================================================================================================
