@@ -15,13 +15,14 @@ class Dir:
     .
     """
     # Directories
-    BASE_DIR = Path(__file__).parent      # 🗂️Project ROOT (Base directory)
-    TESTDATA = BASE_DIR / 'testdata'      # ├─ 📁testdata/
-    FILES = TESTDATA / 'files'            # │  └─ 📁files/
-    TRACING = BASE_DIR / 'tracing'        # ├─ 📁tracing/
-    VIDEOS = BASE_DIR / 'videos'          # └─ 📁videos/
+    BASE_DIR = Path(__file__).parent                      # 🗂️Project ROOT (Base directory)
+    TESTDATA = BASE_DIR / 'testdata'                      # ├─ 📁testdata/
+    FILES = TESTDATA / 'files'                            # │  └─ 📁files/
+    TRACING = BASE_DIR / 'tracing'                        # ├─ 📁tracing/
+    VIDEOS = BASE_DIR / 'videos'                          # ├─ 📁videos/
+    ALLURE_RESULTS = BASE_DIR / 'allure-results'          # ├─ 📁allure-results/
     # Files
-    STORAGE_STATE_FILE = BASE_DIR / 'storage_state.json'
+    STORAGE_STATE_FILE = BASE_DIR / 'storage_state.json'  # └─ storage_state.json
 
 class Endpoint(StrEnum):
     """
@@ -61,20 +62,6 @@ class Browser(StrEnum):
     FIREFOX = 'firefox'
     WEBKIT = 'webkit'
 
-class ChromiumChannel(StrEnum):
-    """
-    Chromium channel (UI)
-
-    playwright.chromium.launch(channel=[CHANNEL])
-
-    - chromium - Chromium (default)
-    - chrome   - Google Chrome
-    - msedge   - Microsoft Edge
-    """
-    CHROMIUM = 'chromium'
-    CHROME = 'chrome'
-    MSEDGE = 'msedge'
-
 
 #-----------------------------------------------------------------------------------------------------------------------
 class Settings(BaseSettings):
@@ -87,7 +74,7 @@ class Settings(BaseSettings):
         env_file=Dir.BASE_DIR / '.env',
         env_file_encoding='utf-8',
         env_nested_delimiter='.',
-        extra='ignore',
+        extra='ignore'
     )
 
     base_url: str
@@ -95,7 +82,6 @@ class Settings(BaseSettings):
     headless: bool
     slow_mo: int  # ms
     test_user: TestUser
-    chromium_channel: ChromiumChannel | None = None    # ⚠ закомментировать в .env при webkit / firefox
 
 
 settings = Settings()

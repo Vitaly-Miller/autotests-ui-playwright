@@ -4,7 +4,7 @@ Pages (helper)
 
 import allure
 from playwright.sync_api import Playwright, StorageState, ViewportSize
-from config import settings, Dir, Browser, ChromiumChannel
+from config import settings, Dir, Browser
 from tools.playwright.mocks import mock_static_resources
 
 #=======================================================================================================================
@@ -13,7 +13,6 @@ def init_playwright_page(
         playwright: Playwright,
         test_name: str,
         browser_engine: Browser,
-        chromium_channel: ChromiumChannel | None = None,
         storage_state: StorageState | None = None
 ):
     """
