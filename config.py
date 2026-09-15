@@ -36,7 +36,6 @@ class Endpoint(StrEnum):
     COURSES = '#/courses'
     CREATE_COURSE = f'{COURSES}/create'
 
-
 class TestUser(BaseModel):
     """
     Test user credentials — from .env
@@ -46,7 +45,6 @@ class TestUser(BaseModel):
     email: str
     username: str
     password: str
-
 
 class Browser(StrEnum):
     """
