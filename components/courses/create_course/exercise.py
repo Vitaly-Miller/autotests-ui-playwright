@@ -6,8 +6,8 @@ Create course page > Exercises > [Exercise]
 import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Page
-from components.courses.create_course.exercise_toolbar_component import CreateCourseExerciseToolbarComponent
-from components.courses.create_course.exercise_form_component import CreateCourseExerciseFormComponent
+from components.courses.create_course.exercise_toolbar import CreateCourseExerciseToolbarComponent
+from components.courses.create_course.exercise_form import CreateCourseExerciseFormComponent
 
 #=======================================================================================================================
 
@@ -20,8 +20,8 @@ class CreateCourseExerciseComponent(BaseComponent):
       - Delete exercise button
 
     - Form (component)
-      - Title field
-      - Description field
+      - Title input field
+      - Description input field
     """
     def __init__(self, page: Page):
         super().__init__(page)
@@ -37,8 +37,8 @@ class CreateCourseExerciseComponent(BaseComponent):
     def check(
         self,
         index: int,
-        title: str | None = None,
-        description: str | None = None
+        title: str = 'Exercise title',
+        description: str = 'Exercise description'
     ):
         """
         ✔ Check [Exercise]
@@ -47,8 +47,8 @@ class CreateCourseExerciseComponent(BaseComponent):
         - ✔ Form - Title | Description
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
-        :param title: Title (optional)
-        :param description: Description (optional)
+        :param title: Title (Default: 'Exercise title')
+        :param description: Description (Default: 'Exercise description')
         """
         self.toolbar.check(index)
         self.form.check(

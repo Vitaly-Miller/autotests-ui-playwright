@@ -14,16 +14,16 @@ with sync_playwright() as playwright:                        # Создаем о
     # ⿹ Open page
     page.goto(login_url)                                                 # ▶ ACTION - Переход на страницу по URL
 
-    # Email field
-    email_field_locator = page.get_by_label('Email')                                            # ㉧ LOCATOR поля ввода Email  (v.1 - by label)
-    email_field_locator_ = page.locator('label:has-text("Email")')                              # ㉧ LOCATOR поля ввода Email  (v.2)
-    email_field_locator__ = page.locator('//div[@data-testid="login-form-email-input"]//input') # ㉧ LOCATOR поля ввода Email  (v.3 - by XPath)
-    email_field_locator___ = page.get_by_test_id('login-form-email-input').locator('input')     # ㉧ LOCATOR поля ввода Email  (v.4 - by test id + locator)
-    email_field_locator.fill('user.name@gmail.com')                                             # ▶ ACTION - fill email field
+    # Email input field
+    email_input_field_locator = page.get_by_label('Email')                                            # ㉧ LOCATOR поля ввода Email  (v.1 - by label)
+    email_input_field_locator_ = page.locator('label:has-text("Email")')                              # ㉧ LOCATOR поля ввода Email  (v.2)
+    email_input_field_locator__ = page.locator('//div[@data-testid="login-form-email-input"]//input') # ㉧ LOCATOR поля ввода Email  (v.3 - by XPath)
+    email_input_field_locator___ = page.get_by_test_id('login-form-email-input').locator('input')     # ㉧ LOCATOR поля ввода Email  (v.4 - by test id + locator)
+    email_input_field_locator.fill('user.name@gmail.com')                                             # ▶ ACTION - fill email field
 
-    # Password field
-    password_field_locator = page.get_by_label('Password')                 # ㉧ LOCATOR поля ввода Password  (by label)
-    password_field_locator.fill('password')                                # ▶ ACTION - fill password field
+    # Password input field
+    password_input_field_locator = page.get_by_label('Password')                 # ㉧ LOCATOR поля ввода Password  (by label)
+    password_input_field_locator.fill('password')                                # ▶ ACTION - fill password field
 
     # Login button
     login_btn_locator = page.get_by_test_id('login-page-login-button')     # ㉧ LOCATOR кнопки Login (v.1 - by test_id)

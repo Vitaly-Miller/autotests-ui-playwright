@@ -27,19 +27,19 @@ def test_auth_unregistered_user():
         page.goto(login_url)                          # ▶ ACTION - Переход на страницу по URL
 
         # ㉧ LOCATORS
-        email_field_locator = page.get_by_label('Email')                                             # by label
-        email_field_locator_ = page.locator('label:has-text("Email")')                               # by label has text
-        email_field_locator__ = page.locator('//div[@data-testid="login-form-email-input"]//input')  # by XPath
-        email_field_locator___ = page.get_by_test_id('login-form-email-input').locator('input')      # by test id + locator
-        password_field_locator = page.get_by_label('Password')                                       # by label
+        email_input_field_locator = page.get_by_label('Email')                                             # by label
+        email_input_field_locator_ = page.locator('label:has-text("Email")')                               # by label has text
+        email_input_field_locator__ = page.locator('//div[@data-testid="login-form-email-input"]//input')  # by XPath
+        email_input_field_locator___ = page.get_by_test_id('login-form-email-input').locator('input')      # by test id + locator
+        password_input_field_locator = page.get_by_label('Password')                                       # by label
         login_btn_locator = page.get_by_test_id('login-page-login-button')                           # by test id
         login_btn_locator_ = page.get_by_role(role='button', name='Login')                           # by role
         error_message_locator = page.get_by_test_id('login-page-wrong-email-or-password-alert')      # by test id
         error_message_locator_ = page.get_by_text('Wrong email or password')                         # by text
 
         # ▶ ACTIONS
-        email_field_locator.fill('user.name@gmail.com')       # Fill field
-        password_field_locator.fill('password')               # Fill field
+        email_input_field_locator.fill('user.name@gmail.com')       # Fill field
+        password_input_field_locator.fill('password')               # Fill field
         login_btn_locator.click()                             # Click button
 
         # ✔️EXPECTATIONS

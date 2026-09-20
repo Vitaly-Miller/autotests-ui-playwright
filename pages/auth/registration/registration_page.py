@@ -10,7 +10,7 @@ from elements.text import Text
 from pages.auth.login.login_page import LoginPage
 from pages.base_page import BasePage
 from playwright.sync_api import Locator, Page
-from components.auth.registration.form_component import RegistrationFormComponent
+from components.auth.registration.form import RegistrationFormComponent
 
 #=======================================================================================================================
 class RegistrationPage(BasePage):
@@ -76,9 +76,9 @@ class RegistrationPage(BasePage):
     @allure.step('✔ Check [Registration page]')
     def check(
             self,
-            email: str | None = None,
-            username: str | None = None,
-            password: str | None = None,
+            email: str = '',
+            username: str = '',
+            password: str = '',
             is_registration_button_enabled: bool = False
     ):
         """
@@ -89,9 +89,9 @@ class RegistrationPage(BasePage):
         - ✔ Registration button - disabled / enabled
         - ✔ Login link - visible | - text | - URL
 
-        :param email: Email (optional)
-        :param username: Username (optional)
-        :param password: Password (optional)
+        :param email: Email (Empty by default)
+        :param username: Username (Empty by default)
+        :param password: Password (Empty by default)
         :param is_registration_button_enabled: False/True
         """
         self.check_title()

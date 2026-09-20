@@ -7,12 +7,12 @@ from pages.base_page import BasePage
 from playwright.sync_api import Page
 from components.navigation.navbar.navbar_component import NavbarComponent
 from components.navigation.sidebar.sidebar_component import SidebarComponent
-from components.courses.create_course.toolbar_component import CreateCourseToolbarComponent
+from components.courses.create_course.toolbar import CreateCourseToolbarComponent
 from components.views.empty_view_component import EmptyViewComponent
-from components.courses.create_course.image_upload_widget_component import CreateCourseImageUploadWidgetComponent
-from components.courses.create_course.form_component import CreateCourseFormComponent
-from components.courses.create_course.exercises_toolbar_component import CreateCourseExercisesToolbarComponent
-from components.courses.create_course.exercise_component import CreateCourseExerciseComponent
+from components.courses.create_course.image_upload_widget import CreateCourseImageUploadWidgetComponent
+from components.courses.create_course.form import CreateCourseFormComponent
+from components.courses.create_course.exercises_toolbar import CreateCourseExercisesToolbarComponent
+from components.courses.create_course.exercise import CreateCourseExerciseComponent
 
 #=======================================================================================================================
 class CreateCoursePage(BasePage):

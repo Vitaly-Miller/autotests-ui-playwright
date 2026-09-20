@@ -19,15 +19,15 @@ with (sync_playwright() as playwright):         # Создаем объект pl
     page.goto(registration_url)
 
     # ㉧ LOCATORS
-    email_field_locator = page.get_by_role(role='textbox', name='Email')
-    username_field_locator = page.get_by_role(role='textbox', name='Username')
-    password_field_locator = page.get_by_role(role='textbox', name='Password')
+    email_input_field_locator = page.get_by_role(role='textbox', name='Email')
+    username_input_field_locator = page.get_by_role(role='textbox', name='Username')
+    password_input_field_locator = page.get_by_role(role='textbox', name='Password')
     registration_btn_locator = page.get_by_role(role='button', name='Registration')
 
     # ▶ ACTIONS
-    email_field_locator.fill('user.name@gmail.com')
-    username_field_locator.fill('username')
-    password_field_locator.fill('password')
+    email_input_field_locator.fill('user.name@gmail.com')
+    username_input_field_locator.fill('username')
+    password_input_field_locator.fill('password')
     registration_btn_locator.click()
 
     #------------------------------------------------------ 💾----------------------------------------------------------

@@ -8,9 +8,9 @@
 - ℹ️ Позволяет эмулировать спецклавиши (`Enter`, `Tab`, `Backspace`, комбинации типа `Control+A`), а не только печать текста
 
 ```python
-email_field.click()                       # фокус на элементе (через .click())
+email_input_field.click()                       # фокус на элементе (через .click())
        или
-email_field.focus()                       # фокус на элементе (через .focus())
+email_input_field.focus()                       # фокус на элементе (через .focus())
 
 page.keyboard.type('text')                # посимвольная печать
 page.keyboard.type('text', delay=50)      # посимвольная печать с задержкой 50 ms между символами

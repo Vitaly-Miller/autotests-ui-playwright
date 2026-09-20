@@ -19,15 +19,15 @@ def test_auth_unregistered_user(guest_page):
     page.goto(login_url)                          # ▶ ACTION - Переход на страницу по URL
 
     # ㉧ LOCATORS
-    email_field_locator = page.get_by_label('Email')                                             # by label
-    password_field_locator = page.get_by_label('Password')                                       # by label
+    email_input_field_locator = page.get_by_label('Email')                                             # by label
+    password_input_field_locator = page.get_by_label('Password')                                       # by label
     login_btn_locator = page.get_by_test_id('login-page-login-button')                           # by test id
     error_message_locator = page.get_by_test_id('login-page-wrong-email-or-password-alert')      # by test id
 
 
     # ▶ ACTIONS
-    email_field_locator.fill('user.name@gmail.com')       # Fill field
-    password_field_locator.fill('password')               # Fill field
+    email_input_field_locator.fill('user.name@gmail.com')       # Fill field
+    password_input_field_locator.fill('password')               # Fill field
     login_btn_locator.click()                             # Click button
 
     # ✔️EXPECTATIONS

@@ -8,7 +8,7 @@ from elements.button import Button
 from elements.link import Link
 from pages.base_page import BasePage
 from playwright.sync_api import Locator, Page
-from components.auth.login.form_component import LoginFormComponent
+from components.auth.login.form import LoginFormComponent
 from elements.text import Text
 
 #=======================================================================================================================
@@ -83,20 +83,20 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     @allure.step('✔ Check [Login page]')
     def check(
             self,
-            email: str | None = None,
-            password: str | None = None,
+            email: str = '',
+            password: str = '',
             is_login_button_enabled: bool = False
     ):
         """
         ✔ Check [Login page]
 
         - ✔ Title - visible | - text
-        - ✔ Login form - UI / values (if is passed)
+        - ✔ Login form - UI / values
         - ✔ Login button - disabled / enabled
         - ✔ Registration link - visible | - text | - URL
 
-        :param email: Email (optional)
-        :param password: Password (optional)
+        :param email: Email (Empty by default)
+        :param password: Password (Empty by default)
         :param is_login_button_enabled: False/True
         """
         self.check_title()
