@@ -1,6 +1,5 @@
 """
-Dashboard page > [Widget]
-(Page component)
+Dashboard page widget (component)
 """
 
 import allure
@@ -13,7 +12,7 @@ from elements.text import Text
 class DashboardWidgetComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str, chart_type: str):
         """
-        [Widget] component
+        Dashboard page widget (component)
 
         - Title  [students | activities | courses | scores ]
         - Chart  [   bar   |    line    |   pie   | scatter]
@@ -27,7 +26,7 @@ class DashboardWidgetComponent(BaseComponent):
         self.path = f'Dashboard page > {self.identifier.capitalize()}-widget'
 
 
-    # ------------------------------------------------ ㉧ LOCATORS -------------------------------------------------
+    # --------------------------------------------------- ㉧ LOCATORS ---------------------------------------------------
     def title_locator(self) -> Locator:
         return self.page.get_by_test_id(f'{self.identifier}-widget-title-text')
 
@@ -35,7 +34,7 @@ class DashboardWidgetComponent(BaseComponent):
         return self.page.get_by_test_id(f'{self.identifier}-{self.chart_type}-chart')
 
 
-    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    # --------------------------------------------------- ◈ ELEMENTS ---------------------------------------------------
     def title(self) -> Text:
         return Text(self.title_locator(), self.path, 'Title')
 
@@ -43,25 +42,24 @@ class DashboardWidgetComponent(BaseComponent):
         return Image(self.chart_locator(), self.path, f'{self.chart_type.capitalize()}-chart')
 
 
-    # -------------------------------------------------- ✔️EXPECTATIONS ------------------------------------------------
+    # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Widget]
-    # ────────────────────────────────────────┐
+    # ──────────────────────────────┐
     @allure.step('✔ Check [Widget]')
     def check(self, title: str):
         """
         ✔ Check [Widget]
 
-        - ✔ Title - visible | - text
-        - ✔ Chart - visible
+        - ✔ Title
+        - ✔ Chart
 
         :param title: Title
         """
         self.check_title(title)
         self.check_chart()
-    # ────────────────────────────────────────┘
+    # ──────────────────────────────┘
 
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_title(self, title: str):
         """
@@ -72,30 +70,10 @@ class DashboardWidgetComponent(BaseComponent):
 
         :param title: Title
         """
-        self.check_title_visible()
-        self.check_title_text(title)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_title_visible(self):
-        """
-        ✔ Check [Title] is visible
-
-        .
-        """
         self.title().check_visible()
-
-    # Text
-    def check_title_text(self, title: str):
-        """
-        ✔ Check [Title] text
-
-        :param title: Title
-        """
         self.title().check_text(title)
 
-
     # [Chart]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Chart]')
     def check_chart(self):
         """
@@ -103,15 +81,7 @@ class DashboardWidgetComponent(BaseComponent):
 
         - ✔ Chart - visible
         """
-        self.check_chart_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_chart_visible(self):
-        """
-        ✔ Check [Chart] is visible
-
-        .
-        """
         self.chart().check_visible()
+
 
 #=======================================================================================================================

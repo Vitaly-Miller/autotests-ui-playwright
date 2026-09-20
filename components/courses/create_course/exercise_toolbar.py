@@ -1,6 +1,5 @@
 """
-Create course page > Exercises > Exercise > [Toolbar]
-(Page component)
+Exercise toolbar (component)
 """
 
 import allure
@@ -12,7 +11,7 @@ from elements.text import Text
 #=======================================================================================================================
 class CreateCourseExerciseToolbarComponent(BaseComponent):
     """
-    [Toolbar] component
+    Exercise toolbar (component)
 
     - Title
     - Delete exercise button
@@ -65,7 +64,6 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
     # ───────────────────────────────────────┘
 
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_toolbar_title(self, index: int):
         """
@@ -76,32 +74,10 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        self.check_toolbar_title_visible(index)
-        self.check_toolbar_title_text(index)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_toolbar_title_visible(self, index: int):
-        """
-        ✔ Check [Title] is visible
-
-        :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
-        """
         self.title(index).check_visible()
-
-    # Text
-    def check_toolbar_title_text(self, index: int):
-        """
-        ✔ Check [Title] text
-
-        (Ex: "#1 Exercise", "#2 Exercise", ...)
-
-        :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
-        """
         self.title(index).check_text(f'#{index + 1} Exercise')
 
-
     # [Delete exercise button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Delete exercise button]')
     def check_delete_exercise_btn(self, index: int):
         """
@@ -111,15 +87,7 @@ class CreateCourseExerciseToolbarComponent(BaseComponent):
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         """
-        self.check_delete_exercise_btn_visible(index)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_delete_exercise_btn_visible(self, index: int):
-        """
-        ✔ Check [Delete exercise button] is visible
-
-        :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
-        """
         self.delete_exercise_btn(index).check_visible()
+
 
 #=======================================================================================================================

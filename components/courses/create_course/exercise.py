@@ -1,6 +1,5 @@
 """
-Create course page > Exercises > [Exercise]
-(Page component)
+Exercise (component)
 """
 
 import allure
@@ -13,7 +12,7 @@ from components.courses.create_course.exercise_form import CreateCourseExerciseF
 
 class CreateCourseExerciseComponent(BaseComponent):
     """
-    [Exercise] component
+    Exercise (component)
 
     - Toolbar (component)
       - Title
@@ -32,29 +31,30 @@ class CreateCourseExerciseComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Exercise]
-    # ────────────────────────────────┐
     @allure.step('✔ Check [Exercise]')
     def check(
         self,
-        index: int,
+        index: int = 0,
         title: str = 'Exercise title',
         description: str = 'Exercise description'
     ):
         """
         ✔ Check [Exercise]
 
-        - ✔ Toolbar - Title | Delete exercise button
-        - ✔ Form - Title | Description
+        - Toolbar (component)
+          - Title
+          - Delete exercise button
+
+        - Form (component)
+          - Title input field
+          - Description input field
 
         :param index: Locator DOM-index (Ex: "...-exercise-{index}-box-toolbar-...")
         :param title: Title (Default: 'Exercise title')
         :param description: Description (Default: 'Exercise description')
         """
         self.toolbar.check(index)
-        self.form.check(
-            index=index,
-            title=title,
-            description=description)
-    # ────────────────────────────────┘
+        self.form.check(index, title,description)
+
 
 #=======================================================================================================================

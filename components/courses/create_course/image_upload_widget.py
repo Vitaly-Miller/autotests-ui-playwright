@@ -1,11 +1,10 @@
 """
-Create course page > [Image upload widget]
-(Page component)
+Image upload widget (component)
 """
 
 import allure
 from components.base_component import BaseComponent
-from components.views.empty_view_component import EmptyViewComponent
+from components.views.empty_view import EmptyViewComponent
 from playwright.sync_api import Locator, Page
 from elements.button import Button
 from elements.icon import Icon
@@ -16,7 +15,7 @@ from elements.text import Text
 #=======================================================================================================================
 class CreateCourseImageUploadWidgetComponent(BaseComponent):
     """
-    [Image upload widget] component
+    Image upload widget (component)
 
     - Upload view:
         - Icon
@@ -33,6 +32,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
     def __init__(self, page: Page):
         super().__init__(page)
+
         # ⿳ COMPONENTS
         self.preview_view_empty_view = EmptyViewComponent(page=page, identifier=self.IDENTIFIER, path=self.PATH)
 
@@ -89,7 +89,6 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Upload image file
-    @allure.step('▶ Upload image file')
     def upload_image(self, file: str):
         """
         ▶ Upload image file (from /PROJECT/testdata/files/)
@@ -101,8 +100,6 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         :param file: Image file name
         """
         self.upload_image_input().upload(file)
-        self.check_preview_view_image_view_visible()
-        self.check_remove_image_btn_visible()
 
     # Click [Remove image button]
     def click_remove_btn(self):
@@ -127,24 +124,24 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         :param is_image_uploaded: True / False
         """
-        self.check_preview(is_image_uploaded)
+        self.check_preview_view(is_image_uploaded)
         self.check_upload_view(is_image_uploaded)
     # ───────────────────────────────────────────────┘
 
     # [Preview view]
-    # ───────────────────────────────────────────────────────┐
+    # ──────────────────────────────────────────┐
     @allure.step('✔ Check [Preview view]')
-    def check_preview(self, is_image_uploaded: bool = False):
+    def check_preview_view(self, is_image_uploaded: bool = False):
         """
         ✔ Check [Preview view]
 
         Image uploaded (True):
         ----------------------
-        - ✔ Preview view [Image view] - image visible
+        - ✔ Preview view [Image view]
 
         Image did NOT upload (False - default):
         ---------------------------------------
-        - ✔ Preview view [Empty view] - Icon | - Title | - Description
+        - ✔ Preview view [Empty view]
 
         :param is_image_uploaded: True / False
         """
@@ -152,41 +149,29 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
             self.check_preview_view_image_view()
         else:
             self.check_preview_view_empty_view()
-    # ───────────────────────────────────────────────────────┘
+    # ───────────────────────────────────────────┘
 
     # Preview view [Empty view] (component)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     def check_preview_view_empty_view(self):
         """
         ✔ Check Preview view [Empty view]
 
-        - ✔ Icon - visible
-        - ✔ Title - visible | - text
-        - ✔ Description - visible | - text
+        - ✔ Icon
+        - ✔ Title
+        - ✔ Description
         """
         self.preview_view_empty_view.check(
             title='Tap on "Upload image" button to select file',
             description='Recommended file size 540X300'
         )
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
     # Preview view [Image view]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Image view]')
     def check_preview_view_image_view(self):
         """
         ✔ Check [Image view]
 
         - ✔ Image view - visible
-        """
-        self.check_preview_view_image_view_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_preview_view_image_view_visible(self):
-        """
-        ✔ Check [Image view] is visible
-
-        .
         """
         self.preview_view_image_view().check_visible()
 
@@ -214,7 +199,6 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
     # ────────────────────────────────────────────────────────────┘
 
     # Upload view [Icon]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Icon]')
     def check_upload_view_icon(self):
         """
@@ -222,20 +206,10 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
 
         - ✔ Icon - visible
         """
-        self.check_upload_view_icon_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_upload_view_icon_visible(self):
-        """
-        ✔ Check [Icon] is visible
-
-        .
-        """
         self.upload_view_icon().check_visible()
 
 
     # Upload view [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_upload_view_title(self):
         """
@@ -244,30 +218,11 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         - ✔ Title - visible
         - ✔ Title - text
         """
-        self.check_upload_view_title_visible()
-        self.check_upload_view_title_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_upload_view_title_visible(self):
-        """
-        ✔ Check [Title] is visible
-
-        .
-        """
         self.upload_view_title().check_visible()
-
-    # Text
-    def check_upload_view_title_text(self):
-        """
-        ✔ Check [Title] text
-
-        .
-        """
         self.upload_view_title().check_text('Tap on "Upload image" button to select file')
 
 
     # Upload view [Description]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Description]')
     def check_upload_view_description(self):
         """
@@ -276,30 +231,11 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         - ✔ Description - visible
         - ✔ Description - text
         """
-        self.check_upload_view_description_visible()
-        self.check_upload_view_description_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_upload_view_description_visible(self):
-        """
-        ✔ Check [Description] is visible
-
-        .
-        """
         self.upload_view_description().check_visible()
-
-    # Text
-    def check_upload_view_description_text(self):
-        """
-        ✔ Check [Description] text
-
-        .
-        """
         self.upload_view_description().check_text('Recommended file size 540X300')
 
 
     # Upload view [Upload image button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Upload image button]')
     def check_upload_image_btn(self):
         """
@@ -309,40 +245,12 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         - ✔ Button - enabled
         - ✔ Button - text
         """
-        self.check_upload_image_btn_visible()
-        self.check_upload_image_btn_enabled()
-        self.check_upload_image_btn_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_upload_image_btn_visible(self):
-        """
-        ✔ Check [Upload image button] is visible
-
-        .
-        """
         self.upload_image_btn().check_visible()
-
-    # Enabled
-    def check_upload_image_btn_enabled(self):
-        """
-        ✔ Check [Upload image button] is enabled
-
-        .
-        """
         self.upload_image_btn().check_enabled()
-
-    # Text
-    def check_upload_image_btn_text(self):
-        """
-        ✔ Check [Upload image button] text
-
-        .
-        """
         self.upload_image_btn().check_text('Upload image')
 
 
     # Upload view [Remove image button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Remove image button]')
     def check_remove_image_btn(self, is_image_uploaded: bool = False):
         """
@@ -361,47 +269,11 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         :param is_image_uploaded: True / False
         """
         if is_image_uploaded:
-            self.check_remove_image_btn_visible()
-            self.check_remove_image_btn_enabled()
-            self.check_remove_image_btn_text()
+            self.remove_image_btn().check_visible()
+            self.remove_image_btn().check_enabled()
+            self.remove_image_btn().check_text('Remove image')
         else:
-            self.check_remove_image_btn_hidden()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_remove_image_btn_visible(self):
-        """
-        ✔ Check [Remove image button] is visible
-
-        (For case - if image UPLOADED)
-        """
-        self.remove_image_btn().check_visible()
-
-    # Hidden
-    def check_remove_image_btn_hidden(self):
-        """
-        ✔ Check [Remove image button] is hidden
-
-        (For case - if image did NOT upload)
-        """
-        self.remove_image_btn().check_hidden()
-
-    # Enabled
-    def check_remove_image_btn_enabled(self):
-        """
-        ✔ Check [Remove image button] is enabled
-
-        .
-        """
-        self.remove_image_btn().check_enabled()
-
-    # Text
-    def check_remove_image_btn_text(self):
-        """
-        ✔ Check [Remove image button] text
-
-        .
-        """
-        self.remove_image_btn().check_text('Remove image')
+            self.remove_image_btn().check_hidden()
 
 
 #=======================================================================================================================

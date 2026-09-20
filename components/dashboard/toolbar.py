@@ -1,6 +1,5 @@
 """
-Dashboard page > [Toolbar]
-(Page component)
+Dashboard page toolbar (component)
 """
 
 import allure
@@ -11,7 +10,7 @@ from elements.text import Text
 #=======================================================================================================================
 class DashboardToolbarComponent(BaseComponent):
     """
-    [Toolbar] component
+    Dashboard page toolbar (component)
 
     - Title
     """
@@ -21,9 +20,11 @@ class DashboardToolbarComponent(BaseComponent):
     def title_locator(self) -> Locator:
         return self.page.get_by_test_id('dashboard-toolbar-title-text')
 
-    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+
+    # -------------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
     def title(self) -> Text:
         return Text(self.title_locator(), self.PATH, 'Title')
+
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
@@ -33,13 +34,12 @@ class DashboardToolbarComponent(BaseComponent):
         """
         ✔ Check [Toolbar]
 
-        - ✔ Title - visible | - text
+        - ✔ Title
         """
         self.check_title()
     # ───────────────────────────────┘
 
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_title(self):
         """
@@ -48,25 +48,8 @@ class DashboardToolbarComponent(BaseComponent):
         - ✔ Title - visible
         - ✔ Title - text
         """
-        self.check_title_visible()
-        self.check_title_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_title_visible(self):
-        """
-        ✔ Check [Title] is visible
-
-        .
-        """
         self.title().check_visible()
-
-    # Text
-    def check_title_text(self):
-        """
-        ✔ Check [Title] text
-
-        .
-        """
         self.title().check_text('Dashboard')
+
 
 #=======================================================================================================================

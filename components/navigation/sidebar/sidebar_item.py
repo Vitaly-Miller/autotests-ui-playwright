@@ -1,6 +1,5 @@
 """
-Sidebar > [Item]
-(Page component)
+Sidebar item (component)
 """
 
 import allure
@@ -14,7 +13,7 @@ from elements.text import Text
 class SidebarItemComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str):
         """
-        [Sidebar item] component
+        Sidebar item (component)
 
         - Button
         - Icon
@@ -24,8 +23,9 @@ class SidebarItemComponent(BaseComponent):
         :param identifier: Unique part of locator [dashboard, courses, logout]
         """
         super().__init__(page)
+
         self.identifier = identifier
-        self.path = f'Sidebar > {self.identifier.capitalize()}'
+        self.path = f'Sidebar > {self.identifier.capitalize()}-item'
 
 
     # ----------------------------------------- ㉧ LOCATORS (dynamic) -----------------------------------------------
@@ -38,6 +38,7 @@ class SidebarItemComponent(BaseComponent):
     def title_locator(self) -> Locator:
         return self.page.get_by_test_id(f'{self.identifier}-drawer-list-item-title-text')
 
+
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def btn(self) -> Button:
         return Button(self.btn_locator(), self.path, f'{self.identifier.capitalize()}-button')
@@ -48,11 +49,12 @@ class SidebarItemComponent(BaseComponent):
     def title(self) -> Text:
         return Text(self.title_locator(), self.path, f'{self.identifier.capitalize()}-title')
 
+
     # -------------------------------------------------- ▶ ACTIONS -----------------------------------------------------
     # Click [Button]
     def click_btn(self):
         """
-        ▶ Click item [Button]
+        ▶ Click [Item-button]
 
         .
         """
@@ -66,9 +68,9 @@ class SidebarItemComponent(BaseComponent):
         """
         ✔ Check [Item]
 
-        - ✔ Button - visible
-        - ✔ Icon - visible
-        - ✔ Title - visible | - text
+        - ✔ Button
+        - ✔ Icon
+        - ✔ Title
 
         :param title: Title
         """
@@ -78,7 +80,6 @@ class SidebarItemComponent(BaseComponent):
     # ─────────────────────────────┘
 
     # [Button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Button]')
     def check_btn(self):
         """
@@ -86,20 +87,9 @@ class SidebarItemComponent(BaseComponent):
 
         - ✔ Button - visible
         """
-        self.check_btn_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_btn_visible(self):
-        """
-        ✔ Check [Button] is visible
-
-        .
-        """
         self.btn().check_visible()
 
-
     # [Icon]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Icon]')
     def check_icon(self):
         """
@@ -107,20 +97,9 @@ class SidebarItemComponent(BaseComponent):
 
         - ✔ Icon - visible
         """
-        self.check_icon_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_icon_visible(self):
-        """
-        ✔ Check [Icon] is visible
-
-        .
-        """
         self.icon().check_visible()
 
-
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_title(self, title: str):
         """
@@ -131,25 +110,8 @@ class SidebarItemComponent(BaseComponent):
 
         :param title: Title
         """
-        self.check_title_visible()
-        self.check_title_text(title)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_title_visible(self):
-        """
-        ✔ Check [Title] is visible
-
-        .
-        """
         self.title().check_visible()
-
-    # Text
-    def check_title_text(self, title: str):
-        """
-        ✔ Check [Title] text
-
-        :param title: Title
-        """
         self.title().check_text(title)
+
 
 #=======================================================================================================================

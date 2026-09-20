@@ -1,6 +1,5 @@
 """
-Create course page > [Toolbar]
-(Page component)
+Create course page toolbar (component)
 """
 
 import allure
@@ -12,7 +11,7 @@ from elements.text import Text
 #=======================================================================================================================
 class CreateCourseToolbarComponent(BaseComponent):
     """
-    [Toolbar] component
+    Create course page toolbar (component)
 
     - Title
     - Create course button
@@ -48,23 +47,22 @@ class CreateCourseToolbarComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
-    # ─────────────────────────────────────────────────────────────────────┐
+    # ───────────────────────────────────────────────────────────────────────┐
     @allure.step('✔ Check [Toolbar]')
-    def check(self, create_course_btn_enabled: bool = False):
+    def check(self, is_create_course_btn_enabled: bool = False):
         """
         ✔ Check [Toolbar]
 
-        - ✔ Title - visible | - text
-        - ✔ Create course button - visible | - enabled / disabled
+        - ✔ Title
+        - ✔ Create course button
 
-        :param create_course_btn_enabled: True / False
+        :param is_create_course_btn_enabled: True / False
         """
         self.check_title()
-        self.check_create_course_btn(enabled=create_course_btn_enabled)
-    # ─────────────────────────────────────────────────────────────────────┘
+        self.check_create_course_btn(is_enabled=is_create_course_btn_enabled)
+    # ───────────────────────────────────────────────────────────────────────┘
 
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_title(self):
         """
@@ -73,70 +71,25 @@ class CreateCourseToolbarComponent(BaseComponent):
         - ✔ Title - visible
         - ✔ Title - text
         """
-        self.check_title_visible()
-        self.check_title_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_title_visible(self):
-        """
-        ✔ Check [Title] is visible
-
-        .
-        """
         self.title().check_visible()
-
-    # Text
-    def check_title_text(self):
-        """
-        ✔ Check [Title] text
-
-        .
-        """
         self.title().check_text('Create course')
 
-
     # [Create course button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Create course button]')
-    def check_create_course_btn(self, enabled: bool = False):
+    def check_create_course_btn(self, is_enabled: bool = False):
         """
         ✔ Check [Create course button]
 
         - ✔ Button - visible
         - ✔ Button - enabled / disabled
-        """
-        self.check_create_course_btn_visible()
-        if enabled:
-            self.check_create_course_btn_enabled()
-        else:
-            self.check_create_course_btn_disabled()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_create_course_btn_visible(self):
-        """
-        ✔ Check [Create course button] is visible
 
-        .
+        :param is_enabled: Is button enabled?
         """
         self.create_course_btn().check_visible()
-
-    # Enabled
-    def check_create_course_btn_enabled(self):
-        """
-        ✔ Check [Create course button] is enabled
-
-        (If create course Form filled & Image uploaded)
-        """
-        self.create_course_btn().check_enabled()
-
-    # Disabled
-    def check_create_course_btn_disabled(self):
-        """
-        ✔ Check [Create course button] disabled
-
-        (If create course Form did NOT filled & Image did NOT upload)
-        """
-        self.create_course_btn().check_disabled()
+        if is_enabled:
+            self.create_course_btn().check_enabled()
+        else:
+            self.create_course_btn().check_disabled()
 
 
 #=======================================================================================================================

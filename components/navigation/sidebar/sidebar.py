@@ -1,24 +1,24 @@
 """
-Sidebar
-(Page component)
+Sidebar (component)
 """
 
 import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Page
-from components.navigation.sidebar.sidebar_item_component import SidebarItemComponent
+from components.navigation.sidebar.sidebar_item import SidebarItemComponent
 
 #=======================================================================================================================
 class SidebarComponent(BaseComponent):
     """
-    [Sidebar] component
+    Sidebar (component)
 
-    - Dashboard item
-    - Courses item
-    - Logout item
+    - Dashboard item (component)
+    - Courses item (component)
+    - Logout item (component)
     """
     def __init__(self, page: Page):
         super().__init__(page)
+
         # ⿳ COMPONENTS
         self.dashboard_item = SidebarItemComponent(page=page, identifier='dashboard')
         self.courses_item = SidebarItemComponent(page=page, identifier='courses')
@@ -56,19 +56,18 @@ class SidebarComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Sidebar]
-    # ────────────────────────────────────────────────────────────┐
     @allure.step('✔ Check [Sidebar]')
     def check(self):
         """
         ✔ Check [Sidebar]
 
-        - ✔ Dashboard item - visible | Icon - visible | Title - visible | - text
-        - ✔ Courses item - visible | Icon - visible | Title - visible | - text
-        - ✔ Logout item - visible | Icon - visible | Title - visible | - text
+        - ✔ Dashboard item
+        - ✔ Courses item
+        - ✔ Logout item
         """
         self.dashboard_item.check(title='Dashboard')
         self.courses_item.check(title='Courses')
         self.logout_item.check(title='Logout')
-    # ────────────────────────────────────────────────────────────┘
+
 
 #=======================================================================================================================

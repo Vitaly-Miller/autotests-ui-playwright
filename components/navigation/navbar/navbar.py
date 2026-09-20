@@ -1,6 +1,5 @@
 """
-Navbar
-(Page component)
+Navbar (component)
 """
 
 import allure
@@ -11,7 +10,7 @@ from elements.text import Text
 #=======================================================================================================================
 class NavbarComponent(BaseComponent):
     """
-    [Navbar] component
+    Navbar (component)
 
     - Title
     - Welcome title
@@ -50,7 +49,6 @@ class NavbarComponent(BaseComponent):
     # ────────────────────────────────────┘
 
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_title(self):
         """
@@ -59,30 +57,10 @@ class NavbarComponent(BaseComponent):
         - ✔ Title - visible
         - ✔ Title - text
         """
-        self.check_title_visible()
-        self.check_title_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_title_visible(self):
-        """
-        ✔ Check [Title] is visible
-
-        .
-        """
         self.title().check_visible()
-
-    # Text
-    def check_title_text(self):
-        """
-        ✔ Check [Title] text
-
-        .
-        """
         self.title().check_text('UI Course')
 
-
     # [Welcome title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Welcome title]')
     def check_welcome_title(self, username: str):
         """
@@ -93,25 +71,8 @@ class NavbarComponent(BaseComponent):
 
         :param username: Username
         """
-        self.check_welcome_title_visible()
-        self.check_welcome_title_text(username)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_welcome_title_visible(self):
-        """
-        ✔ Check [Welcome title] is visible
-
-        .
-        """
         self.welcome_title().check_visible()
-
-    # Text
-    def check_welcome_title_text(self, username: str):
-        """
-        ✔ Check [Welcome title] text
-
-        :param username: Username
-        """
         self.welcome_title().check_text(f'Welcome, {username}!')
+
 
 #=======================================================================================================================

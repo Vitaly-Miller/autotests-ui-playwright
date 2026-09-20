@@ -1,6 +1,5 @@
 """
-Empty view
-(Page component)
+Empty view (component)
 """
 
 import allure
@@ -13,7 +12,7 @@ from elements.text import Text
 class EmptyViewComponent(BaseComponent):
     def __init__(self, page: Page, path: str, identifier: str):
         """
-        [Empty view] component
+        Empty view (component)
 
         - Icon
         - Title
@@ -24,6 +23,7 @@ class EmptyViewComponent(BaseComponent):
         :param path: Component navigate-path
         """
         super().__init__(page)
+
         self.identifier = identifier
         self.path = f'{path} > {self.identifier.capitalize().replace('-', ' ')} > Empty view'
 
@@ -58,9 +58,9 @@ class EmptyViewComponent(BaseComponent):
         """
         ✔ Check [Empty view]
 
-        - ✔ Icon - visible
-        - ✔ Title - visible | - text
-        - ✔ Description - visible | - text
+        - ✔ Icon
+        - ✔ Title
+        - ✔ Description
 
         :param title: Title text
         :param description: Description text
@@ -71,7 +71,6 @@ class EmptyViewComponent(BaseComponent):
     # ─────────────────────────────────────┘
 
     # [Icon]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Icon]')
     def check_icon(self):
         """
@@ -79,20 +78,9 @@ class EmptyViewComponent(BaseComponent):
 
         - ✔ Icon - visible
         """
-        self.check_icon_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_icon_visible(self):
-        """
-        ✔ Check [Icon] is visible
-
-        .
-        """
         self.icon().check_visible()
 
-
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_title(self, title: str):
         """
@@ -103,30 +91,10 @@ class EmptyViewComponent(BaseComponent):
 
         :param title: Title text
         """
-        self.check_title_visible()
-        self.check_title_text(title)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_title_visible(self):
-        """
-        ✔ Check [Title] is visible
-
-        .
-        """
         self.title().check_visible()
-
-    # Text
-    def check_title_text(self, title: str):
-        """
-        ✔ Check [Title] text
-
-        :param title: Title text
-        """
         self.title().check_text(title)
 
-
     # [Description]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Description]')
     def check_description(self, description: str):
         """
@@ -137,25 +105,7 @@ class EmptyViewComponent(BaseComponent):
 
         :param description: Description text
         """
-        self.check_description_visible()
-        self.check_description_text(description)
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_description_visible(self):
-        """
-        ✔ Check [Description] is visible
-
-        .
-        """
         self.description().check_visible()
-
-    # Text
-    def check_description_text(self, description: str):
-        """
-        ✔ Check [Description] text
-
-        :param description: Description text
-        """
         self.description().check_text(description)
 
 #=======================================================================================================================

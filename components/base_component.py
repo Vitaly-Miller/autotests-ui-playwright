@@ -1,6 +1,5 @@
 """
 BASE component
-(Page component)
 """
 
 import allure

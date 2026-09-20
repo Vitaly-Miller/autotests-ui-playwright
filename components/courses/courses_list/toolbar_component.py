@@ -1,6 +1,5 @@
 """
-Courses list page > [Toolbar]
-(Page component)
+Courses list toolbar (component)
 """
 
 import allure
@@ -12,7 +11,7 @@ from elements.text import Text
 #=======================================================================================================================
 class CoursesListToolbarComponent(BaseComponent):
     """
-    [Toolbar] component
+    Courses list toolbar (component)
 
     - Title
     - Create course button
@@ -26,12 +25,14 @@ class CoursesListToolbarComponent(BaseComponent):
     def create_course_btn_locator(self) -> Locator:
         return self.page.get_by_test_id('courses-list-toolbar-create-course-button')
 
+
     # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     def title(self) -> Text:
         return Text(self.title_locator(), self.PATH, 'Title')
 
     def create_course_btn(self) -> Button:
         return Button(self.create_course_btn_locator(), self.PATH, 'Create course button')
+
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
     # Click [Create course button]
@@ -43,6 +44,7 @@ class CoursesListToolbarComponent(BaseComponent):
         """
         self.create_course_btn().click()
 
+
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Toolbar]
     # ────────────────────────────────┐
@@ -51,15 +53,14 @@ class CoursesListToolbarComponent(BaseComponent):
         """
         ✔ Check [Toolbar]
 
-        - ✔ Title - visible | - text
-        - ✔ Create course button - visible
+        - ✔ Title
+        - ✔ Create course button
         """
         self.check_title()
         self.check_create_course_btn()
     # ────────────────────────────────┘
 
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_title(self):
         """
@@ -68,45 +69,16 @@ class CoursesListToolbarComponent(BaseComponent):
         - ✔ Title - visible
         - ✔ Title - text
         """
-        self.check_title_visible()
-        self.check_title_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_title_visible(self):
-        """
-        ✔ Check [Title] is visible
-
-        .
-        """
         self.title().check_visible()
-
-    # Text
-    def check_title_text(self):
-        """
-        ✔ Check [Title] text
-
-        .
-        """
         self.title().check_text('Courses')
 
-
     # [Create course button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Create course button]')
     def check_create_course_btn(self):
         """
         ✔ Check [Create course button]
 
         - ✔ Button - visible
-        """
-        self.check_create_course_btn_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_create_course_btn_visible(self):
-        """
-        ✔ Check [Create course button] is visible
-
-        .
         """
         self.create_course_btn().check_visible()
 

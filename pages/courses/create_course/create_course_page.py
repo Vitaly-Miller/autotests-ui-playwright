@@ -5,10 +5,10 @@ Create Course page
 from config import Endpoint
 from pages.base_page import BasePage
 from playwright.sync_api import Page
-from components.navigation.navbar.navbar_component import NavbarComponent
-from components.navigation.sidebar.sidebar_component import SidebarComponent
+from components.navigation.navbar.navbar import NavbarComponent
+from components.navigation.sidebar.sidebar import SidebarComponent
 from components.courses.create_course.toolbar import CreateCourseToolbarComponent
-from components.views.empty_view_component import EmptyViewComponent
+from components.views.empty_view import EmptyViewComponent
 from components.courses.create_course.image_upload_widget import CreateCourseImageUploadWidgetComponent
 from components.courses.create_course.form import CreateCourseFormComponent
 from components.courses.create_course.exercises_toolbar import CreateCourseExercisesToolbarComponent

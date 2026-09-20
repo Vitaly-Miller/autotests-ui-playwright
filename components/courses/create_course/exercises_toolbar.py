@@ -1,6 +1,5 @@
 """
-Create course page > Exercises > [Toolbar]
-(Page component)
+Exercises toolbar (component)
 """
 
 import allure
@@ -12,7 +11,7 @@ from elements.text import Text
 #=======================================================================================================================
 class CreateCourseExercisesToolbarComponent(BaseComponent):
     """
-    [Toolbar] component
+    Exercises toolbar (component)
 
     - Title
     - Create exercise button
@@ -59,7 +58,6 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
     # ──────────────────────────────────┘
 
     # [Title]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Title]')
     def check_title(self):
         """
@@ -68,30 +66,10 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
         - ✔ Title - visible
         - ✔ Title - text
         """
-        self.check_title_visible()
-        self.check_title_text()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_title_visible(self):
-        """
-        ✔ Check [Title] is visible
-
-        .
-        """
         self.title().check_visible()
-
-    # Text
-    def check_title_text(self):
-        """
-        ✔ Check [Title] text
-
-        .
-        """
         self.title().check_text('Exercises')
 
-
     # [Create exercise button]
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
     @allure.step('✔ Check [Create exercise button]')
     def check_create_exercise_btn(self):
         """
@@ -99,15 +77,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
 
         - ✔ Button - visible
         """
-        self.check_create_exercise_btn_visible()
-    # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
-    # Visible
-    def check_create_exercise_btn_visible(self):
-        """
-        ✔ Check [Create exercise button] is visible
-
-        .
-        """
         self.create_exercise_btn().check_visible()
+
 
 #=======================================================================================================================
