@@ -58,6 +58,10 @@ def storage_state(playwright: Playwright):      # Используем встр�
     context = browser.new_context(base_url=settings.base_url)   # Создание браузерного окружения
     page = context.new_page()                                   # Создаем объект страницы page на базе context
     registration_new_user(page)                                 # Registration new user (helper)
+    page.wait_for_function(                                     # ❗ ждем user, иначе Storage state будет пустым
+        "email => localStorage.getItem('persist:users')?.includes(email)",
+        arg=settings.test_user.email
+    )
     storage_state = context.storage_state()                     # v.1 - Storage state в переменную
     # context.storage_state(path=Dir.STORAGE_STATE_FILE)                  # v.2 - Storage state в 💾 JSON-файл  (optional)
     # storage_state = context.storage_state(path=Dir.STORAGE_STATE_FILE)  # v.3 - Storage state в переменную + 💾 JSON-файл  (optional)

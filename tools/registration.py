@@ -18,7 +18,6 @@ def registration_new_user(
     Registration new user (helper)
 
     Открывает страницу регистрации, заполняет форму тестовыми данными, сабмитит и ждёт редиректа на /dashboard
-    (гарантирует, что Storage state с авторизацией сформировался).
 
     :param page: Page — страница без авторизации
     :param email: Email
@@ -34,7 +33,6 @@ def registration_new_user(
         password=password
     )
     registration_page.click_registration_btn()
-    page.wait_for_url(DashboardPage.URL)  # ❗️Дождаться открытие страницы, что бы гарантировано сформировался Storage state
-
+    page.wait_for_url(DashboardPage.URL)  # Дождаться редиректа на dashboard
 
 #=======================================================================================================================

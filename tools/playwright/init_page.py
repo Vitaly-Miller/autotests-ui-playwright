@@ -54,7 +54,7 @@ def init_playwright_page(
         sources=True                                     # - Sources
     )
     page = context.new_page()                            # Создаем объект страницы page на базе context
-    mock_static_resources(page)                          # Mock - блокируем ненужные ресурсы при загрузке страницы (optional)
+    #mock_static_resources(page)                          # Mock - блокируем ненужные ресурсы при загрузке страницы (optional)
 
     try:
         yield page                                       # Передаем page (на базе движка chromium)
