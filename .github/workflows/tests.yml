@@ -1,0 +1,100 @@
+# Имя workflow, которое будет отображаться в интерфейсе GitHub Actions
+name: UI tests
+
+# Указываем, когда будет запускаться данный workflow
+on:
+  push:
+    branches:
+      - main          # Запускать workflow, когда будет сделан коммит в ветку main
+  pull_request:
+    branches:
+      - main          # Запускать workflow, когда будет сделан pull request в ветку main
+
+# Определяем все джобы, которые должны быть выполнены в рамках работы с тестами
+jobs:
+  #============================================ Джоба 1: запуск автотестов =============================================
+  run-tests:
+    runs-on: ubuntu-latest             # Указываем, что тесты будут запускаться на последней версии Ubuntu
+
+    steps:
+      # 1. Шаг, который будет клонировать репозиторий на машину GitHub Actions
+      - name: Check out repository
+        uses: actions/checkout@v7      # Используем GitHub Action для клонирования репозитория ⚠️https://github.com/actions/checkout
+
+      # 2. Шаг для установки Python на виртуальной машине
+      - name: Set up Python
+        uses: actions/setup-python@v6  # Используем GitHub Action для установки Python ⚠️https://github.com/actions/setup-python
+        with:
+          python-version: '3.13'       # Устанавливаем версию Python 3.13
+          cache: pip                   # Кешируем скачанные pip-пакеты (ключ считается по requirements.txt) — ускоряет установку
+
+      # 3. Шаг для установки всех зависимостей проекта и браузеров Playwright
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip        # Обновляем pip до последней версии
+          pip install -r requirements.txt            # Устанавливаем зависимости проекта, указанные в requirements.txt
+          playwright install --with-deps             # Устанавливаем браузеры Playwright + системные библиотеки для них (нужны на чистой Ubuntu)
+
+      # 4. Шаг для запуска тестов с использованием pytest и генерации результатов Allure
+      - name: Run Playwright tests with pytest and generate Allure results
+        env:
+          # ⚠️Переменные окружения имеют приоритет над .env (pydantic-settings), поэтому переопределяем только режим запуска.
+          HEADLESS: "true"                           # На CI-машине нет экрана — браузер ТОЛЬКО headless (иначе тесты упадут)
+          SLOW_MO: "0"                               # На CI замедление действий не нужно
+        run: pytest --alluredir=allure-results --numprocesses 2   # ⚠️Запускаем ВСЕ тесты в 2 процесса, результаты — для Allure
+
+      # 5. Шаг для сохранения папки allure-results как артефакта (для передачи в джобу publish-report)
+      - name: Upload Allure results
+        if: always()                                 # ВСЕГДА выполняем, независимо от успеха или неудачи предыдущих шагов
+        uses: actions/upload-artifact@v7             # Используем GitHub Action для загрузки артефактов ⚠️https://github.com/actions/upload-artifact
+        with:
+          name: allure-results                       # Имя артефакта
+          path: allure-results                       # Папка с результатами тестов
+
+
+  #==================================== Джоба 2: публикация отчёта на GitHub Pages =====================================
+  publish-report:
+    needs: [ run-tests ]                       # Джоба запускается только после завершения run-tests
+    if: always()                               # ...и запускается ВСЕГДА, даже если тесты упали (иначе отчёт о падениях не опубликуется)
+    runs-on: ubuntu-latest                     # Указываем, что публикация будет выполняться на последней версии Ubuntu
+
+    steps:
+      # 1. Шаг для получения истории отчётов Allure, если она существует
+      - name: Get Allure history
+        uses: actions/checkout@v7              # ⚠️Клонируем репозиторий, чтобы получить историю отчётов ⚠️https://github.com/actions/checkout
+        continue-on-error: true                # Если ветки gh-pages ещё нет, workflow всё равно продолжит выполнение
+        with:
+          ref: gh-pages                        # Ветка gh-pages для получения отчётов
+          path: gh-pages                       # Путь для сохранения отчётов
+
+      # 2. Шаг для загрузки артефакта allure-results, сохранённого в джобе run-tests
+      - name: Download Allure results
+        uses: actions/download-artifact@v8     # Используем GitHub Action для скачивания артефактов ⚠️https://github.com/actions/download-artifact
+        with:
+          name: allure-results                 # Имя артефакта
+          path: allure-results                 # Папка, в которую будут загружены результаты тестов
+
+      # 3. Шаг для генерации отчёта Allure с историей
+      - name: Generate Allure Report with history
+        uses: simple-elf/allure-report-action@master  # Используем готовое решение из GitHub Marketplace ⚠️https://github.com/simple-elf/allure-report-action
+        with:
+          allure_results: allure-results              # Каталог с результатами тестов
+          allure_history: allure-history              # Каталог для истории отчётов Allure
+
+      # 4. Шаг-страховка: удаляем возможный битый .git внутри allure-history.
+      # Он появляется, когда ветки gh-pages нет и шаг «Get Allure history» оставляет пустой .git,
+      # который Docker-action от root копирует в allure-history. Без очистки peaceiris коммитит
+      # не в gh-pages, а в master → «src refspec gh-pages does not match any» → git exit code 1.
+      - name: Clean stray .git from publish dir
+        run: sudo rm -rf allure-history/.git
+
+      # 5. Шаг для деплоя отчёта Allure на GitHub Pages, чтобы его можно было просматривать в браузере
+      - name: Deploy report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4           # Используем GitHub Action для публикации отчёта на GitHub Pages ⚠️https://github.com/peaceiris/actions-gh-pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}   # Токен для аутентификации на GitHub
+          publish_branch: gh-pages                    # Указываем, что отчёт будет опубликован в ветке gh-pages
+          publish_dir: allure-history                 # Папка, которая будет опубликована на GitHub Pages
+
+
+#=======================================================================================================================
