@@ -1,4 +1,14 @@
-.DS_Store
-/storage_state.json
-/.claude/
-/allure-results/
+# Python
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+
+# Storage
+storage_state.json
+videos/
+tracing/
+
+# Allure
+allure-results/
+allure-report/
