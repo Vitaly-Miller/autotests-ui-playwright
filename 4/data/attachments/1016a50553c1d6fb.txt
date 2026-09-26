@@ -1,0 +1,23 @@
+INFO | PAGE    : ⿹ Open page URL: #/auth/registration
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "UI Course"
+INFO | ELEMENT : ✔ Check [Email input field] is visible
+INFO | ELEMENT : ✔ Check [Email input field] name: "Email"
+INFO | ELEMENT : ✔ Check [Email input field] value: ""
+INFO | ELEMENT : ✔ Check [Username input field] is visible
+INFO | ELEMENT : ✔ Check [Username input field] name: "Username"
+INFO | ELEMENT : ✔ Check [Username input field] value: ""
+INFO | ELEMENT : ✔ Check [Password input field] is visible
+INFO | ELEMENT : ✔ Check [Password input field] name: "Password"
+INFO | ELEMENT : ✔ Check [Password input field] value: ""
+INFO | ELEMENT : ✔ Check [Registration button] is visible
+INFO | ELEMENT : ✔ Check [Registration button] is disabled
+INFO | ELEMENT : ✔ Check [Registration button] text: "Registration"
+INFO | ELEMENT : ✔ Check [Login link] is visible
+INFO | ELEMENT : ✔ Check [Login link] text: "Login"
+INFO | ELEMENT : ✔ Check [Login link] "href": "#/auth/login"
+INFO | ELEMENT : ▶ Fill [Email input field] with value: "user.name@gmail.com"
+INFO | ELEMENT : ▶ Fill [Username input field] with value: "username"
+INFO | ELEMENT : ▶ Fill [Password input field] with value: "password"
+INFO | ELEMENT : ▶ Click [Registration button]
+INFO | PAGE    : ✔ Check current page URL is "#/dashboard"
