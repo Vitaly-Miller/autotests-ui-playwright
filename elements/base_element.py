@@ -3,7 +3,6 @@ Base check of element
 """
 import allure
 from playwright.sync_api import Locator, expect
-
 from tools.logger import get_logger
 
 #=======================================================================================================================
@@ -44,8 +43,8 @@ class BaseElement:
         """
         nth_info = self._nth_info(nth)
         step = f'▶ Click {self.name}{nth_info}'
-        with allure.step(step):
-            self.logger.info(step)
+        with allure.step(step):                                           # Allure step
+            self.logger.info(step)                                        # Logger
             self.locator.nth(nth).click()
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------

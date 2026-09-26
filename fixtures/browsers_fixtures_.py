@@ -140,7 +140,7 @@ def page_guest(playwright: Playwright, request: SubRequest):   # Чистый (�
         browser.close()                  # Закрываем browser!
 
         allure.attach.file(                              # 💾 Прикрепляем video к Allure-отчету (файл уже финализирован)
-            source=page.video.path(),    # NOQA          # - File path (через Page) NOQA
+            source=page.video.path(),    # NOQA          # - File path (через Page)
             name=f'{request.node.name}_video',           # - Name in Allure-report (Tear down)
             attachment_type=allure.attachment_type.WEBM  # - File type - WEBM
 
