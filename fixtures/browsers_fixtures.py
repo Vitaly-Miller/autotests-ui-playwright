@@ -59,7 +59,7 @@ def storage_state(playwright: Playwright):      # Используем встр�
     page = context.new_page()                                   # Создаем объект страницы page на базе context
     registration_new_user(page)                                 # Registration new user (helper)
     page.wait_for_function(                                     # ❗ ждем user, иначе Storage state будет пустым
-        "email => localStorage.getItem('persist:users')?.includes(email)",
+        expression='email => localStorage.getItem("persist:users")?.includes(email)',
         arg=settings.test_user.email
     )
     storage_state = context.storage_state()                     # v.1 - Storage state в переменную
@@ -73,4 +73,16 @@ def storage_state(playwright: Playwright):      # Используем встр�
         browser.close()                         # Закрываем browser!
 
 
+#-------------------------------------------------------- OPTIONAL -----------------------------------------------------
+# Custom selector (NOT USING)
+# @pytest.fixture(scope='session', autouse=True)
+# def selector_id_attribute(playwright: Playwright):
+#     """
+#     Custom selector identification
+#
+#     Use if not default in the DOM <data-testid='...'>
+#
+#     :param playwright: Playwright
+#     """
+#     playwright.selectors.set_test_id_attribute('qa-id')  # for example
 #=======================================================================================================================

@@ -5,7 +5,7 @@ Courses card (component)
 import allure
 from components.base_component import BaseComponent
 from playwright.sync_api import Locator, Page
-from components.courses.courses_list.course_card_menu_component import CourseCardMenuComponent
+from components.courses.courses_list.course_card_menu import CourseCardMenuComponent
 from elements.button import Button
 from elements.image import Image
 from elements.text import Text
