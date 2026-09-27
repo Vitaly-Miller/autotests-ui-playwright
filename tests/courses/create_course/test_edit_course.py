@@ -28,9 +28,9 @@ class TestEditCourse:
     ):
         # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ◁ PRE-CONDITION (Create course)  ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
         # ⏎ INPUT TEST DATA (🤦🏻‍♂️просто решил побаловаться с методами)
-        title = 'eltit esruoc tset yM'                              # NOQA
-        estimated_time = 'emit detamitse esruoc tset yM'            # NOQA
-        description = 'noitpircsed esruoc tset yM'                  # NOQA
+        title = 'eltit esruoc tset yM'
+        estimated_time = 'emit detamitse esruoc tset yM'
+        description = 'noitpircsed esruoc tset yM'
         max_score = '100'
         min_score = '10'
 

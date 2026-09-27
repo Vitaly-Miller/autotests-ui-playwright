@@ -1,7 +1,6 @@
 """
 conftest.py (via Pytest Plugins)
-"""
-"""
+
 Используется pytest_plugins - все фикстуры в отдельных модулях-файлах
 """
 from pathlib import Path  # for <Auto Plugins path>

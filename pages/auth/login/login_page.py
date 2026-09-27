@@ -235,10 +235,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        from pages.auth.registration.registration_page import (
-            RegistrationPage,  # import conflict
-        )
-        self.reg_link().check_href(href=RegistrationPage.URL)
+        self.reg_link().check_href(href=Endpoint.REGISTRATION)
 
 
     # [Alert]

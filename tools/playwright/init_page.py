@@ -1,11 +1,12 @@
 """
 Pages (helper)
 """
-
 import allure
 from playwright.sync_api import Playwright, StorageState, ViewportSize
-from config import settings, Dir, Browser
-from tools.playwright.mocks import mock_static_resources
+
+from config import Browser, Dir, settings
+from tools.playwright.mocks import mock_static_resources  # noqa: F401 (optional)
+
 
 #=======================================================================================================================
 # Page for pytest fixture (helper)
@@ -54,7 +55,7 @@ def init_playwright_page(
         sources=True                                     # - Sources
     )
     page = context.new_page()                            # Создаем объект страницы page на базе context
-    #mock_static_resources(page)                          # Mock - блокируем ненужные ресурсы при загрузке страницы (optional)
+    # mock_static_resources(page)                        # Mock - блокируем ненужные ресурсы при загрузке страницы (optional)
 
     try:
         yield page                                       # Передаем page (на базе движка chromium)
@@ -68,13 +69,16 @@ def init_playwright_page(
             attachment_type=allure.attachment_type.ZIP   # - File type - ZIP
         )
 
-        context.close()    # Закрываем context! (Playwright дописывает видео на диск)
-        browser.close()    # Закрываем browser!
+        context.close()                                  # Закрываем context! (Playwright дописывает видео на диск)
+        browser.close()                                  # Закрываем browser!
 
-        allure.attach.file(                              # 💾 Прикрепляем video к Allure-отчету (файл уже финализирован)
-            source=page.video.path(),    # NOQA          # - File path (через Page)
-            name=f'{test_name}_video',                   # - Name in Allure-report (Tear down)
-            attachment_type=allure.attachment_type.WEBM  # - File type - WEBM
-        )
+        video = page.video                                   # Video | None (property → в переменную для type narrowing)
+        if video:                                            # Видео есть, только если задан record_video_dir
+            allure.attach.file(                              # 💾 Прикрепляем video к Allure-отчету (файл уже финализирован)
+                source=video.path(),                         # - File path
+                name=f'{test_name}_video',                   # - Name in Allure-report (Tear down)
+                attachment_type=allure.attachment_type.WEBM  # - File type - WEBM
+            )
+
 
 #=======================================================================================================================

@@ -29,7 +29,6 @@ class TestLogin:
 
         # ⿰ PAGE OBJECTS
         registration_page = RegistrationPage(login_page.page)
-        dashboard_page = DashboardPage(login_page.page)
 
         # ╴╴╴╴╴╴╴╴╴╴╴╴ ◁ PRE-CONDITION ╴╴╴╴╴╴╴╴╴╴╴╴╴┐
         # Registration new user

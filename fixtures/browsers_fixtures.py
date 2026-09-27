@@ -2,7 +2,6 @@
 Browsers fixtures
 """
 import pytest
-from _pytest.fixtures import SubRequest  # naming for tracing
 from playwright.sync_api import Playwright, StorageState
 
 from config import settings
@@ -13,12 +12,12 @@ from tools.registration import registration_new_user  # helper
 #=======================================================================================================================
 # Guest page
 @pytest.fixture(params=settings.browser)
-def page_guest(playwright: Playwright, request: SubRequest):
+def page_guest(playwright: Playwright, request: pytest.FixtureRequest):
     """
     Fixture GUEST-Page for authentication (NO Storage state)
 
     :param playwright: Playwright
-    :param request: SubRequest.request (naming for tracing and browser parametrization)
+    :param request: pytest.FixtureRequest (test name for tracing + request.param for browser parametrization)
     :return: yield from - Page from init_playwright_page() without Storage state
     """
     yield from init_playwright_page(
@@ -29,13 +28,13 @@ def page_guest(playwright: Playwright, request: SubRequest):
 
 # Page with Storage state 📦
 @pytest.fixture(params=settings.browser)
-def page(playwright: Playwright, request: SubRequest, storage_state: StorageState):
+def page(playwright: Playwright, request: pytest.FixtureRequest, storage_state: StorageState):
     """
     Fixture Page + Storage state for authorized user (registered)
 
     :param playwright: Playwright
     :param storage_state: Фикстура с сохраненными авторизационными данными
-    :param request: SubRequest.request (naming for tracing and browser parametrization)
+    :param request: pytest.FixtureRequest (test name for tracing + request.param for browser parametrization)
     :return: yield from - Page from init_playwright_page() with Storage state
     """
     yield from init_playwright_page(
