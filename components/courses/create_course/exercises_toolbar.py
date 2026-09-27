@@ -1,12 +1,13 @@
 """
 Exercises toolbar (component)
 """
-
 import allure
-from components.base_component import BaseComponent
 from playwright.sync_api import Locator
+
+from components.base_component import BaseComponent
 from elements.button import Button
 from elements.text import Text
+
 
 #=======================================================================================================================
 class CreateCourseExercisesToolbarComponent(BaseComponent):
@@ -25,7 +26,7 @@ class CreateCourseExercisesToolbarComponent(BaseComponent):
     def create_exercise_btn_locator(self) -> Locator:
         return self.page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
-    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    # -------------------------------------------------- ◈ ELEMENTS ----------------------------------------------------
     def title(self) -> Text:
         return Text(self.title_locator(), self.PATH, 'Title')
 

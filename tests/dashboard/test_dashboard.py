@@ -1,13 +1,14 @@
 """
 Test Dashboard
 """
-
-import pytest
 import allure
+import pytest
 from allure_commons.types import Severity
+
 from config import settings
-from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.dashboard.dashboard_page import DashboardPage
+from tools.allure.annotations import Epic, Feature, Story, Tag
+
 
 #=======================================================================================================================
 @pytest.mark.dashboard

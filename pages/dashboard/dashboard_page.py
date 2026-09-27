@@ -3,13 +3,15 @@ Dashboard page
 """
 
 import allure
-from config import Endpoint
-from pages.base_page import BasePage
 from playwright.sync_api import Page
-from components.navigation.navbar.navbar import NavbarComponent
-from components.navigation.sidebar.sidebar import SidebarComponent
+
 from components.dashboard.toolbar import DashboardToolbarComponent
 from components.dashboard.widget import DashboardWidgetComponent
+from components.navigation.navbar.navbar import NavbarComponent
+from components.navigation.sidebar.sidebar import SidebarComponent
+from config import Endpoint
+from pages.base_page import BasePage
+
 
 #=======================================================================================================================
 class DashboardPage(BasePage):

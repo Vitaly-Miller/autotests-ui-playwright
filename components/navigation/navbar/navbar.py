@@ -1,11 +1,12 @@
 """
 Navbar (component)
 """
-
 import allure
-from components.base_component import BaseComponent
 from playwright.sync_api import Locator
+
+from components.base_component import BaseComponent
 from elements.text import Text
+
 
 #=======================================================================================================================
 class NavbarComponent(BaseComponent):

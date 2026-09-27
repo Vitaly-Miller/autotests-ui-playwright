@@ -1,11 +1,13 @@
 """
 Browsers fixtures (without helpers)
 """
-import pytest
 import allure
-from playwright.sync_api import Playwright, StorageState, ViewportSize
-from pages.auth.registration.registration_page import RegistrationPage
+import pytest
 from _pytest.fixtures import SubRequest
+from playwright.sync_api import Playwright, StorageState, ViewportSize
+
+from pages.auth.registration.registration_page import RegistrationPage
+
 
 #=======================================================================================================================
 # Chromium Page + Storage state 📦

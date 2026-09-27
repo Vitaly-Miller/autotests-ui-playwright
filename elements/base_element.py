@@ -3,7 +3,9 @@ Base check of element
 """
 import allure
 from playwright.sync_api import Locator, expect
+
 from tools.logger import get_logger
+
 
 #=======================================================================================================================
 class BaseElement:

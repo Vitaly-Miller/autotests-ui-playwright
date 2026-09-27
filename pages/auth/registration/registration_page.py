@@ -3,14 +3,16 @@ Registration page
 """
 
 import allure
+from playwright.sync_api import Locator, Page
+
+from components.auth.registration.form import RegistrationFormComponent
 from config import Endpoint
 from elements.button import Button
 from elements.link import Link
 from elements.text import Text
 from pages.auth.login.login_page import LoginPage
 from pages.base_page import BasePage
-from playwright.sync_api import Locator, Page
-from components.auth.registration.form import RegistrationFormComponent
+
 
 #=======================================================================================================================
 class RegistrationPage(BasePage):

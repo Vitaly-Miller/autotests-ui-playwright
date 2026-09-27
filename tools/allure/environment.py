@@ -1,9 +1,10 @@
 """
 Allure Environment
 """
-
-from config import settings, Dir
 import platform
+
+from config import Dir, settings
+
 
 #=======================================================================================================================
 def create_allure_environment_file():

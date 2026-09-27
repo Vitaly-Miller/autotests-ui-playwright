@@ -2,14 +2,16 @@
 Courses list page
 """
 
-from config import Endpoint
 from playwright.sync_api import Page
+
 from components.courses.courses_list.course_card import CourseCardComponent
-from pages.base_page import BasePage
+from components.courses.courses_list.toolbar import CoursesListToolbarComponent
 from components.navigation.navbar.navbar import NavbarComponent
 from components.navigation.sidebar.sidebar import SidebarComponent
-from components.courses.courses_list.toolbar import CoursesListToolbarComponent
 from components.views.empty_view import EmptyViewComponent
+from config import Endpoint
+from pages.base_page import BasePage
+
 
 #=======================================================================================================================
 class CoursesListPage(BasePage):

@@ -1,13 +1,14 @@
 """
 Test Courses
 """
-
-import pytest
 import allure
+import pytest
 from allure_commons.types import Severity
+
 from config import settings
-from tools.allure.annotations import Epic, Feature, Story, Tag
 from pages.courses.courses_list.courses_list_page import CoursesListPage
+from tools.allure.annotations import Epic, Feature, Story, Tag
+
 
 #=======================================================================================================================
 @pytest.mark.courses

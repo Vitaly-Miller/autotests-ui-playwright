@@ -2,11 +2,13 @@
 Base page
 (Page object model)
 """
-
-from playwright.sync_api import Page, expect
 from re import Pattern
+
 import allure
+from playwright.sync_api import Page, expect
+
 from tools.logger import get_logger
+
 
 #=======================================================================================================================
 class BasePage:                                          # Родительский класс

@@ -1,16 +1,17 @@
 """
 Image upload widget (component)
 """
-
 import allure
+from playwright.sync_api import Locator, Page
+
 from components.base_component import BaseComponent
 from components.views.empty_view import EmptyViewComponent
-from playwright.sync_api import Locator, Page
 from elements.button import Button
 from elements.icon import Icon
 from elements.image import Image
 from elements.input_file import InputFile
 from elements.text import Text
+
 
 #=======================================================================================================================
 class CreateCourseImageUploadWidgetComponent(BaseComponent):

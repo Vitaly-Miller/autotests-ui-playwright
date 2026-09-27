@@ -1,12 +1,13 @@
 """
 Dashboard page widget (component)
 """
-
 import allure
-from components.base_component import BaseComponent
 from playwright.sync_api import Locator, Page
+
+from components.base_component import BaseComponent
 from elements.image import Image
 from elements.text import Text
+
 
 #=======================================================================================================================
 class DashboardWidgetComponent(BaseComponent):

@@ -1,11 +1,12 @@
 """
 Project config
 """
-
-from pathlib import Path
 from enum import StrEnum
+from pathlib import Path
+
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
 
 #=======================================================================================================================
 class Dir:

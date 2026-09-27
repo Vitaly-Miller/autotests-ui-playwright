@@ -3,9 +3,11 @@ Course card menu (component)
 """
 
 import allure
-from components.base_component import BaseComponent
 from playwright.sync_api import Locator
+
+from components.base_component import BaseComponent
 from elements.button import Button
+
 
 #=======================================================================================================================
 class CourseCardMenuComponent(BaseComponent):

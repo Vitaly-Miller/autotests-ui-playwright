@@ -1,13 +1,14 @@
 """
 Sidebar item (component)
 """
-
 import allure
-from components.base_component import BaseComponent
 from playwright.sync_api import Locator, Page
+
+from components.base_component import BaseComponent
 from elements.button import Button
 from elements.icon import Icon
 from elements.text import Text
+
 
 #=======================================================================================================================
 class SidebarItemComponent(BaseComponent):

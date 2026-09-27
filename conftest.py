@@ -4,7 +4,7 @@ conftest.py (via Pytest Plugins)
 """
 Используется pytest_plugins - все фикстуры в отдельных модулях-файлах
 """
-from pathlib import Path                  # for <Auto Plugins path>
+from pathlib import Path  # for <Auto Plugins path>
 
 #================================================ Plugins path (⌨️Manual) ================================================
 # Ручной путь к plugins (модулям-файлам с фикстурами) - ⚠ БЕЗ расширения <.py>

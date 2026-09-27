@@ -1,12 +1,16 @@
 """
 Exercise (component)
 """
-
 import allure
-from components.base_component import BaseComponent
 from playwright.sync_api import Page
-from components.courses.create_course.exercise_toolbar import CreateCourseExerciseToolbarComponent
-from components.courses.create_course.exercise_form import CreateCourseExerciseFormComponent
+
+from components.base_component import BaseComponent
+from components.courses.create_course.exercise_form import (
+    CreateCourseExerciseFormComponent,
+)
+from components.courses.create_course.exercise_toolbar import (
+    CreateCourseExerciseToolbarComponent,
+)
 
 #=======================================================================================================================
 

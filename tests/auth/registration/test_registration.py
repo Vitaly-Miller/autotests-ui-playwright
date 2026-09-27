@@ -1,14 +1,15 @@
 """
 Test registration
 """
-
-import pytest
 import allure
+import pytest
 from allure_commons.types import Severity
+
 from config import settings
-from pages.dashboard.dashboard_page import DashboardPage
 from pages.auth.registration.registration_page import RegistrationPage
+from pages.dashboard.dashboard_page import DashboardPage
 from tools.allure.annotations import Epic, Feature, Story, Tag
+
 
 #=======================================================================================================================
 @pytest.mark.auth

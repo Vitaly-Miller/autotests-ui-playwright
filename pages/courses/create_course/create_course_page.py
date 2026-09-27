@@ -2,17 +2,23 @@
 Create Course page
 """
 
-from config import Endpoint
-from pages.base_page import BasePage
 from playwright.sync_api import Page
+
+from components.courses.create_course.exercise import CreateCourseExerciseComponent
+from components.courses.create_course.exercises_toolbar import (
+    CreateCourseExercisesToolbarComponent,
+)
+from components.courses.create_course.form import CreateCourseFormComponent
+from components.courses.create_course.image_upload_widget import (
+    CreateCourseImageUploadWidgetComponent,
+)
+from components.courses.create_course.toolbar import CreateCourseToolbarComponent
 from components.navigation.navbar.navbar import NavbarComponent
 from components.navigation.sidebar.sidebar import SidebarComponent
-from components.courses.create_course.toolbar import CreateCourseToolbarComponent
 from components.views.empty_view import EmptyViewComponent
-from components.courses.create_course.image_upload_widget import CreateCourseImageUploadWidgetComponent
-from components.courses.create_course.form import CreateCourseFormComponent
-from components.courses.create_course.exercises_toolbar import CreateCourseExercisesToolbarComponent
-from components.courses.create_course.exercise import CreateCourseExerciseComponent
+from config import Endpoint
+from pages.base_page import BasePage
+
 
 #=======================================================================================================================
 class CreateCoursePage(BasePage):

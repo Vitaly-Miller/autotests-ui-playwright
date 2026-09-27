@@ -1,11 +1,12 @@
 """
 Registration form (component)
 """
-
 import allure
-from components.base_component import BaseComponent
 from playwright.sync_api import Locator
+
+from components.base_component import BaseComponent
 from elements.input_field import InputField
+
 
 #=======================================================================================================================
 class RegistrationFormComponent(BaseComponent):

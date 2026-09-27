@@ -1,12 +1,13 @@
 """
 Test login (Negative)
 """
-
-import pytest
 import allure
+import pytest
 from allure_commons.types import Severity
-from tools.allure.annotations import Epic, Feature, Story, Tag
+
 from pages.auth.login.login_page import LoginPage
+from tools.allure.annotations import Epic, Feature, Story, Tag
+
 
 #=======================================================================================================================
 @pytest.mark.auth

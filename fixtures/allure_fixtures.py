@@ -1,9 +1,10 @@
 """
 Allure autouse-fixture
 """
-
 import pytest
+
 from tools.allure.environment import create_allure_environment_file
+
 
 #=======================================================================================================================
 @pytest.fixture(scope='session', autouse=True)   # Автоматически запускается на каждую тестовую сессию

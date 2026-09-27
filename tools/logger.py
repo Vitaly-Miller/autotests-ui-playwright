@@ -3,6 +3,7 @@ Logger (via logging)
 """
 import logging
 
+
 #=======================================================================================================================
 def get_logger(name: str, console: bool = False) -> logging.Logger:
     """

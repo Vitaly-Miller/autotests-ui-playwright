@@ -1,11 +1,13 @@
 """
 BASE component
 """
+from re import Pattern
 
 import allure
 from playwright.sync_api import Page, expect
-from re import Pattern
+
 from tools.logger import get_logger
+
 
 #=======================================================================================================================
 class BaseComponent:

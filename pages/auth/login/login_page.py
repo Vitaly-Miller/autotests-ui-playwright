@@ -2,14 +2,15 @@
 Login page
 """
 import allure
+from playwright.sync_api import Locator, Page
 
+from components.auth.login.form import LoginFormComponent
 from config import Endpoint
 from elements.button import Button
 from elements.link import Link
-from pages.base_page import BasePage
-from playwright.sync_api import Locator, Page
-from components.auth.login.form import LoginFormComponent
 from elements.text import Text
+from pages.base_page import BasePage
+
 
 #=======================================================================================================================
 class LoginPage(BasePage):              # Дочерний класс (наследует класс BasePage)
@@ -234,7 +235,9 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
 
         .
         """
-        from pages.auth.registration.registration_page import RegistrationPage   # import conflict
+        from pages.auth.registration.registration_page import (
+            RegistrationPage,  # import conflict
+        )
         self.reg_link().check_href(href=RegistrationPage.URL)
 
 
