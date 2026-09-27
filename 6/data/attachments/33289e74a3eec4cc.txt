@@ -1,0 +1,3 @@
+INFO | PAGE    : ⿹ Open page URL: #/auth/registration
+INFO | ELEMENT : ▶ Click [Login link]
+INFO | PAGE    : ✔ Check current page URL is "#/auth/login"
