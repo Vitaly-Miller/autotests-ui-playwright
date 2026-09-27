@@ -1,0 +1,31 @@
+INFO | PAGE    : ⿹ Open page URL: #/dashboard
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "UI Course"
+INFO | ELEMENT : ✔ Check [Welcome title] is visible
+INFO | ELEMENT : ✔ Check [Welcome title] text: "Welcome, username!"
+INFO | ELEMENT : ✔ Check [Dashboard-button] is visible
+INFO | ELEMENT : ✔ Check [Dashboard-icon] is visible
+INFO | ELEMENT : ✔ Check [Dashboard-title] is visible
+INFO | ELEMENT : ✔ Check [Dashboard-title] text: "Dashboard"
+INFO | ELEMENT : ✔ Check [Courses-button] is visible
+INFO | ELEMENT : ✔ Check [Courses-icon] is visible
+INFO | ELEMENT : ✔ Check [Courses-title] is visible
+INFO | ELEMENT : ✔ Check [Courses-title] text: "Courses"
+INFO | ELEMENT : ✔ Check [Logout-button] is visible
+INFO | ELEMENT : ✔ Check [Logout-icon] is visible
+INFO | ELEMENT : ✔ Check [Logout-title] is visible
+INFO | ELEMENT : ✔ Check [Logout-title] text: "Logout"
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "Dashboard"
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "Students"
+INFO | ELEMENT : ✔ Check [Bar-chart] is visible
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "Activities"
+INFO | ELEMENT : ✔ Check [Line-chart] is visible
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "Courses"
+INFO | ELEMENT : ✔ Check [Pie-chart] is visible
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "Scores"
+INFO | ELEMENT : ✔ Check [Scatter-chart] is visible

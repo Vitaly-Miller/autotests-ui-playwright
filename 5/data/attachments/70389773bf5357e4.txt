@@ -1,0 +1,25 @@
+INFO | PAGE    : ⿹ Open page URL: #/auth/registration
+INFO | ELEMENT : ▶ Fill [Email input field] with value: "user.name@gmail.com"
+INFO | ELEMENT : ▶ Fill [Username input field] with value: "username"
+INFO | ELEMENT : ▶ Fill [Password input field] with value: "password"
+INFO | ELEMENT : ▶ Click [Registration button]
+INFO | PAGE    : ⿹ Open page URL: #/courses/create
+INFO | ELEMENT : ▶ Upload "image_1.jpg" via [Upload image input]
+INFO | ELEMENT : ▶ Fill [Title input field] with value: "Playwright"
+INFO | ELEMENT : ▶ Fill [Estimated time input field] with value: "2 weeks"
+INFO | ELEMENT : ▶ Fill [Description input field] with value: "Page Object Model"
+INFO | ELEMENT : ▶ Fill [Max score input field] with value: "100"
+INFO | ELEMENT : ▶ Fill [Min score input field] with value: "10"
+INFO | ELEMENT : ▶ Click [Create course button]
+INFO | PAGE    : ✔ Check current page URL is "#/courses"
+INFO | ELEMENT : ✔ Check [Menu button] is visible
+INFO | ELEMENT : ✔ Check [Menu button] is enabled
+INFO | ELEMENT : ✔ Check [Image] is visible
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "Playwright"
+INFO | ELEMENT : ✔ Check [Max score] is visible
+INFO | ELEMENT : ✔ Check [Max score] text: "Max score: 100"
+INFO | ELEMENT : ✔ Check [Min score] is visible
+INFO | ELEMENT : ✔ Check [Min score] text: "Min score: 10"
+INFO | ELEMENT : ✔ Check [Estimated time] is visible
+INFO | ELEMENT : ✔ Check [Estimated time] text: "Estimated time: 2 weeks"
