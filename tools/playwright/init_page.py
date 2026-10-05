@@ -61,24 +61,28 @@ def init_playwright_page(
         yield page                                       # Передаем page (на базе движка chromium)
 
     finally:                                             # Гарантия закрытия, если упадет
-        context.tracing.stop(
-            path=f'{Dir.TRACING}/{test_name}.zip')       # Сохраняем трейсинг в zip-файл (c именем текущего теста)
-        allure.attach.file(                              # 💾 Прикрепляем трейсинг к Allure-отчету
-            source=f'{Dir.TRACING}/{test_name}.zip',     # - File path
-            name=f'{test_name}_trace',                   # - Name in Allure-report (Tear down)
-            attachment_type=allure.attachment_type.ZIP   # - File type - ZIP
-        )
-
-        context.close()                                  # Закрываем context! (Playwright дописывает видео на диск)
-        browser.close()                                  # Закрываем browser!
-
-        video = page.video                                   # Video | None (property → в переменную для type narrowing)
-        if video:                                            # Видео есть, только если задан record_video_dir
-            allure.attach.file(                              # 💾 Прикрепляем video к Allure-отчету (файл уже финализирован)
-                source=video.path(),                         # - File path
-                name=f'{test_name}_video',                   # - Name in Allure-report (Tear down)
-                attachment_type=allure.attachment_type.WEBM  # - File type - WEBM
+        trace_path = f'{Dir.TRACING}/{test_name}.zip'    # Путь к zip-файлу трейсинга (c именем текущего теста)
+        try:
+            context.tracing.stop(path=trace_path)        # Сохраняем трейсинг в zip-файл
+            allure.attach.file(                          # 💾 Прикрепляем трейсинг к Allure-отчету
+                source=trace_path,                       # - File path
+                name=f'{test_name}_trace',               # - Name in Allure-report (Tear down)
+                attachment_type=allure.attachment_type.ZIP   # - File type - ZIP
             )
+
+        finally:                                         # ❗ Закрываем, даже если трейсинг/attach упал
+            try:
+                context.close()                          # Закрываем context! (Playwright дописывает видео на диск)
+            finally:
+                browser.close()                          # Закрываем browser! (даже если context.close() упал)
+
+            video = page.video                                   # Video | None (property → в переменную для type narrowing)
+            if video:                                            # Видео есть, только если задан record_video_dir
+                allure.attach.file(                              # 💾 Прикрепляем video к Allure-отчету (файл уже финализирован)
+                    source=video.path(),                         # - File path
+                    name=f'{test_name}_video',                   # - Name in Allure-report (Tear down)
+                    attachment_type=allure.attachment_type.WEBM  # - File type - WEBM
+                )
 
 
 #=======================================================================================================================
