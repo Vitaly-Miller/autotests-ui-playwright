@@ -1,0 +1,30 @@
+INFO | PAGE    : ⿹ Open page URL: #/auth/registration
+INFO | ELEMENT : ▶ Fill [Email input field] with value: "user.name@gmail.com"
+INFO | ELEMENT : ▶ Fill [Username input field] with value: "username"
+INFO | ELEMENT : ▶ Fill [Password input field] with value: "password"
+INFO | ELEMENT : ▶ Click [Registration button]
+INFO | PAGE    : ⿹ Open page URL: #/courses
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "UI Course"
+INFO | ELEMENT : ✔ Check [Welcome title] is visible
+INFO | ELEMENT : ✔ Check [Welcome title] text: "Welcome, username!"
+INFO | ELEMENT : ✔ Check [Dashboard-button] is visible
+INFO | ELEMENT : ✔ Check [Dashboard-icon] is visible
+INFO | ELEMENT : ✔ Check [Dashboard-title] is visible
+INFO | ELEMENT : ✔ Check [Dashboard-title] text: "Dashboard"
+INFO | ELEMENT : ✔ Check [Courses-button] is visible
+INFO | ELEMENT : ✔ Check [Courses-icon] is visible
+INFO | ELEMENT : ✔ Check [Courses-title] is visible
+INFO | ELEMENT : ✔ Check [Courses-title] text: "Courses"
+INFO | ELEMENT : ✔ Check [Logout-button] is visible
+INFO | ELEMENT : ✔ Check [Logout-icon] is visible
+INFO | ELEMENT : ✔ Check [Logout-title] is visible
+INFO | ELEMENT : ✔ Check [Logout-title] text: "Logout"
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "Courses"
+INFO | ELEMENT : ✔ Check [Create course button] is visible
+INFO | ELEMENT : ✔ Check [Icon] is visible
+INFO | ELEMENT : ✔ Check [Title] is visible
+INFO | ELEMENT : ✔ Check [Title] text: "There is no results"
+INFO | ELEMENT : ✔ Check [Description] is visible
+INFO | ELEMENT : ✔ Check [Description] text: "Results from the load test pipeline will be displayed here"
