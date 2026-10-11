@@ -5,7 +5,6 @@ from config import settings
 from pages.auth.registration.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
 
-
 #=======================================================================================================================
 # Registration new user (helper)
 def registration_new_user(
