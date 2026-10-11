@@ -21,28 +21,16 @@ class Fake:
 
     #------------------------------------------------ User Credentials -------------------------------------------------
     def first_name(self) -> str:
-        """
-        Генерация First Name
-
-        :return: John
-        """
         return self.faker.first_name()
 
     def middle_name(self) -> str:
-        """
-        Генерация Middle Name
-
-        :return: Connor
-        """
         return self.faker.first_name()
 
     def last_name(self) -> str:
-        """
-        Генерация Last Name
-
-        :return: Connor
-        """
         return self.faker.last_name()
+
+    def username(self) -> str:
+        return self.faker.user_name()
 
     def email(self, domain: str | None = None) -> str:
         """
@@ -56,11 +44,6 @@ class Fake:
         return f'test_{unique_id}@{domain_part}'
 
     def password(self) -> str:
-        """
-        Генерация пароля
-
-        :return: Password
-        """
         return self.faker.password()
 
     #-------------------------------------------------------- ID -------------------------------------------------------

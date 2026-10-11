@@ -29,8 +29,6 @@ def init_playwright_page(
             playwright=playwright, test_name=request.node.name, storage_state=storage_state
         )
 
-
-    :param chromium_channel:
     :param playwright: Playwright (встроенная фикстура из pytest_playwright)
     :param test_name: Имя текущего теста (request.node.name) — для путей video/trace и имён вложений в Allure
     :param browser_engine: Browser engine [chromium] / [webkit] / [firefox]

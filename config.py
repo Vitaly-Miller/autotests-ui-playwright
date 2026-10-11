@@ -4,9 +4,10 @@ Project config
 from enum import StrEnum
 from pathlib import Path
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from tools.data_generator import fake
 
 #=======================================================================================================================
 class Dir:
@@ -43,9 +44,9 @@ class TestUser(BaseModel):
 
     .
     """
-    email: str
-    username: str
-    password: str
+    email: str = Field(default_factory=fake.email)
+    username: str = Field(default_factory=fake.username)
+    password: str = Field(default_factory=fake.password)
 
 class Browser(StrEnum):
     """
@@ -62,10 +63,10 @@ class Browser(StrEnum):
     WEBKIT = 'webkit'
 
 
-#-----------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------- RUN Settings ----------------------------------------------------
 class Settings(BaseSettings):
     """
-    Project settings - from .env
+    Project run settings - from .env
 
     .
     """
@@ -80,9 +81,8 @@ class Settings(BaseSettings):
     browser: list[Browser]
     headless: bool
     slow_mo: int  # ms
-    test_user: TestUser
+    test_user: TestUser = Field(default_factory=TestUser)   # or use manual mode via .env
 
 
 settings = Settings()
-
 #=======================================================================================================================
