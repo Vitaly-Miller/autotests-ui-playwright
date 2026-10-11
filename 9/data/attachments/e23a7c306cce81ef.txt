@@ -1,0 +1,11 @@
+INFO | PAGE    : ⿹ Open page URL: #/auth/registration
+INFO | ELEMENT : ▶ Fill [Email input field] with value: "test_989a4d94@example.com"
+INFO | ELEMENT : ▶ Fill [Username input field] with value: "andrea62"
+INFO | ELEMENT : ▶ Fill [Password input field] with value: "GkV5B52$#+"
+INFO | ELEMENT : ▶ Click [Registration button]
+INFO | ELEMENT : ▶ Click [Logout-button]
+INFO | PAGE    : ✔ Check current page URL is "#/auth/login"
+INFO | ELEMENT : ▶ Fill [Email input field] with value: "test_989a4d94@example.com"
+INFO | ELEMENT : ▶ Fill [Password input field] with value: "GkV5B52$#+"
+INFO | ELEMENT : ▶ Click [Login button]
+INFO | PAGE    : ✔ Check current page URL is "#/dashboard"
