@@ -12,7 +12,6 @@ from elements.image import Image
 from elements.input_file import InputFile
 from elements.text import Text
 
-
 #=======================================================================================================================
 class CreateCourseImageUploadWidgetComponent(BaseComponent):
     """
@@ -63,7 +62,7 @@ class CreateCourseImageUploadWidgetComponent(BaseComponent):
         return self.page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
 
 
-    # -------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
+    # ------------------------------------------------- ◈ ELEMENTS -----------------------------------------------------
     # [Upload view]
     def upload_view_icon(self) -> Icon:
         return Icon(self.upload_view_icon_locator(), self.PATH, 'Upload view - Icon')

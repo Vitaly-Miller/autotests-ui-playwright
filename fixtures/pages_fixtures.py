@@ -10,37 +10,36 @@ from pages.courses.courses_list.courses_list_page import CoursesListPage
 from pages.courses.create_course.create_course_page import CreateCoursePage
 from pages.dashboard.dashboard_page import DashboardPage
 
-
 #=======================================================================================================================
-#------------------------------------------- Chromium Pages (Guest Pages) ----------------------------------------------
+#-------------------------------------------------- Guest Pages --------------------------------------------------------
 @pytest.fixture
 def login_page(page_guest: Page) -> LoginPage:
     """
-    Фикстура инициализации класса LoginPage()
+    Initialize LoginPage()
 
-    :param page_guest: Фикстура guest_page (NO Storage State)
-    :return: LoginPage(page=guest_page)
+    :param page_guest: Fixture page_guest (no Storage State)
+    :return: LoginPage(page=page_guest)
     """
     return LoginPage(page_guest)
 
 @pytest.fixture
 def registration_page(page_guest: Page) -> RegistrationPage:
     """
-    Фикстура инициализации класса RegistrationPage()
+    Initialize RegistrationPage()
 
-    :param page_guest: Фикстура guest_page (NO Storage State)
-    :return: RegistrationPage(page=guest_page)
+    :param page_guest: Fixture page_guest (no Storage State)
+    :return: RegistrationPage(page=page_guest)
     """
     return RegistrationPage(page_guest)
 
 
-#---------------------------------------- Chromium Pages (+ Storage State 📦) ------------------------------------------
+#--------------------------------------------- Pages + Storage State 📦 ------------------------------------------------
 @pytest.fixture
 def dashboard_page(page: Page) -> DashboardPage:
     """
-    Фикстура инициализации класса DashboardPage()
+    Initialize DashboardPage()
 
-    :param page: Фикстура page (with Storage State)
+    :param page: Fixture page (with Storage State)
     :return: DashboardPage(page=page)
     """
     return DashboardPage(page)
@@ -48,9 +47,9 @@ def dashboard_page(page: Page) -> DashboardPage:
 @pytest.fixture
 def courses_list_page(page: Page) -> CoursesListPage:
     """
-    Фикстура инициализации класса CoursesListPage()
+    Initialize CoursesListPage()
 
-    :param page: Фикстура page (with Storage State)
+    :param page: Fixture page (with Storage State)
     :return: CoursesListPage(page=page)
     """
     return CoursesListPage(page)
@@ -58,9 +57,9 @@ def courses_list_page(page: Page) -> CoursesListPage:
 @pytest.fixture
 def create_course_page(page: Page) -> CreateCoursePage:
     """
-    Фикстура инициализации класса CreateCoursePage()
+    Initialize CreateCoursePage()
 
-    :param page: Фикстура page (with Storage State)
+    :param page: Fixture page (with Storage State)
     :return: CreateCoursePage(page=page)
     """
     return CreateCoursePage(page)

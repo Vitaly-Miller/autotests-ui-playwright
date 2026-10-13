@@ -8,7 +8,6 @@ from config import settings
 from tools.playwright.init_page import init_playwright_page  # helper
 from tools.registration import registration_new_user  # helper
 
-
 #=======================================================================================================================
 # Guest page
 @pytest.fixture(params=settings.browser)
@@ -33,7 +32,7 @@ def page(playwright: Playwright, request: pytest.FixtureRequest, storage_state: 
     Fixture Page + Storage state for authorized user (registered)
 
     :param playwright: Playwright
-    :param storage_state: Фикстура с сохраненными авторизационными данными
+    :param storage_state: Fixture with saved authorization data
     :param request: pytest.FixtureRequest (test name for tracing + request.param for browser parametrization)
     :return: yield from - Page from init_playwright_page() with Storage state
     """
@@ -47,31 +46,31 @@ def page(playwright: Playwright, request: pytest.FixtureRequest, storage_state: 
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Storage state 📦
-@pytest.fixture(scope='session')                # Выполняется один раз за всю тестовую сессию
-def storage_state(playwright: Playwright):      # Используем встроенную фикстуру playwright из pytest_playwright plugin
+@pytest.fixture(scope='session')
+def storage_state(playwright: Playwright):
     """
-    Фикстура для внутреннего использования, сохраняющая storage_state c авторизационными данными
+    Internal-use fixture for that stores storage_state with authorization data
 
     :param playwright: Playwright
     :return: yield - StorageState / storage_state.json
     """
-    browser = playwright.chromium.launch()      # Создаем объект браузера на движке
-    context = browser.new_context(base_url=settings.base_url)   # Создание браузерного окружения
-    page = context.new_page()                                   # Создаем объект страницы page на базе context
-    registration_new_user(page)                                 # Registration new user (helper)
-    page.wait_for_function(                                     # ❗ ждем user, иначе Storage state будет пустым
+    browser = playwright.chromium.launch()
+    context = browser.new_context(base_url=settings.base_url)
+    page = context.new_page()
+    registration_new_user(page)
+    page.wait_for_function(                        # ❗Waiting for the user, otherwise the Storage state will be empty.
         expression='email => localStorage.getItem("persist:users")?.includes(email)',
         arg=settings.test_user.email
     )
-    storage_state = context.storage_state()                     # v.1 - Storage state в переменную
-    # context.storage_state(path=Dir.STORAGE_STATE_FILE)                  # v.2 - Storage state в 💾 JSON-файл  (optional)
-    # storage_state = context.storage_state(path=Dir.STORAGE_STATE_FILE)  # v.3 - Storage state в переменную + 💾 JSON-файл  (optional)
+    storage_state = context.storage_state()                               # v.1 - Variable
+    # context.storage_state(path=Dir.STORAGE_STATE_FILE)                  # v.2 - 💾 JSON-файл (optional)
+    # storage_state = context.storage_state(path=Dir.STORAGE_STATE_FILE)  # v.3 - Variable + 💾 JSON-файл  (optional)
     try:
-        yield storage_state                     # Передаем Storage state
+        yield storage_state
 
-    finally:                                    # Гарантия закрытия, если упадет.
-        context.close()                         # Закрываем context!
-        browser.close()                         # Закрываем browser!
+    finally:
+        context.close()
+        browser.close()
 
 
 #-------------------------------------------------------- OPTIONAL -----------------------------------------------------

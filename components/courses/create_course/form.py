@@ -7,7 +7,6 @@ from playwright.sync_api import Locator
 from components.base_component import BaseComponent
 from elements.input_field import InputField
 
-
 #=======================================================================================================================
 class CreateCourseFormComponent(BaseComponent):
     """
@@ -135,7 +134,7 @@ class CreateCourseFormComponent(BaseComponent):
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
     # [Course Form]
-    # ─────────────────────────────────────┐
+    # ────────────────────────────────────────────┐
     @allure.step('✔ Check [Course form]')
     def check(
         self,
@@ -165,7 +164,7 @@ class CreateCourseFormComponent(BaseComponent):
         self.check_description_input_field(description)
         self.check_max_score_input_field(max_score)
         self.check_min_score_input_field(min_score)
-    # ─────────────────────────────────────┘
+    # ─────────────────────────────────────────────┘
 
     # [Title input field]
     @allure.step('✔ Check [Title input field]')
