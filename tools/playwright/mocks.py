@@ -4,38 +4,42 @@ Mock
 
 from playwright.sync_api import Page, Route
 
+from tools.logger import get_logger
+
+logger = get_logger('MOCK    ', True)
+
 #=======================================================================================================================
 
-# v.1 Блокировка загрузки ресурсов (lambda)
+# v.1 Blocking resource loading (lambda)
 def mock_static_resources(page: Page):
     """
-    Блокирует загрузку статических ресурсов на странице (иконки, изображения, видео, аудио, шрифты)
+    Blocks loading of static resources on the page (icons, images, video, audio, fonts)
 
-    Используется для ускорения тестов за счёт отказа от лишней сетевой нагрузки.
+    Used to speed up tests by avoiding unnecessary network load.
 
-    :param page: Page, на которой нужно заблокировать загрузку статики
+    :param page: Page on which static resource loading should be blocked
     """
     page.route('**/*.{ico,png,jpg,svg,webp,mp4,webm,ogg,mp3,woff,woff2}', lambda route: route.abort())
 
 
 #-----------------------------------------------------------------------------------------------------------------------
-# v.2 Блокировка загрузки ресурсов (c комментарием при блокировке)
+# v.2 Blocking resource loading (with a message on each block)
 def abort(route: Route):
     """
-    Handler-функция для перехваченного запроса: логирует URL и обрывает его загрузку
+    Handler function for an intercepted request: logs the URL and aborts its loading
 
-    :param route: Перехваченный Playwright запрос (передаётся автоматически из page.route)
+    :param route: Intercepted Playwright request (passed automatically by page.route)
     """
-    print(f'\nAborting URL: {route.request.url}')   # For logging (Aborting URL: https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2)
-    route.abort()                                   # Abort loading resource
+    logger.info(f'Aborting URL: {route.request.url}')   # Aborting URL: https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2
+    route.abort()                                       # Abort loading resource
 
 def mock_static_resources_comment(page: Page):
     """
-    Блокирует загрузку статических ресурсов на странице (иконки, изображения, видео, аудио, шрифты)
+    Blocks loading of static resources on the page (icons, images, video, audio, fonts)
 
-    Используется для ускорения тестов за счёт отказа от лишней сетевой нагрузки.
+    Used to speed up tests by avoiding unnecessary network load.
 
-    :param page: Page, на которой нужно заблокировать загрузку статики
+    :param page: Page on which static resource loading should be blocked
     """
     page.route('**/*.{ico,png,jpg,svg,webp,mp4,webm,ogg,mp3,woff,woff2}', abort)
 

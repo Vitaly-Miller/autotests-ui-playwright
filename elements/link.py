@@ -6,13 +6,8 @@ from playwright.sync_api import expect
 
 from elements.base_element import BaseElement
 
-
 #=======================================================================================================================
 class Link(BaseElement):
-    """
-    - ❌ НЕ ВЫЗЫВАТЬ НАПРЯМУЮ базовые методы из Родительского класса - BaseElement()!
-    - ✅ Вызывать ТОЛЬКО ЧЕРЕЗ ЭТОТ Дочерний класс элемента!
-    """
     # href (Hypertext Reference)
     def check_href(self, href: str, nth: int = 0):
         """

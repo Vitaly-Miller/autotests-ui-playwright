@@ -9,7 +9,6 @@ from pages.courses.courses_list.courses_list_page import CoursesListPage
 from pages.courses.create_course.create_course_page import CreateCoursePage
 from tools.allure.annotations import Epic, Feature, Story, Tag
 
-
 #=======================================================================================================================
 @pytest.mark.courses
 @pytest.mark.files
@@ -37,20 +36,20 @@ class TestCreateCourse:
         create_course_page.open(create_course_page.URL)
 
         # ▶ ACTIONS (Create course)
-        create_course_page.image_upload_widget.upload_image('image_1.jpg')  # Загрузка картинки курса
-        create_course_page.form.fill(                                       # Заполнение полей формы <Create Course>
+        create_course_page.image_upload_widget.upload_image('image_1.jpg')
+        create_course_page.form.fill(
             title=course_title,
             estimated_time=course_estimated_time,
             description=course_description,
             max_score=course_max_score,
             min_score=course_min_score
         )
-        create_course_page.toolbar.click_create_course_btn()                # Нажатие на кнопку <Create course button>
+        create_course_page.toolbar.click_create_course_btn()
 
         # ✔️EXPECTATIONS (After Course creation)
-        courses_list_page.check_current_url(courses_list_page.URL)          # Проверка успешного редиректа на страницу - Courses list page
-        courses_list_page.course_card.check(                                # Данные в карточке курса соответствуют заполненным полям формы
-            nth_index=0,                                                    # nth-index
+        courses_list_page.check_current_url(courses_list_page.URL)
+        courses_list_page.course_card.check(
+            nth_index=0,
             title=course_title,
             estimated_time=course_estimated_time,
             max_score=course_max_score,

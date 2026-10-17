@@ -11,9 +11,8 @@ from elements.link import Link
 from elements.text import Text
 from pages.base_page import BasePage
 
-
 #=======================================================================================================================
-class LoginPage(BasePage):              # Дочерний класс (наследует класс BasePage)
+class LoginPage(BasePage):
     """
     [Login page]
 
@@ -24,10 +23,10 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     - Wrong email or password alert
     """
     URL = Endpoint.LOGIN
-    PATH = 'Login page'                 # for logging
+    PATH = 'Login page'                 # Object web-path (for logging only)
 
-    def __init__(self, page: Page):     # Конструктор класса, принимающий Page
-        super().__init__(page)          # Передаёт page в конструктор BasePage
+    def __init__(self, page: Page):
+        super().__init__(page)
 
         # ⿳ COMPONENTS
         self.form = LoginFormComponent(page)
@@ -46,7 +45,7 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
     def alert_locator(self) -> Locator:
         return self.page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
-    # ------------------------------------------------- ◈ ELEMENTS -------------------------------------------------
+    # ---------------------------------------------------- ◈ ELEMENTS --------------------------------------------------
     def title(self) -> Text:
         return Text(self.title_locator(), self.PATH, 'Title')
 
@@ -60,7 +59,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         return Text(self.alert_locator(), self.PATH, 'Alert')
 
     # ---------------------------------------------------- ▶ ACTIONS ---------------------------------------------------
-    # Click [Login button]
     def click_login_btn(self):
         """
         ▶ Click [Login button]
@@ -69,7 +67,6 @@ class LoginPage(BasePage):              # Дочерний класс (насл�
         """
         self.login_btn().click()
 
-    # Click [Registration link]
     def click_registration_link(self):
         """
         ▶ Click [Registration link]

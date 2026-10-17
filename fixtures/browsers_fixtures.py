@@ -5,8 +5,8 @@ import pytest
 from playwright.sync_api import Playwright, StorageState
 
 from config import settings
-from tools.playwright.init_page import init_playwright_page  # helper
-from tools.registration import registration_new_user  # helper
+from tools.playwright.init_page import init_playwright_page
+from tools.registration import registration_new_user
 
 #=======================================================================================================================
 # Guest page
@@ -43,7 +43,6 @@ def page(playwright: Playwright, request: pytest.FixtureRequest, storage_state: 
         browser_engine=request.param
     )
 
-
 #-----------------------------------------------------------------------------------------------------------------------
 # Storage state 📦
 @pytest.fixture(scope='session')
@@ -62,9 +61,9 @@ def storage_state(playwright: Playwright):
         expression='email => localStorage.getItem("persist:users")?.includes(email)',
         arg=settings.test_user.email
     )
-    storage_state = context.storage_state()                               # v.1 - Variable
-    # context.storage_state(path=Dir.STORAGE_STATE_FILE)                  # v.2 - 💾 JSON-файл (optional)
-    # storage_state = context.storage_state(path=Dir.STORAGE_STATE_FILE)  # v.3 - Variable + 💾 JSON-файл  (optional)
+    storage_state = context.storage_state()                               # v.1 - to Variable
+    # context.storage_state(path=Dir.STORAGE_STATE_FILE)                  # v.2 - to 💾 JSON-file (optional)
+    # storage_state = context.storage_state(path=Dir.STORAGE_STATE_FILE)  # v.3 - to Variable + 💾 JSON-file  (optional)
     try:
         yield storage_state
 

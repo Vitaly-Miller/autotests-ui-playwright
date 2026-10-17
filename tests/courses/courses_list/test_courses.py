@@ -9,7 +9,6 @@ from config import settings
 from pages.courses.courses_list.courses_list_page import CoursesListPage
 from tools.allure.annotations import Epic, Feature, Story, Tag
 
-
 #=======================================================================================================================
 @pytest.mark.courses
 @pytest.mark.regression
@@ -33,10 +32,6 @@ class TestCourses:
         courses_list_page.sidebar.check()
         courses_list_page.toolbar.check()
         courses_list_page.check_empty_view()
-
-        # ╴╴╴╴╴╴╴╴╴╴ ⏳╴╴╴╴╴╴╴╴╴╴╴┐
-        # courses_list_page.wait()
-        # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┘
 
 
 #=======================================================================================================================

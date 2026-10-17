@@ -80,7 +80,7 @@ class Settings(BaseSettings):
     base_url: str
     browser: list[Browser]
     headless: bool
-    slow_mo: int  # ms
+    slow_mo: int                                    # ms
     test_user: TestUser = Field(default_factory=TestUser)   # or use manual mode via .env
 
 

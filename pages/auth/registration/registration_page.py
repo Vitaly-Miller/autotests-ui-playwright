@@ -13,7 +13,6 @@ from elements.text import Text
 from pages.auth.login.login_page import LoginPage
 from pages.base_page import BasePage
 
-
 #=======================================================================================================================
 class RegistrationPage(BasePage):
     """
@@ -54,7 +53,6 @@ class RegistrationPage(BasePage):
         return Link(self.login_link_locator(), self.PATH, 'Login link')
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
-    # Click [Registration button]
     def click_registration_btn(self):
         """
         ▶ Click [Registration button]
@@ -63,7 +61,6 @@ class RegistrationPage(BasePage):
         """
         self.registration_btn().click()
 
-    # Click [Login link]
     def click_login_link(self):
         """
         ▶ Click [Login link]

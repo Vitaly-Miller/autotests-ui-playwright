@@ -12,7 +12,6 @@ from components.views.empty_view import EmptyViewComponent
 from config import Endpoint
 from pages.base_page import BasePage
 
-
 #=======================================================================================================================
 class CoursesListPage(BasePage):
     """
@@ -26,7 +25,7 @@ class CoursesListPage(BasePage):
     """
     URL = Endpoint.COURSES
     IDENTIFIER = 'courses-list'
-    PATH = 'Courses list page'          # for logging
+    PATH = 'Courses list page'
 
     def __init__(self, page: Page):
         super().__init__(page)

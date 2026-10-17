@@ -9,7 +9,6 @@ from pages.courses.courses_list.courses_list_page import CoursesListPage
 from pages.courses.create_course.create_course_page import CreateCoursePage
 from tools.allure.annotations import Epic, Feature, Story, Tag
 
-
 #=======================================================================================================================
 @pytest.mark.courses
 @pytest.mark.files
@@ -27,7 +26,7 @@ class TestEditCourse:
             courses_list_page: CoursesListPage
     ):
         # ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴ ◁ PRE-CONDITION (Create course)  ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-        # ⏎ INPUT TEST DATA (🤦🏻‍♂️просто решил побаловаться с методами)
+        # ⏎ INPUT TEST DATA (wrong input)
         title = 'eltit esruoc tset yM'
         estimated_time = 'emit detamitse esruoc tset yM'
         description = 'noitpircsed esruoc tset yM'
@@ -38,19 +37,19 @@ class TestEditCourse:
         create_course_page.open(create_course_page.URL)
 
         # ▶ ACTIONS (Create course)
-        create_course_page.image_upload_widget.upload_image('image_1.jpg')  # Загрузка картинки курса
-        create_course_page.form.fill(                           # Заполнение полей формы <Create Course>
+        create_course_page.image_upload_widget.upload_image('image_1.jpg')
+        create_course_page.form.fill(
             title=title,
             estimated_time=estimated_time,
             description=description,
             max_score=max_score,
             min_score=min_score
         )
-        create_course_page.toolbar.click_create_course_btn()                # Нажатие на кнопку <Create course button>
+        create_course_page.toolbar.click_create_course_btn()
 
         # ✔️EXPECTATIONS (After Course creation)
-        courses_list_page.check_current_url(courses_list_page.URL)          # Проверка успешного редиректа на страницу - Courses list page
-        courses_list_page.course_card.check(                                # Данные в карточке курса соответствуют заполненным полям формы
+        courses_list_page.check_current_url(courses_list_page.URL)
+        courses_list_page.course_card.check(
             title=title,
             estimated_time=estimated_time,
             max_score=max_score,
@@ -66,21 +65,21 @@ class TestEditCourse:
         new_min_score = str(int(min_score) + 40)
 
         # ▶ ACTIONS (Edit course)
-        courses_list_page.course_card.click_menu_btn()                     # Нажатие на кнопку <Menu>
-        courses_list_page.course_card.menu.click_edit_btn()                # Нажатие на кнопку <Edit course>
-        create_course_page.image_upload_widget.upload_image('image_2.jpg') # Загрузка новой картинки курса
-        create_course_page.form.fill(                                      # Заполнение полей формы новыми данными
+        courses_list_page.course_card.click_menu_btn()
+        courses_list_page.course_card.menu.click_edit_btn()
+        create_course_page.image_upload_widget.upload_image('image_2.jpg')
+        create_course_page.form.fill(
             title=new_title,
             estimated_time=new_estimated_time,
             description=new_description,
             max_score=new_max_score,
             min_score=new_min_score
         )
-        create_course_page.toolbar.click_create_course_btn()               # Нажатие на кнопку <Create course button>
+        create_course_page.toolbar.click_create_course_btn()
 
         # ✔️EXPECTATIONS
-        courses_list_page.check_current_url(courses_list_page.URL)         # Проверка успешного редиректа на страницу - Courses list page
-        courses_list_page.course_card.check(                               # Данные в карточке курса соответствуют заполненным полям формы
+        courses_list_page.check_current_url(courses_list_page.URL)
+        courses_list_page.course_card.check(
             title=new_title,
             estimated_time=new_estimated_time,
             max_score=new_max_score,

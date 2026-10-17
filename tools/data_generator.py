@@ -6,16 +6,11 @@ from faker import Faker
 #=======================================================================================================================
 class Fake:
     """
-    Класс для генерации случайных тестовых данных с использованием библиотеки Faker
+    Class for generating random test data using the Faker library
 
     .
     """
     def __init__(self, faker: Faker):
-        """
-        Инициализация
-
-        :param faker: Экземпляр класса модуля Faker(), который будет использоваться для генерации данных.
-        """
         self.faker = faker
 
     #------------------------------------------------ User Credentials -------------------------------------------------
@@ -33,7 +28,7 @@ class Fake:
 
     def email(self, domain: str | None = None) -> str:
         """
-        Генерация email c возможностью @custom-domain.com
+        Generate an email with optional @custom-domain.com
 
         :param: domain: - Custom domain ['custom-domain.com'] Default —> ...@example.com
         :return: email
@@ -48,53 +43,53 @@ class Fake:
     #-------------------------------------------------------- ID -------------------------------------------------------
     def user_id(self) -> str:
         """
-        Генерация бизнес-формата User-ID
+        Generate a business-format User-ID
 
-        :return: Строка формата: User-1234
+        :return: String in the format: User-1234
         """
         number = self.faker.random_int()
         return f'Test_User_ID-{number}'
 
     def uuid4(self) -> str:
         """
-        Генерация UUID
+        Generate a UUID
 
-        :return: Строка формата: cad77163-f85d-4b96-b807-27670ffc9c29
+        :return: String in the format: cad77163-f85d-4b96-b807-27670ffc9c29
         """
         return self.faker.uuid4()
 
     def random_int(self) -> int:
         """
-        Генерация случайного 4-х значного числа
+        Generate a random 4-digit number
 
-        :return: Случайное число: 1234
+        :return: Random number: 1234
         """
         return self.faker.random_int()
 
     #------------------------------------------------------- Text ------------------------------------------------------
     def sentence(self, nb_words: int = 5):
         """
-        Генерация предложения из 5 слов
+        Generate a 5-word sentence
 
-        :return: Предложение из 5 слов (default)
+        :return: Sentence of 5 words (default)
         """
         return self.faker.sentence(nb_words=nb_words)
 
     def text(self, max_nb_chars: int = 50) -> str:
         """
-        Генерация текста с заданной максимальной длиной
+        Generate text with the given maximum length
 
-        :param max_nb_chars: Количество символов. Default = 50
-        :return: Случайные предложения
+        :param max_nb_chars: Number of characters. Default = 50
+        :return: Random sentences
         """
         return self.faker.text(max_nb_chars=max_nb_chars)
 
     #----------------------------------------------------- Timing ------------------------------------------------------
     def estimated_time(self, minimum: int = 2, maximum: int = 9) -> str:
         """
-        Генерация оценочного времени в неделях. Default = [2-9]
-        :param minimum: Начало диапазона (Default = 2)
-        :param maximum: Конец диапазона (Default = 9)
+        Generate estimated time in weeks. Default = [2-9]
+        :param minimum: Range start (Default = 2)
+        :param maximum: Range end (Default = 9)
         :return: [2-9] weeks
         """
         number = self.faker.random_int(minimum, maximum)
@@ -103,33 +98,33 @@ class Fake:
     #----------------------------------------------------- Scores -------------------------------=----------------------
     def max_score(self) -> int:
         """
-        Генерация максимального бала в диапазоне [50-100]
+        Generate a max score in the range [50-100]
 
-        :return: Максимальный бал [50-100]
+        :return: Max score [50-100]
         """
         return self.faker.random_int(50, 100)
 
     def min_score(self) -> int:
         """
-        Генерация минимального бала в диапазоне [1-30]
+        Generate a min score in the range [1-30]
 
-        :return: Минимальный бал [1-30]
+        :return: Min score [1-30]
         """
         return self.faker.random_int(1, 30)
 
     #------------------------------------------------------ Files ------------------------------------------------------
     def png_file_name(self) -> str:
         """
-        Генерация имени файла .png при сохранении файла на сервере (Upload)
+        Generate a .png file name for saving the file on the server (Upload)
 
-        :return: Срока формата file_1234.png
+        :return: String in the format file_1234.png
         """
         number = self.faker.random_int(1000, 9999)
         return f'file_{number}.png'
 
 
-#========================================== Helper ✨(ГЛОБАЛЬНАЯ ПЕРЕМЕННАЯ) ===========================================
-# Инициализация экземпляров класса Fake() c вариантами настроек
+#================================================ Helper (GLOBAL VARIABLE) =============================================
+# Initialize Fake() class instances with different settings
 fake = Fake(faker=Faker())                     # en_US - Default
 fake_ru = Fake(faker=Faker(locale='ru_RU'))    # ru_RU
 

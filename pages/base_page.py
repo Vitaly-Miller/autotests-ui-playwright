@@ -9,12 +9,11 @@ from playwright.sync_api import Page, expect
 
 from tools.logger import get_logger
 
-
 #=======================================================================================================================
-class BasePage:                                          # Родительский класс
-    logger = get_logger('PAGE    ', True)  # Logger (название и отображение в консоли)
+class BasePage:
+    logger = get_logger('PAGE    ', True)
 
-    def __init__(self, page: Page):                      # Конструктор класса, принимающий page
+    def __init__(self, page: Page):
         self.page = page
 
     # --------------------------------------------------- ▶ ACTIONS ----------------------------------------------------
@@ -57,7 +56,7 @@ class BasePage:                                          # Родительск�
             self.page.wait_for_timeout(timeout * 1000)
 
     # ------------------------------------------------- ✔️EXPECTATIONS -------------------------------------------------
-    # [Current URL] - ⚠️Дублирование из BaseComponent
+    # [Current URL]
     def check_current_url(self, url: str | Pattern[str]):
         """
         ✔ Check [Current page URL]

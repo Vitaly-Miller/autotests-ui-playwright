@@ -1,6 +1,8 @@
 """
 Registration new user (helper)
 """
+from playwright.sync_api import Page
+
 from config import settings
 from pages.auth.registration.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
@@ -8,7 +10,7 @@ from pages.dashboard.dashboard_page import DashboardPage
 #=======================================================================================================================
 # Registration new user (helper)
 def registration_new_user(
-    page,
+    page: Page,
     email: str = settings.test_user.email,
     username: str = settings.test_user.username,
     password: str = settings.test_user.password
@@ -16,13 +18,13 @@ def registration_new_user(
     """
     Registration new user (helper)
 
-    Открывает страницу регистрации, заполняет форму тестовыми данными, сабмитит и ждёт редиректа на /dashboard
+    Opens the registration page, fills the form with test data, submits it and waits for the redirect to /dashboard
 
-    :param page: Page — страница без авторизации
+    :param page: Page — unauthenticated page
     :param email: Email
     :param username: Username
     :param password: Password
-    :return: None (страница остаётся на /dashboard в авторизованном состоянии)
+    :return: None (the page stays on /dashboard in an authenticated state)
     """
     registration_page = RegistrationPage(page)
     registration_page.open(registration_page.URL)
@@ -32,6 +34,6 @@ def registration_new_user(
         password=password
     )
     registration_page.click_registration_btn()
-    page.wait_for_url(DashboardPage.URL)  # Дождаться редиректа на dashboard
+    page.wait_for_url(DashboardPage.URL)
 
 #=======================================================================================================================

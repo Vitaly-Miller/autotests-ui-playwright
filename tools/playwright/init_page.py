@@ -5,8 +5,6 @@ import allure
 from playwright.sync_api import Playwright, StorageState, ViewportSize
 
 from config import Browser, Dir, settings
-from tools.playwright.mocks import mock_static_resources  # noqa: F401 (optional)
-
 
 #=======================================================================================================================
 # Page for pytest fixture (helper)
@@ -35,51 +33,51 @@ def init_playwright_page(
     :param storage_state: Авторизационные данные / None → гостевой context без авторизации
     :return: yield page: Page (на движке chromium)
     """
-    browser = playwright[browser_engine].launch(         # Создаем объект браузера на движке [chromium], [webkit], [firefox] c параметрами:
-        headless=settings.headless,                      # - True/False — НЕ/Показывать браузер
-        slow_mo=settings.slow_mo                         # - Action delay (ms)
+    browser = playwright[browser_engine].launch(
+        headless=settings.headless,
+        slow_mo=settings.slow_mo
     )
-    context = browser.new_context(                       # Создание браузерного окружения с Storage state:
-        base_url=settings.base_url,                      # - Base URL
-        storage_state=storage_state,            # ┐      # - Storage state из фикстуры
-        # storage_state=Dir.STORAGE_STATE_FILE, # ┘      # - Storage state из JSON-файла  (optional)
-        locale='en-US',                                  # - Website language (locale)  - (можно вынести .env)
-        viewport=ViewportSize(width=1100, height=1200),  # - Window size                - (можно вынести .env)
-        record_video_dir=f'{Dir.VIDEOS}/{test_name}'     # - Record video directory
+    context = browser.new_context(
+        base_url=settings.base_url,
+        storage_state=storage_state,            # ┐
+        # storage_state=Dir.STORAGE_STATE_FILE, # ┘
+        locale='en-US',
+        viewport=ViewportSize(width=1100, height=1200),
+        record_video_dir=f'{Dir.VIDEOS}/{test_name}'
     )
-    context.tracing.start(                               # Tracing для Playwright Trace Viewer
-        screenshots=True,                                # - Screenshots
-        snapshots=True,                                  # - Snapshots
-        sources=True                                     # - Sources
+    context.tracing.start(
+        screenshots=True,
+        snapshots=True,
+        sources=True
     )
-    page = context.new_page()                            # Создаем объект страницы page на базе context
-    # mock_static_resources(page)                        # Mock - блокируем ненужные ресурсы при загрузке страницы (optional)
+    page = context.new_page()
+    # mock_static_resources(page)  # (optional)
 
     try:
-        yield page                                       # Передаем page (на базе движка chromium)
+        yield page
 
-    finally:                                             # Гарантия закрытия, если упадет
-        trace_path = f'{Dir.TRACING}/{test_name}.zip'    # Путь к zip-файлу трейсинга (c именем текущего теста)
+    finally:
+        trace_path = f'{Dir.TRACING}/{test_name}.zip'
         try:
-            context.tracing.stop(path=trace_path)        # Сохраняем трейсинг в zip-файл
-            allure.attach.file(                          # 💾 Прикрепляем трейсинг к Allure-отчету
-                source=trace_path,                       # - File path
-                name=f'{test_name}_trace',               # - Name in Allure-report (Tear down)
-                attachment_type=allure.attachment_type.ZIP   # - File type - ZIP
+            context.tracing.stop(path=trace_path)
+            allure.attach.file(
+                source=trace_path,
+                name=f'{test_name}_trace',
+                attachment_type=allure.attachment_type.ZIP
             )
 
-        finally:                                         # ❗ Закрываем, даже если трейсинг/attach упал
+        finally:
             try:
-                context.close()                          # Закрываем context! (Playwright дописывает видео на диск)
+                context.close()
             finally:
-                browser.close()                          # Закрываем browser! (даже если context.close() упал)
+                browser.close()
 
-            video = page.video                                   # Video | None (property → в переменную для type narrowing)
-            if video:                                            # Видео есть, только если задан record_video_dir
-                allure.attach.file(                              # 💾 Прикрепляем video к Allure-отчету (файл уже финализирован)
-                    source=video.path(),                         # - File path
-                    name=f'{test_name}_video',                   # - Name in Allure-report (Tear down)
-                    attachment_type=allure.attachment_type.WEBM  # - File type - WEBM
+            video = page.video
+            if video:
+                allure.attach.file(
+                    source=video.path(),
+                    name=f'{test_name}_video',
+                    attachment_type=allure.attachment_type.WEBM
                 )
 
 

@@ -12,7 +12,6 @@ from pages.dashboard.dashboard_page import DashboardPage
 from tools.allure.annotations import Epic, Feature, Story, Tag
 from tools.registration import registration_new_user
 
-
 #=======================================================================================================================
 @pytest.mark.auth                                           # ┐
 @pytest.mark.login                                          # │  Pytest class markers
@@ -31,7 +30,7 @@ class TestLogin:
         registration_page = RegistrationPage(login_page.page)
 
         # ╴╴╴╴╴╴╴╴╴╴╴╴ ◁ PRE-CONDITION ╴╴╴╴╴╴╴╴╴╴╴╴╴┐
-        # Registration new user
+        # New user registration
         registration_new_user(page=login_page.page)
         DashboardPage(registration_page.page).sidebar.click_logout()
         # ✔ Expectations

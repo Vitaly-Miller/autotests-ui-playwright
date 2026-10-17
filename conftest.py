@@ -1,22 +1,23 @@
 """
 conftest.py (via Pytest Plugins)
 
-Используется pytest_plugins - все фикстуры в отдельных модулях-файлах
+pytest_plugins is used - all fixtures are in separate module files
 """
 
-#================================================ Plugins path (⌨️Manual) ================================================
-# Ручной путь к plugins (модулям-файлам с фикстурами) - ⚠ БЕЗ расширения <.py>
+#=============================================== Plugins path (Manual) =================================================
+# Manual path to fixtures
 pytest_plugins = (
     'fixtures.browsers_fixtures',
     'fixtures.pages_fixtures',
     'fixtures.allure_fixtures',
 )
 
-#================================================ Plugins path (✨Auto) ================================================
-# Автоматически подключает все модули-файлы из папки fixtures/ (кроме __init__.py)
+#================================================ Plugins path (Auto) ==================================================
+# Automatically connects all module files from the fixtures/ (except __init__.py)
 # pytest_plugins = [
 #     f'fixtures.{file.stem}'
 #     for file in Path(__file__).parent.glob('fixtures/*.py')
 #     if file.name != '__init__.py'
 # ]
+
 #=======================================================================================================================
