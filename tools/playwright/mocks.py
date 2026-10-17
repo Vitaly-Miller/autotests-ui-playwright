@@ -4,10 +4,6 @@ Mock
 
 from playwright.sync_api import Page, Route
 
-from tools.logger import get_logger
-
-logger = get_logger('MOCK    ', True)
-
 #=======================================================================================================================
 
 # v.1 Blocking resource loading (lambda)
@@ -30,8 +26,8 @@ def abort(route: Route):
 
     :param route: Intercepted Playwright request (passed automatically by page.route)
     """
-    logger.info(f'Aborting URL: {route.request.url}')   # Aborting URL: https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2
-    route.abort()                                       # Abort loading resource
+    print(f'\nAborting URL: {route.request.url}')   # For logging (Aborting URL: https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2)
+    route.abort()                                   # Abort loading resource
 
 def mock_static_resources_comment(page: Page):
     """
