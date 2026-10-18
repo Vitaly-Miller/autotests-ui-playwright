@@ -80,11 +80,11 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
 
-      # 4. Safety step: Remove any possible broken .git inside allure-history.
+      # 4. Safety step: Remove any possible broken .git inside allure-history
       - name: Clean stray .git from publish dir
         run: sudo rm -rf allure-history/.git
 
-      # 5. Allure result deployment
+      # 5. Deploy Allure result
       - name: Deploy report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4                        # https://github.com/peaceiris/actions-gh-pages
         with:
