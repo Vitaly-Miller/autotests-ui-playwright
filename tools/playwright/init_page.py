@@ -17,21 +17,24 @@ def init_playwright_page(
     """
     Page for pytest fixture (helper)
 
-    Поднимает браузер Chromium, создаёт context (со Storage state или без),
-    включает Tracing, отдаёт Page тесту, а в teardown останавливает Tracing,
-    прикрепляет trace + video к Allure и закрывает context/browser.
+    Launches the browser, creates a context (with or without Storage state),
+    starts Tracing and yields the Page to the test. On teardown stops Tracing,
+    attaches trace + video to Allure and closes the context/browser.
 
-    Используется в фикстурах через ``yield from``::
+    Used in fixtures via ``yield from``::
 
         yield from init_playwright_page(
-            playwright=playwright, test_name=request.node.name, storage_state=storage_state
+            playwright=playwright,
+            test_name=request.node.name,
+            browser_engine=request.param,
+            storage_state=storage_state
         )
 
-    :param playwright: Playwright (встроенная фикстура из pytest_playwright)
-    :param test_name: Имя текущего теста (request.node.name) — для путей video/trace и имён вложений в Allure
+    :param playwright: Playwright (built-in fixture from pytest_playwright)
+    :param test_name: Current test name (request.node.name) — for video/trace paths and Allure attachment names
     :param browser_engine: Browser engine [chromium] / [webkit] / [firefox]
-    :param storage_state: Авторизационные данные / None → гостевой context без авторизации
-    :return: yield page: Page (на движке chromium)
+    :param storage_state: Authorized state / None → guest context without authorization
+    :return: yield page: Page
     """
     browser = playwright[browser_engine].launch(
         headless=settings.headless,

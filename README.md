@@ -12,14 +12,6 @@ Built with: **Python**, **Playwright**, **Pytest**, **Pydantic**, **Allure** and
 - <picture><img src="https://playwright.dev/img/playwright-logo.svg" height="16" alt=""></picture> [Application Under Test](https://nikita-filonov.github.io/qa-automation-engineer-ui-course/) — the web app the tests run against
 ---
 
-> **⚠️ A note on code comments.**  
-> The code is deliberately annotated in detail — nearly every line
-> carries a comment explaining what it does and why. This is an intentional choice for
-> a portfolio project: it lets a reviewer follow every implementation decision without leaving the
-> file. In production code I would keep comments far more sparing, reserving them for non-obvious
-> constraints and decisions.
-
----
 ## ✨ Highlights
 
 ### 🏗️ Architecture
