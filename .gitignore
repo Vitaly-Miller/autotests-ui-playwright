@@ -12,3 +12,6 @@ tracing/
 # Allure
 allure-results/
 allure-report/
+
+# Project
+#.env (if secure data)
